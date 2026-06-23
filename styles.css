@@ -3484,3 +3484,10 @@ main.wip-mode > *:not(.wip-screen) {
     font-size: 1.7rem;
   }
 }
+
+/* 使用者自訂實心 SVG kicker icon：吃 currentColor＝品牌綠 */
+.kicker-icon--solid {
+  fill: currentColor;
+  stroke: none;
+  display: block;
+}
