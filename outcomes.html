@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="鄉育的學習成果詳述：每位學生在 16 週課程中留下的成長履歷——專案成果、同儕與導師評分、反思日誌與測驗報告，以及看懂局勢、定義方向、設計行動、落地實戰四階段各自留下的能力證據。" />
+    <meta name="description" content="鄉育的學習成果詳述：每位學生在 16 週課程中留下的成長履歷——專案成果、同儕與導師評分、反思日誌與測驗報告，以及定義資訊（Define）、重組資訊（Reorganize）、設計行動（Design）、落地迭代（Practice·Iterate）四階段各自留下的能力證據。" />
     <title>學習成果｜成長履歷與能力證據</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -11,15 +11,14 @@
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
-          <img src="assets/countryedu-logo.jpg" alt="財團法人鄉育教育基金會" />
+          <img src="assets/countryedu-logo.png" alt="財團法人鄉育教育基金會" />
         </a>
         <nav class="desktop-nav" aria-label="主要導覽">
           <div class="nav-item">
-            <a href="about.html">關於鄉育</a>
-            <div class="nav-dropdown" aria-label="關於鄉育子選單">
-              <a href="mission-vision.html">使命與願景</a>
+            <a href="about.html">認識鄉育</a>
+            <div class="nav-dropdown" aria-label="認識鄉育子選單">
               <a href="story.html">我們的故事</a>
-              <a href="about.html#approach-title">陪伴哲學</a>
+              <a href="mission-vision.html">使命與願景</a>
               <a href="approach.html">教育方法與理念</a>
               <a href="team.html">團隊與治理</a>
             </div>
@@ -32,7 +31,8 @@
               <a href="programs.html#modules-title">三大模組</a>
               <a href="programs.html#weeks-title">16 週課程</a>
               <a href="programs.html#apply-title">報名・常見問題</a>
-              <a href="for-students.html">給學生的入口</a>
+              <a href="programs.html#companies-summary-title">與企業合作摘要</a>
+              <a href="programs.html#universities-summary-title">與大學合作摘要</a>
             </div>
           </div>
           <div class="nav-item">
@@ -54,10 +54,20 @@
             </div>
           </div>
           <div class="nav-item">
-            <a href="news.html">消息</a>
-            <div class="nav-dropdown" aria-label="消息子選單">
+            <a href="news.html">最新與資源</a>
+            <div class="nav-dropdown" aria-label="最新與資源子選單">
               <a href="news.html">最新消息</a>
-              <a href="contact.html">聯絡我們</a>
+              <a href="press.html">媒體報導</a>
+              <a href="resources.html">課程資源</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="依身分瀏覽，展開專區選單">依身分瀏覽</a>
+            <div class="nav-dropdown" aria-label="依身分瀏覽子選單">
+              <a href="for-students.html">學生專區</a>
+              <a href="for-companies.html">企業專區</a>
+              <a href="for-donors.html">捐款者專區</a>
+              <a href="for-universities.html">學校・大學專區</a>
             </div>
           </div>
         </nav>
@@ -76,13 +86,12 @@
       <div class="mobile-menu" data-mobile-menu>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="about.html">關於鄉育</a>
-            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開關於鄉育子選單" data-m-toggle></button>
+            <a href="about.html">認識鄉育</a>
+            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開認識鄉育子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="mission-vision.html">使命與願景</a>
             <a href="story.html">我們的故事</a>
-            <a href="about.html#approach-title">陪伴哲學</a>
+            <a href="mission-vision.html">使命與願景</a>
             <a href="approach.html">教育方法與理念</a>
             <a href="team.html">團隊與治理</a>
           </div>
@@ -98,7 +107,8 @@
             <a href="programs.html#modules-title">三大模組</a>
             <a href="programs.html#weeks-title">16 週課程</a>
             <a href="programs.html#apply-title">報名・常見問題</a>
-            <a href="for-students.html">給學生的入口</a>
+            <a href="programs.html#companies-summary-title">與企業合作摘要</a>
+            <a href="programs.html#universities-summary-title">與大學合作摘要</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -127,17 +137,54 @@
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="news.html">消息</a>
-            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開消息子選單" data-m-toggle></button>
+            <a href="news.html">最新與資源</a>
+            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開最新與資源子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
             <a href="news.html">最新消息</a>
+            <a href="press.html">媒體報導</a>
+            <a href="resources.html">課程資源</a>
+          </div>
+        </div>
+        <div class="m-group" data-m-group>
+          <div class="m-row">
+            <span class="m-label">依身分瀏覽</span>
+            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開依身分瀏覽子選單" data-m-toggle></button>
+          </div>
+          <div class="m-sub">
+            <a href="for-students.html">學生專區</a>
+            <a href="for-companies.html">企業專區</a>
+            <a href="for-donors.html">捐款者專區</a>
+            <a href="for-universities.html">學校・大學專區</a>
+          </div>
+        </div>
+        <div class="m-group" data-m-group>
+          <div class="m-row">
             <a href="contact.html">聯絡我們</a>
           </div>
         </div>
       </div>
 
-      <main id="top">
+      <main id="top" class="wip-mode">
+        <!-- ▼▼▼ 施工中鎖定（2026-06-24）：下方原始內容完整保留、未刪除，僅由 main.wip-mode 隱藏。
+             復原：刪除此註解與其下的 <section class="wip-screen">…</section>，並把 wip-mode 從上方 <main> 移除即可。 ▼▼▼ -->
+        <section class="wip-screen" role="region" aria-labelledby="wip-title">
+          <p class="wip-eyebrow">施工中 · Under Construction</p>
+          <h1 id="wip-title">這個單元正在整理中</h1>
+          <p class="wip-lead">內容正在製作，很快就會與大家見面。<br />感謝你的耐心，歡迎先逛逛其他單元。</p>
+          <div class="wip-actions">
+            <a class="button-secondary" href="index.html">回首頁</a>
+            <a class="wip-link" href="contact.html">有需求？聯絡我們 &rarr;</a>
+          </div>
+        </section>
+        <!-- ▲▲▲ 施工中鎖定結束；以下為原始內容（保留，未刪除） ▲▲▲ -->
+
+
+        <header class="page-header">
+          <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><a href="impact.html">影響力</a><span>›</span><span class="page-crumb-current" aria-current="page">學習成果</span></nav>
+          <h1>學習成果</h1>
+          <p class="page-header-en">Learning Outcomes</p>
+        </header>
         <!-- 01 總定位（指南針） -->
         <section class="problem-section section-pad" aria-labelledby="lo-title">
           <div class="section-grid">
@@ -148,7 +195,7 @@
             <div>
               <h2 id="lo-title">在鄉育，學習成果不是一張成績單，而是一份能帶走的成長履歷。</h2>
               <p class="lead">
-                我們關注的不是學生上完幾堂課，而是他在 16 週裡留下了哪些可被檢核、可被理解的成長證據。從看懂局勢到落地實戰，每個階段都會沉澱成具體的作品、評分與反思，最終組成一份能對學校、企業與自己交代的能力履歷。
+                我們關注的不是學生上完幾堂課，而是他在 16 週裡留下了哪些可被檢核、可被理解的成長證據。從定義資訊到落地迭代，每個階段都會沉澱成具體的作品、評分與反思，最終組成一份能對學校、企業與自己交代的能力履歷。
               </p>
               <div class="signal-row" aria-label="學習成果概覽">
                 <div>
@@ -220,38 +267,39 @@
               <p>四階段能力證據</p>
             </div>
             <div>
-              <h2 id="stage-title">看懂局勢、定義方向、設計行動、落地實戰，各自留下什麼。</h2>
+              <h2 id="stage-title">定義資訊、重組資訊、設計行動、落地迭代，各自留下什麼。</h2>
               <p class="lead">
-                鄉育的四階段賦能系統，不只是課程的進度，更是能力的累積。每個階段都會沉澱成可被指認的證據，讓「學會了什麼」變得具體。
+                鄉育的四階段賦能循環，不只是課程的進度，更是能力的累積。每一次落地都會循環回到定義、重組與設計，每個階段也都沉澱成可被指認的證據，讓「學會了什麼」變得具體。
               </p>
             </div>
           </div>
           <div class="stage-grid" aria-label="四階段對應的能力證據">
             <article class="stage-card">
               <span class="stage-num">01</span>
-              <h3>看懂局勢</h3>
-              <p class="node-label">辨識資訊與關係人</p>
+              <h3>定義資訊</h3>
+              <p class="node-label">定義目標與關鍵關係人</p>
               <p>留下利害關係人地圖與資訊判讀筆記，看出誰受影響、誰有需求、誰需要被溝通。</p>
             </article>
             <article class="stage-card">
               <span class="stage-num">02</span>
-              <h3>定義方向</h3>
-              <p class="node-label">重組資訊與形成目標</p>
+              <h3>重組資訊</h3>
+              <p class="node-label">釐清真正的問題</p>
               <p>留下問題定義（Problem Statement）與 SWOT、PEST 等分析，釐清真正要解決的目標。</p>
             </article>
             <article class="stage-card">
               <span class="stage-num">03</span>
               <h3>設計行動</h3>
-              <p class="node-label">連結策略與資源配置</p>
+              <p class="node-label">設計可執行的方案</p>
               <p>留下行動方案、旅程設計與資源配置規劃，把目標轉化為可執行的步驟。</p>
             </article>
             <article class="stage-card">
               <span class="stage-num">04</span>
-              <h3>落地實戰</h3>
-              <p class="node-label">反覆練習與真實應用</p>
-              <p>留下專案成果簡報、同儕互評、導師評語與反思日誌，作為可帶走的能力證據。</p>
+              <h3>落地迭代</h3>
+              <p class="node-label">執行並循環修正</p>
+              <p>在執行中產生新問題，循環回到定義、重組與設計，留下專案成果簡報、同儕互評、導師評語與反思日誌，作為持續迭代的能力證據。</p>
             </article>
           </div>
+          <p class="stage-loop"><span class="stage-loop-mark" aria-hidden="true">↻</span>四階段不是一次走完就結束，而是每一次落地都循環回到定義，讓能力證據持續疊加。</p>
         </section>
 
         <!-- 04 評量與回饋（放大鏡＝資訊判讀／檢視） -->
@@ -299,7 +347,7 @@
             <div>
               <h2 id="cases-title">看見不同學生，如何把能力長在自己身上。</h2>
               <p class="lead">
-                以下案例將呈現學生從起點問題、重新定義方向到最後行動的完整歷程。內容待取得學員正式授權後補上。
+                以下案例將呈現學生從定義問題、重組資訊、設計行動到落地迭代的完整歷程。內容待取得學員正式授權後補上。
               </p>
             </div>
           </div>
@@ -345,60 +393,8 @@
       <footer class="site-footer" id="contact">
         <div class="footer-main">
           <div class="footer-brand">
-            <img src="assets/countryedu-logo.jpg" alt="財團法人鄉育教育基金會 CountryEDU Charity Foundation" />
-            <p class="footer-desc">鄉育教育基金會陪伴青年探索自我、設定目標、連結未來。透過三階段的職涯探索框架，讓迷惘轉化為選擇的力量。</p>
-            <p class="footer-tagline">「媒合只是一種結果，選擇才是一種能力」</p>
-          </div>
-          <nav class="footer-nav" aria-label="頁尾導覽">
-            <div class="footer-col">
-              <h3>關於我們</h3>
-              <ul>
-                <li><a href="mission-vision.html">使命與願景</a></li>
-                <li><a href="story.html">創立故事</a></li>
-                <li><a href="team.html">團隊成員</a></li>
-                <li><a href="about.html#approach-title">陪伴哲學</a></li>
-              </ul>
-            </div>
-            <div class="footer-col">
-              <h3>計畫</h3>
-              <ul>
-                <li><a href="programs.html#overview-title">計畫總覽</a></li>
-                <li><a href="programs.html#journey-title">學習旅程</a></li>
-                <li><a href="programs.html#modules-title">認識自己</a></li>
-                <li><a href="programs.html#modules-title">勇敢實踐</a></li>
-                <li><a href="programs.html#modules-title">成為未來</a></li>
-              </ul>
-            </div>
-            <div class="footer-col">
-              <h3>影響力</h3>
-              <ul>
-                <li><a href="impact.html#page-title">累積數據</a></li>
-                <li><a href="impact.html#outcomes-title">成果摘要</a></li>
-                <li><a href="outcomes.html">學習成果故事</a></li>
-                <li><a href="impact.html#partners-title">合作夥伴</a></li>
-                <li><a href="impact.html#reports-title">年度報告</a></li>
-              </ul>
-            </div>
-            <div class="footer-col">
-              <h3>參與我們</h3>
-              <ul>
-                <li><a href="give.html">捐款支持</a></li>
-                <li><a href="for-companies.html">企業合作</a></li>
-                <li><a href="for-universities.html">學校合作</a></li>
-                <li><a href="involve.html#careers">徵才與志工</a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-        <div class="footer-mid">
-          <div class="footer-audience">
-            <h3>為你而來</h3>
-            <ul>
-              <li><a href="for-students.html">我是學生</a></li>
-              <li><a href="for-companies.html">我是企業</a></li>
-              <li><a href="for-donors.html">我是捐款人</a></li>
-              <li><a href="for-universities.html">我是學校</a></li>
-            </ul>
+            <img src="assets/countryedu-logo.png" alt="財團法人鄉育教育基金會 CountryEDU Charity Foundation" />
+            <p class="footer-desc">鄉育陪伴青年面對升學、職涯、創業與人生選擇中的不確定，透過真實情境與專案式學習，長出能反覆使用的判斷力、選擇力與實作力。</p>
           </div>
           <address class="footer-contact">
             <h3>聯絡我們</h3>

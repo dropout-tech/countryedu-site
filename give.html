@@ -11,15 +11,14 @@
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
-          <img src="assets/countryedu-logo.jpg" alt="財團法人鄉育教育基金會" />
+          <img src="assets/countryedu-logo.png" alt="財團法人鄉育教育基金會" />
         </a>
         <nav class="desktop-nav" aria-label="主要導覽">
           <div class="nav-item">
-            <a href="about.html">關於鄉育</a>
-            <div class="nav-dropdown" aria-label="關於鄉育子選單">
-              <a href="mission-vision.html">使命與願景</a>
+            <a href="about.html">認識鄉育</a>
+            <div class="nav-dropdown" aria-label="認識鄉育子選單">
               <a href="story.html">我們的故事</a>
-              <a href="about.html#approach-title">陪伴哲學</a>
+              <a href="mission-vision.html">使命與願景</a>
               <a href="approach.html">教育方法與理念</a>
               <a href="team.html">團隊與治理</a>
             </div>
@@ -32,7 +31,8 @@
               <a href="programs.html#modules-title">三大模組</a>
               <a href="programs.html#weeks-title">16 週課程</a>
               <a href="programs.html#apply-title">報名・常見問題</a>
-              <a href="for-students.html">給學生的入口</a>
+              <a href="programs.html#companies-summary-title">與企業合作摘要</a>
+              <a href="programs.html#universities-summary-title">與大學合作摘要</a>
             </div>
           </div>
           <div class="nav-item">
@@ -54,10 +54,20 @@
             </div>
           </div>
           <div class="nav-item">
-            <a href="news.html">消息</a>
-            <div class="nav-dropdown" aria-label="消息子選單">
+            <a href="news.html">最新與資源</a>
+            <div class="nav-dropdown" aria-label="最新與資源子選單">
               <a href="news.html">最新消息</a>
-              <a href="contact.html">聯絡我們</a>
+              <a href="press.html">媒體報導</a>
+              <a href="resources.html">課程資源</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="依身分瀏覽，展開專區選單">依身分瀏覽</a>
+            <div class="nav-dropdown" aria-label="依身分瀏覽子選單">
+              <a href="for-students.html">學生專區</a>
+              <a href="for-companies.html">企業專區</a>
+              <a href="for-donors.html">捐款者專區</a>
+              <a href="for-universities.html">學校・大學專區</a>
             </div>
           </div>
         </nav>
@@ -76,13 +86,12 @@
       <div class="mobile-menu" data-mobile-menu>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="about.html">關於鄉育</a>
-            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開關於鄉育子選單" data-m-toggle></button>
+            <a href="about.html">認識鄉育</a>
+            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開認識鄉育子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="mission-vision.html">使命與願景</a>
             <a href="story.html">我們的故事</a>
-            <a href="about.html#approach-title">陪伴哲學</a>
+            <a href="mission-vision.html">使命與願景</a>
             <a href="approach.html">教育方法與理念</a>
             <a href="team.html">團隊與治理</a>
           </div>
@@ -98,7 +107,8 @@
             <a href="programs.html#modules-title">三大模組</a>
             <a href="programs.html#weeks-title">16 週課程</a>
             <a href="programs.html#apply-title">報名・常見問題</a>
-            <a href="for-students.html">給學生的入口</a>
+            <a href="programs.html#companies-summary-title">與企業合作摘要</a>
+            <a href="programs.html#universities-summary-title">與大學合作摘要</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -127,17 +137,54 @@
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="news.html">消息</a>
-            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開消息子選單" data-m-toggle></button>
+            <a href="news.html">最新與資源</a>
+            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開最新與資源子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
             <a href="news.html">最新消息</a>
+            <a href="press.html">媒體報導</a>
+            <a href="resources.html">課程資源</a>
+          </div>
+        </div>
+        <div class="m-group" data-m-group>
+          <div class="m-row">
+            <span class="m-label">依身分瀏覽</span>
+            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開依身分瀏覽子選單" data-m-toggle></button>
+          </div>
+          <div class="m-sub">
+            <a href="for-students.html">學生專區</a>
+            <a href="for-companies.html">企業專區</a>
+            <a href="for-donors.html">捐款者專區</a>
+            <a href="for-universities.html">學校・大學專區</a>
+          </div>
+        </div>
+        <div class="m-group" data-m-group>
+          <div class="m-row">
             <a href="contact.html">聯絡我們</a>
           </div>
         </div>
       </div>
 
-      <main id="top">
+      <main id="top" class="wip-mode">
+        <!-- ▼▼▼ 施工中鎖定（2026-06-24）：下方原始內容完整保留、未刪除，僅由 main.wip-mode 隱藏。
+             復原：刪除此註解與其下的 <section class="wip-screen">…</section>，並把 wip-mode 從上方 <main> 移除即可。 ▼▼▼ -->
+        <section class="wip-screen" role="region" aria-labelledby="wip-title">
+          <p class="wip-eyebrow">施工中 · Under Construction</p>
+          <h1 id="wip-title">這個單元正在整理中</h1>
+          <p class="wip-lead">內容正在製作，很快就會與大家見面。<br />感謝你的耐心，歡迎先逛逛其他單元。</p>
+          <div class="wip-actions">
+            <a class="button-secondary" href="index.html">回首頁</a>
+            <a class="wip-link" href="contact.html">有需求？聯絡我們 &rarr;</a>
+          </div>
+        </section>
+        <!-- ▲▲▲ 施工中鎖定結束；以下為原始內容（保留，未刪除） ▲▲▲ -->
+
+
+        <header class="page-header">
+          <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><a href="involve.html">參與我們</a><span>›</span><span class="page-crumb-current" aria-current="page">支持鄉育</span></nav>
+          <h1>支持鄉育</h1>
+          <p class="page-header-en">Support Us</p>
+        </header>
         <!-- 01 捐款意義說明 -->
         <section class="problem-section section-pad" aria-labelledby="give-title">
           <div class="section-grid">
@@ -151,7 +198,7 @@
                 鄉育不替青年決定未來，而是陪他們長出在升學、就業與人生選擇中能反覆使用的判斷與行動能力。每一筆捐款，都會成為某位地方青年走上尋路旅程的入場券——讓資訊與資源的落差，不再決定一個孩子能走多遠。你的支持，讓「選擇」這件事，被更多青年擁有。
               </p>
               <div class="give-actions">
-                <a class="button-primary" href="mailto:yuzhen.lin@countryedu.org.tw?subject=我想捐款支持鄉育">我要捐款</a>
+                <a class="button-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">我要捐款</a>
                 <a class="button-secondary" href="#amounts">查看捐款方案</a>
               </div>
               <div class="signal-row" aria-label="鄉育服務概況">
@@ -182,7 +229,7 @@
             <div>
               <h2 id="amounts-title">選一個適合你的金額，一起支持青年尋路。</h2>
               <p class="lead">
-                以下是幾個建議的捐款級距，你也可以自訂金額。長期定期定額支持正在規劃中（金流串接後開放），現階段歡迎先來信表達支持意願——無論單筆或未來定期，每一份心意都會回到地方青年的培力現場。
+                以下是幾個建議的捐款級距，你也可以自訂金額，或與我們聯繫安排長期定期定額支持。無論單筆或定期，每一份心意都會回到地方青年的培力現場。
               </p>
             </div>
           </div>
@@ -195,7 +242,7 @@
                 <li>以一筆輕鬆無負擔的心意，成為青年尋路路上的同行者</li>
                 <li>適合第一次認識鄉育的你</li>
               </ul>
-              <a class="tier-cta" href="mailto:yuzhen.lin@countryedu.org.tw?subject=我想捐款支持鄉育｜單筆 NT$300">我選這個金額 &rarr;</a>
+              <a class="tier-cta" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">前往捐款 &rarr;</a>
             </article>
             <article class="highlight-tier">
               <span class="amount-tag">單筆 · 建議</span>
@@ -205,7 +252,7 @@
                 <li>支持更多地方青年走進 16 週尋路課程</li>
                 <li>鄉育建議的入門支持金額</li>
               </ul>
-              <a class="tier-cta" href="mailto:yuzhen.lin@countryedu.org.tw?subject=我想捐款支持鄉育｜單筆 NT$1,000">我選這個金額 &rarr;</a>
+              <a class="tier-cta" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">前往捐款 &rarr;</a>
             </article>
             <article>
               <span class="amount-tag">單筆</span>
@@ -215,22 +262,21 @@
                 <li>讓你的支持延伸到經濟弱勢青年的公益線上課程</li>
                 <li>陪伴抵達更需要資源的角落</li>
               </ul>
-              <a class="tier-cta" href="mailto:yuzhen.lin@countryedu.org.tw?subject=我想捐款支持鄉育｜單筆 NT$3,000">我選這個金額 &rarr;</a>
+              <a class="tier-cta" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">前往捐款 &rarr;</a>
             </article>
             <article>
               <span class="amount-tag">定期 · 自訂</span>
               <p>你的方式</p>
               <strong>自訂金額</strong>
               <ul>
-                <li>定期定額穩定支持（規劃中，金流串接後開放）</li>
-                <li>或來信告訴我們你想支持的金額與方向</li>
+                <li>自由選擇你想支持的金額</li>
+                <li>如需長期定期定額，歡迎與我們聯繫</li>
               </ul>
-              <a class="tier-cta" href="mailto:yuzhen.lin@countryedu.org.tw?subject=我想捐款支持鄉育｜自訂金額或定期定額">與我們聯繫 &rarr;</a>
+              <a class="tier-cta" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">前往捐款 &rarr;</a>
             </article>
           </div>
-          <p class="node-label">
-            <!-- TODO 金流待補：線上刷卡／定期定額金流串接中，尚未上線；勸募許可文號待基金會正式提供 -->
-            金額為建議級距，亦可自訂｜線上刷卡與定期定額金流串接中，開放前歡迎以 Email 或聯絡表單表達捐款意願；鄉育為依法設立之財團法人，完成捐款後將依規定開立收據。
+          <p class="node-label give-note">
+            以上為建議金額，你也可以自訂——按任一張卡片的「前往捐款」即可在線上完成支持。鄉育為依法設立的財團法人，每一筆捐款都會開立正式收據。
           </p>
         </section>
 
@@ -317,7 +363,7 @@
                 <span class="faq-mark" aria-hidden="true"></span>
               </summary>
               <p class="faq-answer">
-                線上刷卡與定期定額捐款金流正在串接中，開放後將於本頁提供安全的線上捐款連結。在此之前，歡迎先<a href="mailto:yuzhen.lin@countryedu.org.tw?subject=我想捐款支持鄉育">來信</a>告訴我們你想支持的金額與方式，由團隊協助後續捐款流程。
+                可以。點本頁任一「前往捐款」按鈕，即可前往鄉育的線上捐款頁完成捐款。如需設定長期定期定額，或有其他捐款方式的需求，歡迎<a href="contact.html">與我們聯繫</a>。
               </p>
             </details>
             <details class="faq-item">
@@ -326,7 +372,7 @@
                 <span class="faq-mark" aria-hidden="true"></span>
               </summary>
               <p class="faq-answer">
-                為保障你的權益，請勿自行匯入任何未經基金會正式公告的帳戶。正式的捐款帳戶與金流資訊，將於金流開放後在本頁公告；在此之前，請先透過 Email 或<a href="contact.html">聯絡頁</a>與我們聯繫。
+                最方便的方式，是點本頁任一捐款按鈕，前往鄉育的線上捐款頁完成捐款。若你偏好銀行匯款或其他方式，歡迎先<a href="contact.html">與我們聯繫</a>，我們會提供正式的捐款資訊。
               </p>
             </details>
             <details class="faq-item">
@@ -360,84 +406,28 @@
             <div>
               <h2 id="give-cta-title">準備好成為青年尋路的同行者了嗎？</h2>
               <p class="lead">
-                線上刷卡捐款金流串接中；在開放前，歡迎先來信告訴我們你想支持的金額與方式，我們會回覆完整的捐款管道、收據與勸募資訊。
+                點下方「我要捐款」即可前往鄉育的線上捐款頁，完成你的支持；若想進一步了解捐款方式或收據細節，也歡迎與我們聯繫。
               </p>
             </div>
           </div>
           <div class="cta-band">
             <div>
               <h3>我要捐款支持鄉育</h3>
-              <p>一封信，就能開始成為某位青年走上尋路旅程的入場券。</p>
+              <p>點一下，就能成為某位青年走上尋路旅程的入場券。</p>
             </div>
             <div class="cta-band-actions">
-              <a class="button-primary" href="mailto:yuzhen.lin@countryedu.org.tw?subject=我想捐款支持鄉育">我要捐款</a>
+              <a class="button-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">我要捐款</a>
               <a class="button-secondary" href="contact.html">前往聯絡頁</a>
             </div>
           </div>
-          <p class="node-label">
-            <!-- TODO 法律揭露待補：勸募許可文號依《公益勸募條例》須公開；正式捐款帳戶待金流開放後公告 -->
-            勸募許可文號：待補（依《公益勸募條例》揭露）｜線上金流串接中，正式捐款帳戶將於開放後正式公告，請勿自行匯入任何未公告帳戶。
-          </p>
         </section>
       </main>
 
       <footer class="site-footer" id="contact">
         <div class="footer-main">
           <div class="footer-brand">
-            <img src="assets/countryedu-logo.jpg" alt="財團法人鄉育教育基金會 CountryEDU Charity Foundation" />
-            <p class="footer-desc">鄉育教育基金會陪伴青年探索自我、設定目標、連結未來。透過三階段的職涯探索框架，讓迷惘轉化為選擇的力量。</p>
-            <p class="footer-tagline">「媒合只是一種結果，選擇才是一種能力」</p>
-          </div>
-          <nav class="footer-nav" aria-label="頁尾導覽">
-            <div class="footer-col">
-              <h3>關於我們</h3>
-              <ul>
-                <li><a href="mission-vision.html">使命與願景</a></li>
-                <li><a href="story.html">創立故事</a></li>
-                <li><a href="team.html">團隊成員</a></li>
-                <li><a href="about.html#approach-title">陪伴哲學</a></li>
-              </ul>
-            </div>
-            <div class="footer-col">
-              <h3>計畫</h3>
-              <ul>
-                <li><a href="programs.html#overview-title">計畫總覽</a></li>
-                <li><a href="programs.html#journey-title">學習旅程</a></li>
-                <li><a href="programs.html#modules-title">認識自己</a></li>
-                <li><a href="programs.html#modules-title">勇敢實踐</a></li>
-                <li><a href="programs.html#modules-title">成為未來</a></li>
-              </ul>
-            </div>
-            <div class="footer-col">
-              <h3>影響力</h3>
-              <ul>
-                <li><a href="impact.html#page-title">累積數據</a></li>
-                <li><a href="impact.html#outcomes-title">成果摘要</a></li>
-                <li><a href="outcomes.html">學習成果故事</a></li>
-                <li><a href="impact.html#partners-title">合作夥伴</a></li>
-                <li><a href="impact.html#reports-title">年度報告</a></li>
-              </ul>
-            </div>
-            <div class="footer-col">
-              <h3>參與我們</h3>
-              <ul>
-                <li><a href="give.html">捐款支持</a></li>
-                <li><a href="for-companies.html">企業合作</a></li>
-                <li><a href="for-universities.html">學校合作</a></li>
-                <li><a href="involve.html#careers">徵才與志工</a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-        <div class="footer-mid">
-          <div class="footer-audience">
-            <h3>為你而來</h3>
-            <ul>
-              <li><a href="for-students.html">我是學生</a></li>
-              <li><a href="for-companies.html">我是企業</a></li>
-              <li><a href="for-donors.html">我是捐款人</a></li>
-              <li><a href="for-universities.html">我是學校</a></li>
-            </ul>
+            <img src="assets/countryedu-logo.png" alt="財團法人鄉育教育基金會 CountryEDU Charity Foundation" />
+            <p class="footer-desc">鄉育陪伴青年面對升學、職涯、創業與人生選擇中的不確定，透過真實情境與專案式學習，長出能反覆使用的判斷力、選擇力與實作力。</p>
           </div>
           <address class="footer-contact">
             <h3>聯絡我們</h3>
