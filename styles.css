@@ -1,0 +1,2806 @@
+:root {
+  /* ===== v3 硬性 allowlist（2026-06-18）：全站僅用以下品牌色 ＋ 黑/白 ===== */
+  /* 綠 GREENS */
+  --leaf: #8ec457;        /* 嫩葉綠｜Logo·成長 */
+  --brand-green: #4f9f1d; /* 鄉育綠｜主品牌·結構 */
+  --leaf-700: #4e8718;    /* 葉綠深｜按鈕·連結 */
+  --deep: #3d5527;        /* 深林綠｜主文字·沉底 */
+  /* 黃 YELLOWS */
+  --butter: #fff0c3;      /* 鵝黃｜柔光·點綴 */
+  --sun: #fce08c;         /* 暖陽黃｜指引光·標註 */
+  --amber: #f8cd5f;       /* 琥珀黃｜重點提示 */
+  --wheat: #f5b62d;       /* 麥穗黃｜區塊強調·底線 */
+  /* 橙 ORANGES */
+  --apricot: #fdd2a6;     /* 杏橙｜淺底紋·點綴 */
+  --peach: #fbb05b;       /* 蜜桃橙｜柔性提示·hover */
+  --path: #f28c0a;        /* 路徑橙｜節點·主要 CTA */
+  --sunset: #e87328;      /* 赤陽橙｜重要轉折·警示 */
+  /* 中性 NEUTRALS */
+  --honey: #fbefd9;       /* 蜜糖米｜頁面底色·暖留白 */
+  --earth: #987459;       /* 大地棕｜輔助文字·大地 */
+  --black: #000000;
+  --white: #ffffff;
+
+  /* ===== 語意對應（沿用既有變數名，全部映射到 allowlist；rgba 為同色透明度變體） ===== */
+  --paper: #ffffff;                 /* 全頁底色＝純白（全站白底） */
+  --mist: #ffffff;                  /* 交替淺底＝純白 */
+  --ink: #3d5527;                   /* 主文字＝深林綠 */
+  --muted: rgba(61, 85, 39, 0.85);  /* 次要文字＝深林綠 85% */
+  --label: #3d5527;                 /* 小標籤＝深林綠 */
+  --link: #3d5527;                  /* 連結＝深林綠（搭配底線） */
+  --line: rgba(152, 116, 89, 0.32); /* 框線＝大地棕 32% */
+  --shadow: 0 18px 45px rgba(61, 85, 39, 0.1);
+  --max: 1160px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.site-shell {
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(142, 196, 87, 0.1) 0 1px, transparent 1px) 0 0 / 18vw 100%,
+    var(--paper);
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  width: 100%;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 42px;
+  transition: background 180ms ease, border-color 180ms ease, height 180ms ease;
+}
+
+.site-header.is-scrolled {
+  height: 68px;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  width: 168px;
+  height: 46px;
+}
+
+.brand-lockup img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item > a {
+  position: relative;
+  padding: 4px 0;
+}
+
+.nav-item > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--path);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.nav-item:hover > a::after,
+.nav-item:focus-within > a::after,
+.nav-item > a:hover::after,
+.nav-item > a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 196px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+/* invisible bridge so the dropdown stays open while the cursor crosses the gap */
+.nav-dropdown::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+}
+
+.nav-item:hover > .nav-dropdown,
+.nav-item:focus-within > .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 9px 14px;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--ink);
+  white-space: nowrap;
+  border-radius: 10px;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.nav-dropdown a:hover,
+.nav-dropdown a:focus-visible {
+  background: var(--honey);
+  color: var(--leaf-700);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.contact-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.contact-dot span {
+  width: 8px;
+  height: 8px;
+  background: var(--path);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(242, 140, 10, 0.12);
+}
+
+.contact-dot b {
+  font-weight: 500;
+}
+
+.menu-toggle {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  display: grid;
+  gap: 8px;
+  align-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 1px;
+  background: var(--ink);
+  transition: transform 180ms ease;
+}
+
+.menu-toggle[aria-expanded="true"] span:first-child {
+  transform: translateY(4.5px) rotate(18deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:last-child {
+  transform: translateY(-4.5px) rotate(-18deg);
+}
+
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+  padding: 96px 42px 42px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.97);
+  transform: translateX(100%);
+  transition: transform 220ms ease;
+}
+
+.mobile-menu.is-open {
+  transform: translateX(0);
+}
+
+.m-group {
+  border-bottom: 1px solid var(--line);
+}
+
+.m-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.m-row > a {
+  flex: 1;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.8rem;
+  padding: 14px 0;
+}
+
+.m-toggle {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+.m-toggle::before,
+.m-toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 1.5px;
+  background: var(--ink);
+  transform: translate(-50%, -50%);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.m-toggle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.m-group.is-expanded .m-toggle::after {
+  transform: translate(-50%, -50%) rotate(0);
+  opacity: 0;
+}
+
+.m-sub {
+  display: none;
+  flex-direction: column;
+  padding: 2px 0 16px 6px;
+}
+
+.m-group.is-expanded .m-sub {
+  display: flex;
+}
+
+.m-sub a {
+  font-size: 1.1rem;
+  color: var(--muted);
+  padding: 9px 0;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 120px 24px 84px;
+  isolation: isolate;
+  background: var(--paper);
+}
+
+.hero-word {
+  position: absolute;
+  z-index: -1;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 17rem;
+  line-height: 1;
+  color: rgba(78, 135, 24, 0.08);
+  pointer-events: none;
+}
+
+.hero-word-left {
+  left: -3.5rem;
+  top: 9rem;
+}
+
+.hero-word-right {
+  right: -3rem;
+  bottom: 7rem;
+}
+
+.hero-content {
+  width: min(840px, 100%);
+  text-align: center;
+  padding-top: 36px;
+}
+
+.eyebrow,
+.node-label,
+.section-kicker p,
+.section-kicker span {
+  margin: 0;
+  color: var(--label);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.hero h1,
+.section-grid h2,
+.path-header h2,
+.impact-layout h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-weight: 700;
+  line-height: 1.22;
+}
+
+.hero h1 {
+  margin-top: 18px;
+  font-size: 4.2rem;
+}
+
+.hero-subtitle {
+  width: min(650px, 100%);
+  margin: 24px auto 0;
+  color: var(--muted);
+  font-size: 1.15rem;
+}
+
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 38px;
+}
+
+.button-primary,
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  font-weight: 700;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.button-primary {
+  background: var(--path);
+  border-color: var(--path);
+  color: var(--black);
+}
+
+.button-secondary {
+  background: rgba(251, 239, 217, 0.68);
+}
+
+.button-primary:hover,
+.button-secondary:hover,
+.button-primary:focus-visible,
+.button-secondary:focus-visible {
+  transform: translateY(-2px);
+}
+
+.button-secondary:hover,
+.button-secondary:focus-visible {
+  background: var(--mist);
+}
+
+.hero-index {
+  position: absolute;
+  left: 42px;
+  bottom: 42px;
+  display: flex;
+  gap: 12px;
+  color: rgba(61, 85, 39, 0.42);
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.section-pad {
+  padding: 132px 42px;
+}
+
+.section-grid {
+  width: min(var(--max), 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 72px;
+}
+
+.section-kicker {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding-top: 8px;
+}
+
+.section-kicker span {
+  color: var(--link);
+}
+
+.section-grid h2,
+.path-header h2,
+.impact-layout h2 {
+  font-size: 3rem;
+  max-width: 860px;
+}
+
+.lead,
+.about-copy > p {
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  max-width: 760px;
+}
+
+.signal-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 46px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.signal-row div {
+  min-height: 170px;
+  background: var(--white);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.signal-row strong {
+  color: var(--leaf-700);
+  font-family: Georgia, serif;
+  font-size: 3.4rem;
+  line-height: 1;
+}
+
+.signal-row span {
+  color: var(--muted);
+}
+
+.about-section {
+  position: relative;
+  background: var(--white);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.large-watermark {
+  position: absolute;
+  right: -3rem;
+  top: 2rem;
+  color: rgba(152, 116, 89, 0.07);
+  font-family: Georgia, serif;
+  font-size: 9rem;
+  font-style: italic;
+  pointer-events: none;
+}
+
+.mission-list {
+  margin-top: 54px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.mission-list article {
+  padding: 34px 28px;
+  border-right: 1px solid var(--line);
+}
+
+.mission-list article:last-child {
+  border-right: 0;
+}
+
+.mission-list span {
+  color: var(--link);
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.mission-list h3 {
+  margin: 18px 0 8px;
+  font-size: 1.25rem;
+}
+
+.mission-list p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.path-section {
+  background: var(--mist);
+  scroll-margin-top: 88px;
+}
+
+.path-header {
+  width: min(var(--max), 100%);
+  margin: 0 auto 64px;
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 72px;
+}
+
+.journey-line {
+  width: min(var(--max), 100%);
+  margin: 0 auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 38px;
+}
+
+.journey-line::before {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 31px;
+  height: 1px;
+  background: var(--line);
+}
+
+.journey-node {
+  position: relative;
+  min-height: 280px;
+  padding-top: 78px;
+}
+
+.node-dot {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  width: 24px;
+  height: 24px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+}
+
+.featured-node .node-dot {
+  background: var(--path);
+  border-color: var(--path);
+  box-shadow: 0 0 0 12px rgba(242, 140, 10, 0.14);
+}
+
+.journey-node h3,
+.act-item h3,
+.audience-item h3 {
+  margin: 10px 0 14px;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.8rem;
+  line-height: 1.35;
+}
+
+.journey-node p:last-child,
+.act-item p:last-child,
+.audience-item p:last-child {
+  margin: 0;
+  color: var(--muted);
+}
+
+.act-panel {
+  width: min(var(--max), 100%);
+  margin: 58px auto 0;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.act-tabs {
+  display: grid;
+  border-right: 1px solid var(--line);
+}
+
+.act-tab,
+.audience-tab {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: left;
+  font-weight: 800;
+}
+
+.act-tab {
+  padding: 26px 28px;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.15rem;
+}
+
+.act-tab:last-child {
+  border-bottom: 0;
+}
+
+.act-tab.is-active,
+.audience-tab.is-active {
+  color: var(--ink);
+  background: var(--mist);
+}
+
+.act-content {
+  min-height: 300px;
+  position: relative;
+}
+
+.act-item {
+  display: none;
+  padding: 44px 52px;
+}
+
+.act-item.is-active {
+  display: block;
+}
+
+.evidence-section {
+  background: var(--deep);
+  color: var(--paper);
+}
+
+.evidence-section .section-kicker p,
+.evidence-section .section-grid h2 {
+  color: var(--paper);
+}
+
+.evidence-section .section-kicker span,
+.evidence-section .node-label {
+  color: var(--wheat);
+}
+
+.evidence-board {
+  margin-top: 48px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  border-top: 1px solid rgba(251, 239, 217, 0.22);
+}
+
+.evidence-track {
+  position: relative;
+  border-right: 1px dotted rgba(251, 239, 217, 0.38);
+}
+
+.evidence-track span {
+  position: absolute;
+  right: -7px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--wheat);
+}
+
+.evidence-track span:nth-child(1) {
+  top: 38px;
+}
+
+.evidence-track span:nth-child(2) {
+  top: 118px;
+}
+
+.evidence-track span:nth-child(3) {
+  top: 198px;
+}
+
+.evidence-track span:nth-child(4) {
+  top: 278px;
+}
+
+.evidence-board ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.evidence-board li {
+  min-height: 80px;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 36px;
+  align-items: center;
+  border-bottom: 1px solid rgba(251, 239, 217, 0.16);
+  padding: 18px 0 18px 34px;
+}
+
+.evidence-board b {
+  font-size: 1.1rem;
+}
+
+.evidence-board span {
+  color: rgba(251, 239, 217, 0.72);
+}
+
+.program-section {
+  background: var(--white);
+  scroll-margin-top: 88px;
+}
+
+.audience-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.audience-tab {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.audience-display {
+  margin-top: 20px;
+  border: 1px solid var(--line);
+  min-height: 260px;
+  background: var(--paper);
+}
+
+.audience-item {
+  display: none;
+  padding: 48px;
+}
+
+.audience-item.is-active {
+  display: block;
+}
+
+.impact-section {
+  background: var(--paper);
+  scroll-margin-top: 88px;
+}
+
+.impact-layout {
+  width: min(var(--max), 100%);
+  margin: 0 auto;
+}
+
+.impact-numbers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin-top: 44px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.impact-numbers div {
+  background: var(--white);
+  padding: 28px;
+  min-height: 150px;
+}
+
+.impact-numbers strong {
+  display: block;
+  color: var(--leaf-700);
+  font-family: Georgia, serif;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.impact-numbers span {
+  display: block;
+  margin-top: 18px;
+  color: var(--muted);
+}
+
+.partners-section {
+  background: var(--mist);
+  scroll-margin-top: 88px;
+}
+
+.partner-tiers {
+  width: min(var(--max), 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.partner-tiers article {
+  background: var(--white);
+  padding: 30px 24px;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.partner-tiers .highlight-tier {
+  background: var(--deep);
+  color: var(--paper);
+}
+
+.partner-tiers p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.highlight-tier p {
+  color: rgba(251, 239, 217, 0.78);
+}
+
+.partner-tiers strong {
+  display: block;
+  margin-top: 20px;
+  color: var(--leaf-700);
+  font-family: Georgia, serif;
+  font-size: 3rem;
+}
+
+.highlight-tier strong {
+  color: var(--wheat);
+}
+
+.partner-tiers ul {
+  margin: auto 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.highlight-tier ul {
+  color: rgba(251, 239, 217, 0.78);
+}
+
+.site-footer {
+  background: var(--honey);
+  color: var(--ink);
+  border-top: 1px solid var(--line);
+  padding: 62px 42px 28px;
+}
+
+/* 上半：品牌區 + 四欄導覽 */
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(250px, 1.35fr) repeat(4, minmax(0, 1fr));
+  gap: 40px;
+  padding-bottom: 42px;
+}
+
+.footer-brand {
+  max-width: 360px;
+}
+
+.footer-brand img {
+  width: 184px;
+  max-width: 100%;
+  height: auto;
+  /* logo 為白底 jpg；以 multiply 融入暖米底色，去除白框 */
+  mix-blend-mode: multiply;
+}
+
+.footer-desc {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.9;
+}
+
+.footer-tagline {
+  margin: 18px 0 0;
+  color: var(--brand-green);
+  font-weight: 800;
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+}
+
+.footer-nav {
+  display: contents;
+}
+
+.footer-col h3 {
+  margin: 0 0 18px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.footer-col a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.18s ease;
+}
+
+.footer-col a:hover {
+  color: var(--leaf-700);
+}
+
+/* 中段：為你而來 + 聯絡我們 */
+.footer-mid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 30px 0;
+  border-top: 1px solid var(--line);
+}
+
+.footer-audience h3,
+.footer-contact h3 {
+  margin: 0 0 16px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.footer-audience ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 26px;
+}
+
+.footer-audience a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.18s ease;
+}
+
+.footer-audience a:hover {
+  color: var(--leaf-700);
+}
+
+.footer-contact {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  text-align: right;
+}
+
+.footer-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.18s ease;
+}
+
+.footer-contact a:hover {
+  color: var(--leaf-700);
+}
+
+.footer-contact svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  color: var(--brand-green);
+}
+
+/* 底列：版權 + 待補說明 */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.footer-bottom small {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 960px) {
+  .site-header {
+    padding: 16px 22px;
+  }
+
+  .desktop-nav,
+  .contact-dot b {
+    display: none;
+  }
+
+  .brand-lockup {
+    width: 146px;
+  }
+
+  .hero {
+    min-height: 780px;
+    padding: 112px 22px 72px;
+  }
+
+  .hero h1 {
+    font-size: 3.6rem;
+  }
+
+  .hero-word {
+    font-size: 10rem;
+  }
+
+  .hero-index {
+    left: 22px;
+    right: 22px;
+    justify-content: space-between;
+    font-size: 0.85rem;
+  }
+
+  .section-pad {
+    padding: 92px 22px;
+  }
+
+  .section-grid,
+  .path-header,
+  .impact-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .section-grid h2,
+  .path-header h2,
+  .impact-layout h2 {
+    font-size: 2.25rem;
+  }
+
+  .signal-row,
+  .mission-list,
+  .journey-line,
+  .partner-tiers {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-line {
+    gap: 20px;
+  }
+
+  .journey-line::before {
+    left: 12px;
+    right: auto;
+    top: 18px;
+    bottom: 18px;
+    width: 1px;
+    height: auto;
+  }
+
+  .journey-node {
+    min-height: auto;
+    padding: 6px 0 32px 48px;
+  }
+
+  .node-dot {
+    left: 0;
+    top: 6px;
+  }
+
+  .act-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .act-tabs {
+    grid-template-columns: repeat(3, 1fr);
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .act-tab {
+    padding: 18px 12px;
+    text-align: center;
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+  }
+
+  .act-tab:last-child {
+    border-right: 0;
+  }
+
+  .act-item,
+  .audience-item {
+    padding: 30px 24px;
+  }
+
+  .evidence-board {
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .evidence-board li {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding-left: 22px;
+  }
+
+  .partner-tiers article {
+    min-height: 260px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 28px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    max-width: 560px;
+  }
+
+  .footer-mid {
+    flex-direction: column;
+  }
+
+  .footer-contact {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .button-primary,
+  .button-secondary {
+    width: 100%;
+  }
+
+  .section-grid h2,
+  .path-header h2,
+  .impact-layout h2 {
+    font-size: 1.95rem;
+  }
+
+  .signal-row strong,
+  .impact-numbers strong,
+  .partner-tiers strong {
+    font-size: 2.45rem;
+  }
+
+  .impact-numbers {
+    grid-template-columns: 1fr;
+  }
+
+  .audience-tabs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .audience-tab {
+    text-align: center;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ===== 首頁內容編排改版新增元件（2026-06-17） ===== */
+
+.hero-proof {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px 40px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-proof li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.hero-proof strong {
+  color: var(--leaf-700);
+  font-family: Georgia, serif;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.hero-proof span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.audience-cta {
+  display: inline-flex;
+  margin-top: 24px;
+  color: var(--link);
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity 160ms ease;
+}
+
+.audience-cta:hover,
+.audience-cta:focus-visible {
+  opacity: 0.7;
+}
+
+.capability-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 30px 0 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.capability-chips li {
+  border: 1px solid rgba(251, 239, 217, 0.3);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.92rem;
+  color: var(--paper);
+}
+
+.story-section {
+  background: var(--mist);
+  scroll-margin-top: 88px;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 34px;
+  margin-top: 44px;
+  align-items: stretch;
+}
+
+.story-quote {
+  margin: 0;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--path);
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story-quote blockquote {
+  margin: 0;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.story-quote figcaption {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.story-ratings {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.story-ratings div {
+  background: var(--white);
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+.story-ratings strong {
+  color: var(--leaf-700);
+  font-family: Georgia, serif;
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+.story-ratings small {
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.story-ratings span {
+  color: var(--muted);
+}
+
+.story-figures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.story-figure {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  background: var(--white);
+  border: 1px dashed var(--line);
+  display: grid;
+  place-items: center;
+}
+
+.story-figure span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.partner-logos {
+  width: min(var(--max), 100%);
+  margin: 64px auto 0;
+  text-align: center;
+}
+
+.partner-logos-title {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.partner-logos ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.partner-logos li {
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 6px;
+  padding: 12px 20px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.partner-logos small {
+  display: block;
+  margin-top: 20px;
+  color: var(--muted);
+}
+
+.tier-cta {
+  margin-top: 22px;
+  color: var(--link);
+  font-weight: 800;
+}
+
+.highlight-tier .tier-cta {
+  color: var(--wheat);
+}
+
+.tier-cta:hover,
+.tier-cta:focus-visible {
+  text-decoration: underline;
+}
+
+.cta-band {
+  width: min(var(--max), 100%);
+  margin: 48px auto 0;
+  background: var(--deep);
+  color: var(--paper);
+  border-radius: 8px;
+  padding: 40px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.cta-band h2,
+.cta-band h3 {
+  margin: 0;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.7rem;
+}
+
+.cta-band p {
+  margin: 10px 0 0;
+  color: rgba(251, 239, 217, 0.78);
+}
+
+.cta-band-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.cta-band .button-primary {
+  background: var(--path);
+  border-color: var(--path);
+  color: var(--black);
+}
+
+.cta-band .button-secondary {
+  background: transparent;
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+/* 總 CTA 下方的勸募合規揭露（白底上的小字，深林綠 85% 達 WCAG） */
+.cta-legal {
+  width: min(var(--max), 100%);
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 960px) {
+  .act-tabs {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-band {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .story-figures {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 窄螢幕：見證引言縮字級＋收窄水平內距，避免每行字數過少、節奏破碎 */
+  .story-quote {
+    padding: 28px 24px;
+  }
+
+  .story-quote blockquote {
+    font-size: 1.3rem;
+  }
+
+  .hero-proof {
+    gap: 12px 22px;
+  }
+
+  .hero-proof strong {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===== Icon System（PM 工具箱）===== */
+.icon {
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+
+.section-kicker {
+  align-items: center;
+}
+
+.kicker-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--leaf-700);
+  stroke-width: 1.5;
+}
+
+.node-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--leaf-700);
+  margin-bottom: 14px;
+  stroke-width: 1.5;
+}
+
+/* 首頁區段標記：去編號、放大標籤、加入設計感（垂直堆疊＋品牌重點線） */
+.home .section-kicker {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.home .section-kicker .kicker-icon {
+  width: 34px;
+  height: 34px;
+}
+
+.home .section-kicker p {
+  position: relative;
+  margin: 0;
+  padding-bottom: 16px;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.35rem;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--leaf-700);
+}
+
+.home .section-kicker p::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 36px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--path);
+}
+
+.featured-node .node-icon {
+  color: var(--path);
+}
+
+.cta-band h3 .icon {
+  width: 26px;
+  height: 26px;
+  color: var(--wheat);
+  vertical-align: -4px;
+  margin-right: 8px;
+}
+
+/* ===== 表單 / 聯絡（多頁共用） ===== */
+.contact-grid {
+  width: min(var(--max), 100%);
+  margin: 44px auto 0;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 48px;
+}
+
+.contact-info {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.contact-info a {
+  color: var(--link);
+  font-weight: 700;
+}
+
+.lead-form {
+  display: grid;
+  gap: 18px;
+  max-width: 660px;
+}
+
+.lead-form label {
+  display: grid;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.lead-form input,
+.lead-form select,
+.lead-form textarea {
+  font: inherit;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 12px 14px;
+  width: 100%;
+}
+
+.lead-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.lead-form input:focus-visible,
+.lead-form select:focus-visible,
+.lead-form textarea:focus-visible {
+  outline: 2px solid var(--leaf-700);
+  outline-offset: 2px;
+  border-color: var(--leaf-700);
+}
+
+/* 消息列表卡片 */
+.news-list {
+  width: min(var(--max), 100%);
+  margin: 44px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 26px 24px;
+  min-height: 200px;
+}
+
+.news-card time {
+  color: var(--label);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.news-card h3 {
+  margin: 0;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.25rem;
+}
+
+.news-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.news-card a {
+  margin-top: auto;
+  color: var(--link);
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .news-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== 首頁內容架構改版（v2 文案）新增元件 ===== */
+.eyebrow-icon {
+  width: 17px;
+  height: 17px;
+  color: var(--leaf-700);
+  vertical-align: -3px;
+  margin-right: 6px;
+}
+
+.hero-note {
+  width: min(620px, 100%);
+  margin: 28px auto 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Why Now — 四個真實困難 */
+.friction-list {
+  list-style: none;
+  margin: 40px 0 28px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.friction-list li {
+  background: var(--white);
+  padding: 22px 24px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  color: var(--ink);
+}
+
+.friction-list li::before {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-top: 9px;
+  border-radius: 50%;
+  background: var(--path);
+}
+
+/* 四階段賦能卡 */
+.stage-grid {
+  width: min(var(--max), 100%);
+  margin: 56px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.stage-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stage-num {
+  font-family: Georgia, serif;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--leaf-700);
+}
+
+.stage-card h3 {
+  margin: 6px 0 0;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.4rem;
+}
+
+.stage-card > p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.stage-card .node-label {
+  color: var(--label);
+}
+
+.stage-transform {
+  margin-top: auto !important;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+  color: var(--ink) !important;
+  font-weight: 600;
+}
+
+.stage-transform b {
+  color: var(--path);
+  padding: 0 4px;
+}
+
+/* ============================================================
+   分眾入口 · 細線指向標牌系統（thin-line fingerpost · 方案 B 強化版）
+   四面方向牌＝細線指示牌掛在一根有桿頂・桿座的主桿上；
+   每牌左側方位徽章＋固定鉚釘，右側箭頭尖端；桿頂另有「下一步」主牌。
+   hover：邊框淡綠→深綠、尖端右移、CTA 導引線延伸、徽章亮起暖橘。
+   顏色全取自 v3 allowlist 或其透明度變體。
+   ============================================================ */
+
+/* 本區段背景維持溫暖米色系（依設計需求），讓細線路牌有呼吸感、輪廓清楚 */
+.home #audiences {
+  background: var(--honey);
+}
+
+.signpost-system {
+  --post-x: 24px; /* 主桿水平位置 */
+  position: relative;
+  width: min(var(--max), 100%);
+  margin: 60px auto 0;
+  padding: 4px 0 24px 58px; /* 左側留給主桿＋方位徽章 */
+}
+
+/* 主桿（垂直細線）＋桿頂圓帽＋桿座短腳 */
+.signpost-post {
+  position: absolute;
+  left: var(--post-x);
+  top: 6px;
+  bottom: 22px;
+  width: 1px;
+  background: rgba(61, 85, 39, 0.34);
+  pointer-events: none;
+}
+.signpost-post::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  transform: translateX(-50%);
+  width: 9px;
+  height: 9px;
+  border: 1px solid rgba(61, 85, 39, 0.34);
+  border-radius: 50%;
+  background: var(--honey);
+}
+.signpost-post::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 1px;
+  background: rgba(61, 85, 39, 0.34);
+}
+.signpost-ground {
+  position: absolute;
+  left: 0;
+  right: 6px;
+  bottom: 0;
+  height: 1px;
+  background: rgba(61, 85, 39, 0.16);
+  pointer-events: none;
+}
+
+/* 頂部主牌（總標頭：下一步 NEXT） */
+.signpost-head {
+  position: relative;
+  margin: 0 0 22px;
+}
+.signpost-head::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 50%;
+  width: 34px;
+  height: 1px;
+  background: rgba(61, 85, 39, 0.3);
+}
+.signpost-plate {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 18px;
+  border: 1px solid rgba(61, 85, 39, 0.3);
+  border-right: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--earth);
+}
+.signpost-plate b {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--leaf-700);
+}
+.signpost-plate .signpost-tip {
+  width: 14px;
+}
+
+/* 方向牌本體：細線指示牌，右緣不畫框（由 .signpost-tip 補上箭頭尖端） */
+.signpost {
+  --sign-c: rgba(78, 135, 24, 0.5); /* 預設＝淡葉綠 */
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 22px;
+  padding: 18px 32px 18px 28px;
+  border: 1px solid var(--sign-c);
+  border-right: 0;
+  background: transparent;
+  transition: border-color 240ms ease;
+}
+.signpost + .signpost {
+  margin-top: 15px;
+}
+
+/* 接到主桿的細臂 */
+.signpost::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  width: 20px;
+  height: 1px;
+  background: rgba(61, 85, 39, 0.34);
+  transition: background 240ms ease;
+}
+/* 固定鉚釘：牌身左緣兩個小螺栓點 */
+.signpost::after {
+  content: "";
+  position: absolute;
+  left: 13px;
+  top: calc(50% - 9px);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(61, 85, 39, 0.42);
+  box-shadow: 0 18px 0 rgba(61, 85, 39, 0.42);
+  transition: background 240ms ease, box-shadow 240ms ease;
+}
+
+/* 方位徽章：掛在主桿上、箭頭各指不同方向 */
+.signpost-badge {
+  position: absolute;
+  left: -48px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(61, 85, 39, 0.34);
+  border-radius: 50%;
+  background: var(--honey);
+  color: var(--earth);
+  transition: border-color 240ms ease, color 240ms ease, background 240ms ease;
+}
+.signpost-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* 右側箭頭尖端：SVG 隨牌高拉伸，stroke 不縮放＝永遠 1px */
+.signpost-tip {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 20px;
+  transition: transform 240ms ease;
+}
+.signpost-tip svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.signpost-tip path {
+  fill: none;
+  stroke: var(--sign-c, rgba(61, 85, 39, 0.3));
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  transition: stroke 240ms ease;
+}
+
+.signpost-meta {
+  min-width: 0;
+}
+.signpost .node-label {
+  color: var(--label);
+}
+.signpost h3 {
+  margin: 7px 0 0;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.3rem;
+  color: var(--ink);
+}
+.signpost-desc {
+  margin: 8px 0 0;
+  max-width: 52ch;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* CTA＝牌右側的行動，底部導引線 */
+.signpost-cta {
+  position: relative;
+  align-self: center;
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 11px;
+  color: var(--link);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.signpost-cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 36px;
+  height: 1px;
+  background: var(--path);
+  transition: width 260ms ease;
+}
+.signpost-cta .cta-arrow {
+  transition: transform 240ms ease;
+}
+
+/* hover / focus */
+.signpost:hover,
+.signpost:focus-within {
+  --sign-c: var(--deep);
+}
+.signpost:hover .signpost-tip,
+.signpost:focus-within .signpost-tip {
+  transform: translateX(4px);
+}
+.signpost:hover .signpost-cta::after,
+.signpost:focus-within .signpost-cta::after {
+  width: 74px;
+}
+.signpost:hover .signpost-cta .cta-arrow,
+.signpost:focus-within .signpost-cta .cta-arrow {
+  transform: translateX(4px);
+}
+.signpost:hover .signpost-badge,
+.signpost:focus-within .signpost-badge {
+  border-color: var(--deep);
+  color: var(--deep);
+  background: rgba(242, 140, 10, 0.12);
+}
+.signpost:hover::before,
+.signpost:focus-within::before {
+  background: var(--deep);
+}
+.signpost:hover::after,
+.signpost:focus-within::after {
+  background: var(--deep);
+  box-shadow: 0 18px 0 var(--deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signpost,
+  .signpost::before,
+  .signpost::after,
+  .signpost-tip,
+  .signpost-tip path,
+  .signpost-badge,
+  .signpost-cta::after,
+  .signpost-cta .cta-arrow {
+    transition: none;
+  }
+  .signpost:hover .signpost-tip,
+  .signpost:focus-within .signpost-tip,
+  .signpost:hover .signpost-cta .cta-arrow,
+  .signpost:focus-within .signpost-cta .cta-arrow {
+    transform: none;
+  }
+}
+
+.final-cta {
+  background: var(--mist);
+}
+
+@media (max-width: 960px) {
+  .stage-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 指向標牌：平板沿用單欄直列，縮小間距與字級 */
+  .signpost-system {
+    margin-top: 48px;
+  }
+  .signpost {
+    gap: 18px;
+  }
+  .signpost h3 {
+    font-size: 1.22rem;
+  }
+
+  .friction-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .stage-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 指向標牌：手機單欄，牌身內改上下堆疊（說明在上、CTA 在下） */
+  .signpost-system {
+    --post-x: 18px;
+    margin-top: 40px;
+    padding: 2px 0 22px 48px;
+  }
+  .signpost-head {
+    margin-bottom: 18px;
+  }
+  .signpost-head::before {
+    left: -30px;
+    width: 30px;
+  }
+  .signpost {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px 24px 18px 24px;
+  }
+  .signpost::before {
+    left: -18px;
+    width: 18px;
+  }
+  .signpost-badge {
+    left: -42px;
+    width: 24px;
+    height: 24px;
+  }
+  .signpost-badge svg {
+    width: 14px;
+    height: 14px;
+  }
+  .signpost-cta {
+    justify-self: start;
+  }
+  .signpost-desc {
+    max-width: none;
+  }
+  .signpost-tip {
+    width: 16px;
+  }
+}
+
+/* ===== 首頁暖色點綴：黃 × 橘（2026-06-18，僅作用於 .home，子頁不受影響） ===== */
+/* 全部取自 v3 allowlist（sun/amber/wheat・peach/path/sunset）。
+   原則：所有頁面/區段底色一律維持全白（不加任何背景填色或光暈）；
+   黃橘只作前景點綴＝邊框、漸層裝飾線、裝飾大字、圓點、標籤膠囊。內文綠字不動以守 WCAG。 */
+
+/* hero eyebrow → 暖陽黃膠囊（深綠字，AA 足夠） */
+.home .eyebrow {
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: var(--sun);
+  color: var(--deep);
+  letter-spacing: 0.04em;
+}
+
+/* hero 角落索引字 → 暖橘 */
+.home .hero-index {
+  color: rgba(242, 140, 10, 0.6);
+}
+
+/* 4. 區段大標題 → 黃→橘漸層底線點綴 */
+.home .path-header h2::after,
+.home .section-grid h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 18px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--wheat), var(--path));
+}
+
+/* 5. 四階段卡：黃→橘漸進頂條（看懂→落地的暖色路徑）＋ 暖橘大編號 */
+/* 頂條依 roadmap-node 順序黃→橘漸進；用 shorthand 確保 3px solid，
+   僅作用於 roadmap 結構，套不到時完全不加頂條（不干擾你重構中的版型） */
+.home .roadmap-node:nth-child(1) .stage-card { border-top: 3px solid var(--sun); }
+.home .roadmap-node:nth-child(2) .stage-card { border-top: 3px solid var(--amber); }
+.home .roadmap-node:nth-child(3) .stage-card { border-top: 3px solid var(--peach); }
+.home .roadmap-node:nth-child(4) .stage-card { border-top: 3px solid var(--path); }
+.home .stage-num {
+  color: var(--sunset);
+}
+
+/* 6. 策略 / 計畫卡：暖橘裝飾編號 ＋ hover 浮現暖色頂條（底色維持白） */
+.home .mission-list span {
+  color: var(--sunset);
+}
+.home .mission-list article {
+  border-top: 3px solid transparent;
+  transition: border-color 180ms ease;
+}
+.home .mission-list article:hover {
+  border-top-color: var(--wheat);
+}
+
+
+/* 8. 尋路旅程節點 → 暖橘圈點 */
+.home .journey-node .node-dot {
+  border-color: var(--path);
+}
+
+/* 9. 影響力數據 → 暖橘大字（向陽強調） */
+.home .impact-numbers strong {
+  color: var(--sunset);
+}
+
+/* ============================================================
+   方法 A：打破「每段一張投影片」的等距節奏（2026-06-18）
+   純 CSS、僅作用於 .home、不動 markup、不影響子頁。
+   對三個簡報感來源下手：等距節奏 → 不等距；等大標題 → 有層級；
+   表格式卡片格 → 連續路徑／編輯式列表。要回退整段刪除即可。
+   ============================================================ */
+
+/* A-1 去框線：把「表格式卡片格」改成分離的卡與編輯式列表 -------- */
+
+
+/* 影響力數據：同上，line 填縫的表格 → 分離圓角磚 */
+.home .impact-numbers {
+  background: transparent;
+  border: 0;
+  gap: 16px;
+}
+.home .impact-numbers div {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+/* 青年真實困難：2×2 框格 → 直書編輯式清單（一條一條讀，不是四個框） */
+.home .friction-list {
+  display: block;
+  background: transparent;
+  border: 0;
+  margin: 36px 0 24px;
+  max-width: 720px;
+}
+.home .friction-list li {
+  background: transparent;
+  padding: 16px 2px;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.16rem;
+}
+.home .friction-list li:last-child {
+  border-bottom: 0;
+}
+.home .friction-list li::before {
+  margin-top: 12px;
+}
+
+/* A-2 四階段：四個並排的框 → 一條 看懂→落地 的連續路徑 -------- */
+.home .stage-card {
+  position: relative;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 26px 22px 22px 0;
+}
+
+/* A-3 桌面才套：不等距節奏 + 標題層級 + 階段箭頭 ----------------- */
+@media (min-width: 961px) {
+  /* 不等距垂直節奏：取代每段都 132px 的等距切片，讓頁面有快慢呼吸。
+     problem 開場放大、method 收束，audiences/impact/partners 為均勻的轉化動線。 */
+  .home .problem-section.section-pad {
+    padding: 116px 42px 104px;
+  }
+  .home #method.section-pad {
+    padding: 96px 42px 88px;
+  }
+  .home .partners-section.section-pad {
+    padding: 92px 42px;
+  }
+  .home .impact-section.section-pad {
+    padding: 104px 42px 80px;
+  }
+  .home .final-cta.section-pad {
+    padding: 96px 42px 104px;
+  }
+
+  /* 標題層級：開場的世代課題（problem）放大成主述句，輔助段（影響力）縮小，
+     避免每段都是等重大標題、讀起來像等距投影片。 */
+  .home .problem-section h2 {
+    font-size: 3.7rem;
+    line-height: 1.16;
+    max-width: 16ch;
+  }
+  .home .impact-section h2 {
+    font-size: 2.4rem;
+  }
+
+  /* 四階段之間補上路徑箭頭：明確指出 01→02→03→04 的順序，
+     讓它讀起來是一條過程，而非四個平行卡片。 */
+  .home .stage-card:not(:last-child)::after {
+    content: "›";
+    position: absolute;
+    right: -2px;
+    top: 26px;
+    color: var(--path);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+}
+
+/* ============================================================
+   關於鄉育 總頁（about.html · body.page-about）
+   = 簡介 page-intro + 子區塊錨點 section-anchors
+     + 使命/願景・治理 資訊卡 info-cards + 方法四階段 method-grid。
+   這些 class 僅 about 使用；底色維持白，內文沿用深林綠（守 WCAG），
+   黃橘僅作邊框／編號／重點線等前景點綴（v3 allowlist）。
+   ============================================================ */
+
+/* 簡介（總頁開場，非 100vh，與內容頁區段同節奏） */
+.page-intro {
+  background: var(--paper);
+}
+
+.page-intro-inner {
+  width: min(var(--max), 100%);
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.page-intro h1 {
+  margin: 18px 0 0;
+  color: var(--ink);
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-weight: 700;
+  line-height: 1.18;
+  font-size: 3.4rem;
+  max-width: 20ch;
+}
+
+.page-intro .lead {
+  font-size: 1.18rem;
+  max-width: 780px;
+}
+
+.page-intro-note {
+  margin: 16px 0 0;
+  color: var(--muted);
+  max-width: 680px;
+}
+
+/* 子區塊錨點：四個膠囊錨點，跳到頁內 故事／使命願景／方法／團隊與治理 */
+.section-anchors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 42px;
+}
+
+.section-anchors a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 9px;
+  padding: 12px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 700;
+  transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.section-anchors a span {
+  color: var(--path);
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+.section-anchors a:hover,
+.section-anchors a:focus-visible {
+  border-color: var(--leaf-700);
+  color: var(--leaf-700);
+  transform: translateY(-2px);
+}
+
+/* 使命／願景・治理 資訊卡（白底磚，1px 大地棕細縫，自動排成 2～3 欄） */
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1px;
+  margin-top: 46px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.info-cards article {
+  background: var(--white);
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-cards .tag {
+  margin: 0;
+  color: var(--leaf-700);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+
+.info-cards h3 {
+  margin: 0;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.info-cards p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.info-cards a {
+  align-self: flex-start;
+  margin-top: 4px;
+  color: var(--link);
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: opacity 160ms ease;
+}
+
+.info-cards a:hover,
+.info-cards a:focus-visible {
+  opacity: 0.7;
+}
+
+/* 方法：四階段卡沿用 .stage-grid/.stage-card，補一條 看懂→落地 的暖色頂線 */
+.method-grid .stage-card {
+  border-top-width: 3px;
+}
+.method-grid .stage-card:nth-child(1) { border-top-color: var(--sun); }
+.method-grid .stage-card:nth-child(2) { border-top-color: var(--amber); }
+.method-grid .stage-card:nth-child(3) { border-top-color: var(--peach); }
+.method-grid .stage-card:nth-child(4) { border-top-color: var(--path); }
+
+.method-grid .stage-num {
+  color: var(--sunset);
+}
+
+.method-more {
+  width: min(var(--max), 100%);
+  margin: 26px auto 0;
+}
+
+@media (max-width: 960px) {
+  .page-intro h1 {
+    font-size: 2.6rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-intro h1 {
+    font-size: 2rem;
+  }
+
+  .section-anchors a {
+    padding: 10px 16px;
+  }
+}
+
+/* ============================================================
+   團隊與治理（team.html）：名冊與人員卡（2026-06-24）
+   全站白底原則：背景維持白；顏色全取自 v3 allowlist 或其透明度變體。
+   黃橘僅作圖形強調（人員頭像底＝蜜糖米小色塊），內文一律深林綠／大地棕，守 WCAG。
+   ============================================================ */
+
+/* 董事會與顧問名冊：左角色標籤、右職責說明 */
+.roster {
+  width: min(var(--max), 100%);
+  margin: 46px auto 0;
+  border-top: 1px solid var(--line);
+}
+
+.roster > div {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 28px;
+  padding: 24px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.roster dt {
+  margin: 0;
+  color: var(--leaf-700);
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.roster dd {
+  margin: 0;
+  color: var(--muted);
+}
+
+.roster dd .pending {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 10px;
+  border: 1px dashed var(--line);
+  border-radius: 999px;
+  color: var(--deep);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+/* 專案團隊：人員卡 */
+.people-grid {
+  width: min(var(--max), 100%);
+  margin: 48px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.person-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 30px 28px;
+}
+
+.person-card.is-pending {
+  border-style: dashed;
+}
+
+.person-avatar {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: var(--honey);
+  color: var(--deep);
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.person-card.is-pending .person-avatar {
+  background: transparent;
+  border: 1px dashed var(--line);
+  color: var(--earth);
+}
+
+.person-card h3 {
+  margin: 0;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+.person-role {
+  margin: 8px 0 0;
+  color: var(--leaf-700);
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.person-card > p:last-child {
+  margin: 14px 0 0;
+  color: var(--muted);
+}
+
+@media (max-width: 960px) {
+  .people-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .roster > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 20px 4px;
+  }
+
+  .roster dd .pending {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
+
+/* ============================================================
+   支持鄉育 · 捐款頁 give.html 專用元件（2026-06-24）
+   僅版面與互動樣式；顏色全取自 v3 allowlist 或既有語意變數，
+   不引入任何新色。FAQ 用原生 <details>，無 JS、可鍵盤操作。
+   ============================================================ */
+
+/* 開場與段落內的按鈕組（捐款 CTA） */
+.give-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+/* 建議金額卡：沿用 .partner-tiers，補上「單筆／定期」標記 */
+.partner-tiers .amount-tag {
+  display: inline-block;
+  margin: 0 0 2px;
+  color: var(--label);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.highlight-tier .amount-tag {
+  color: var(--wheat);
+}
+
+/* FAQ：原生 details 手風琴 */
+.faq-list {
+  width: min(var(--max), 100%);
+  margin: 48px auto 0;
+  border-top: 1px solid var(--line);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-item > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 4px;
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-size: 1.22rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--ink);
+  transition: color 160ms ease;
+}
+
+.faq-item > summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item > summary:hover,
+.faq-item[open] > summary {
+  color: var(--leaf-700);
+}
+
+.faq-item > summary:focus-visible {
+  outline: 2px solid var(--leaf-700);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ＋／－ 開合標記 */
+.faq-mark {
+  flex: none;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin-top: 7px;
+}
+
+.faq-mark::before,
+.faq-mark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--path);
+  transform: translate(-50%, -50%);
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.faq-mark::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq-item[open] .faq-mark::after {
+  transform: translate(-50%, -50%) rotate(0);
+  opacity: 0;
+}
+
+.faq-answer {
+  margin: 0;
+  padding: 0 4px 26px;
+  max-width: 760px;
+  color: var(--muted);
+}
+
+.faq-answer a {
+  color: var(--link);
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
+}
+
+.faq-answer a:hover,
+.faq-answer a:focus-visible {
+  color: var(--leaf-700);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-mark::before,
+  .faq-mark::after {
+    transition: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .faq-item > summary {
+    font-size: 1.08rem;
+    gap: 16px;
+  }
+}
