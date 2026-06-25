@@ -9,6 +9,24 @@ if (header) {
   syncHeader();
 }
 
+// ===== 全站導覽：依目前網址標記所在頁面的母項（暖陽黃底框）；只動 header，不碰子頁導覽 =====
+(() => {
+  const nav = document.querySelector(".desktop-nav");
+  if (!nav) return;
+  const here = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+  if (here === "" || here === "index.html") return; // 首頁不標記任何母項
+  for (const item of nav.querySelectorAll(".nav-item")) {
+    const hit = [...item.querySelectorAll("a[href]")].some((a) => {
+      const file = (a.getAttribute("href") || "").split("#")[0].split("/").pop().toLowerCase();
+      return file && file === here;
+    });
+    if (hit) {
+      item.classList.add("is-current");
+      break; // 只標記第一個命中的母項，避免重複頁面（如 for-companies）雙重高亮
+    }
+  }
+})();
+
 if (menuToggle && mobileMenu) {
   menuToggle.addEventListener("click", () => {
     const isOpen = menuToggle.getAttribute("aria-expanded") === "true";

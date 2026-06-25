@@ -158,6 +158,13 @@ button {
   transform: scaleX(1);
 }
 
+/* 全站導覽：目前所在頁面的母項＝暖陽黃底框（current-section 指示，由 script.js 依網址自動標記） */
+.nav-item.is-current > a {
+  background: var(--sun);
+  border-radius: 8px;
+  padding: 5px 12px;
+}
+
 .nav-dropdown {
   position: absolute;
   top: 100%;
@@ -4368,7 +4375,7 @@ h1, h2, h3 { text-wrap: balance; }
 .decor {
   position: absolute;
   z-index: -1;
-  width: var(--w, 120px);
+  width: calc(var(--w, 120px) * 2); /* 業主：圖案整體放大 2 倍（2026-06-26） */
   height: auto;
   opacity: var(--op, 1);
   transform: rotate(var(--rot, 0deg));
@@ -4392,7 +4399,7 @@ h1, h2, h3 { text-wrap: balance; }
 
 /* 手機：縮小、微淡，避免小螢幕擁擠搶內容；必要的可加 .decor--hide-sm 直接隱藏 */
 @media (max-width: 760px) {
-  .decor { width: calc(var(--w, 120px) * 0.62); opacity: calc(var(--op, 1) * 0.92); }
+  .decor { width: calc(var(--w, 120px) * 1.24); opacity: calc(var(--op, 1) * 0.92); }
   .decor.decor--hide-sm { display: none; }
 }
 
@@ -4443,14 +4450,10 @@ h1, h2, h3 { text-wrap: balance; }
   .method-cycle.is-enhanced .mc-fold-inner { transition: none; }
 }
 
-/* 方案 A：世代課題數據——資料來源獨立成註記行（僅作用於帶 --cited 的 signal-row；大數字維持原級距） */
-.signal-row--cited div {
-  justify-content: flex-start;
-}
-.signal-row--cited span {
-  margin-top: 14px;
-}
-.signal-row--cited .signal-source {
+/* 方案 A：數據的資料來源獨立成註記行（虛線分隔 + 小字 + 「來源」前綴）
+   .signal-source 為容器無關、可重用於任何「數據＋出處」卡片（signal-row / impact-numbers …）；
+   .signal-row--cited 只負責 signal-row 的版面調整（大數字維持原級距、內容改上對齊）。 */
+.signal-source {
   display: block;
   margin-top: 12px;
   padding-top: 10px;
@@ -4460,10 +4463,16 @@ h1, h2, h3 { text-wrap: balance; }
   line-height: 1.5;
   color: var(--muted);
 }
-.signal-row--cited .signal-source b {
+.signal-source b {
   margin-right: 6px;
   color: var(--earth);
   font-weight: 600;
+}
+.signal-row--cited div {
+  justify-content: flex-start;
+}
+.signal-row--cited span {
+  margin-top: 14px;
 }
 
 /* ============================================================
@@ -4495,4 +4504,107 @@ h1, h2, h3 { text-wrap: balance; }
     margin-right: 0;
     padding-right: 48px;
   }
+}
+
+/* ============================================================
+   .sheet — 子頁色片元件（把首頁招牌色片下放到子頁；與 .home／id 解耦）
+   v1 試點：mission-vision（problem 杏橙淺底 ＋ final-cta 深綠反白）。
+   story-layout 頁＝「欄內色帶」：色片＝右欄寬，非 viewport 滿版
+   （左側 exit-nav 佔住左欄，無法出血，這是 15/18 子頁的天花板）。
+   上下緣＝蠟筆波浪、左右＝viewBox 裁齊的純色邊；下緣 furrow＝logo 田壟母題。
+   色彩全 16 色 allowlist；回退＝移除 markup 上的 sheet／sheet--* class。
+   ============================================================ */
+.sheet {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+.sheet > .section-grid,
+.sheet > .cta-band {
+  position: relative;
+  z-index: 1;
+}
+.sheet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: 100% 96px, 100% 100%;
+  background-position: bottom, top;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* story-layout 內：色片需上下呼吸 ＋ 下緣 furrow 淨空 ＋ 左右色邊不貼字 */
+.story-layout .sheet {
+  padding: 84px 44px 132px;
+}
+.story-layout .story-flow > .sheet:first-child {
+  padding-top: 72px;
+}
+
+/* —— 杏橙片（淺底，維持深綠字；2 條大地棕 furrow，下接白底段用白切口）—— */
+.sheet--apricot::before {
+  background-image:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fdd2a6' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+}
+.sheet--apricot .lead,
+.sheet--apricot .about-copy > p {
+  color: var(--ink);
+}
+
+/* —— 深林綠片（深底，反白；3 條鵝黃 furrow，切口用 honey 融入頁尾）—— */
+.sheet--forest::before {
+  background-image:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,20 C300,14 600,26 900,18 1080,13 1240,20'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,35 C300,29 600,41 900,33 1080,28 1240,35'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,50 C300,44 600,56 900,48 1080,43 1240,50'/><path fill='%23fbefd9' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,640 L-40,640 Z'/></svg>");
+}
+.sheet--forest h2,
+.sheet--forest h3 {
+  color: var(--paper);
+}
+.sheet--forest .lead,
+.sheet--forest p {
+  color: rgba(251, 239, 217, 0.88);
+}
+
+/* 捐款用途簡圖（for-donors #usage-title） */
+.usage-diagram {
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+  margin: 28px 0 14px;
+  flex-wrap: wrap;
+}
+.usage-source {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 16px 22px;
+  border: 1.5px solid var(--brand-green);
+  border-radius: 14px;
+  font-weight: 500;
+  color: var(--deep);
+  background: var(--honey);
+}
+.usage-uses {
+  flex: 1 1 320px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.usage-uses li {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.usage-uses strong { color: var(--deep); font-weight: 500; }
+.usage-uses span { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+@media (max-width: 560px) {
+  .usage-source { width: 100%; text-align: center; }
 }
