@@ -185,3 +185,48 @@ if (mcWedges.length && mcDetails.length) {
     });
   });
 }
+
+
+// ===== 首頁 四階段三層圖：上層能力／下層成果＝獨立手風琴折疊（方向 A，index.html #method）=====
+const mcCycle = document.querySelector(".method-cycle");
+const mcFoldBars = document.querySelectorAll(".mc-fold-bar[aria-controls]");
+if (mcCycle && mcFoldBars.length) {
+  // 啟用折疊（無 JS 時 .mc-fold-bar 隱藏、兩層維持全展）；fold-init 抑制首載瞬間的收合動畫
+  mcCycle.classList.add("is-enhanced", "fold-init");
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => mcCycle.classList.remove("fold-init"));
+  });
+  mcFoldBars.forEach((bar) => {
+    bar.addEventListener("click", () => {
+      const body = document.getElementById(bar.getAttribute("aria-controls"));
+      if (!body) return;
+      const open = bar.getAttribute("aria-expanded") === "true";
+      bar.setAttribute("aria-expanded", String(!open));
+      body.classList.toggle("open", !open);
+    });
+  });
+}
+
+// ===== 首頁 合作夥伴牆：捲入時依序淡入＋常駐微浮動（index.html #partners）=====
+document.querySelectorAll(".partner-logos").forEach((wall) => {
+  const items = wall.querySelectorAll("li");
+  if (!items.length) return;
+  items.forEach((li, i) => li.style.setProperty("--i", i));
+  wall.classList.add("reveal");
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    wall.classList.add("in");
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          wall.classList.add("in");
+          io.disconnect();
+        }
+      });
+    },
+    { threshold: 0.18 }
+  );
+  io.observe(wall);
+});

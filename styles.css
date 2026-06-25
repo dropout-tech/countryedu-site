@@ -1,3 +1,7 @@
+/* 粉圓體（Huninn）webfont：全站標題與統計數字用字。Google Fonts 動態 subset、display:swap，
+   只載入頁面實際用到的字。要整體回退粉圓：移除本行 ＋ 還原 :root 的字體 token ＋ 檔末「字體系統 v2」區塊。 */
+@import url("https://fonts.googleapis.com/css2?family=Huninn&display=swap");
+
 :root {
   /* ===== v3 硬性 allowlist（2026-06-18）：全站僅用以下品牌色 ＋ 黑/白 ===== */
   /* 綠 GREENS */
@@ -30,8 +34,15 @@
   --link: #3d5527;                  /* 連結＝深林綠（搭配底線） */
   --line: rgba(152, 116, 89, 0.32); /* 框線＝大地棕 32% */
   --shadow: 0 18px 45px rgba(61, 85, 39, 0.1);
+  --card-radius: 12px;              /* 全站卡片／分隔線網格統一圓角（2026-06-26） */
   --max: 1160px;
   --gutter: clamp(24px, 6vw, 120px); /* 全站左右留白：手機約 24px → 桌機加寬、最寬 120px */
+
+  /* ===== 字體系統 token（2026-06-26：導入粉圓體 Huninn 為標題與統計數字的識別用字） ===== */
+  --font-sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif; /* 中文內文·無襯線；亦用於主視覺大標 */
+  --font-rounded: "Huninn", "Noto Serif TC", "Songti TC", serif; /* 粉圓體·標題與統計數字（鄉育識別字）；fallback 退回原宋體 */
+  --font-serif: var(--font-rounded); /* 相容別名：既有標題沿用 var(--font-serif)，現已統一為粉圓 */
+  --font-en: Georgia, serif; /* 純英文裝飾·襯線（浮水印、NEXT、圖表編號）；統計數字另走 --font-rounded */
 }
 
 * {
@@ -47,7 +58,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-family: var(--font-sans);
   line-height: 1.7;
   letter-spacing: 0;
 }
@@ -286,14 +297,14 @@ button {
 
 .m-row > a {
   flex: 1;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.8rem;
   padding: 14px 0;
 }
 
 .m-row > .m-label {
   flex: 1;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.8rem;
   padding: 14px 0;
   color: var(--ink);
@@ -361,7 +372,7 @@ button {
 .hero-word {
   position: absolute;
   z-index: -1;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 17rem;
   line-height: 1;
   color: rgba(78, 135, 24, 0.08);
@@ -404,7 +415,7 @@ button {
 .impact-layout h2 {
   margin: 0;
   color: var(--ink);
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-weight: 700;
   line-height: 1.22;
 }
@@ -467,7 +478,7 @@ button {
   display: flex;
   gap: 12px;
   color: rgba(61, 85, 39, 0.42);
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   font-style: italic;
 }
 
@@ -543,7 +554,7 @@ button {
 .page-header h1 {
   margin: 16px 0 8px;
   color: var(--ink);
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-weight: 700;
   line-height: 1.2;
   font-size: 2.5rem;
@@ -575,6 +586,8 @@ button {
   margin-top: 46px;
   background: var(--line);
   border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  overflow: hidden;
 }
 
 .signal-row div {
@@ -588,7 +601,7 @@ button {
 
 .signal-row strong {
   color: var(--leaf-700);
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   font-size: 3.4rem;
   line-height: 1;
 }
@@ -607,7 +620,7 @@ button {
   right: -3rem;
   top: 2rem;
   color: rgba(152, 116, 89, 0.07);
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   font-size: 9rem;
   font-style: italic;
   pointer-events: none;
@@ -630,7 +643,7 @@ button {
 
 .mission-list span {
   color: var(--link);
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   font-style: italic;
 }
 
@@ -739,7 +752,7 @@ button {
 .act-item h3,
 .audience-item h3 {
   margin: 10px 0 14px;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.8rem;
   line-height: 1.35;
 }
@@ -934,6 +947,8 @@ button {
   margin-top: 44px;
   background: var(--line);
   border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  overflow: hidden;
 }
 
 .impact-numbers div {
@@ -945,7 +960,7 @@ button {
 .impact-numbers strong {
   display: block;
   color: var(--leaf-700);
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   font-size: 3rem;
   line-height: 1;
 }
@@ -965,10 +980,16 @@ button {
   width: min(var(--max), 100%);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* 自適應欄寬：每張牌至少容得下 3rem 金額大字（NT$1,000）＝不擠壓、不塌欄。
+     min(100%,…) 確保極窄時單欄不溢出；auto-fit 在 ~770px 內容欄落為 2 欄。
+     用 minmax 的下界取代裸 1fr(=minmax(auto,1fr))，避免不可縮的金額/CJK
+     把某一欄壓成 100px、再把整列高度撐爆（原 give 卡片過高＋被裁的成因）。 */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr));
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  overflow: hidden;
 }
 
 .partner-tiers article {
@@ -998,7 +1019,7 @@ button {
   display: block;
   margin-top: 20px;
   color: var(--leaf-700);
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   font-size: 3rem;
 }
 
@@ -1025,13 +1046,13 @@ button {
 /* 上半：品牌區 + 四欄導覽 */
 .footer-main {
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) auto;
-  gap: 48px;
-  padding-bottom: 42px;
+  grid-template-columns: minmax(240px, 1.4fr) minmax(120px, 0.8fr) minmax(200px, 1fr);
+  gap: 40px 48px;
+  padding-bottom: 38px;
 }
 
 .footer-brand {
-  max-width: 360px;
+  max-width: 380px;
 }
 
 .footer-brand img {
@@ -1049,62 +1070,87 @@ button {
   line-height: 1.9;
 }
 
-.footer-tagline {
-  margin: 18px 0 0;
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
   color: var(--brand-green);
-  font-weight: 800;
-  font-size: 1.02rem;
-  letter-spacing: 0.02em;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
-.footer-nav {
-  display: grid;
-  grid-template-columns: repeat(4, max-content);
-  gap: 0 34px;
+.footer-social a:hover {
+  background: var(--brand-green);
+  border-color: var(--brand-green);
+  color: var(--white);
 }
 
-.footer-col h3 {
-  margin: 0 0 18px;
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--ink);
+.footer-social svg {
+  width: 18px;
+  height: 18px;
 }
 
-.footer-col ul {
+/* 法人徵信事實（組織識別區小字：立案字號／統編／勸募文號） */
+.footer-legal-ids {
   list-style: none;
-  margin: 0;
+  margin: 24px 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 5px;
 }
 
-.footer-col a {
+.footer-legal-ids li {
   color: var(--muted);
-  text-decoration: none;
-  font-size: 0.92rem;
-  transition: color 0.18s ease;
+  font-size: 0.8rem;
+  line-height: 1.55;
 }
 
-.footer-col a:hover {
-  color: var(--leaf-700);
-}
-
-/* 中段：為你而來 + 聯絡我們 */
-.footer-mid {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 32px;
-  flex-wrap: wrap;
-  padding: 30px 0;
-}
-
+/* 分眾快速導覽（mini-sitemap） */
+.footer-sitemap h3,
 .footer-contact h3 {
   margin: 0 0 16px;
   font-size: 1rem;
   font-weight: 800;
   color: var(--ink);
+}
+
+.footer-sitemap ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 220px;
+}
+
+.footer-sitemap a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.footer-sitemap a:hover {
+  background: var(--brand-green);
+  border-color: var(--brand-green);
+  color: var(--white);
 }
 
 .footer-contact {
@@ -1150,6 +1196,28 @@ button {
 .footer-bottom small {
   color: var(--muted);
   font-size: 0.85rem;
+}
+
+/* 法定／政策連結列（獨立橫列） */
+.footer-legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.footer-legal-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.18s ease;
+}
+
+.footer-legal-links a:hover {
+  color: var(--leaf-700);
+  text-decoration: underline;
 }
 
 @media (max-width: 960px) {
@@ -1286,21 +1354,13 @@ button {
   }
 
   .footer-main {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .footer-nav {
-    grid-template-columns: repeat(2, max-content);
-    gap: 28px 48px;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px 40px;
   }
 
   .footer-brand {
+    grid-column: 1 / -1;
     max-width: 560px;
-  }
-
-  .footer-mid {
-    flex-direction: column;
   }
 
   .footer-contact {
@@ -1356,7 +1416,7 @@ button {
     text-align: center;
   }
 
-  .footer-nav {
+  .footer-main {
     grid-template-columns: 1fr;
   }
 }
@@ -1392,7 +1452,7 @@ button {
 
 .hero-proof strong {
   color: var(--leaf-700);
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   font-size: 1.8rem;
   line-height: 1;
 }
@@ -1449,9 +1509,9 @@ button {
 
 .story-quote {
   margin: 0;
-  background: var(--white);
+  background: var(--accent-soft, var(--white));
   border: 1px solid var(--line);
-  border-left: 3px solid var(--path);
+  border-left: 3px solid var(--accent, var(--path));
   padding: 36px 40px;
   display: flex;
   flex-direction: column;
@@ -1460,7 +1520,7 @@ button {
 
 .story-quote blockquote {
   margin: 0;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.6rem;
   line-height: 1.5;
   color: var(--ink);
@@ -1477,6 +1537,8 @@ button {
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  overflow: hidden;
 }
 
 .story-ratings div {
@@ -1490,7 +1552,7 @@ button {
 
 .story-ratings strong {
   color: var(--leaf-700);
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   font-size: 2.6rem;
   line-height: 1;
 }
@@ -1583,30 +1645,32 @@ button {
   background: var(--deep);
   color: var(--paper);
   border-radius: 8px;
-  padding: 40px 48px;
+  padding: 48px 48px 44px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-  flex-wrap: wrap;
+  text-align: center;
+  gap: 22px;
 }
 
 .cta-band h2,
 .cta-band h3 {
   margin: 0;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.7rem;
 }
 
 .cta-band p {
-  margin: 10px 0 0;
+  margin: 12px auto 0;
+  max-width: 56ch;
   color: rgba(251, 239, 217, 0.78);
 }
 
 .cta-band-actions {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .cta-band .button-primary,
@@ -1614,6 +1678,45 @@ button {
   background: transparent;
   border-color: var(--paper);
   color: var(--paper);
+}
+
+/* 方案 B：總 CTA 置中宣言版——單一主行動鈕放大、次要行動降為文字連結（2026-06-26）。
+   純排版/層級調整，不動既有按鈕配色（首頁主鈕仍由 .home 覆寫成路徑橙）。回退＝刪本段＋還原上方置中宣告。 */
+.cta-band .button-primary {
+  padding: 14px 36px;
+  font-size: 1.02rem;
+}
+.cta-band .cta-sublinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+.cta-band .cta-sublinks a {
+  min-height: 0;
+  padding: 0 4px;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  font-weight: 400;
+  font-size: 0.92rem;
+  color: rgba(251, 239, 217, 0.82);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cta-band .cta-sublinks a:hover,
+.cta-band .cta-sublinks a:focus-visible {
+  transform: none;
+  background: transparent;
+  color: var(--paper);
+}
+.cta-band .cta-sublinks a:not(:last-child)::after {
+  content: "·";
+  margin-left: 12px;
+  color: rgba(251, 239, 217, 0.45);
+  text-decoration: none;
+  display: inline-block;
 }
 
 /* 總 CTA 下方的勸募合規揭露（白底上的小字，深林綠 85% 達 WCAG） */
@@ -1635,8 +1738,7 @@ button {
   }
 
   .cta-band {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 40px 26px 36px;
   }
 }
 
@@ -1712,7 +1814,7 @@ button {
   position: relative;
   margin: 0;
   padding-bottom: 16px;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.35rem;
   line-height: 1.3;
   font-weight: 700;
@@ -1817,7 +1919,7 @@ button {
   gap: 10px;
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--card-radius);
   padding: 26px 24px;
   min-height: 200px;
 }
@@ -1830,7 +1932,7 @@ button {
 
 .news-card h3 {
   margin: 0;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.25rem;
 }
 
@@ -1843,6 +1945,13 @@ button {
   margin-top: auto;
   color: var(--link);
   font-weight: 700;
+}
+
+.news-card-soon {
+  margin-top: auto;
+  color: var(--label);
+  font-weight: 700;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 960px) {
@@ -1882,6 +1991,8 @@ button {
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  overflow: hidden;
 }
 
 .friction-list li {
@@ -1915,7 +2026,7 @@ button {
 .stage-card {
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   padding: 28px 24px;
   display: flex;
   flex-direction: column;
@@ -1923,7 +2034,7 @@ button {
 }
 
 .stage-num {
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   font-size: 2.2rem;
   line-height: 1;
   color: var(--leaf-700);
@@ -1931,7 +2042,7 @@ button {
 
 .stage-card h3 {
   margin: 6px 0 0;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.4rem;
 }
 
@@ -1995,7 +2106,7 @@ button {
   position: relative;
   width: min(var(--max), 100%);
   margin: 60px auto 0;
-  padding: 4px 0 24px 58px; /* 左側留給主桿＋方位徽章 */
+  padding: 4px 74px 24px 58px; /* 左留主桿＋方位徽章；右預留給等比尖端（所有寬度，避免被裁，窄寬另收窄） */
 }
 
 /* 桌機：整組標牌往右縮排，左緣對齊上方標題欄（kicker 180 + gap 72 = 252） */
@@ -2004,12 +2115,7 @@ button {
     width: calc(min(var(--max), 100%) - 252px);
     margin-left: calc(50% - min(var(--max), 100%) / 2 + 252px);
     margin-right: 0;
-    padding-right: 74px; /* 預留右側給「加深角度後」的尖端，避免超出被裁切 */
-  }
-  /* 卡片右側尖端＝與「下一步」主牌同角度：固定寬高比，尖端隨牌高等比加長 */
-  .signpost > .signpost-tip {
-    width: auto;
-    aspect-ratio: 14 / 34.6;
+    padding-right: 74px; /* 預留右側給等比尖端，避免超出被裁切 */
   }
 }
 
@@ -2083,7 +2189,7 @@ button {
   color: var(--earth);
 }
 .signpost-plate b {
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0.08em;
@@ -2171,6 +2277,7 @@ button {
   display: block;
   width: 100%;
   height: 100%;
+  overflow: visible; /* 讓尖端 path 的「肩部圓角小唇」可畫到 viewBox 左側外（壓進牌身、蓋住接縫） */
 }
 .signpost-tip path {
   fill: none;
@@ -2178,6 +2285,24 @@ button {
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
   transition: stroke 240ms ease;
+}
+/* 卡片右側尖端＝與「下一步」主牌同角度（固定寬高比，尖端隨牌高等比加長）。
+   套用於所有寬度（桌機～平板都跟主牌一樣尖）；窄寬另在 ≤720 改固定高度避免過寬溢出。 */
+.signpost > .signpost-tip {
+  width: auto;
+  aspect-ratio: 14 / 34.6;
+}
+/* 窄寬（≤720）：尖端維持「滿牌身高度」＝整張牌收成尖端（右緣不留直邊／不出現「一條線」），
+   但改用固定寬度（取消等比），避免牌身一高就把等比尖端撐到溢出視窗。
+   角度因牌身高而略鈍是窄寬必然取捨，重點是整張牌都是尖的、沒有直邊。 */
+@media (max-width: 720px) {
+  .signpost-system {
+    padding-right: 60px; /* 預留給固定寬尖端，避免被裁 */
+  }
+  .signpost > .signpost-tip {
+    aspect-ratio: auto;
+    width: 52px;
+  }
 }
 
 .signpost-meta {
@@ -2188,7 +2313,7 @@ button {
 }
 .signpost h3 {
   margin: 7px 0 0;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.3rem;
   color: var(--ink);
 }
@@ -2311,7 +2436,7 @@ button {
   .signpost-system {
     --post-x: 18px;
     margin-top: 40px;
-    padding: 2px 0 22px 48px;
+    padding: 2px 60px 22px 48px; /* 右側預留給滿高固定寬尖端（同 ≤720，整張牌收成尖端） */
   }
   .signpost-head {
     margin-bottom: 18px;
@@ -2344,9 +2469,6 @@ button {
   .signpost-desc {
     max-width: none;
   }
-  .signpost-tip {
-    width: 16px;
-  }
 }
 
 /* ===== 首頁暖色點綴：黃 × 橘（2026-06-18，僅作用於 .home，子頁不受影響） ===== */
@@ -2378,7 +2500,7 @@ button {
   height: 4px;
   margin-top: 18px;
   border-radius: 2px;
-  background: linear-gradient(90deg, var(--wheat), var(--path));
+  background: var(--path);
 }
 
 /* 5. 四階段卡：黃→橘漸進頂條（看懂→落地的暖色路徑）＋ 暖橘大編號 */
@@ -2546,7 +2668,7 @@ button {
 .page-intro h1 {
   margin: 18px 0 0;
   color: var(--ink);
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-weight: 700;
   line-height: 1.18;
   font-size: 3.4rem;
@@ -2572,6 +2694,8 @@ button {
   margin-top: 46px;
   background: var(--line);
   border: 1px solid var(--line);
+  border-radius: var(--card-radius);
+  overflow: hidden;
 }
 
 .info-cards article {
@@ -2592,7 +2716,7 @@ button {
 
 .info-cards h3 {
   margin: 0;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.4rem;
   line-height: 1.4;
   color: var(--ink);
@@ -2670,7 +2794,7 @@ button {
 .roster dt {
   margin: 0;
   color: var(--leaf-700);
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.25rem;
   font-weight: 700;
 }
@@ -2705,7 +2829,7 @@ button {
   flex-direction: column;
   background: var(--white);
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   padding: 30px 28px;
 }
 
@@ -2722,7 +2846,7 @@ button {
   border-radius: 50%;
   background: var(--honey);
   color: var(--deep);
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
 }
@@ -2735,7 +2859,7 @@ button {
 
 .person-card h3 {
   margin: 0;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.35rem;
   line-height: 1.3;
 }
@@ -2802,10 +2926,29 @@ button {
 .faq-list {
   width: min(var(--max), 100%);
   margin: 48px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
+/* 方案 B：FAQ 卡片手風琴——每題一張整框卡（整框非列線，符合「全站不要橫線」），
+   開啟時換蜜糖米底＋深綠邊浮起，開合狀態明確。比照全站卡片慣例 1px --line / radius 10 /
+   active honey；色彩全 16 色 allowlist、無漸層。回退＝還原本段＋下方 summary/answer 內距。 */
 .faq-item {
-  /* row 分隔線已移除（依使用者：全站不要分隔橫線） */
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0 26px;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.faq-item:hover {
+  border-color: var(--leaf-700);
+}
+
+.faq-item[open] {
+  background: var(--honey);
+  border-color: var(--leaf-700);
 }
 
 .faq-item > summary {
@@ -2815,8 +2958,8 @@ button {
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 4px;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  padding: 22px 0;
+  font-family: var(--font-serif);
   font-size: 1.22rem;
   font-weight: 700;
   line-height: 1.45;
@@ -2873,7 +3016,7 @@ button {
 
 .faq-answer {
   margin: 0;
-  padding: 0 4px 26px;
+  padding: 0 0 24px;
   max-width: 760px;
   color: var(--muted);
 }
@@ -2897,6 +3040,10 @@ button {
 }
 
 @media (max-width: 560px) {
+  .faq-item {
+    padding: 0 18px;
+  }
+
   .faq-item > summary {
     font-size: 1.08rem;
     gap: 16px;
@@ -2928,12 +3075,35 @@ button {
 
 .page-about .journey-node {
   min-height: 0;
-  max-width: 760px;
+  max-width: 860px;
   padding: 0 0 46px 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 30px;
+  align-items: start;
 }
 
 .page-about .journey-node:last-child {
   padding-bottom: 0;
+}
+
+.page-about .journey-text {
+  min-width: 0;
+}
+
+/* 方案 1 · 側欄縮圖：每個里程碑右側一張 3:2 橫式縮圖 */
+.page-about .journey-photo {
+  margin: 0;
+  align-self: start;
+}
+.page-about .journey-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
 }
 
 /* 圓點對齊年份、掛在垂直線上；橘色高亮隨捲動移動（見 script.js） */
@@ -2960,13 +3130,6 @@ button {
    .cta-band 整塊置中橫幅。≤960px 標題本就回到單欄左對齊，故不縮排。
    ============================================================ */
 @media (min-width: 961px) {
-  .page-about .journey-line {
-    padding-left: calc(180px + 72px);
-  }
-  .page-about .journey-line::before {
-    left: calc(180px + 72px + 11px);
-  }
-
   body:not(.home) .path-header ~ .stage-grid,
   body:not(.home) .path-header ~ .method-more,
   body:not(.home) .path-header ~ .act-panel,
@@ -2974,8 +3137,31 @@ button {
   body:not(.home) .path-header ~ .contact-grid,
   body:not(.home) .path-header ~ .partner-tiers,
   body:not(.home) .path-header ~ .partner-logos,
+  body:not(.home) .path-header ~ .content-figure,
+  body:not(.home) .path-header ~ .media-band,
   body:not(.home) .path-header ~ .impact-numbers {
     padding-left: calc(180px + 72px);
+  }
+
+  body:not(.home) .story-layout .path-header ~ .stage-grid,
+  body:not(.home) .story-layout .path-header ~ .method-more,
+  body:not(.home) .story-layout .path-header ~ .act-panel,
+  body:not(.home) .story-layout .path-header ~ .news-list,
+  body:not(.home) .story-layout .path-header ~ .contact-grid,
+  body:not(.home) .story-layout .path-header ~ .partner-tiers,
+  body:not(.home) .story-layout .path-header ~ .partner-logos,
+  body:not(.home) .story-layout .path-header ~ .content-figure,
+  body:not(.home) .story-layout .path-header ~ .media-band,
+  body:not(.home) .story-layout .path-header ~ .impact-numbers {
+    padding-left: 0;
+  }
+}
+
+/* 小螢幕：縮圖改到文字下方堆疊 */
+@media (max-width: 700px) {
+  .page-about .journey-node {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
@@ -3036,8 +3222,8 @@ button {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 5px 8px;
-  padding: 13px 15px;
+  gap: 0 10px;
+  padding: 16px 15px 14px;
   border: 1px solid rgba(61, 85, 39, 0.22);
   border-radius: 6px;
   background: transparent;
@@ -3053,6 +3239,18 @@ button {
   outline-offset: 2px;
 }
 
+/* 雙框 keyline：牌面內縮一道細邊，模擬法規標誌的內框 */
+.exit-sign::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(61, 85, 39, 0.2);
+  border-radius: 3px;
+  pointer-events: none;
+  transition: border-color 180ms ease;
+}
+.exit-sign.is-active::after { border-color: rgba(61, 85, 39, 0.42); }
+
 /* 牌與牌之間的細路桿（連接線） */
 .exit-sign + .exit-sign::before {
   content: "";
@@ -3065,16 +3263,19 @@ button {
   transition: background 180ms ease;
 }
 
-/* EXIT 小膠囊標籤 */
+/* 角標出口號：STOP 號掛在牌面右上角、微微外凸（公路出口牌做法） */
 .exit-tag {
-  grid-column: 1;
-  justify-self: start;
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  z-index: 2;
   display: inline-block;
-  padding: 2px 8px;
-  border: 1px solid rgba(61, 85, 39, 0.42);
-  border-radius: 999px;
+  padding: 2px 9px;
+  border: 1px solid rgba(61, 85, 39, 0.45);
+  border-radius: 5px;
+  background: var(--white);
   font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   font-weight: 700;
   color: rgba(61, 85, 39, 0.9);
   transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
@@ -3083,7 +3284,7 @@ button {
 /* 章節中文名 */
 .exit-name {
   grid-column: 1;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 0.95rem;
   font-weight: 500;
   line-height: 1.3;
@@ -3091,18 +3292,18 @@ button {
   transition: color 180ms ease;
 }
 
-/* 細線箭頭：暗示前進方向 */
+/* 斜向出口箭頭：→ 旋轉成 ↗，hover／active 時往出口方向延伸 */
 .exit-arrow {
   grid-column: 2;
-  grid-row: 1 / span 2;
   align-self: center;
   display: inline-flex;
   color: var(--deep);
   opacity: 0.4;
-  transition: opacity 180ms ease;
+  transition: opacity 180ms ease, transform 180ms ease;
 }
-.exit-arrow svg { width: 16px; height: 16px; display: block; }
-.exit-sign:hover .exit-arrow { opacity: 1; }
+.exit-arrow svg { width: 16px; height: 16px; display: block; transform: rotate(-45deg); }
+.exit-sign:hover .exit-arrow,
+.exit-sign.is-active .exit-arrow { opacity: 1; transform: translate(3px, -3px); }
 
 /* 主牌 OUR STORY / 緣起（路線名，無 EXIT 標籤、無箭頭） */
 .exit-sign--main {
@@ -3170,6 +3371,12 @@ button {
     gap: 2px;
     padding: 8px 13px;
   }
+  .exit-sign::after { display: none; }
+  .exit-tag {
+    position: static;
+    top: auto;
+    right: auto;
+  }
   .exit-sign:hover { transform: none; }
   .exit-sign + .exit-sign::before { display: none; }
   .exit-arrow { display: none; }
@@ -3181,6 +3388,7 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .exit-sign,
   .exit-arrow,
+  .exit-sign::after,
   .exit-sign + .exit-sign::before { transition: none; }
   .exit-sign:hover { transform: none; }
 }
@@ -3218,7 +3426,7 @@ button {
 }
 .method-cycle .mc-tier h3 {
   margin: .5rem 0 .2rem;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.5rem;
   color: var(--deep);
 }
@@ -3300,11 +3508,11 @@ button {
 }
 .mc-arrowhead { fill: var(--path); }
 .mc-wt-name {
-  font-family: "Noto Sans TC", sans-serif;
+  font-family: var(--font-sans);
   font-size: 17px;
   font-weight: 700;
 }
-.mc-wt-n { font-family: "Noto Sans TC", sans-serif; font-size: 11px; }
+.mc-wt-n { font-family: var(--font-sans); font-size: 11px; }
 .mc-wt-en { font-size: 9px; letter-spacing: 1px; }
 .mc-on-light { fill: var(--white); }
 .mc-on-light.mc-wt-en,
@@ -3313,7 +3521,7 @@ button {
 .mc-on-dark.mc-wt-en,
 .mc-on-dark.mc-wt-n { fill: rgba(61, 85, 39, .82); }
 .mc-hub-t {
-  font-family: "Noto Serif TC", serif;
+  font-family: var(--font-serif);
   font-size: 18px;
   font-weight: 700;
   fill: var(--deep);
@@ -3364,13 +3572,13 @@ button {
 .mc-detail-item.is-active { display: block; }
 .mc-detail-h {
   margin: 0;
-  font-family: "Noto Serif TC", "Songti TC", serif;
+  font-family: var(--font-serif);
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--deep);
 }
 .mc-detail-no {
-  font-family: Georgia, serif;
+  font-family: var(--font-en);
   color: var(--sunset);
   margin-right: 8px;
 }
@@ -3431,8 +3639,23 @@ main.wip-mode > *:not(.wip-screen) {
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 16px;
+  gap: 14px;
   padding: clamp(72px, 16vh, 200px) var(--gutter);
+}
+.wip-screen .wip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 78px;
+  height: 78px;
+  margin-bottom: 6px;
+  border-radius: 50%;
+  color: var(--brand-green);
+  background: rgba(79, 159, 29, 0.10);
+}
+.wip-screen .wip-icon svg {
+  width: 38px;
+  height: 38px;
 }
 .wip-screen .wip-eyebrow {
   margin: 0;
@@ -3444,12 +3667,20 @@ main.wip-mode > *:not(.wip-screen) {
 }
 .wip-screen h1 {
   margin: 0;
-  font-size: clamp(28px, 5vw, 46px);
-  line-height: 1.22;
+  font-size: clamp(30px, 5.4vw, 50px);
+  line-height: 1.18;
   color: var(--ink);
 }
-.wip-screen .wip-lead {
+.wip-screen .wip-section-en {
   margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+}
+.wip-screen .wip-lead {
+  margin: 6px 0 0;
   max-width: 34em;
   color: var(--muted);
   font-size: clamp(15px, 2vw, 18px);
@@ -3461,7 +3692,7 @@ main.wip-mode > *:not(.wip-screen) {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin-top: 14px;
+  margin-top: 18px;
 }
 .wip-actions .wip-link {
   color: var(--leaf-700);
@@ -3490,4 +3721,778 @@ main.wip-mode > *:not(.wip-screen) {
   fill: currentColor;
   stroke: none;
   display: block;
+}
+
+/* ============================================================
+   首頁精緻前景著色：方向三（暖色元件套件）＋ 方向二（雙色排版）
+   2026-06-26。全部 scope 在 .home、全部取自 v3 16 色 allowlist，
+   底色維持全白：色彩只落在文字／按鈕／膠囊／微互動等「前景物件」。
+   要回退整段刪除即可。
+   ============================================================ */
+
+/* ---- 方向二：關鍵字雙色排版（綠主文 + 暖橙火花字） ---------------- */
+/* 大標題（hero h1 4.2rem、區段 h2 3rem）皆屬大字，赤陽橙 on 白 ≥3:1 達 AA 大字；
+   整句其餘字維持深綠高對比，語意不依賴顏色。 */
+.home .hero h1 .kw,
+.home .section-grid h2 .kw,
+.home .path-header h2 .kw {
+  color: var(--sunset);
+}
+/* 關鍵字底塊（蠟筆波浪質地，與全站 .kw house style 一致；嚴禁漸層、無 4 頂點方角）：
+   #method＝嫩葉綠（白底上顯色）、final-CTA＝麥穗金（深綠帶上顯色），兩底塊刻意不同色。
+   同 audiences/partners 的 SVG feTurbulence 技法，各換 fill 與 seed；深綠字皆過 AA。
+   回退＝把 background-image 換回實心色或刪除。 */
+.home #method .path-header h2 .kw {
+  color: var(--deep);
+  padding: 0.22em 0.6em;
+  border-radius: 0;
+  white-space: nowrap;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.09' numOctaves='2' seed='8' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%238ec457' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.home .cta-band h2 .kw {
+  color: var(--deep);
+  padding: 0.22em 0.6em;
+  border-radius: 0;
+  white-space: nowrap;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.09' numOctaves='2' seed='13' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%23f5b62d' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* ---- 方向三：主行動鈕＝填色路徑橙（黑字，energy pop） -------------- */
+/* 唯一主行動色＝橙；次要行動維持外框，建立清楚層級。 */
+.home .button-primary,
+.home .cta-band .button-primary,
+.home .hero-cta .button-secondary {
+  background: var(--path);
+  border-color: var(--path);
+  color: var(--white);
+}
+.home .button-primary:hover,
+.home .button-primary:focus-visible,
+.home .cta-band .button-primary:hover,
+.home .cta-band .button-primary:focus-visible,
+.home .hero-cta .button-secondary:hover,
+.home .hero-cta .button-secondary:focus-visible {
+  background: var(--sunset);
+  border-color: var(--sunset);
+  color: var(--white);
+}
+
+/* ---- 方向三：分眾標牌身分標籤＝四色暖 tint 膠囊（深綠字皆過 AA） ---- */
+.home .signpost .node-label {
+  display: inline-block;
+  padding: 4px 13px;
+  border-radius: 999px;
+  color: var(--deep);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.home .signpost:nth-of-type(1) .node-label { background: var(--leaf); }
+.home .signpost:nth-of-type(2) .node-label { background: var(--sun); }
+.home .signpost:nth-of-type(3) .node-label { background: var(--apricot); }
+.home .signpost:nth-of-type(4) .node-label { background: var(--butter); }
+
+/* ---- 方向三：夥伴 chip hover 暖色微互動（底維持白） ---------------- */
+.home .partner-logos li {
+  transition: border-color 180ms ease, background 180ms ease, translate 180ms ease;
+}
+.home .partner-logos li:hover {
+  border-color: var(--leaf-700);
+  background: var(--honey);
+  translate: 0 -3px;
+}
+
+/* ---- 方案 ③：捲入時依序淡入升起＋整張卡片常駐微浮動 --------------------
+   卡片浮動用 transform(animation)，hover 升起改用 translate(獨立屬性)，兩者
+   分屬不同 CSS property → 疊加不互搶；進場 partnerRise 也走 translate。 */
+@keyframes partnerRise {
+  from { opacity: 0; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes partnerFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.home .partner-logos.reveal li { opacity: 0; }
+.home .partner-logos.reveal.in li {
+  opacity: 1;
+  animation: partnerRise 0.6s cubic-bezier(0.2, 0.7, 0.3, 1) backwards,
+             partnerFloat 4.6s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.07s), calc(var(--i, 0) * -0.6s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .home .partner-logos.reveal li { opacity: 1; }
+  .home .partner-logos.reveal.in li { animation: none; }
+}
+
+/* ============================================================
+   首頁「一片」滿版有機色板 — 形狀 A 大斜削，套用於 #impact（非 CTA 示範）
+   2026-06-26。clip-path 多邊形＝該區段左右滿版的單片底；內容整組換皮（深底反白）。
+   全部 scope 在 .home #impact、色彩全 16 色 allowlist、要回退整段刪除即可。
+   ============================================================ */
+.home #impact {
+  position: relative;
+  isolation: isolate;
+  padding-top: 170px;
+  padding-bottom: 150px;
+}
+/* 那一片：深綠、左右滿版。邊緣＝手繪蠟筆波浪（SVG feTurbulence 位移濾鏡把波浪邊抖成粗糙
+   筆觸）＋綠邊下疊一條橘色蠟筆波浪線（綠＋橘呼應 logo 筆刷）。data-URI 當背景、無需動 HTML。
+   path 左右各 overshoot 40px，避免濾鏡位移在螢幕左右邊緣露出白縫。 */
+.home #impact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,24 C150,11 330,12 500,24 C670,37 820,37 980,24 C1110,12 1180,13 1240,20'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,56 C150,43 330,44 500,56 C670,69 820,69 980,56 C1110,44 1180,45 1240,52'/><path fill='%23ffffff' d='M-40,86 C150,73 330,74 500,86 C670,99 820,99 980,86 C1110,74 1180,75 1240,82 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,640 L-40,640 Z'/></svg>");
+  background-size: 100% 96px, 100% 100%;
+  background-position: bottom, top;
+  background-repeat: no-repeat, no-repeat;
+}
+.home #impact > .section-grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* —— 內容換皮：深底 → 反白（沿用 on-sheet recipe） —— */
+.home #impact .kicker-icon { color: var(--sun); }
+.home #impact .section-kicker p {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--wheat);
+  color: var(--deep);
+  font-size: 1.05rem;
+}
+.home #impact .section-kicker p::after { display: none; }
+.home #impact .section-grid h2 { color: var(--paper); }
+.home #impact .section-grid h2 .kw { color: var(--wheat); }
+.home #impact .lead { color: rgba(251, 239, 217, 0.85); }
+.home #impact .impact-numbers div {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(251, 239, 217, 0.35);
+}
+.home #impact .impact-numbers strong { color: var(--sun); }
+.home #impact .impact-numbers span { color: rgba(251, 239, 217, 0.85); }
+.home #impact .audience-cta { color: var(--paper); }
+
+/* RWD：手機把斜角收淺、留白縮短，避免內容貼到切角 */
+@media (max-width: 720px) {
+  .home #impact {
+    padding-top: 96px;
+    padding-bottom: 90px;
+  }
+}
+
+/* ============================================================
+   首頁「一片」鋪到更多區段（2026-06-26）
+   節奏：#audiences 淺葉綠·左斜 → #impact 深綠·右斜 → #partners 淺葉綠·左斜
+   淺葉綠=人(參與/夥伴)、深綠=底氣(數據)；逐段交替斜向。
+   葉綠對深綠文字 7.2:1 安全 → 內容多維持深綠，只換 kicker/標記/結構線。
+   #method（四階段互動輪盤）刻意不套，避免與輪盤自身配色打架。
+   ============================================================ */
+
+/* ---------- .problem-section「我們為什麼出發」：杏橙片（2 條大地棕 furrow）----------
+   2026-06-26 業主要求此段加大色片。杏橙＝溫暖/同理（描述青年困境），中淺底維持深綠字(5.9:1)。
+   蠟筆線＝大地棕（橘系底避免綠線、守「不要綠配橘」）、furrow 在下緣（§3.5）。
+   關鍵字＝白塊（策略 C，見共用 .kw 規則）。回退＝刪本區塊。 */
+.home .problem-section {
+  background: transparent;
+  position: relative;
+  isolation: isolate;
+  padding-top: 150px;
+  padding-bottom: 140px;
+}
+.home .problem-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fdd2a6' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+  background-size: 100% 96px, 100% 100%;
+  background-position: bottom, top;
+  background-repeat: no-repeat, no-repeat;
+}
+.home .problem-section > .section-grid { position: relative; z-index: 1; }
+.home .problem-section .kicker-icon { color: var(--deep); }
+.home .problem-section .section-kicker p {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--leaf-700);
+  font-size: 1.05rem;
+}
+.home .problem-section .section-kicker p::after { display: none; }
+@media (max-width: 720px) {
+  .home .problem-section { padding-top: 92px; padding-bottom: 88px; }
+}
+
+/* ---------- #audiences：淺葉綠片（左斜） ---------- */
+.home #audiences {
+  background: transparent;
+  position: relative;
+  isolation: isolate;
+  padding-top: 150px;
+  padding-bottom: 140px;
+}
+.home #audiences::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%238ec457' d='M-40,64 C230,98 430,48 650,82 910,118 1050,58 1240,78 L1240,640 L-40,640 Z'/></svg>");
+  background-size: 100% 96px, 100% 100%;
+  background-position: bottom, top;
+  background-repeat: no-repeat, no-repeat;
+}
+.home #audiences > .path-header,
+.home #audiences > .signpost-system { position: relative; z-index: 1; }
+
+.home #audiences .kicker-icon { color: var(--deep); }
+.home #audiences .section-kicker p {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--leaf-700);
+  font-size: 1.05rem;
+}
+.home #audiences .section-kicker p::after { display: none; }
+.home #audiences .path-header h2 .kw {
+  color: var(--deep);
+}
+/* signpost：細線在葉綠上加深才讀得到；身分標籤改白膠囊 */
+.home #audiences .signpost { --sign-c: rgba(61, 85, 39, 0.7); }
+.home #audiences .signpost-post,
+.home #audiences .signpost-post::after { background: rgba(61, 85, 39, 0.7); }
+.home #audiences .signpost-post::before { border-color: rgba(61, 85, 39, 0.7); }
+.home #audiences .signpost-ground { display: none; } /* 移除路標系統最底部的橫線（使用者要求） */
+.home #audiences .signpost-head::before { background: rgba(61, 85, 39, 0.6); }
+.home #audiences .signpost-plate { border-color: rgba(61, 85, 39, 0.6); }
+.home #audiences .signpost::before { background: rgba(61, 85, 39, 0.7); }
+.home #audiences .signpost::after {
+  background: rgba(61, 85, 39, 0.75);
+  box-shadow: 0 18px 0 rgba(61, 85, 39, 0.75);
+}
+.home #audiences .signpost-badge { border-color: rgba(61, 85, 39, 0.6); }
+
+/* ---------- 路牌「白卡化」：白底卡片浮在葉綠片上＋每張一個專案色家族點綴
+   （2026-06-26，使用者指示「路牌全部變白底、上面元素用專案色點綴」）
+   保留葉綠斜片底與主桿／徽章環／桿座（仍在綠片上）；只把「牌身＋NEXT 主牌＋尖端」
+   填白浮起。每張牌一個 --accent（指向色＝徽章圖示／尖端斜邊／CTA 底線）
+   ＋ --pill（身分標籤膠囊底，暖色淺 tint＋深綠字皆過 AA）。
+   指向色序＝leaf-700→wheat→path→sunset（綠·金·橙·赤，全 16 色 allowlist）；
+   牌身內文維持深綠高對比。回退＝刪本「白卡化」區塊即可。 ---------- */
+.home #audiences .signpost:nth-of-type(1) { --accent: var(--leaf-700); --pill: var(--sun); }
+.home #audiences .signpost:nth-of-type(2) { --accent: var(--wheat);    --pill: var(--apricot); }
+.home #audiences .signpost:nth-of-type(3) { --accent: var(--path);     --pill: var(--amber); }
+.home #audiences .signpost:nth-of-type(4) { --accent: var(--sunset);   --pill: var(--butter); }
+
+/* 牌身＝白底卡：左側圓角、右側維持尖端。
+   陰影只下在「牌身矩形」(box-shadow)、不用 filter:drop-shadow——
+   drop-shadow 會連尖銳尖端一起投影，拖出又黑又尖的三角陰影＝「好可怕」。
+   改用柔和、低不透明度、主要往下的 box-shadow（尖端不投影、乾淨浮起）。 */
+.home #audiences .signpost {
+  background: var(--white);
+  border-color: transparent; /* 不畫框：避免牌身細框與尖端肩部圓角的橙邊在轉角打架 */
+  border-radius: 14px; /* 四角全圓：右側兩角也圓，才能跟尖端的「肩部圓角」順接、不露方角 */
+  box-shadow: 0 9px 22px rgba(61, 85, 39, 0.12);
+  transition: border-color 240ms ease, box-shadow 240ms ease;
+}
+/* 尖端填白＝牌身延伸成箭頭，兩條斜邊上該牌指向色 */
+.home #audiences .signpost > .signpost-tip path {
+  fill: var(--white);
+  stroke: var(--accent);
+}
+/* 尖端往左壓 1px 蓋住牌身右緣＝消除白卡與尖端之間透出的綠色細縫（「一條線」） */
+.home #audiences .signpost > .signpost-tip {
+  margin-left: -1px;
+}
+/* 方位徽章：白圓底在綠片上，圖示改該牌指向色（跳色點綴） */
+.home #audiences .signpost-badge {
+  border-color: rgba(61, 85, 39, 0.3);
+  color: var(--accent);
+}
+/* 身分標籤＝專案暖色膠囊（深綠字＋細邊，才在白卡上讀得到層次） */
+.home #audiences .signpost .node-label {
+  background: var(--pill);
+  color: var(--deep);
+  border: 1px solid rgba(61, 85, 39, 0.14);
+}
+/* CTA 底線＝該牌指向色（hover 延伸沿用 base 的 width 動畫） */
+.home #audiences .signpost-cta::after { background: var(--accent); }
+
+/* NEXT 主牌也白底浮起，尖端填白＋路徑橙斜邊；標題文字加深確保對比 */
+.home #audiences .signpost-plate {
+  background: var(--white);
+  border-color: transparent;
+  border-radius: 10px; /* 四角全圓，與卡片肩部圓角一致 */
+  color: var(--deep);
+  box-shadow: 0 6px 14px rgba(61, 85, 39, 0.1);
+}
+.home #audiences .signpost-plate .signpost-tip path {
+  fill: var(--white);
+  stroke: var(--path);
+}
+.home #audiences .signpost-plate .signpost-tip {
+  margin-left: -1px;
+}
+
+/* hover／focus：陰影柔和加深＋牌身與尖端邊轉成該牌指向色 */
+.home #audiences .signpost:hover,
+.home #audiences .signpost:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 14px 30px rgba(61, 85, 39, 0.17);
+}
+
+/* ---------- #partners：淺葉綠片（左斜） ---------- */
+.home #partners {
+  position: relative;
+  isolation: isolate;
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+.home #partners::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='11' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='%23ffffff' d='M-40,82 C150,69 330,70 500,82 C670,95 820,95 980,82 C1110,70 1180,71 1240,78 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='11' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f5b62d' d='M-40,82 C260,44 470,102 680,72 940,34 1060,82 1240,64 L1240,640 L-40,640 Z'/></svg>");
+  background-size: 100% 96px, 100% 100%;
+  background-position: bottom, top;
+  background-repeat: no-repeat, no-repeat;
+}
+.home #partners > .path-header,
+.home #partners > .partner-logos { position: relative; z-index: 1; }
+.home #partners .kicker-icon { color: var(--deep); }
+.home #partners .section-kicker p {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--leaf-700);
+  font-size: 1.05rem;
+}
+.home #partners .section-kicker p::after { display: none; }
+.home #partners .path-header h2 .kw {
+  color: var(--deep);
+}
+
+/* ============================================================
+   關鍵字標記：手繪蠟筆波浪底（統一全站「蠟筆波浪邊」house style）
+   2026-06-26。底＝butter，邊緣＝SVG feTurbulence＋feDisplacementMap 把波浪 path
+   抖成粗糙手繪蠟筆邊（與 #impact／#audiences／#partners 大色片同技法、同家族）。
+   小尺寸故 viewBox（240×64）與 scale（5）對應縮小；不放橘線 accent（底下葉綠片已有橘線）。
+   背景＝data-URI SVG（非 clip-path：filter 在 SVG 內作用，邊才會粗糙；
+   且 background＋box-decoration-break:clone → 換行每段各自重畫，wrap 不破形）。
+   多點有機波浪邊（控制點遠多於 5，無方角）；butter＋deep、WCAG 不變。
+   要回退：把 background-image 換回 var(--butter)、刪此 SVG 即可。
+   ============================================================ */
+.home #audiences .path-header h2 .kw,
+.home #partners .path-header h2 .kw,
+.home .problem-section h2 .kw {
+  color: var(--deep);
+  padding: 0.22em 0.6em;
+  border-radius: 0;
+  white-space: nowrap;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.09' numOctaves='2' seed='5' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%23ffffff' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* RWD：手機斜角收淺、留白縮短 */
+@media (max-width: 720px) {
+  .home #audiences,
+  .home #partners {
+    padding-top: 92px;
+    padding-bottom: 88px;
+  }
+}
+
+/* ── furrow 帶淨空（§3.5 RWD 硬規則）──────────────────────────────
+   蠟筆 furrow 改為「固定高 96px、釘在色片下緣」的背景層（與區段高度脫鉤），
+   故只要 padding-bottom 一律 ≥ 130px，內容（含 CTA 連結）在任何寬度都不會被線壓到。
+   本規則置於所有色片規則之後、覆蓋各段 base／rhythm／手機的較小下留白。 */
+.home #impact,
+.home #audiences,
+.home #partners,
+.home .problem-section.section-pad {
+  padding-bottom: 130px;
+}
+
+
+/* =========================================================================
+   字體系統 v2 — 粉圓體（Huninn）導入（2026-06-26）
+   原則：粉圓＝標題與統計數字（溫暖識別）；黑體＝內文與主視覺大標（穩重）。
+   token 見檔頭 :root（--font-rounded；--font-serif 已設為其別名，既有標題自動沿用）。
+   以下為「角色 override」：主視覺大標壓回黑體、統計數字改粉圓。
+   要整體回退粉圓：刪除本區塊 ＋ 還原 :root 字體 token ＋ 檔頭 @import 即可。
+   ========================================================================= */
+
+/* 主視覺大標（首頁 Hero、內頁 page-header／page-intro 的 h1）維持黑體、穩重有力 */
+.hero #hero-title,
+.hero #hero-title .kw,
+.page-header h1,
+.page-intro h1 {
+  font-family: var(--font-sans);
+}
+
+/* 統計數字改用粉圓（延續首頁影響力數字）：strong 數值 ＋ 階段大編號。
+   純英文裝飾（.large-watermark／.signpost-plate b／.mc-detail-no／.mission-list span）維持 --font-en。 */
+.signal-row strong,
+.impact-numbers strong,
+.partner-tiers strong,
+.hero-proof strong,
+.story-ratings strong,
+.stage-num {
+  font-family: var(--font-rounded);
+}
+
+/* ============================================================
+   全站標題斷行修正：避免單字孤字（text-wrap:balance 平衡行長）
+   ＋關鍵詞 .kw 不被拆斷。2026-06-26 依使用者「全站完全消除孤字」
+   需求新增。typography only，無任何顏色宣告。
+   ============================================================ */
+h1, h2, h3 { text-wrap: balance; }
+.kw { white-space: nowrap; }
+
+/* ============================================================
+   內容照片元件（2026-06-26）— 全站可重用
+   白底＋卡片圓角（--card-radius）＋ width/height 防 CLS ＋ loading=lazy。
+   照片屬「前景內容」，未引入任何新色，符合 16 色 allowlist 與卡片統一規範。
+   · .content-figure  單張滿欄照片（可帶 figcaption）
+   · .media-band      一段文字＋一張照片並排（桌機左右、手機上下）
+   · .story-figure img 填入既有「課程實況照片」佔位框（impact / outcomes）
+   · .partner-logos li img 文字夥伴牆 → 真實標誌牆
+   回退：刪本區段即可（HTML 仍可正常顯示，照片改回無樣式 inline 圖）。
+   ============================================================ */
+.content-figure {
+  margin: 40px 0 0;
+}
+.content-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--card-radius);
+  border: 1px solid var(--line);
+}
+.content-figure figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.content-figure--tall img { aspect-ratio: 4 / 3; }
+
+/* 圖文並陳：桌機左右兩欄、手機上下堆疊（文字永遠先讀） */
+.media-band {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 36px;
+  align-items: center;
+  margin-top: 44px;
+}
+.media-band > .media-text { min-width: 0; }
+.media-band > .media-text > :first-child { margin-top: 0; }
+.media-band figure { margin: 0; }
+.media-band figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--card-radius);
+  border: 1px solid var(--line);
+}
+.media-band figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+/* 變體：照片排到左、文字到右（桌機）；手機仍文字先讀 */
+.media-band--reverse > figure { order: -1; }
+
+@media (max-width: 760px) {
+  .media-band {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .media-band--reverse > figure { order: 0; }
+}
+
+/* 「課程實況照片」佔位框 → 真實照片填滿（虛線框改實線、裁切置中） */
+.story-figure:has(img) {
+  border-style: solid;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+.story-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 夥伴標誌牆：白磚內置真實標誌（contain、統一高度，沿用既有白磚邊框） */
+.partner-logos li:has(img) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  min-height: 74px;
+  min-width: 132px;
+}
+.partner-logos li img {
+  display: block;
+  height: 46px;
+  width: auto;
+  max-width: 172px;
+  object-fit: contain;
+}
+@media (max-width: 560px) {
+  .partner-logos li:has(img) {
+    min-height: 60px;
+    min-width: 106px;
+    padding: 10px 16px;
+  }
+  .partner-logos li img { height: 34px; max-width: 128px; }
+}
+
+
+/* ============================================================
+   #method 上層能力／下層成果 → 手風琴折疊（方向 A，2026-06-24）
+   漸進增強：無 JS → 兩層全展（同舊版，bar 隱藏）；JS 載入後 .method-cycle 加
+   .is-enhanced → 顯示折疊橫條、兩層各自收合，點橫條獨立展開（中間圓盤永遠可見）。
+   高度動畫＝grid-template-rows 0fr↔1fr（自然高度、免寫死 max-height）；
+   .fold-init（首載瞬間）與 reduced-motion 關閉過場。色彩全走 allowlist 變數。
+   ============================================================ */
+.mc-fold-bar { display: none; }
+.method-cycle.is-enhanced .mc-fold-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(440px, 100%);
+  margin: 0 auto;
+  padding: 13px 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--white);
+  color: var(--deep);
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: .98rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .18s ease;
+}
+.method-cycle.is-enhanced .mc-fold-bar:hover { border-color: var(--brand-green); }
+.method-cycle.is-enhanced .mc-fold-bar:focus-visible {
+  outline: 2px solid var(--brand-green);
+  outline-offset: 2px;
+}
+.mc-fold-label { letter-spacing: .04em; }
+.mc-fold-meta { font-size: .82rem; font-weight: 500; color: var(--earth); }
+.mc-fold-ic {
+  margin-left: auto;
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--path);
+  transition: transform .3s ease;
+}
+.mc-fold-bar[aria-expanded="true"] .mc-fold-ic { transform: rotate(45deg); }
+
+.method-cycle.is-enhanced .mc-fold-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .42s ease;
+}
+.method-cycle.is-enhanced .mc-fold-body.open { grid-template-rows: 1fr; }
+.method-cycle.is-enhanced .mc-fold-inner {
+  overflow: hidden;
+  min-height: 0;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.method-cycle.is-enhanced .mc-fold-body.open .mc-fold-inner { opacity: 1; }
+.mc-fold-inner { padding-top: 18px; }
+
+.method-cycle.fold-init .mc-fold-body,
+.method-cycle.fold-init .mc-fold-inner { transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .method-cycle.is-enhanced .mc-fold-body,
+  .method-cycle.is-enhanced .mc-fold-inner,
+  .mc-fold-ic { transition: none; }
+}
+
+/* ============================================================
+   旅程主題手繪圖示裝飾層 decor（有機散佈）2026-06-26
+   ------------------------------------------------------------
+   素材：只用 assets/decor/（業主提供的 xiangyu 去線手繪線稿 PNG），不畫任何 SVG。
+   　　 白底區塊用 color/（綠橘線稿）；深綠底用 white/（白色線稿）。九款：1_telescope
+   　　 2_signpost 3_street_lamp 4_compass 5_map 6_ticket 7_magnifier 8_traffic_cone 9_footprints。
+   用法：在 position:relative; isolation:isolate 的區塊內（白底區塊請補 .has-decor）放：
+     <img class="decor" src="assets/decor/color/1_telescope.png" alt="" aria-hidden="true"
+          style="--w:180px; top:48px; right:5%; --rot:-7deg;">
+   位置＝top/right/bottom/left；大小＝--w；角度＝--rot；淡化＝--op；手機隱藏＝加 .decor--hide-sm。
+   堆疊：z-index:-1，沿用本站色片慣例——壓在文字下、白底/色片上，不擋互動、不入無障礙樹。
+   每個 instance 自選元素＋位置＋角度，達成「有機散佈、不同位置與角度」。
+   回退＝刪本整段 CSS ＋移除頁面上的 .decor / .has-decor。
+   ============================================================ */
+.has-decor { position: relative; isolation: isolate; overflow: clip; }
+
+.decor {
+  position: absolute;
+  z-index: -1;
+  width: var(--w, 120px);
+  height: auto;
+  opacity: var(--op, 1);
+  transform: rotate(var(--rot, 0deg));
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 10px 16px rgba(61, 85, 39, 0.1));
+}
+
+/* 生動感：極輕緩的上下浮動，幅度小、速度慢；尊重 prefers-reduced-motion。
+   不同 instance 錯開時長與相位，避免整齊劃一。旋轉角度在動畫中保留。 */
+@media (prefers-reduced-motion: no-preference) {
+  .decor { animation: decor-float 7s ease-in-out infinite; }
+  .decor:nth-of-type(2n) { animation-duration: 8.4s; animation-delay: -1.3s; }
+  .decor:nth-of-type(3n) { animation-duration: 6.2s; animation-delay: -2.7s; }
+}
+@keyframes decor-float {
+  0%, 100% { transform: rotate(var(--rot, 0deg)) translateY(0); }
+  50% { transform: rotate(var(--rot, 0deg)) translateY(-9px); }
+}
+
+/* 手機：縮小、微淡，避免小螢幕擁擠搶內容；必要的可加 .decor--hide-sm 直接隱藏 */
+@media (max-width: 760px) {
+  .decor { width: calc(var(--w, 120px) * 0.62); opacity: calc(var(--op, 1) * 0.92); }
+  .decor.decor--hide-sm { display: none; }
+}
+
+/* ---- .cta-band 全站雙角落手繪圖示（19 頁一次套用、零逐頁改動）----
+   深綠底上用「白色線稿」版才顯色：左下路燈（一盞燈·指引）＋右上腳印（走上旅程），
+   呼應總 CTA 文案。兩枚不同角落、不同角度，非單一右下角水印。背景圖、無需動 HTML。 */
+.cta-band { position: relative; isolation: isolate; overflow: hidden; }
+.cta-band::before,
+.cta-band::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.cta-band::before {
+  width: 150px;
+  height: 168px;
+  left: 14px;
+  bottom: -6px;
+  background-image: url("assets/decor/white/3_street_lamp.png");
+  transform: rotate(-6deg);
+  opacity: 0.9;
+}
+.cta-band::after {
+  width: 184px;
+  height: 150px;
+  right: 14px;
+  top: 0;
+  background-image: url("assets/decor/white/9_footprints.png");
+  transform: rotate(8deg);
+  opacity: 0.9;
+}
+@media (max-width: 760px) {
+  .cta-band::before { width: 102px; height: 116px; left: 2px; bottom: -2px; opacity: 0.85; }
+  .cta-band::after { width: 124px; height: 102px; right: 4px; top: 2px; opacity: 0.85; }
+}
+
+/* 修：折疊時 inner 的 padding-top 改為 0（避免收合殘留 18px），展開才補回 18px 間距 */
+.method-cycle.is-enhanced .mc-fold-inner {
+  padding-top: 0;
+  transition: opacity .3s ease, padding-top .42s ease;
+}
+.method-cycle.is-enhanced .mc-fold-body.open .mc-fold-inner { padding-top: 18px; }
+@media (prefers-reduced-motion: reduce) {
+  .method-cycle.is-enhanced .mc-fold-inner { transition: none; }
+}
+
+/* 方案 A：世代課題數據——資料來源獨立成註記行（僅作用於帶 --cited 的 signal-row；大數字維持原級距） */
+.signal-row--cited div {
+  justify-content: flex-start;
+}
+.signal-row--cited span {
+  margin-top: 14px;
+}
+.signal-row--cited .signal-source {
+  display: block;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  font-style: normal;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.signal-row--cited .signal-source b {
+  margin-right: 6px;
+  color: var(--earth);
+  font-weight: 600;
+}
+
+/* ============================================================
+   參與我們（involve）「參與入口」指向牌：修正在 story-layout 窄欄中的版型
+   問題：.signpost-system 的 ≥961 規則內縮 252px（為首頁整寬區段的 kicker
+   欄＝180+72 預留），但 story-layout 已把 kicker 隱藏、標牌本就在窄欄，
+   該內縮會把四面牌擠到右半邊 → 牌變窄變高 → 等比尖端被撐成巨大三角（形狀怪）。
+   修正：story-layout 內標牌改用滿欄寬（更寬）＋收薄上下與尖端（更扁、形狀一致）。
+   全部僅作用於 .story-layout；首頁 #audiences 自有獨立樣式不受影響。
+   ============================================================ */
+.story-layout .signpost-system {
+  padding-right: 48px; /* 預留固定尖端空間（小於原 74，牌身更寬） */
+}
+.story-layout .signpost {
+  padding-top: 13px;
+  padding-bottom: 13px; /* 上下收薄 → 更扁 */
+}
+.story-layout .signpost-desc {
+  max-width: none; /* 說明用滿欄寬，折行更少 → 更扁 */
+}
+.story-layout .signpost > .signpost-tip {
+  aspect-ratio: auto;
+  width: 30px; /* 固定窄尖端，不再隨牌身高度等比放大 → 形狀一致、不再過大 */
+}
+@media (min-width: 961px) {
+  .story-layout .signpost-system {
+    width: 100%; /* 取消 252px 內縮，改用滿欄寬 → 牌更寬、更扁 */
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 48px;
+  }
 }
