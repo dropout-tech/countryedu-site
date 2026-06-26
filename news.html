@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="鄉育最新消息頁，彙整課程動態、合作消息與活動紀錄。隨著各校課程陸續落地，我們將在此持續更新青年尋路旅程的進展。正式消息整理中，歡迎先與團隊聯絡掌握第一手動態。" />
+    <meta name="description" content="鄉育最新消息頁，彙整課程動態、合作消息與活動紀錄。隨著各校課程陸續落地，我們將在此持續更新青年尋路旅程的進展。" />
     <title>最新消息｜財團法人鄉育教育基金會</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -61,10 +61,10 @@
           <div class="nav-item">
             <a role="button" tabindex="0" aria-haspopup="true" aria-label="依身分瀏覽，展開專區選單">依身分瀏覽</a>
             <div class="nav-dropdown" aria-label="依身分瀏覽子選單">
-              <a href="for-students.html">學生專區</a>
+              <a href="for-students.html">大學生專區</a>
               <a href="for-companies.html">企業專區</a>
-              <a href="for-donors.html">捐款者專區</a>
-              <a href="for-universities.html">學校・大學專區</a>
+              <a href="for-donors.html">個人捐款者專區</a>
+              <a href="for-universities.html">大學合作專區</a>
             </div>
           </div>
         </nav>
@@ -146,10 +146,10 @@
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開依身分瀏覽子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="for-students.html">學生專區</a>
+            <a href="for-students.html">大學生專區</a>
             <a href="for-companies.html">企業專區</a>
-            <a href="for-donors.html">捐款者專區</a>
-            <a href="for-universities.html">學校・大學專區</a>
+            <a href="for-donors.html">個人捐款者專區</a>
+            <a href="for-universities.html">大學合作專區</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -174,35 +174,42 @@
               <p>最新消息</p>
             </div>
             <div>
-              <h2 id="news-title">記錄鄉育每一段陪伴青年尋路的足跡。</h2>
+              <h2 id="news-title">記錄鄉育每一段陪伴青年尋路的<span class="kw">足跡</span>。</h2>
               <p class="lead">
                 這裡彙整鄉育的課程動態、合作消息與活動紀錄。第一批正式消息正在整理中，隨著一所所學校的課程落地，我們會在此持續更新青年尋路旅程上的最新進展；在此之前，歡迎先透過下方的方式與我們保持聯繫。
               </p>
             </div>
           </div>
-          <p class="node-label">
-            正式消息整理中：鄉育的課程與合作正在各校陸續展開，第一批消息與活動紀錄完成後將於本頁陸續發布。以下示意卡呈現未來消息的呈現方式，日期、標題與摘要將於內容上線後逐一補上。
-          </p>
           <!--
             佔位說明：以下三張為消息列表示意卡（news detail 單篇文章頁尚未建立）。
-            目前尚無正式發布的消息與活動，time／標題／摘要與連結皆為佔位，
+            目前尚無正式發布的消息與活動：分類標籤為示意分類（基金會確定會有的內容類型，非具體事件），
+            日期／標題／摘要與連結皆為佔位（time 刻意不放 datetime 屬性）。
             待實際文章上線後，再以真實日期、標題、摘要與內頁網址替換，勿杜撰具體事件、日期或新聞。
           -->
           <div class="news-list">
             <article class="news-card" aria-hidden="true">
-              <time>消息上線後更新</time>
+              <div class="card-meta">
+                <span class="tag tag-event">活動紀錄</span>
+                <time><svg class="i-date" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>日期待補</time>
+              </div>
               <h3>消息標題將於發布後補上</h3>
               <p>每則消息發布後，這裡會放上重點摘要。</p>
               <span class="news-card-soon">敬請期待</span>
             </article>
             <article class="news-card" aria-hidden="true">
-              <time>消息上線後更新</time>
+              <div class="card-meta">
+                <span class="tag tag-partner">合作消息</span>
+                <time><svg class="i-date" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>日期待補</time>
+              </div>
               <h3>消息標題將於發布後補上</h3>
               <p>每則消息發布後，這裡會放上重點摘要。</p>
               <span class="news-card-soon">敬請期待</span>
             </article>
             <article class="news-card" aria-hidden="true">
-              <time>消息上線後更新</time>
+              <div class="card-meta">
+                <span class="tag tag-course">課程動態</span>
+                <time><svg class="i-date" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9h18M8 2.5v4M16 2.5v4"/></svg>日期待補</time>
+              </div>
               <h3>消息標題將於發布後補上</h3>
               <p>每則消息發布後，這裡會放上重點摘要。</p>
               <span class="news-card-soon">敬請期待</span>
@@ -215,9 +222,6 @@
             </div>
             <div class="cta-band-actions">
               <a class="button-primary" href="contact.html">聯絡鄉育團隊</a>
-              <div class="cta-sublinks">
-                <a class="button-secondary" href="involve.html">了解如何參與</a>
-              </div>
             </div>
           </div>
         </section>

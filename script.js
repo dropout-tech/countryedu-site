@@ -248,3 +248,23 @@ document.querySelectorAll(".partner-logos").forEach((wall) => {
   );
   io.observe(wall);
 });
+
+// ===== 媒體報導頁「精選頭條牆」：分類 chip 篩選（press.html）=====
+const pressFilters = document.querySelectorAll("[data-press-filter]");
+if (pressFilters.length) {
+  const pressCards = document.querySelectorAll("[data-press-cat]");
+  const applyPressFilter = (cat) => {
+    pressFilters.forEach((button) => {
+      const on = button.dataset.pressFilter === cat;
+      button.classList.toggle("is-active", on);
+      button.setAttribute("aria-pressed", String(on));
+    });
+    pressCards.forEach((card) => {
+      const cats = (card.dataset.pressCat || "").split(" ");
+      card.hidden = cat !== "all" && !cats.includes(cat);
+    });
+  };
+  pressFilters.forEach((button) => {
+    button.addEventListener("click", () => applyPressFilter(button.dataset.pressFilter));
+  });
+}

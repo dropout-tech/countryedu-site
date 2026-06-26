@@ -90,10 +90,10 @@
           <div class="nav-item">
             <a role="button" tabindex="0" aria-haspopup="true" aria-label="依身分瀏覽，展開專區選單">依身分瀏覽</a>
             <div class="nav-dropdown" aria-label="依身分瀏覽子選單">
-              <a href="for-students.html">學生專區</a>
+              <a href="for-students.html">大學生專區</a>
               <a href="for-companies.html">企業專區</a>
-              <a href="for-donors.html">捐款者專區</a>
-              <a href="for-universities.html">學校・大學專區</a>
+              <a href="for-donors.html">個人捐款者專區</a>
+              <a href="for-universities.html">大學合作專區</a>
             </div>
           </div>
         </nav>
@@ -175,10 +175,10 @@
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開依身分瀏覽子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="for-students.html">學生專區</a>
+            <a href="for-students.html">大學生專區</a>
             <a href="for-companies.html">企業專區</a>
-            <a href="for-donors.html">捐款者專區</a>
-            <a href="for-universities.html">學校・大學專區</a>
+            <a href="for-donors.html">個人捐款者專區</a>
+            <a href="for-universities.html">大學合作專區</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -191,11 +191,7 @@
       <main id="top">
         <!-- 01 Hero 首屏 -->
         <section class="hero" aria-labelledby="hero-title">
-          <img class="decor" src="assets/decor/color/1_telescope.png" alt="" aria-hidden="true" style="--w:200px; top:96px; right:3%; --rot:-7deg;" />
-          <img class="decor" src="assets/decor/color/4_compass.png" alt="" aria-hidden="true" style="--w:150px; top:32%; left:2%; --rot:-11deg;" />
-          <img class="decor decor--hide-sm" src="assets/decor/color/9_footprints.png" alt="" aria-hidden="true" style="--w:160px; bottom:80px; right:7%; --rot:6deg; --op:.95;" />
-          <img class="decor decor--hide-sm" src="assets/decor/color/2_signpost.png" alt="" aria-hidden="true" style="--w:118px; top:30%; left:20%; --rot:-8deg; --op:.95;" />
-          <img class="decor decor--hide-sm" src="assets/decor/color/6_ticket.png" alt="" aria-hidden="true" style="--w:104px; top:58%; right:20%; --rot:9deg; --op:.95;" />
+          <!-- Hero 裝飾圖示由頁尾 <script id="hero-decor-rand"> 於每次載入隨機產生（9 款挑 4–5、隨機位置/角度、互不重疊）。靜態勿加。 -->
           <div class="hero-content">
             <p class="eyebrow">青年尋路 × 行動賦能</p>
             <h1 id="hero-title">青年缺的不是資源，<br />而是<span class="kw">練習世界的機會</span>。</h1>
@@ -515,13 +511,101 @@
             </div>
             <div class="cta-band-actions">
               <a class="button-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">立即支持</a>
-              <div class="cta-sublinks">
-                <a class="button-secondary" href="programs.html">了解計畫</a>
-                <a class="button-secondary" href="contact.html">聯絡鄉育</a>
-              </div>
             </div>
           </div>
         </section>
+
+        <!-- Hero 隨機裝飾產生器：每次載入從 9 款手繪圖示隨機挑 4–5 款，隨機位置/角度，
+             以「實際圖樣框」碰撞檢測→互不重疊、不壓中央文字與左下 Explore；只作用於 .hero。
+             想整體放大/縮小改 AREA；想多/少改 want。移除＝刪本 script。 -->
+        <script id="hero-decor-rand">
+        (function () {
+          function init() {
+            var hero = document.querySelector('.hero');
+            if (!hero) return;
+            hero.querySelectorAll('.decor').forEach(function (n) { n.remove(); });
+            var h1 = document.getElementById('hero-title');
+            var content = hero.querySelector('.hero-content');
+            if (!h1 || !content) return;
+            var hr = hero.getBoundingClientRect(), HW = hr.width, HH = hr.height;
+            function rel(el) { var b = el.getBoundingClientRect(); return { l: b.left - hr.left, t: b.top - hr.top, r: b.right - hr.left, b: b.bottom - hr.top, w: b.width, h: b.height }; }
+            var CB = rel(content); /* 文字區塊：eyebrow＋H1＋副標＋CTA，圖示圍繞它四周 */
+            var mobile = HW < 760; /* 手機：兩側太窄→改用標題上方／下方留白帶，較小較少 */
+            var ICONS = [
+              { f: '1_telescope', L: 801, T: 116, aw: 713, ah: 853 },
+              { f: '2_signpost', L: 605, T: 146, aw: 623, ah: 747 },
+              { f: '3_street_lamp', L: 1056, T: 117, aw: 476, ah: 989 },
+              { f: '4_compass', L: 740, T: 105, aw: 621, ah: 718 },
+              { f: '5_map', L: 345, T: 115, aw: 1050, ah: 773 },
+              { f: '6_ticket', L: 349, T: 207, aw: 1036, ah: 707 },
+              { f: '7_magnifier', L: 808, T: 176, aw: 681, ah: 739 },
+              { f: '8_traffic_cone', L: 773, T: 147, aw: 588, ah: 741 },
+              { f: '9_footprints', L: 582, T: 40, aw: 969, ah: 1142 }
+            ];
+            var AREA = mobile ? 5000 : 13000; /* 目標可見圖樣面積(px²)＝視覺大小，各款一致 */
+            var G = mobile ? 12 : 24;         /* 圖示與標題區塊的間距 */
+            /* 落點（傳入圖示半寬 hw／半高 hh → 回傳圖樣中心座標）。
+               桌機＝標題四周 8 點；手機＝標題上方 2 點＋下方 3 點（兩側太窄不放）。 */
+            var SLOTS = mobile ? [
+              function (hw, hh) { return { x: CB.l + 0.20 * CB.w + hw, y: CB.t - G - hh }; }, /* 上·左 */
+              function (hw, hh) { return { x: CB.r - 0.20 * CB.w - hw, y: CB.t - G - hh }; }, /* 上·右 */
+              function (hw, hh) { return { x: CB.l + 0.16 * CB.w + hw, y: CB.b + G + hh }; }, /* 下·左 */
+              function (hw, hh) { return { x: CB.l + 0.50 * CB.w, y: CB.b + G + hh }; },       /* 下·中 */
+              function (hw, hh) { return { x: CB.r - 0.16 * CB.w - hw, y: CB.b + G + hh }; }  /* 下·右 */
+            ] : [
+              function (hw, hh) { return { x: CB.l - G - hw, y: CB.t + 0.30 * CB.h }; }, /* 左·上 */
+              function (hw, hh) { return { x: CB.l - G - hw, y: CB.t + 0.72 * CB.h }; }, /* 左·下 */
+              function (hw, hh) { return { x: CB.r + G + hw, y: CB.t + 0.30 * CB.h }; }, /* 右·上 */
+              function (hw, hh) { return { x: CB.r + G + hw, y: CB.t + 0.72 * CB.h }; }, /* 右·下 */
+              function (hw, hh) { return { x: CB.l + 0.22 * CB.w, y: CB.t - G - hh }; }, /* 上·左 */
+              function (hw, hh) { return { x: CB.r - 0.22 * CB.w, y: CB.t - G - hh }; }, /* 上·右 */
+              function (hw, hh) { return { x: CB.l + 0.28 * CB.w, y: CB.b + G + hh }; }, /* 下·左 */
+              function (hw, hh) { return { x: CB.r - 0.28 * CB.w, y: CB.b + G + hh }; }  /* 下·右 */
+            ];
+            var keepouts = [
+              { x: CB.l - 8, y: CB.t - 8, w: CB.w + 16, h: CB.h + 16 }, /* 保護整個文字區 */
+              { x: 0, y: 0.85 * HH, w: 0.34 * HW, h: 0.15 * HH }        /* 左下 hero-index（Explore…） */
+            ];
+            function rnd(a, b) { return a + Math.random() * (b - a); }
+            function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+            function hit(b, k, m) { return !(b.x + b.w + m < k.x || b.x > k.x + k.w + m || b.y + b.h + m < k.y || b.y > k.y + k.h + m); }
+            var placed = [], M = 4, TOP = mobile ? 64 : 4; /* 手機留出頂部頁首高度，圖示不被 logo／選單蓋 */
+            function bad(b) {
+              if (b.x < M || b.y < TOP || b.x + b.w > HW - M || b.y + b.h > HH - M) return true;
+              for (var i = 0; i < keepouts.length; i++) if (hit(b, keepouts[i], 2)) return true;
+              for (var j = 0; j < placed.length; j++) if (hit(b, placed[j], 16)) return true;
+              return false;
+            }
+            var pool = shuffle(ICONS.slice());
+            var slots = shuffle(SLOTS.slice());
+            var want = mobile ? (2 + Math.floor(Math.random() * 2)) : (4 + Math.floor(Math.random() * 3)); /* 手機 2–3、桌機 4–6 */
+            var made = 0;
+            for (var k = 0; k < slots.length && made < want; k++) {
+              var ic = pool[made];
+              var s = Math.sqrt(AREA / (ic.aw * ic.ah)), aw = ic.aw * s, ah = ic.ah * s, cw = 1600 * s;
+              var c = slots[k](aw / 2, ah / 2);
+              var ax = c.x - aw / 2 + rnd(-8, 8);
+              var ay = c.y - ah / 2 + rnd(-8, 8);
+              if (bad({ x: ax, y: ay, w: aw, h: ah })) continue;
+              placed.push({ x: ax, y: ay, w: aw, h: ah });
+              var img = document.createElement('img');
+              img.className = 'decor';
+              img.src = 'assets/decor/color/' + ic.f + '.png';
+              img.alt = ''; img.setAttribute('aria-hidden', 'true');
+              img.style.width = Math.round(cw) + 'px';
+              img.style.left = Math.round(ax - ic.L * s) + 'px';
+              img.style.top = Math.round(ay - ic.T * s) + 'px';
+              img.style.setProperty('--rot', rnd(-22, 22).toFixed(1) + 'deg'); /* 角度差異加大 */
+              img.style.setProperty('--op', '0.95');
+              hero.appendChild(img);
+              made++;
+            }
+          }
+          /* 等字體載入後再量標題位置才準 */
+          function go() { if (document.fonts && document.fonts.ready) { document.fonts.ready.then(init); } else { init(); } }
+          if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
+        })();
+        </script>
       </main>
 
       <footer class="site-footer" id="contact">
