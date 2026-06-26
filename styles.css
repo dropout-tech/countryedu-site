@@ -80,9 +80,7 @@ button {
   /* clip（非 hidden）：同樣裁掉裝飾溢出，但不建立 scroll container，
      讓子層 position: sticky（如 story.html 出口牌側欄）能正常吸附視窗。 */
   overflow: clip;
-  background:
-    linear-gradient(90deg, rgba(142, 196, 87, 0.1) 0 1px, transparent 1px) 0 0 / 18vw 100%,
-    var(--paper);
+  background: var(--paper);
 }
 
 .site-header {
@@ -650,13 +648,32 @@ button {
 
 .mission-list span {
   color: var(--link);
-  font-family: var(--font-en);
+  /* 此 span 混用拉丁（STAR／RIASEC／01-16）與中文（定義／整合…）。
+     拉丁走 Georgia 斜體裝飾；中文 fallback 到粉圓。 */
+  font-family: Georgia, var(--font-rounded);
   font-style: italic;
+  /* 關鍵：禁止合成斜體。中文（粉圓／宋體無斜體字形）→ 保持直立、不再假斜體；
+     英文／編號（Georgia 有真斜體字形）→ 維持斜體裝飾。 */
+  font-synthesis: none;
 }
 
 .mission-list h3 {
   margin: 18px 0 8px;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.35;
+}
+
+/* 雙語格子標題：英文縮為小 eyebrow 疊在中文主標上方，讓中文回到單行
+   （programs 模組／approach 國際框架）。h3 主文＝中文，<small>＝英文名。 */
+.mission-list h3 small {
+  display: block;
+  margin-bottom: 1px;
+  font-family: var(--font-en);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  color: var(--leaf-700);
 }
 
 .mission-list p {
@@ -711,12 +728,29 @@ button {
   background: var(--paper);
   border: 1px solid var(--ink);
   border-radius: 50%;
+  transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
 }
 
 .featured-node .node-dot {
   background: var(--path);
   border-color: var(--path);
   box-shadow: 0 0 0 12px rgba(242, 140, 10, 0.14);
+}
+
+/* 旅程時間軸捲動互動（全站通用，見 script.js）：橘點隨捲動移動到目前節點。
+   .is-spy = JS 已接管該時間軸 → 靜態 featured 高亮讓位，避免出現第二顆常駐橘點；
+   :not(.is-active) 確保「目前正好停在 featured 節點」時仍由下方 is-active 規則上橘色。
+   無 JS 時不會有 .is-spy，featured 維持原本的靜態高亮當作優雅退場。 */
+.journey-line.is-spy .featured-node:not(.is-active) .node-dot {
+  background: var(--paper);
+  border-color: var(--ink);
+  box-shadow: none;
+}
+
+.journey-node.is-active .node-dot {
+  background: var(--path);
+  border-color: var(--path);
+  box-shadow: 0 0 0 6px rgba(242, 140, 10, 0.16);
 }
 
 /* journey-line 變體：單一直線時間軸（一條直的線，節點由上到下串連）
@@ -1252,7 +1286,8 @@ button {
   }
 
   .hero h1 {
-    font-size: 3.6rem;
+    /* 隨寬度縮放，確保第二句「而是練習世界的機會。」(10 全形字) 不溢出 → 標題 ≤ 2 行 */
+    font-size: clamp(2.2rem, 7vw, 3.6rem);
   }
 
   .hero-word {
@@ -1379,7 +1414,8 @@ button {
 
 @media (max-width: 560px) {
   .hero h1 {
-    font-size: 2.8rem;
+    /* 最窄手機亦保 2 行：gutter 下限 24px → 320 寬可用約 272px，下限取 1.5rem 留邊 */
+    font-size: clamp(1.5rem, 8vw, 2.8rem);
   }
 
   .hero-subtitle {
@@ -1930,6 +1966,7 @@ button {
   border-radius: var(--card-radius);
   padding: 26px 24px;
   min-height: 200px;
+  overflow: hidden;
 }
 
 .news-card time {
@@ -2310,19 +2347,6 @@ button {
   background: rgba(61, 85, 39, 0.34);
   transition: background 240ms ease;
 }
-/* 固定鉚釘：牌身左緣兩個小螺栓點 */
-.signpost::after {
-  content: "";
-  position: absolute;
-  left: 13px;
-  top: calc(50% - 9px);
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: rgba(61, 85, 39, 0.42);
-  box-shadow: 0 18px 0 rgba(61, 85, 39, 0.42);
-  transition: background 240ms ease, box-shadow 240ms ease;
-}
 
 /* 方位徽章：掛在主桿上、箭頭各指不同方向 */
 .signpost-badge {
@@ -2459,16 +2483,10 @@ button {
 .signpost:focus-within::before {
   background: var(--deep);
 }
-.signpost:hover::after,
-.signpost:focus-within::after {
-  background: var(--deep);
-  box-shadow: 0 18px 0 var(--deep);
-}
 
 @media (prefers-reduced-motion: reduce) {
   .signpost,
   .signpost::before,
-  .signpost::after,
   .signpost-tip,
   .signpost-tip path,
   .signpost-badge,
@@ -2799,7 +2817,7 @@ button {
 .info-cards h3 {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1.4;
   color: var(--ink);
 }
@@ -3222,7 +3240,7 @@ button {
   body:not(.home) .path-header ~ .content-figure,
   body:not(.home) .path-header ~ .media-band,
   body:not(.home) .path-header ~ .press-filters,
-  body:not(.home) .path-header ~ .press-archive-block,
+  body:not(.home) .path-header ~ .press-sort,
   body:not(.home) .path-header ~ .impact-numbers {
     padding-left: calc(180px + 72px);
   }
@@ -3237,7 +3255,7 @@ button {
   body:not(.home) .story-layout .path-header ~ .content-figure,
   body:not(.home) .story-layout .path-header ~ .media-band,
   body:not(.home) .story-layout .path-header ~ .press-filters,
-  body:not(.home) .story-layout .path-header ~ .press-archive-block,
+  body:not(.home) .story-layout .path-header ~ .press-sort,
   body:not(.home) .story-layout .path-header ~ .impact-numbers {
     padding-left: 0;
   }
@@ -3335,7 +3353,7 @@ button {
   pointer-events: none;
   transition: border-color 180ms ease;
 }
-.exit-sign.is-active::after { border-color: rgba(61, 85, 39, 0.42); }
+.exit-sign.is-active::after { border-color: rgba(232, 115, 40, 0.4); }
 
 /* 牌與牌之間的細路桿（連接線） */
 .exit-sign + .exit-sign::before {
@@ -3357,7 +3375,7 @@ button {
   z-index: 2;
   display: inline-block;
   padding: 2px 9px;
-  border: 1px solid rgba(61, 85, 39, 0.45);
+  border: 1px solid rgba(232, 115, 40, 0.55);
   border-radius: 5px;
   background: var(--white);
   font-size: 0.68rem;
@@ -3413,17 +3431,17 @@ button {
 
 /* active：正在閱讀此章節（抵達此出口） */
 .exit-sign.is-active {
-  border-color: var(--deep);
-  background: rgba(61, 85, 39, 0.045);
+  border-color: var(--sunset);
+  background: rgba(232, 115, 40, 0.05);
 }
 .exit-sign.is-active .exit-name { color: var(--deep); font-weight: 600; }
 .exit-sign.is-active .exit-tag {
-  background: var(--deep);
-  color: var(--white);
-  border-color: var(--deep);
+  background: var(--sun);
+  color: var(--deep);
+  border-color: var(--sunset);
 }
-.exit-sign.is-active .exit-arrow { opacity: 1; }
-.exit-sign.is-active::before { background: var(--deep); }
+.exit-sign.is-active .exit-arrow { opacity: 1; color: var(--sunset); }
+.exit-sign.is-active::before { background: var(--sunset); }
 
 /* 平板／手機：版面回單欄，導覽改頂部橫向 sticky tabs（保留 EXIT 語彙） */
 @media (max-width: 960px) {
@@ -3802,6 +3820,35 @@ main.wip-mode > *:not(.wip-screen) {
   }
 }
 
+/* 財務徵信｜signal-row 的「成立年／統編／立案字號」是登記用長字串（非大數字級距）。
+   巢狀在 path-header 右欄後單欄僅約 300px，3.4rem 會撐爆並把欄寬擠歪 →
+   鎖等寬欄＋縮小字級，讓長字號自然折行。僅作用於 --ids，不影響其他 signal-row。 */
+.signal-row--ids {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.signal-row--ids strong {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+/* 手機／窄平板：登記字號（立案字號 15 字）在三欄下會被擠到極窄而爆成多行 →
+   改單欄，桌機仍維持原本設計的自然折行（既定例外）。 */
+@media (max-width: 820px) {
+  .signal-row--ids {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 法律／徵信頁（隱私權／服務條款／財務徵信）：不顯示左側 kicker 編號小字，
+   並把 path-header 由「kicker 欄＋內容欄」雙欄收為單欄，讓標題與內容靠左
+   占滿內容寬（與 h1／cta-band 對齊）。僅作用於 .page-legal，不影響其他頁。 */
+.page-legal .path-header {
+  grid-template-columns: minmax(0, 1fr);
+}
+.page-legal .path-header > .section-kicker {
+  display: none;
+}
+
 /* 使用者自訂實心 SVG kicker icon：吃 currentColor＝品牌綠 */
 .kicker-icon--solid {
   fill: currentColor;
@@ -4073,10 +4120,6 @@ main.wip-mode > *:not(.wip-screen) {
 .home #audiences .signpost-head::before { background: rgba(61, 85, 39, 0.6); }
 .home #audiences .signpost-plate { border-color: rgba(61, 85, 39, 0.6); }
 .home #audiences .signpost::before { background: rgba(61, 85, 39, 0.7); }
-.home #audiences .signpost::after {
-  background: rgba(61, 85, 39, 0.75);
-  box-shadow: 0 18px 0 rgba(61, 85, 39, 0.75);
-}
 .home #audiences .signpost-badge { border-color: rgba(61, 85, 39, 0.6); }
 
 /* ---------- 路牌「白卡化」：白底卡片浮在葉綠片上＋每張一個專案色家族點綴
@@ -4246,7 +4289,8 @@ main.wip-mode > *:not(.wip-screen) {
 }
 
 /* 統計數字改用粉圓（延續首頁影響力數字）：strong 數值 ＋ 階段大編號。
-   純英文裝飾（.large-watermark／.signpost-plate b／.mc-detail-no／.mission-list span）維持 --font-en。 */
+   純英文裝飾（.large-watermark／.signpost-plate b／.mc-detail-no）維持 --font-en。
+   .mission-list span 因中英混排，改 Georgia,粉圓 ＋ font-synthesis:none（避免中文被假斜體，見該 selector）。 */
 .signal-row strong,
 .impact-numbers strong,
 .partner-tiers strong,
@@ -4410,6 +4454,56 @@ h1, h2, h3 { text-wrap: balance; }
   font-weight: 700;
 }
 
+.press-sort {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: min(var(--max), 100%);
+  margin: 16px auto 0;
+}
+.press-sort-label {
+  margin-right: 2px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.press-sort-btn {
+  appearance: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.press-sort-btn:hover {
+  background: var(--honey);
+}
+.press-sort-btn:focus-visible {
+  outline: 2px solid var(--leaf-700);
+  outline-offset: 2px;
+}
+.press-sort-btn.is-active,
+.press-sort-btn[aria-pressed="true"] {
+  background: var(--leaf);
+  border-color: var(--leaf);
+  color: var(--deep);
+}
+
+.news-card-cover {
+  display: block;
+  width: calc(100% + 48px);
+  margin: -26px -24px 4px;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
 .news-card[hidden] {
   display: none;
 }
@@ -4449,58 +4543,6 @@ h1, h2, h3 { text-wrap: balance; }
   color: var(--leaf-700);
   font-weight: 700;
   font-size: 0.85rem;
-}
-
-.press-archive-block {
-  width: min(var(--max), 100%);
-  margin: 60px auto 0;
-}
-.press-archive-head {
-  margin: 0 0 6px;
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-}
-.press-archive-note {
-  margin: 0 0 18px;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-.press-archive {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.press-archive li {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 16px;
-  padding: 14px 0;
-  border-top: 1px solid var(--line);
-}
-.press-archive li:last-child {
-  border-bottom: 1px solid var(--line);
-}
-.press-archive time {
-  min-width: 88px;
-  color: var(--label);
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-.press-archive .press-source {
-  min-width: 150px;
-}
-.press-archive a {
-  flex: 1;
-  min-width: 220px;
-  color: var(--link);
-  font-weight: 700;
-  text-decoration: none;
-}
-.press-archive a:hover,
-.press-archive a:focus-visible {
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 /* 「課程實況照片」佔位框 → 真實照片填滿（虛線框改實線、裁切置中） */
@@ -4655,8 +4697,10 @@ h1, h2, h3 { text-wrap: balance; }
 }
 
 /* ---- .cta-band 全站雙角落手繪圖示（19 頁一次套用、零逐頁改動）----
-   深綠底上用「白色線稿」版才顯色：左下路燈（一盞燈·指引）＋右上腳印（走上旅程），
-   呼應總 CTA 文案。兩枚不同角落、不同角度，非單一右下角水印。背景圖、無需動 HTML。 */
+   深綠底上用「白色線稿」版才顯色：路燈（一盞燈·指引）＋腳印（走上旅程），呼應總 CTA 文案。
+   全站同一組圖示，但「版位/角度/大小」改由 script.js 於每次載入隨機指定（寫成 --lamp-* /
+   --steps-* 自訂屬性，::before/::after 讀取），呼應首頁 hero 的隨機散佈，故每頁每次略有不同。
+   下方 var() 的回退值＝無 JS 時的原始固定版位（左下路燈＋右上腳印）。 */
 .cta-band { position: relative; isolation: isolate; overflow: hidden; }
 .cta-band::before,
 .cta-band::after {
@@ -4668,27 +4712,31 @@ h1, h2, h3 { text-wrap: balance; }
   background-size: contain;
   background-position: center;
 }
-.cta-band::before {
-  width: 150px;
-  height: 168px;
-  left: 14px;
-  bottom: -6px;
+.cta-band::before { /* 路燈 street_lamp */
+  width: var(--lamp-w, 150px);
+  aspect-ratio: 150 / 168;
+  left: var(--lamp-left, 14px);
+  right: var(--lamp-right, auto);
+  top: var(--lamp-top, auto);
+  bottom: var(--lamp-bottom, -6px);
   background-image: url("assets/decor/white/3_street_lamp.png");
-  transform: rotate(-6deg);
-  opacity: 0.9;
+  transform: rotate(var(--lamp-rot, -6deg));
+  opacity: var(--lamp-op, 0.9); /* script.js 放不下時設 0 → 整枚隱藏，絕不壓字 */
 }
-.cta-band::after {
-  width: 184px;
-  height: 150px;
-  right: 14px;
-  top: 0;
+.cta-band::after { /* 腳印 footprints */
+  width: var(--steps-w, 184px);
+  aspect-ratio: 184 / 150;
+  left: var(--steps-left, auto);
+  right: var(--steps-right, 14px);
+  top: var(--steps-top, 0);
+  bottom: var(--steps-bottom, auto);
   background-image: url("assets/decor/white/9_footprints.png");
-  transform: rotate(8deg);
-  opacity: 0.9;
+  transform: rotate(var(--steps-rot, 8deg));
+  opacity: var(--steps-op, 0.9);
 }
 @media (max-width: 760px) {
-  .cta-band::before { width: 102px; height: 116px; left: 2px; bottom: -2px; opacity: 0.85; }
-  .cta-band::after { width: 124px; height: 102px; right: 4px; top: 2px; opacity: 0.85; }
+  /* 無 JS 時的手機回退尺寸/淡度（有 JS 時由 script.js 的 inline 值覆寫） */
+  .cta-band { --lamp-w: 104px; --steps-w: 128px; --lamp-op: 0.85; --steps-op: 0.85; }
 }
 
 /* 修：折疊時 inner 的 padding-top 改為 0（避免收合殘留 18px），展開才補回 18px 間距 */
@@ -4778,7 +4826,9 @@ h1, h2, h3 { text-wrap: balance; }
   background: transparent;
 }
 .sheet > .section-grid,
-.sheet > .cta-band {
+.sheet > .cta-band,
+.sheet > .path-header,
+.sheet > .impact-layout {
   position: relative;
   z-index: 1;
 }
@@ -4814,7 +4864,7 @@ h1, h2, h3 { text-wrap: balance; }
 /* —— 深林綠片（深底，反白；3 條鵝黃 furrow，切口用 honey 融入頁尾）—— */
 .sheet--forest::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,24 C150,11 330,12 500,24 C670,37 820,37 980,24 C1110,12 1180,13 1240,20'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,56 C150,43 330,44 500,56 C670,69 820,69 980,56 C1110,44 1180,45 1240,52'/><path fill='%23fbefd9' d='M-40,86 C150,73 330,74 500,86 C670,99 820,99 980,86 C1110,74 1180,75 1240,82 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,24 C150,11 330,12 500,24 C670,37 820,37 980,24 C1110,12 1180,13 1240,20'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,56 C150,43 330,44 500,56 C670,69 820,69 980,56 C1110,44 1180,45 1240,52'/><path fill='%23ffffff' d='M-40,86 C150,73 330,74 500,86 C670,99 820,99 980,86 C1110,74 1180,75 1240,82 L1240,140 L-40,140 Z'/></g></svg>"),
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,640 L-40,640 Z'/></svg>");
 }
 .sheet--forest h2,
@@ -5070,4 +5120,188 @@ h1, h2, h3 { text-wrap: balance; }
 }
 .sheet--brand-green .content-figure figcaption, .sheet--sunset .content-figure figcaption, .sheet--earth .content-figure figcaption, .sheet--path .content-figure figcaption, .sheet--leaf-700 .content-figure figcaption {
   color: rgba(251, 239, 217, 0.8);
+}
+
+/* ============================================================
+   深底色「頭片」白卡化（/goal：每頁不同色，但中明度色反白長內文不可讀）
+   橙/中綠/棕＝中明度，反白內文僅 ~2-3:1 → 內容區白卡上深綠字（WCAG 安全）。
+   色片＝外框色帶、白卡＝內容容器（呼應首頁路牌白卡）。
+   forest（CTA 尾片）夠深、維持反白、不白卡。
+   ============================================================ */
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid {
+  background: var(--white);
+  border-radius: var(--card-radius);
+  padding: clamp(26px, 4vw, 46px);
+  box-shadow: var(--shadow);
+}
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid :is(h2, h3) { color: var(--ink); }
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid :is(.lead, p, .about-copy) { color: var(--muted); }
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid .signal-row { background: var(--line); border-color: var(--line); }
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid .signal-row div { background: var(--white); }
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid .signal-row strong { color: var(--leaf-700); }
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid .signal-row span { color: var(--muted); }
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid .mission-list article { border-color: var(--line); }
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid .mission-list h3 { color: var(--ink); }
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid .mission-list span { color: var(--link); }
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid .mission-list :is(p, .node-label) { color: var(--muted); }
+:is(.sheet--brand-green, .sheet--sunset, .sheet--earth, .sheet--path, .sheet--leaf-700) > .section-grid .content-figure figcaption { color: var(--muted); }
+
+/* ============================================================
+   色片顛倒（業主 2026-06-26）：furrow 線移到上方、下緣不規則波浪、下方露白。
+   scaleY(-1) 翻轉 ::before（內容 .section-grid 在上層、不受影響）。
+   ============================================================ */
+.sheet::before { transform: scaleY(-1); }
+
+/* 首頁 4 色片同步顛倒（業主：子頁首頁都改） */
+.home #impact::before,
+.home .problem-section::before,
+.home #audiences::before,
+.home #partners::before { transform: scaleY(-1); }
+
+/* forest 色片內的 cta-band 透明化：消「深綠片＋深綠卡」雙層、砍掉 margin48+padding48 多餘留白
+   （業主：CTA 上方空白不要這麼多）。內容直接落在深綠色片上，decor 腳印/路燈保留。 */
+.sheet--forest .cta-band {
+  background: transparent;
+  margin-top: 0;
+  padding: 4px 0 0;
+  border-radius: 0;
+}
+
+/* ============================================================
+   .collab-accordion — 合作摘要展開區（方案 2：預設全收合、橫式按鈕、單開）
+   programs.html「企業＋大學如何參與」：兩顆橫排鈕預設收合，點按才在原地展開
+   三卡＋CTA；再點同顆收合、點另一顆自動切換（JS 控 aria-expanded／panel.hidden）。
+   ============================================================ */
+.collab-accordion {
+  margin-top: 32px;
+}
+
+.collab-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.collab-tab {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: var(--card-radius);
+  padding: 18px 20px;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.collab-tab:hover {
+  border-color: var(--ink);
+}
+
+.collab-tab:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 2px;
+}
+
+.collab-tab-text {
+  flex: 1 1 auto;
+}
+
+.collab-tab-title {
+  display: block;
+  font-weight: 700;
+  font-size: 1.12rem;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.collab-tab-sub {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.collab-tab-icon {
+  flex: none;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  margin-top: 3px;
+}
+
+.collab-tab-icon::before,
+.collab-tab-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--leaf-700);
+  transform: translate(-50%, -50%);
+  transition: transform 220ms ease, opacity 220ms ease, background 180ms ease;
+}
+
+.collab-tab-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.collab-tab[aria-expanded="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.collab-tab[aria-expanded="true"] .collab-tab-title {
+  color: var(--paper);
+}
+
+.collab-tab[aria-expanded="true"] .collab-tab-sub {
+  color: rgba(251, 239, 217, 0.78);
+}
+
+.collab-tab[aria-expanded="true"] .collab-tab-icon::before,
+.collab-tab[aria-expanded="true"] .collab-tab-icon::after {
+  background: var(--honey);
+}
+
+.collab-tab[aria-expanded="true"] .collab-tab-icon::after {
+  transform: translate(-50%, -50%) rotate(0);
+  opacity: 0;
+}
+
+.collab-panel {
+  margin-top: 22px;
+  animation: collab-expand 360ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.collab-panel[hidden] {
+  display: none;
+}
+
+.collab-panel-title {
+  margin: 0 0 18px;
+  font-size: 1.3rem;
+  color: var(--ink);
+}
+
+@keyframes collab-expand {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collab-panel { animation: none; }
+  .collab-tab,
+  .collab-tab-icon::before,
+  .collab-tab-icon::after { transition: none; }
+}
+
+@media (max-width: 640px) {
+  .collab-row { grid-template-columns: 1fr; }
 }
