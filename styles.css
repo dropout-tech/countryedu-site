@@ -52,6 +52,10 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 88px;
+  /* 全站消除水平捲動：行動選單 .mobile-menu 是 position:fixed + translateX(100%) 收在右側畫面外，
+     會逃出 .site-shell 的 clip、撐出橫向捲軸。clip（非 hidden）裁掉橫向溢出但不建立捲動容器，
+     故不影響垂直捲動，也不破壞 position:sticky（出口牌側欄）。 */
+  overflow-x: clip;
 }
 
 body {
@@ -74,6 +78,11 @@ a {
 
 button {
   font: inherit;
+}
+
+/* 響應式圖片保險：任何圖片都不得超出容器（避免無 width 限制的內文照片撐爆單欄、裁掉文字）。 */
+img {
+  max-width: 100%;
 }
 
 .site-shell {
@@ -372,6 +381,22 @@ button {
   padding: 120px var(--gutter) 84px;
   isolation: isolate;
   background: var(--paper);
+  overflow: hidden;
+}
+
+/* 底部手繪地景：full-bleed 墊在內容後方，cover+bottom 只露下半(田/路/低山) */
+.hero-landscape {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: clamp(220px, 42vh, 460px);
+  object-fit: cover;
+  object-position: bottom center;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
 .hero-word {
@@ -1100,8 +1125,7 @@ button {
   width: 212px;
   max-width: 100%;
   height: auto;
-  /* logo 為白底 jpg；以 multiply 融入暖米底色，去除白框 */
-  mix-blend-mode: multiply;
+  /* logo 已去背為透明 png，直接置於暖米底色即可，無需 blend hack */
 }
 
 .footer-desc {
@@ -2082,7 +2106,7 @@ button {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   background-color: transparent;
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.09' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%23fce08c' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.07' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='3' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%23fce08c' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -3458,7 +3482,9 @@ button {
 /* 平板／手機：版面回單欄，導覽改頂部橫向 sticky tabs（保留 EXIT 語彙） */
 @media (max-width: 960px) {
   .story-layout {
-    grid-template-columns: 1fr;
+    /* minmax(0,1fr)（非 1fr=minmax(auto,1fr)）：允許單欄軌道縮到容器寬以下，
+       內文與圖片才會收進視窗、不被裁切（修圖三：手機內文右側被切）。 */
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
     padding: 0 22px;
   }
@@ -3895,7 +3921,7 @@ main.wip-mode > *:not(.wip-screen) {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   background-color: transparent;
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.09' numOctaves='2' seed='8' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%238ec457' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.07' numOctaves='2' seed='8' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='3' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%238ec457' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -3907,7 +3933,7 @@ main.wip-mode > *:not(.wip-screen) {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   background-color: transparent;
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.09' numOctaves='2' seed='13' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%23f5b62d' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.07' numOctaves='2' seed='13' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='3' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%23f5b62d' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -4000,8 +4026,8 @@ main.wip-mode > *:not(.wip-screen) {
   inset: 0;
   z-index: -1;
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,24 C150,11 330,12 500,24 C670,37 820,37 980,24 C1110,12 1180,13 1240,20'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,56 C150,43 330,44 500,56 C670,69 820,69 980,56 C1110,44 1180,45 1240,52'/><path fill='%23ffffff' d='M-40,86 C150,73 330,74 500,86 C670,99 820,99 980,86 C1110,74 1180,75 1240,82 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.035' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,24 C150,11 330,12 500,24 C670,37 820,37 980,24 C1110,12 1180,13 1240,20'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,56 C150,43 330,44 500,56 C670,69 820,69 980,56 C1110,44 1180,45 1240,52'/><path fill='%23ffffff' d='M-40,86 C150,73 330,74 500,86 C670,99 820,99 980,86 C1110,74 1180,75 1240,82 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
   background-size: 100% 96px, 100% 100%;
   background-position: bottom, top;
   background-repeat: no-repeat, no-repeat;
@@ -4033,7 +4059,7 @@ main.wip-mode > *:not(.wip-screen) {
 .home #impact .impact-numbers span { color: rgba(251, 239, 217, 0.85); }
 .home #impact .audience-cta { color: var(--paper); }
 
-/* RWD：手機把斜角收淺、留白縮短，避免內容貼到切角 */
+/* RWD：手機把斜角收淺、留白縮短，避免內容貼到切角（下留白另由「furrow 淨空」與其後的 #impact 手機規則統一加大） */
 @media (max-width: 720px) {
   .home #impact {
     padding-top: 96px;
@@ -4066,8 +4092,8 @@ main.wip-mode > *:not(.wip-screen) {
   inset: 0;
   z-index: -1;
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fdd2a6' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.035' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fdd2a6' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
   background-size: 100% 96px, 100% 100%;
   background-position: bottom, top;
   background-repeat: no-repeat, no-repeat;
@@ -4101,8 +4127,8 @@ main.wip-mode > *:not(.wip-screen) {
   inset: 0;
   z-index: -1;
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%238ec457' d='M-40,64 C230,98 430,48 650,82 910,118 1050,58 1240,78 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.035' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%238ec457' d='M-40,64 C230,98 430,48 650,82 910,118 1050,58 1240,78 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
   background-size: 100% 96px, 100% 100%;
   background-position: bottom, top;
   background-repeat: no-repeat, no-repeat;
@@ -4216,8 +4242,8 @@ main.wip-mode > *:not(.wip-screen) {
   inset: 0;
   z-index: -1;
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='11' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='%23ffffff' d='M-40,82 C150,69 330,70 500,82 C670,95 820,95 980,82 C1110,70 1180,71 1240,78 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='11' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f5b62d' d='M-40,82 C260,44 470,102 680,72 940,34 1060,82 1240,64 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.035' numOctaves='2' seed='11' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='%23ffffff' d='M-40,82 C150,69 330,70 500,82 C670,95 820,95 980,82 C1110,70 1180,71 1240,78 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='11' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f5b62d' d='M-40,82 C260,44 470,102 680,72 940,34 1060,82 1240,64 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
   background-size: 100% 96px, 100% 100%;
   background-position: bottom, top;
   background-repeat: no-repeat, no-repeat;
@@ -4258,7 +4284,7 @@ main.wip-mode > *:not(.wip-screen) {
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   background-color: transparent;
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.09' numOctaves='2' seed='5' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%23ffffff' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'><filter id='k' x='-15%' y='-25%' width='130%' height='150%'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.07' numOctaves='2' seed='5' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='3' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23k)' fill='%23ffffff' d='M-30,10 C40,4 90,15 130,8 C185,3 215,13 270,9 L270,55 C200,61 150,49 100,56 C50,61 20,51 -30,56 Z'/></svg>");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -4287,6 +4313,15 @@ main.wip-mode > *:not(.wip-screen) {
    置於 furrow 淨空規則之後 → 同特異度後者勝，僅作用於 #audiences。 */
 .home #audiences {
   padding-bottom: 200px;
+}
+
+/* #impact 深綠片在手機很高，山形剪影「下緣波谷」會退到約 90% 高度（≈隨高度比例，130px 固定值蓋不住），
+   白字 CTA 落在波谷的白底上而消失（圖五）。手機加大下留白，讓 CTA 完整落在實心綠底上。
+   置於 furrow 規則與 #audiences 之後 → 同特異度後者勝；僅手機作用。 */
+@media (max-width: 720px) {
+  .home #impact {
+    padding-bottom: 176px;
+  }
 }
 
 
@@ -4836,8 +4871,8 @@ h1, h2, h3 { text-wrap: balance; }
 /* —— 杏橙片（淺底，維持深綠字；2 條大地棕 furrow，下接白底段用白切口）—— */
 .sheet--apricot::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fdd2a6' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.035' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fdd2a6' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--apricot .lead,
 .sheet--apricot .about-copy > p {
@@ -4847,8 +4882,8 @@ h1, h2, h3 { text-wrap: balance; }
 /* —— 深林綠片（深底，反白；3 條鵝黃 furrow，切口用 honey 融入頁尾）—— */
 .sheet--forest::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,24 C150,11 330,12 500,24 C670,37 820,37 980,24 C1110,12 1180,13 1240,20'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,56 C150,43 330,44 500,56 C670,69 820,69 980,56 C1110,44 1180,45 1240,52'/><path fill='%23ffffff' d='M-40,86 C150,73 330,74 500,86 C670,99 820,99 980,86 C1110,74 1180,75 1240,82 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.035' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,24 C150,11 330,12 500,24 C670,37 820,37 980,24 C1110,12 1180,13 1240,20'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,56 C150,43 330,44 500,56 C670,69 820,69 980,56 C1110,44 1180,45 1240,52'/><path fill='%23ffffff' d='M-40,86 C150,73 330,74 500,86 C670,99 820,99 980,86 C1110,74 1180,75 1240,82 L1240,140 L-40,140 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--forest h2,
 .sheet--forest h3 {
@@ -4908,13 +4943,13 @@ h1, h2, h3 { text-wrap: balance; }
    ============================================================ */
 .sheet--leaf::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%238ec457' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%238ec457' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--wheat::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='13' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='13' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f5b62d' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='13' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='13' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f5b62d' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 
 /* —— 淺底族（杏橙／嫩葉綠／麥穗金）換皮：深綠字、mission-list 分隔線加深 —— */
@@ -5007,53 +5042,53 @@ h1, h2, h3 { text-wrap: balance; }
    ============================================================ */
 .sheet--amber::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='31' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='31' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f8cd5f' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='31' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='31' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f8cd5f' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--sun::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='37' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='37' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fce08c' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='37' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='37' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fce08c' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--butter::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='41' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='41' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fff0c3' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='41' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='41' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fff0c3' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--peach::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='43' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='43' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fbb05b' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='43' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='43' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fbb05b' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--honey::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='47' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='47' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fbefd9' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='47' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='47' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fbefd9' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--brand-green::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='53' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='53' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%234f9f1d' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='53' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='53' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%234f9f1d' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--sunset::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='59' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='59' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23e87328' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='59' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='59' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23e87328' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--earth::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='61' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='61' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23987459' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='61' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='61' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23987459' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--path::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='67' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='67' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f28c0a' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='67' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='67' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f28c0a' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--leaf-700::before {
   background-image:
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='71' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='71' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%234e8718' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.035' numOctaves='2' seed='71' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='4' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.017' numOctaves='2' seed='71' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%234e8718' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 
 /* —— 淺底族（新色）換皮：深綠字、mission-list 分隔線加深 —— */
