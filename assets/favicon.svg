@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="鄉育">
-  <rect width="64" height="64" rx="14" fill="#4F9F1D"/>
-  <path d="M32 53 V30" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
-  <path d="M31 34 C31 23 23.5 16 13 16 C13 26.5 20.5 34 31 34 Z" fill="#FFFFFF"/>
-  <path d="M33 30 C33 20 40.5 13.5 51 13.5 C51 23.5 43.5 30 33 30 Z" fill="#FFFFFF"/>
-</svg>

@@ -1910,6 +1910,20 @@ button {
   font-weight: 700;
 }
 
+/* 無表單版型：聯絡資訊滿版排成多欄卡片 */
+.contact-grid--info-only {
+  grid-template-columns: 1fr;
+}
+
+.contact-grid--info-only .contact-info {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px 48px;
+}
+
+.contact-grid--info-only .contact-info > .contact-info-head {
+  grid-column: 1 / -1;
+}
+
 .lead-form {
   display: grid;
   gap: 18px;
@@ -3253,8 +3267,7 @@ button {
   body:not(.home) .story-layout .path-header ~ .partner-logos,
   body:not(.home) .story-layout .path-header ~ .content-figure,
   body:not(.home) .story-layout .path-header ~ .media-band,
-  body:not(.home) .story-layout .path-header ~ .press-filters,
-  body:not(.home) .story-layout .path-header ~ .press-sort,
+  body:not(.home) .story-layout .path-header ~ .press-toolbar,
   body:not(.home) .story-layout .path-header ~ .impact-numbers {
     padding-left: 0;
   }
@@ -3988,7 +4001,7 @@ main.wip-mode > *:not(.wip-screen) {
   z-index: -1;
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,24 C150,11 330,12 500,24 C670,37 820,37 980,24 C1110,12 1180,13 1240,20'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,56 C150,43 330,44 500,56 C670,69 820,69 980,56 C1110,44 1180,45 1240,52'/><path fill='%23ffffff' d='M-40,86 C150,73 330,74 500,86 C670,99 820,99 980,86 C1110,74 1180,75 1240,82 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
   background-size: 100% 96px, 100% 100%;
   background-position: bottom, top;
   background-repeat: no-repeat, no-repeat;
@@ -4054,7 +4067,7 @@ main.wip-mode > *:not(.wip-screen) {
   z-index: -1;
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fdd2a6' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fdd2a6' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
   background-size: 100% 96px, 100% 100%;
   background-position: bottom, top;
   background-repeat: no-repeat, no-repeat;
@@ -4089,7 +4102,7 @@ main.wip-mode > *:not(.wip-screen) {
   z-index: -1;
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%238ec457' d='M-40,64 C230,98 430,48 650,82 910,118 1050,58 1240,78 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%238ec457' d='M-40,64 C230,98 430,48 650,82 910,118 1050,58 1240,78 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
   background-size: 100% 96px, 100% 100%;
   background-position: bottom, top;
   background-repeat: no-repeat, no-repeat;
@@ -4204,7 +4217,7 @@ main.wip-mode > *:not(.wip-screen) {
   z-index: -1;
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='11' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='%23ffffff' d='M-40,82 C150,69 330,70 500,82 C670,95 820,95 980,82 C1110,70 1180,71 1240,78 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='11' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f5b62d' d='M-40,82 C260,44 470,102 680,72 940,34 1060,82 1240,64 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='11' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f5b62d' d='M-40,82 C260,44 470,102 680,72 940,34 1060,82 1240,64 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
   background-size: 100% 96px, 100% 100%;
   background-position: bottom, top;
   background-repeat: no-repeat, no-repeat;
@@ -4268,6 +4281,12 @@ main.wip-mode > *:not(.wip-screen) {
 .home #partners,
 .home .problem-section.section-pad {
   padding-bottom: 130px;
+}
+
+/* #audiences：底部葉綠片加大下留白，讓四張路牌完整落在色片內（使用者要求 2026-06-26）。
+   置於 furrow 淨空規則之後 → 同特異度後者勝，僅作用於 #audiences。 */
+.home #audiences {
+  padding-bottom: 200px;
 }
 
 
@@ -4818,7 +4837,7 @@ h1, h2, h3 { text-wrap: balance; }
 .sheet--apricot::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,30 C150,17 330,18 500,30 C670,43 820,43 980,30 C1110,18 1180,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,48 C150,35 330,36 500,48 C670,61 820,61 980,48 C1110,36 1180,37 1240,44'/><path fill='%23ffffff' d='M-40,84 C150,71 330,72 500,84 C670,97 820,97 980,84 C1110,72 1180,73 1240,80 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fdd2a6' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='21' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fdd2a6' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--apricot .lead,
 .sheet--apricot .about-copy > p {
@@ -4829,7 +4848,7 @@ h1, h2, h3 { text-wrap: balance; }
 .sheet--forest::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.011 0.05' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,24 C150,11 330,12 500,24 C670,37 820,37 980,24 C1110,12 1180,13 1240,20'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,40 C150,27 330,28 500,40 C670,53 820,53 980,40 C1110,28 1180,29 1240,36'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,56 C150,43 330,44 500,56 C670,69 820,69 980,56 C1110,44 1180,45 1240,52'/><path fill='%23ffffff' d='M-40,86 C150,73 330,74 500,86 C670,99 820,99 980,86 C1110,74 1180,75 1240,82 L1240,140 L-40,140 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='7' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%233d5527' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--forest h2,
 .sheet--forest h3 {
@@ -4890,12 +4909,12 @@ h1, h2, h3 { text-wrap: balance; }
 .sheet--leaf::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%238ec457' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='3' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%238ec457' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--wheat::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='13' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='13' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f5b62d' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='13' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f5b62d' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 
 /* —— 淺底族（杏橙／嫩葉綠／麥穗金）換皮：深綠字、mission-list 分隔線加深 —— */
@@ -4989,52 +5008,52 @@ h1, h2, h3 { text-wrap: balance; }
 .sheet--amber::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='31' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='31' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f8cd5f' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='31' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f8cd5f' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--sun::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='37' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='37' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fce08c' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='37' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fce08c' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--butter::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='41' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='41' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fff0c3' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='41' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fff0c3' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--peach::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='43' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%233d5527' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='43' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fbb05b' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='43' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fbb05b' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--honey::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='47' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23987459' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='47' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fbefd9' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='47' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23fbefd9' d='M-40,70 C260,40 460,100 660,72 940,38 1080,66 1240,60 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--brand-green::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='53' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='53' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%234f9f1d' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='53' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%234f9f1d' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--sunset::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='59' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='59' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23e87328' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='59' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23e87328' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--earth::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='61' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='61' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23987459' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='61' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23987459' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--path::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='67' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23ffffff' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='67' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f28c0a' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='67' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%23f28c0a' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 .sheet--leaf-700::before {
   background-image:
     url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 110' preserveAspectRatio='none'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.05' numOctaves='2' seed='71' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='8' xChannelSelector='R' yChannelSelector='G'/></filter><g filter='url(%23b)'><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,26 C300,20 600,32 900,24 1080,19 1240,26'/><path fill='none' stroke='%23fff0c3' stroke-width='6' stroke-linecap='round' d='M-40,42 C300,36 600,48 900,40 1080,35 1240,42'/><path fill='%23ffffff' d='M-40,84 C300,74 600,94 900,80 1080,72 1240,84 L1240,130 L-40,130 Z'/></g></svg>"),
-    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='71' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%234e8718' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,640 L-40,640 Z'/></svg>");
+    url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600' preserveAspectRatio='none'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.009 0.022' numOctaves='2' seed='71' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='20' xChannelSelector='R' yChannelSelector='G'/></filter><path filter='url(%23c)' fill='%234e8718' d='M-40,72 C250,42 450,112 650,77 950,27 1080,60 1240,57 L1240,556 C975,592 700,544 430,576 C215,600 70,548 -40,572 Z'/></svg>");
 }
 
 /* —— 淺底族（新色）換皮：深綠字、mission-list 分隔線加深 —— */
@@ -5173,6 +5192,7 @@ h1, h2, h3 { text-wrap: balance; }
 
 .collab-tab-text {
   flex: 1 1 auto;
+  min-width: 0;
 }
 
 .collab-tab-title {
@@ -5267,5 +5287,20 @@ h1, h2, h3 { text-wrap: balance; }
 }
 
 @media (max-width: 640px) {
-  .collab-row { grid-template-columns: 1fr; }
+  .collab-row { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* 合作摘要 CTA：改大地棕底（業主指定 #987459＝--earth，與全站深綠 CTA 區隔）。
+   棕屬中明度，反白內文易偏淡，故 p 由 0.78 提亮為實心米色確保可讀。 */
+.collab-panel .cta-band {
+  background: var(--earth);
+}
+
+.collab-panel .cta-band p {
+  color: var(--honey);
+}
+
+/* 業主：中文字與色塊頂部 furrow 線拉開距離（顛倒後 furrow 在頂、標題原本緊貼線下方）。
+   padding-top 84→116：標題下移到 furrow 帶（96px）下方約 20px、離最近 furrow 線約 40px。 */
+.story-layout .sheet { padding-top: 116px; }
+.story-layout .story-flow > .sheet:first-child { padding-top: 116px; }

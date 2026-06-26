@@ -232,36 +232,48 @@ if (ctaBands.length) {
     });
     return list;
   };
+  const CORNERS = ["tl", "tr", "bl", "br"];
   const placeOne = (band, name, compact, BW, BH, keeps, P, placed) => {
     const s = band.style;
     const { ar } = ICONS[name];
-    const wMax = compact ? (name === "lamp" ? 100 : 124) : name === "lamp" ? 150 : 178;
-    const wMin = compact ? 48 : 64;
-    const M = 4; // 距 band 邊緣最小留白
-    for (let iw = wMax; iw >= wMin; iw *= 0.86) {
-      const ih = iw * ar;
-      // 每個尺寸丟多次「飛鏢」：隨機落點 → 不壓任何文字框、不出 band、不疊另一枚，就採用
-      for (let tries = 0; tries < 80; tries++) {
-        const rot = rand(-8, 8);
-        const a = Math.abs((rot * Math.PI) / 180);
-        const rw = iw * Math.cos(a) + ih * Math.sin(a); // 旋轉後外接框（碰撞用）
-        const rh = iw * Math.sin(a) + ih * Math.cos(a);
-        if (rw > BW - 2 * M || rh > BH - 2 * M) break; // 這尺寸連 band 都放不進 → 換更小
-        const cx = rand(M + rw / 2, BW - M - rw / 2);
-        const cy = rand(M + rh / 2, BH - M - rh / 2);
-        const box = { l: cx - rw / 2, t: cy - rh / 2, r: cx + rw / 2, b: cy + rh / 2 };
-        if (keeps.some((k) => hit(box, k, P))) continue;       // 壓到文字 → 重丟
-        if (placed.some((q) => hit(box, q, 8))) continue;       // 疊到另一枚 → 重丟
-        placed.push(box);
-        s.setProperty(`--${name}-w`, Math.round(iw) + "px");
-        s.setProperty(`--${name}-op`, compact ? "0.85" : "0.9");
-        s.setProperty(`--${name}-left`, Math.round(cx - iw / 2) + "px");
-        s.setProperty(`--${name}-top`, Math.round(cy - ih / 2) + "px");
-        s.setProperty(`--${name}-right`, "auto");
-        s.setProperty(`--${name}-bottom`, "auto");
-        s.setProperty(`--${name}-rot`, rot.toFixed(1) + "deg");
-        return;
+    const wMax = compact ? (name === "lamp" ? 100 : 120) : name === "lamp" ? 150 : 178;
+    const wMin = compact ? 40 : 54;
+    const M = 5; // 距 band 邊緣最小留白
+    // 每枚固定一個旋轉角，再去四個角落各算「貼齊角落時塞得下的最大尺寸」。
+    // 角度範圍收斂，讓旋轉後外接框較小、緊湊版位也能穩定塞下（不會時有時無）。
+    const rot = name === "lamp" ? rand(-7, 3) : rand(-6, 10);
+    const a = Math.abs((rot * Math.PI) / 180), cosA = Math.cos(a), sinA = Math.sin(a);
+    const fits = (box) => !keeps.some((k) => hit(box, k, P)) && !placed.some((q) => hit(box, q, 8));
+    const boxFor = (corner, rw, rh) => {
+      const x = corner[1] === "l" ? M : BW - M - rw;
+      const y = corner[0] === "t" ? M : BH - M - rh;
+      return { l: x, t: y, r: x + rw, b: y + rh };
+    };
+    const maxAt = (corner) => {
+      for (let iw = wMax; iw >= wMin; iw *= 0.9) {
+        const ih = iw * ar, rw = iw * cosA + ih * sinA, rh = iw * sinA + ih * cosA;
+        if (rw > BW - 2 * M || rh > BH - 2 * M) continue;
+        if (fits(boxFor(corner, rw, rh))) return { iw, ih, rw, rh };
       }
+      return null;
+    };
+    const cand = CORNERS.map((c) => ({ c, fit: maxAt(c) })).filter((o) => o.fit);
+    if (cand.length) {
+      // 在「夠大的角落」中隨機挑一個（兼顧視覺份量與每次載入的變化）
+      const bestIw = Math.max(...cand.map((o) => o.fit.iw));
+      const pool = cand.filter((o) => o.fit.iw >= Math.max(wMin, 0.72 * bestIw));
+      const { c, fit } = pool[Math.floor(Math.random() * pool.length)];
+      const box = boxFor(c, fit.rw, fit.rh);
+      placed.push(box);
+      const cx = box.l + fit.rw / 2, cy = box.t + fit.rh / 2;
+      s.setProperty(`--${name}-w`, Math.round(fit.iw) + "px");
+      s.setProperty(`--${name}-op`, compact ? "0.85" : "0.9");
+      s.setProperty(`--${name}-left`, Math.round(cx - fit.iw / 2) + "px");
+      s.setProperty(`--${name}-top`, Math.round(cy - fit.ih / 2) + "px");
+      s.setProperty(`--${name}-right`, "auto");
+      s.setProperty(`--${name}-bottom`, "auto");
+      s.setProperty(`--${name}-rot`, rot.toFixed(1) + "deg");
+      return;
     }
     // 真的放不下（band 太小／文字太滿）→ 隱藏這枚，寧可不顯示也不壓字
     s.setProperty(`--${name}-w`, "0px");
@@ -276,7 +288,7 @@ if (ctaBands.length) {
       const BW = band.clientWidth, BH = band.clientHeight;
       const keeps = keepoutsOf(band, br);
       if (!keeps.length) return;
-      const P = compact ? 10 : 14; // 文字框四周再加一圈安全間隙
+      const P = compact ? 9 : 12; // 文字框四周再加一圈安全間隙
       const placed = [];
       // 兩枚順序隨機，避免總是同一枚先搶到位置
       const order = Math.random() < 0.5 ? ["lamp", "steps"] : ["steps", "lamp"];
