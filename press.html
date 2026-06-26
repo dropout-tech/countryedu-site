@@ -8,9 +8,11 @@
     <!-- SEO / 社群分享 meta(2026-06-26) -->
     <link rel="canonical" href="https://countryedu.org.tw/press.html" />
     <meta name="theme-color" content="#4F9F1D" />
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="icon" type="image/png" href="assets/countryedu-logo.png" />
-    <link rel="apple-touch-icon" href="assets/countryedu-logo.png" />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="192x192" href="xiangyu-favicon-mark-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="xiangyu-favicon-mark-512.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="財團法人鄉育教育基金會" />
     <meta property="og:locale" content="zh_TW" />
@@ -217,9 +219,9 @@
               <p>媒體報導</p>
             </div>
             <div>
-              <h2 id="press-title">媒體與大眾如何看見鄉育的青年尋路工作。</h2>
+              <h2 id="press-title">媒體與大眾如何看見<span class="nw">鄉育</span>的青年尋路工作。</h2>
               <p class="lead">
-                近三年，鄉育持續走進台灣各地高中與大學場域，陪伴偏鄉、非山非市與地方青年進行生涯探索、學習歷程規劃、AI 素養理解與自主學習實作。以下整理公開媒體報導，記錄鄉育與學校、講師、社群及跨域夥伴一起推動教育資源平衡的行動軌跡。
+                近三年，鄉育持續走進台灣各地高中與大學場域，陪伴偏鄉與地方青年進行生涯探索、學習歷程規劃、AI 素養理解與自主學習實作。以下整理公開媒體報導，記錄鄉育與學校、講師、社群及跨域夥伴一起推動教育資源平衡的行動軌跡。
               </p>
             </div>
           </div>
@@ -230,86 +232,84 @@
             已下載存於 assets/photos/press/，並於圖說／卡片標註來源媒體；如需移除第三方圖片可改回 assets/photos/ 之鄉育自有照），每則連回原始媒體報導（target=_blank rel=noopener）。
             新增報導時請逐筆對照可驗證之原文，勿杜撰媒體名稱、標題或日期。
           -->
-          <div class="media-band media-band--reverse press-lead" data-press-cat="career rural">
-            <div class="media-text">
-              <p class="press-lead-eyebrow">精選報導 ｜ 東森新聞</p>
-              <h3 class="press-lead-title"><a href="https://news.ebc.net.tw/news/living/408477" target="_blank" rel="noopener">鄉育教育基金會攜手成大單車節 引領偏鄉高中生展開探索的蛻變之旅</a></h3>
-              <p class="press-lead-excerpt">報導鄉育與成大單車節跨界合作，帶領偏鄉高中生走進大學場域，透過活動理解科系、探索志向，累積面對未來選擇的自信。</p>
-              <p class="press-lead-date"><time datetime="2024-03-05">2024.03.05</time></p>
-              <a class="button-primary press-extlink" href="https://news.ebc.net.tw/news/living/408477" target="_blank" rel="noopener">閱讀報導 ↗</a>
+          <div class="press-toolbar">
+            <div class="press-filters" role="group" aria-label="依主題篩選媒體報導">
+              <button type="button" class="press-filter is-active" data-press-filter="all" aria-pressed="true">全部</button>
+              <button type="button" class="press-filter" data-press-filter="career" aria-pressed="false">生涯探索</button>
+              <button type="button" class="press-filter" data-press-filter="portfolio" aria-pressed="false">學習歷程</button>
+              <button type="button" class="press-filter" data-press-filter="ai" aria-pressed="false">AI 素養</button>
+              <button type="button" class="press-filter" data-press-filter="selflearn" aria-pressed="false">自主學習</button>
+              <button type="button" class="press-filter" data-press-filter="rural" aria-pressed="false">偏鄉・地方</button>
             </div>
-            <figure>
-              <img src="assets/photos/press/ebc-408477.jpg" alt="" width="1200" height="675" loading="lazy" />
-              <figcaption>圖片來源：東森新聞〈鄉育教育基金會攜手成大單車節 引領偏鄉高中生展開探索的蛻變之旅〉。</figcaption>
-            </figure>
-          </div>
-          <div class="press-filters" role="group" aria-label="依主題篩選媒體報導">
-            <button type="button" class="press-filter is-active" data-press-filter="all" aria-pressed="true">全部</button>
-            <button type="button" class="press-filter" data-press-filter="career" aria-pressed="false">生涯探索</button>
-            <button type="button" class="press-filter" data-press-filter="portfolio" aria-pressed="false">學習歷程</button>
-            <button type="button" class="press-filter" data-press-filter="ai" aria-pressed="false">AI 素養</button>
-            <button type="button" class="press-filter" data-press-filter="selflearn" aria-pressed="false">自主學習</button>
-            <button type="button" class="press-filter" data-press-filter="rural" aria-pressed="false">偏鄉・地方</button>
-          </div>
-          <div class="press-sort" role="group" aria-label="依日期排序">
-            <span class="press-sort-label">依日期</span>
-            <button type="button" class="press-sort-btn is-active" data-press-sort="newest" aria-pressed="true">最新</button>
-            <button type="button" class="press-sort-btn" data-press-sort="oldest" aria-pressed="false">最舊</button>
+            <div class="press-sort" role="group" aria-label="依日期排序">
+              <span class="press-sort-label">依日期</span>
+              <div class="press-segment">
+                <button type="button" class="press-sort-btn is-active" data-press-sort="newest" aria-pressed="true">最新</button>
+                <button type="button" class="press-sort-btn" data-press-sort="oldest" aria-pressed="false">最舊</button>
+              </div>
+            </div>
           </div>
           <div class="news-list">
+            <article class="news-card" data-press-cat="career rural">
+              <img class="news-card-cover" src="assets/photos/press/ebc-408477.jpg" alt="" width="1200" height="675" loading="lazy" />
+              <div class="news-card-meta"><span class="press-source">東森新聞</span><time datetime="2024-03-05">2024.03.05</time></div>
+              <h3><span class="nw">鄉育</span>教育基金會攜手成大單車節 引領偏鄉高中生展開探索的蛻變之旅</h3>
+              <p>報導鄉育與成大單車節跨界合作，帶領偏鄉高中生走進大學場域，透過活動理解科系、探索志向，累積面對未來選擇的自信。</p>
+              <a href="https://news.ebc.net.tw/news/living/408477" target="_blank" rel="noopener">閱讀報導 ↗</a>
+            </article>
             <article class="news-card" data-press-cat="career">
               <img class="news-card-cover" src="assets/photos/press/tnl-195742.jpg" alt="" width="1200" height="630" loading="lazy" />
               <div class="news-card-meta"><span class="press-source">關鍵評論網</span><time datetime="2023-12-07">2023.12.07</time></div>
-              <h3>鄉育教育基金會邀請曾荃鈺老師，與大溪高中體育班暢談「如何發展運動員的場外人生」</h3>
+              <h3><span class="nw">鄉育</span>教育基金會邀請曾荃鈺老師，與大溪高中體育班暢談「如何發展運動員的場外人生」</h3>
               <p>以運動員生涯轉銜為主軸，邀請曾荃鈺與大溪高中體育班對話，協助學生思考場上與場外的定位、優勢及未來選擇。</p>
               <a href="https://www.thenewslens.com/article/195742" target="_blank" rel="noopener">閱讀報導 ↗</a>
             </article>
             <article class="news-card" data-press-cat="career portfolio rural">
               <img class="news-card-cover" src="assets/photos/press/tnl-195317.jpg" alt="" width="1200" height="630" loading="lazy" />
               <div class="news-card-meta"><span class="press-source">關鍵評論網</span><time datetime="2023-11-28">2023.11.28</time></div>
-              <h3>鄉育教育基金會邀請金門青年返鄉分享：如何讓離島資源成為自我成長的祝福？</h3>
+              <h3><span class="nw">鄉育</span>教育基金會邀請金門青年返鄉分享：如何讓離島資源成為自我成長的祝福？</h3>
               <p>邀請金門高中校友返鄉分享自身探索歷程，鼓勵離島學生將在地資源與生活經驗轉化為成長優勢，提前為大學與未來做準備。</p>
               <a href="https://www.thenewslens.com/article/195317" target="_blank" rel="noopener">閱讀報導 ↗</a>
             </article>
             <article class="news-card" data-press-cat="ai career">
               <img class="news-card-cover" src="assets/photos/press/tnl-195152.jpg" alt="" width="1200" height="630" loading="lazy" />
               <div class="news-card-meta"><span class="press-source">關鍵評論網</span><time datetime="2023-11-24">2023.11.24</time></div>
-              <h3>鄉育聯手「會走路的翻譯機」浩爾，帶領關西高中學子善用 AI 成為生涯探索的新助力</h3>
+              <h3><span class="nw">鄉育</span>聯手「會走路的翻譯機」浩爾，帶領關西高中學子善用 AI 成為生涯探索的新助力</h3>
               <p>邀請國際新聞直播主浩爾前進關西高中，帶領學生理解 AI 對生活與職涯的影響，將科技趨勢轉化為生涯探索的提問與工具。</p>
               <a href="https://www.thenewslens.com/article/195152" target="_blank" rel="noopener">閱讀報導 ↗</a>
             </article>
             <article class="news-card" data-press-cat="ai career">
               <img class="news-card-cover" src="assets/photos/press/nownews-6303192.webp" alt="" width="1200" height="801" loading="lazy" />
               <div class="news-card-meta"><span class="press-source">NOWnews 今日新聞</span><time datetime="2023-11-17">2023.11.17</time></div>
-              <h3>鄉育攜手 XCHOOL 跨域素養學園 發掘學生學習應用 AI 可能性</h3>
+              <h3><span class="nw">鄉育</span>攜手 XCHOOL 跨域素養學園 發掘學生學習應用 AI 可能性</h3>
               <p>鄉育與 XCHOOL 跨域素養協會、職涯顧問陳坤平合作，前進台南玉井工商，陪伴學生理解 AI 時代的學習方式與提問能力。</p>
               <a href="https://www.nownews.com/news/6303192" target="_blank" rel="noopener">閱讀報導 ↗</a>
             </article>
             <article class="news-card" data-press-cat="portfolio">
               <img class="news-card-cover" src="assets/photos/press/nownews-6293450.webp" alt="" width="1200" height="802" loading="lazy" />
               <div class="news-card-meta"><span class="press-source">NOWnews 今日新聞</span><time datetime="2023-11-12">2023.11.12</time></div>
-              <h3>學習歷程知多少？鄉育攜 Z 世代創業家前進高中倡導「為自己而學」</h3>
+              <h3>學習歷程知多少？<span class="nw">鄉育</span>攜 Z 世代創業家前進高中倡導「為自己而學」</h3>
               <p>邀請教育新創家小朱前進嘉義東石高中，以遊戲體驗與個人故事引導學生理解學習歷程，鼓勵學生看見有限資源中的創造力。</p>
               <a href="https://www.nownews.com/news/6293450" target="_blank" rel="noopener">閱讀報導 ↗</a>
             </article>
             <article class="news-card" data-press-cat="selflearn portfolio">
               <img class="news-card-cover" src="assets/photos/press/tnl-194809.jpg" alt="" width="1200" height="630" loading="lazy" />
               <div class="news-card-meta"><span class="press-source">關鍵評論網</span><time datetime="2023-11-07">2023.11.07</time></div>
-              <h3>鄉育教育基金會與雲林北港高中合作，分享如何透過「自主學習」創造「後天優勢」</h3>
+              <h3><span class="nw">鄉育</span>教育基金會與雲林北港高中合作，分享如何透過「自主學習」創造「後天優勢」</h3>
               <p>報導鄉育與北港高中合作自主學習課程，協助學生從經驗、知識與技能累積個人特色，建立可持續發展的學習規劃。</p>
               <a href="https://www.thenewslens.com/article/194809" target="_blank" rel="noopener">閱讀報導 ↗</a>
             </article>
             <article class="news-card" data-press-cat="selflearn">
               <img class="news-card-cover" src="assets/photos/press/nownews-6275246.webp" alt="" width="1200" height="801" loading="lazy" />
               <div class="news-card-meta"><span class="press-source">NOWnews 今日新聞</span><time datetime="2023-10-05">2023.10.05</time></div>
-              <h3>鄉育邀請人氣學霸網紅超詳解 與龍津高中學生分享 K 書必勝秘笈</h3>
+              <h3><span class="nw">鄉育</span>邀請人氣學霸網紅超詳解 與龍津高中學生分享 K 書必勝秘笈</h3>
               <p>鄉育邀請超詳解團隊前進台中龍津高中，分享讀書方法與學習策略，協助地方學生建立可執行的自主學習節奏。</p>
               <a href="https://www.nownews.com/news/6275246" target="_blank" rel="noopener">閱讀報導 ↗</a>
             </article>
             <article class="news-card" data-press-cat="portfolio career">
               <img class="news-card-cover" src="assets/photos/press/nownews-6246136.webp" alt="" width="1200" height="630" loading="lazy" />
               <div class="news-card-meta"><span class="press-source">NOWnews 今日新聞</span><time datetime="2023-08-31">2023.08.31</time></div>
-              <h3>鄉育攜教育專家前進新社高中 黃瑋芸：善用學習歷程讓興趣變分數</h3>
+              <h3><span class="nw">鄉育</span>攜教育專家前進新社高中 黃瑋芸：善用學習歷程讓興趣變分數</h3>
               <p>邀請教育專家黃瑋芸前進台中新社高中，透過黃金圈等方法，引導學生把興趣、特質與學習成果轉化為具體學習歷程。</p>
               <a href="https://www.nownews.com/news/6246136" target="_blank" rel="noopener">閱讀報導 ↗</a>
             </article>
@@ -340,6 +340,9 @@
               </a>
               <a href="https://www.youtube.com/@%E9%84%89%E8%82%B2" target="_blank" rel="noopener" aria-label="鄉育 YouTube 頻道">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg>
+              </a>
+              <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=537kaevk" target="_blank" rel="noopener" aria-label="鄉育 LINE 官方帳號">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 10.3C24 5 18.6.66 12 .66S0 5 0 10.3c0 4.77 4.27 8.76 10.03 9.52.39.08.92.26 1.06.6.12.3.08.77.04 1.08l-.17 1.02c-.05.3-.24 1.19 1.04.65 1.29-.54 6.92-4.08 9.44-6.98C23.18 14.39 24 12.45 24 10.3ZM7.7 13.5a.23.23 0 0 1-.23.23H4.1a.23.23 0 0 1-.23-.23V8.13c0-.13.1-.24.23-.24h.85c.12 0 .23.11.23.24v4.28h2.06c.13 0 .23.1.23.23v.86Zm2-.01c0 .13-.1.23-.23.23h-.85a.23.23 0 0 1-.23-.23V8.13c0-.13.1-.24.23-.24h.85c.13 0 .23.11.23.24v5.36Zm5.92 0c0 .13-.1.23-.23.23h-.85a.23.23 0 0 1-.18-.09l-2.46-3.32v3.18c0 .13-.1.23-.23.23h-.85a.23.23 0 0 1-.23-.23V8.13c0-.13.1-.24.23-.24h.92l.06.02 2.43 3.28V8.13c0-.13.1-.24.24-.24h.85c.12 0 .23.11.23.24v5.36Zm4.75-4.5c0 .12-.1.23-.23.23h-2.06v.8h2.06c.13 0 .23.1.23.23v.85c0 .13-.1.23-.23.23h-2.06v.8h2.06c.13 0 .23.1.23.23v.85c0 .13-.1.23-.23.23h-3.14a.23.23 0 0 1-.23-.23V8.13c0-.13.1-.24.23-.24h3.14c.13 0 .23.11.23.24v.85Z"/></svg>
               </a>
             </div>
             <ul class="footer-legal-ids">

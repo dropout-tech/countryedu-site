@@ -218,48 +218,40 @@ if (ctaBands.length) {
     lamp: { ar: 168 / 150 }, // 高/寬
     steps: { ar: 150 / 184 },
   };
-  // 量出 band 內所有內容（文字 div＋按鈕 div…）的聯集框，座標相對 band 的 padding box
-  const contentBox = (band, br) => {
-    const ox = br.left + band.clientLeft;
-    const oy = br.top + band.clientTop;
-    let l = Infinity, t = Infinity, r = -Infinity, b = -Infinity;
-    for (const el of band.children) {
+  // 兩個矩形是否相交（k 多留 m 的安全間隙）
+  const hit = (box, k, m) => !(box.r + m < k.l || box.l > k.r + m || box.b + m < k.t || box.t > k.b + m);
+  // 收集 band 內每個「實際文字／按鈕」元素的框（各自獨立，不取聯集）——這樣窄按鈕、短標題
+  // 兩側的大片空白才不會被聯集框吃掉，圖示就能落在角落而非被迫隱藏。座標相對 band padding box。
+  const keepoutsOf = (band, br) => {
+    const ox = br.left + band.clientLeft, oy = br.top + band.clientTop;
+    const list = [];
+    band.querySelectorAll("h1,h2,h3,h4,p,a,button").forEach((el) => {
       const c = el.getBoundingClientRect();
-      if (c.width === 0 || c.height === 0) continue;
-      l = Math.min(l, c.left - ox); t = Math.min(t, c.top - oy);
-      r = Math.max(r, c.right - ox); b = Math.max(b, c.bottom - oy);
-    }
-    return Number.isFinite(l) ? { l, t, r, b } : null;
+      if (!c.width || !c.height) return;
+      list.push({ l: c.left - ox, t: c.top - oy, r: c.right - ox, b: c.bottom - oy });
+    });
+    return list;
   };
-  const placeOne = (band, name, compact, BW, BH, keep, placed) => {
+  const placeOne = (band, name, compact, BW, BH, keeps, P, placed) => {
     const s = band.style;
     const { ar } = ICONS[name];
-    const wMax = compact ? (name === "lamp" ? 104 : 128) : name === "lamp" ? 158 : 196;
-    const wMin = compact ? 56 : 78;
-    const M = 4;   // 距 band 邊緣最小留白
-    const G = 10;  // 距文字禁區的安全間隙
-    for (let iw = wMax; iw >= wMin; iw *= 0.85) {
+    const wMax = compact ? (name === "lamp" ? 100 : 124) : name === "lamp" ? 150 : 178;
+    const wMin = compact ? 48 : 64;
+    const M = 4; // 距 band 邊緣最小留白
+    for (let iw = wMax; iw >= wMin; iw *= 0.86) {
       const ih = iw * ar;
-      const rot = rand(-8, 8);
-      const a = Math.abs((rot * Math.PI) / 180);
-      const rw = iw * Math.cos(a) + ih * Math.sin(a); // 旋轉後外接框（碰撞用）
-      const rh = iw * Math.sin(a) + ih * Math.cos(a);
-      // 四條空白帶內，圖示「中心點」可落的範圍（已保證外接框不進禁區、不出 band）
-      const regions = [
-        { x0: M + rw / 2, x1: keep.l - G - rw / 2, y0: M + rh / 2, y1: BH - M - rh / 2 }, // 左留白
-        { x0: keep.r + G + rw / 2, x1: BW - M - rw / 2, y0: M + rh / 2, y1: BH - M - rh / 2 }, // 右留白
-        { x0: M + rw / 2, x1: BW - M - rw / 2, y0: M + rh / 2, y1: keep.t - G - rh / 2 }, // 標題上方
-        { x0: M + rw / 2, x1: BW - M - rw / 2, y0: keep.b + G + rh / 2, y1: BH - M - rh / 2 }, // 按鈕下方
-      ].filter((g) => g.x1 >= g.x0 && g.y1 >= g.y0);
-      if (!regions.length) continue;
-      for (let tries = 0; tries < 28; tries++) {
-        const g = regions[Math.floor(Math.random() * regions.length)];
-        const cx = rand(g.x0, g.x1);
-        const cy = rand(g.y0, g.y1);
+      // 每個尺寸丟多次「飛鏢」：隨機落點 → 不壓任何文字框、不出 band、不疊另一枚，就採用
+      for (let tries = 0; tries < 80; tries++) {
+        const rot = rand(-8, 8);
+        const a = Math.abs((rot * Math.PI) / 180);
+        const rw = iw * Math.cos(a) + ih * Math.sin(a); // 旋轉後外接框（碰撞用）
+        const rh = iw * Math.sin(a) + ih * Math.cos(a);
+        if (rw > BW - 2 * M || rh > BH - 2 * M) break; // 這尺寸連 band 都放不進 → 換更小
+        const cx = rand(M + rw / 2, BW - M - rw / 2);
+        const cy = rand(M + rh / 2, BH - M - rh / 2);
         const box = { l: cx - rw / 2, t: cy - rh / 2, r: cx + rw / 2, b: cy + rh / 2 };
-        // 與另一枚圖示也不重疊
-        const clash = placed.some((q) => !(box.r + 8 < q.l || box.l > q.r + 8 || box.b + 8 < q.t || box.t > q.b + 8));
-        if (clash) continue;
+        if (keeps.some((k) => hit(box, k, P))) continue;       // 壓到文字 → 重丟
+        if (placed.some((q) => hit(box, q, 8))) continue;       // 疊到另一枚 → 重丟
         placed.push(box);
         s.setProperty(`--${name}-w`, Math.round(iw) + "px");
         s.setProperty(`--${name}-op`, compact ? "0.85" : "0.9");
@@ -282,14 +274,13 @@ if (ctaBands.length) {
     ctaBands.forEach((band) => {
       const br = band.getBoundingClientRect();
       const BW = band.clientWidth, BH = band.clientHeight;
-      const cb = contentBox(band, br);
-      if (!cb) return;
-      const P = compact ? 10 : 16; // 文字四周再加一圈保護
-      const keep = { l: cb.l - P, t: cb.t - P, r: cb.r + P, b: cb.b + P };
+      const keeps = keepoutsOf(band, br);
+      if (!keeps.length) return;
+      const P = compact ? 10 : 14; // 文字框四周再加一圈安全間隙
       const placed = [];
       // 兩枚順序隨機，避免總是同一枚先搶到位置
       const order = Math.random() < 0.5 ? ["lamp", "steps"] : ["steps", "lamp"];
-      order.forEach((name) => placeOne(band, name, compact, BW, BH, keep, placed));
+      order.forEach((name) => placeOne(band, name, compact, BW, BH, keeps, P, placed));
     });
   };
   // 等字體載入後量測才準（中文字體會改變換行與文字框大小）
@@ -436,4 +427,15 @@ if (collabTabs.length) {
       setCollab(open ? null : tab.dataset.collab);
     });
   });
+  // 深連結：從其他頁／導覽選單帶 #companies-summary-title 或 #universities-summary-title 進來時，自動展開對應面板
+  const collabHashMap = {
+    "companies-summary-title": "company",
+    "universities-summary-title": "university",
+  };
+  const openCollabFromHash = () => {
+    const key = collabHashMap[window.location.hash.slice(1)];
+    if (key) setCollab(key);
+  };
+  openCollabFromHash();
+  window.addEventListener("hashchange", openCollabFromHash);
 }
