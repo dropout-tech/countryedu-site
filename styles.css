@@ -5304,3 +5304,34 @@ h1, h2, h3 { text-wrap: balance; }
    padding-top 84→116：標題下移到 furrow 帶（96px）下方約 20px、離最近 furrow 線約 40px。 */
 .story-layout .sheet { padding-top: 116px; }
 .story-layout .story-flow > .sheet:first-child { padding-top: 116px; }
+
+/* ============================================================
+   全站子頁移除「編號小標」kicker（使用者要求 2026-06-26）
+   ── 隱藏 .section-kicker（子頁的「NN 標籤」白卡小標）、區段版面收為單欄、
+      標題回到容器左緣，並取消原本為對齊 kicker 欄而加的 252px 內容縮排。
+   ── 首頁(.home)的無編號設計版 kicker 不在此列、不受影響。
+   ── 純 append、可逆：刪掉本段即完全還原。
+   ============================================================ */
+body:not(.home) .section-kicker {
+  display: none;
+}
+body:not(.home) .section-grid,
+body:not(.home) .path-header {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+@media (min-width: 961px) {
+  body:not(.home) .path-header ~ .stage-grid,
+  body:not(.home) .path-header ~ .method-more,
+  body:not(.home) .path-header ~ .act-panel,
+  body:not(.home) .path-header ~ .news-list,
+  body:not(.home) .path-header ~ .contact-grid,
+  body:not(.home) .path-header ~ .partner-tiers,
+  body:not(.home) .path-header ~ .partner-logos,
+  body:not(.home) .path-header ~ .content-figure,
+  body:not(.home) .path-header ~ .media-band,
+  body:not(.home) .path-header ~ .press-toolbar,
+  body:not(.home) .path-header ~ .impact-numbers {
+    padding-left: 0;
+  }
+}
