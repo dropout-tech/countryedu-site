@@ -48,7 +48,7 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
   <body>
     <div class="site-shell">
@@ -58,43 +58,40 @@
         </a>
         <nav class="desktop-nav" aria-label="主要導覽">
           <div class="nav-item">
-            <a href="about.html">關於鄉育</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="關於鄉育，展開子選單">關於鄉育</a>
             <div class="nav-dropdown" aria-label="關於鄉育子選單">
               <a href="mission-vision.html">使命願景</a>
-              <a href="story.html">成長軌跡</a>
+              <a href="story.html">發展歷程</a>
               <a href="team.html">我們的團隊</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="programs.html">大學專案</a>
-            <div class="nav-dropdown" aria-label="大學專案子選單">
-              <a href="programs.html#overview-title">專案一覽</a>
-              <a href="programs.html#journey-title">學習旅程</a>
-              <a href="programs.html#apply-title">報名與參與</a>
-              <a href="programs.html#companies-summary-title">與企業合作摘要</a>
-              <a href="programs.html#universities-summary-title">與大學合作摘要</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="我們的計畫，展開子選單">我們的計畫</a>
+            <div class="nav-dropdown" aria-label="我們的計畫子選單">
+              <a href="programs.html">尋路計畫</a>
+              <a href="program-corporate.html">企業新鮮人共育合作</a>
+              <a href="program-educator.html">高中教師 SEL 培力</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="impact.html">影響力</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="影響力，展開子選單">影響力</a>
             <div class="nav-dropdown" aria-label="影響力子選單">
-              <a href="impact.html#page-title">關鍵數據總覽</a>
-              <a href="impact.html#outcomes-title">學生的改變</a>
-              <a href="impact.html#partners-title">學校與企業回饋</a>
-              <a href="impact.html#reports-title">年報與研究</a>
+              <a href="impact.html">影響力數據</a>
+              <a href="outcomes.html">學生改變故事</a>
+              <a href="partner-voices.html">合作夥伴回饋</a>
+              <a href="reports.html">年報與研究成果</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="involve.html">參與我們</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="參與我們，展開子選單">參與我們</a>
             <div class="nav-dropdown" aria-label="參與我們子選單">
               <a href="give.html">支持鄉育</a>
-              <a href="for-companies.html">企業與基金會合作</a>
-              <a href="for-universities.html">大學合作</a>
-              <a href="involve.html#careers">志工與職涯機會</a>
+              <a href="corporate-partnership.html">企業合作</a>
+              <a href="university-partnership.html">大學合作</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="news.html">最新與資源</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="最新與資源，展開子選單">最新與資源</a>
             <div class="nav-dropdown" aria-label="最新與資源子選單">
               <a href="news.html">最新消息</a>
               <a href="press.html">媒體報導</a>
@@ -106,16 +103,12 @@
             <div class="nav-dropdown" aria-label="依身分瀏覽子選單">
               <a href="for-students.html">大學生專區</a>
               <a href="for-companies.html">企業專區</a>
-              <a href="for-donors.html">個人捐款者專區</a>
-              <a href="for-universities.html">大學合作專區</a>
+              <a href="for-donors.html">捐款人專區</a>
+              <a href="for-universities.html">大專院校專區</a>
             </div>
           </div>
         </nav>
         <div class="header-actions">
-          <a class="contact-dot" href="contact.html" aria-label="前往聯絡頁">
-            <span></span>
-            <b>Contact</b>
-          </a>
           <button class="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false" data-menu-toggle>
             <span></span>
             <span></span>
@@ -123,58 +116,55 @@
         </div>
       </header>
 
-      <div class="mobile-menu" data-mobile-menu>
+      <nav class="mobile-menu" data-mobile-menu aria-label="行動版主選單">
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="about.html">關於鄉育</a>
+            <span class="m-label">關於鄉育</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開關於鄉育子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
             <a href="mission-vision.html">使命願景</a>
-            <a href="story.html">成長軌跡</a>
+            <a href="story.html">發展歷程</a>
             <a href="team.html">我們的團隊</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="programs.html">大學專案</a>
-            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開大學專案子選單" data-m-toggle></button>
+            <span class="m-label">我們的計畫</span>
+            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開我們的計畫子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="programs.html#overview-title">專案一覽</a>
-            <a href="programs.html#journey-title">學習旅程</a>
-            <a href="programs.html#apply-title">報名與參與</a>
-            <a href="programs.html#companies-summary-title">與企業合作摘要</a>
-            <a href="programs.html#universities-summary-title">與大學合作摘要</a>
+            <a href="programs.html">尋路計畫</a>
+            <a href="program-corporate.html">企業新鮮人共育合作</a>
+            <a href="program-educator.html">高中教師 SEL 培力</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="impact.html">影響力</a>
+            <span class="m-label">影響力</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開影響力子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="impact.html#page-title">關鍵數據總覽</a>
-            <a href="impact.html#outcomes-title">學生的改變</a>
-            <a href="impact.html#partners-title">學校與企業回饋</a>
-            <a href="impact.html#reports-title">年報與研究</a>
+            <a href="impact.html">影響力數據</a>
+            <a href="outcomes.html">學生改變故事</a>
+            <a href="partner-voices.html">合作夥伴回饋</a>
+            <a href="reports.html">年報與研究成果</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="involve.html">參與我們</a>
+            <span class="m-label">參與我們</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開參與我們子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
             <a href="give.html">支持鄉育</a>
-            <a href="for-companies.html">企業與基金會合作</a>
-            <a href="for-universities.html">大學合作</a>
-            <a href="involve.html#careers">志工與職涯機會</a>
+            <a href="corporate-partnership.html">企業合作</a>
+            <a href="university-partnership.html">大學合作</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="news.html">最新與資源</a>
+            <span class="m-label">最新與資源</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開最新與資源子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
@@ -191,8 +181,13 @@
           <div class="m-sub">
             <a href="for-students.html">大學生專區</a>
             <a href="for-companies.html">企業專區</a>
-            <a href="for-donors.html">個人捐款者專區</a>
-            <a href="for-universities.html">大學合作專區</a>
+            <a href="for-donors.html">捐款人專區</a>
+            <a href="for-universities.html">大專院校專區</a>
+          </div>
+        </div>
+        <div class="m-group" data-m-group>
+          <div class="m-row">
+            <a href="login.html">大學生登入</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -200,13 +195,18 @@
             <a href="contact.html">聯絡我們</a>
           </div>
         </div>
-      </div>
+      </nav>
 
       <main id="top">
-        <header class="page-header">
+        <header class="page-header ph-neutral">
           <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">聯絡我們</span></nav>
           <h1>聯絡我們</h1>
           <p class="page-header-en">Contact</p>
+          <div class="page-header-blobs" aria-hidden="true">
+            <span class="phb phb-1"></span>
+            <span class="phb phb-2"></span>
+            <span class="phb phb-3"></span>
+          </div>
         </header>
         <div class="story-layout">
           <nav class="exit-nav" aria-label="本頁章節導覽">
@@ -223,7 +223,7 @@
             </div>
           </nav>
           <div class="story-flow">
-        <section class="path-section section-pad sheet sheet--honey" aria-labelledby="contact-title">
+        <section class="path-section section-pad" aria-labelledby="contact-title">
           <div class="path-header">
             <div class="section-kicker">
               <span>01</span>
@@ -250,7 +250,7 @@
               </div>
               <div>
                 <p class="node-label">辦公室地址</p>
-                <a href="https://www.google.com/maps/search/?api=1&amp;query=114%E5%8F%B0%E5%8C%97%E5%B8%82%E5%85%A7%E6%B9%96%E5%8D%80%E5%9F%BA%E6%B9%96%E8%B7%AF1%E8%99%9F4%E6%A8%93%E4%B9%8B%E4%B8%80" target="_blank" rel="noopener">114 台北市內湖區基湖路1號4樓之一</a>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=114%E5%8F%B0%E5%8C%97%E5%B8%82%E5%85%A7%E6%B9%96%E5%8D%80%E5%9F%BA%E6%B9%96%E8%B7%AF1%E8%99%9F4%E6%A8%93%E4%B9%8B%E4%B8%80" target="_blank" rel="noopener">114 台北市內湖區基湖路 1 號 4 樓之一</a>
               </div>
               <div>
                 <p class="node-label">服務時間</p>
@@ -266,12 +266,12 @@
               <p>從企業合作、學校共備到個人小額支持，都能在「參與我們」找到適合的下一步。</p>
             </div>
             <div class="cta-band-actions">
-              <a class="button-primary" href="involve.html">查看參與方式 &rarr;</a>
+              <a class="button-primary" href="give.html">查看參與方式 &rarr;</a>
             </div>
           </div>
         </section>
 
-        <section class="path-section section-pad" id="contact-faq" aria-labelledby="contact-faq-title">
+        <section class="path-section section-pad sheet sheet--honey" id="contact-faq" aria-labelledby="contact-faq-title">
           <div class="path-header">
             <div class="section-kicker">
               <span>02</span>
@@ -302,7 +302,7 @@
                 <span>可以用哪些方式聯絡你們？</span>
                 <span class="faq-mark" aria-hidden="true"></span>
               </summary>
-              <p class="faq-answer">您可以直接寄信到 <a href="mailto:support@countryedu.org.tw">support@countryedu.org.tw</a>，或撥打 <a href="tel:+886226271169">02-2627-1169</a>。若想當面討論，辦公室位於 114 台北市內湖區基湖路1號4樓之一，建議來訪前先與我們約定時間，以便安排合適的同仁接待。</p>
+              <p class="faq-answer">您可以直接寄信到 <a href="mailto:support@countryedu.org.tw">support@countryedu.org.tw</a>，或撥打 <a href="tel:+886226271169">02-2627-1169</a>。若想當面討論，辦公室位於 114 台北市內湖區基湖路 1 號 4 樓之一，建議來訪前先與我們約定時間，以便安排合適的同仁接待。</p>
             </details>
           </div>
         </section>
@@ -330,18 +330,18 @@
               </a>
             </div>
             <ul class="footer-legal-ids">
-              <li>立案字號 臺教社（三）字第1100106099號</li>
+              <li>立案字號 臺教社（三）字第 1100106099 號</li>
               <li>統一編號 19278390</li>
               <li>公益勸募許可文號 申請中</li>
             </ul>
           </div>
-          <nav class="footer-sitemap" aria-label="分眾入口">
-            <h3>分眾入口</h3>
+          <nav class="footer-sitemap" aria-label="依身分瀏覽">
+            <h3>依身分瀏覽</h3>
             <ul>
-              <li><a href="for-students.html">給學生</a></li>
-              <li><a href="for-companies.html">給企業</a></li>
-              <li><a href="for-donors.html">給捐款者</a></li>
-              <li><a href="for-universities.html">給學校</a></li>
+              <li><a href="for-students.html">大學生專區</a></li>
+              <li><a href="for-companies.html">企業專區</a></li>
+              <li><a href="for-donors.html">捐款人專區</a></li>
+              <li><a href="for-universities.html">大專院校專區</a></li>
             </ul>
           </nav>
           <address class="footer-contact">
@@ -356,7 +356,7 @@
             </a>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=114%E5%8F%B0%E5%8C%97%E5%B8%82%E5%85%A7%E6%B9%96%E5%8D%80%E5%9F%BA%E6%B9%96%E8%B7%AF1%E8%99%9F4%E6%A8%93%E4%B9%8B%E4%B8%80" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              114 台北市內湖區基湖路1號4樓之一
+              114 台北市內湖區基湖路 1 號 4 樓之一
             </a>
           </address>
         </div>
@@ -370,6 +370,36 @@
           <small class="footer-receipt">捐款可開立收據，並依法列舉扣除</small>
         </div>
       </footer>
+      <!-- 全站快速入口：桌機＝右側常駐直 dock；手機＝右緣書籤，點一下向左滑出三項（捐款／登入／聯絡） -->
+      <div class="float-dock" data-float-dock>
+        <button class="float-dock__tab" type="button" aria-expanded="false" aria-controls="float-dock-actions" aria-label="開啟快速入口：捐款、學習登入、聯絡">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span class="float-dock__tab-text">支持</span>
+        </button>
+        <ul class="float-dock__actions" id="float-dock-actions">
+          <li>
+            <a class="float-dock__item is-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <span>線上捐款</span>
+            </a>
+          </li>
+          <li>
+            <a class="float-dock__item" href="login.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              <span>學習登入</span>
+            </a>
+          </li>
+          <li>
+            <a class="float-dock__item" href="contact.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <span>聯絡我們</span>
+            </a>
+          </li>
+        </ul>
+        <button class="float-dock__close" type="button" aria-label="收起快速入口">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

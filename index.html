@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="鄉育以「定義、重組、設計、行動」四階段循環賦能青年，在真實場域練習判斷與行動，把面對升學、職涯與創業的不安，長成帶得走的能力，並提供學生、學校、企業與支持者四種參與路徑。"
+      content="鄉育以「定義、重組、設計、行動」四階段循環賦能青年，在真實場域練習判斷與行動，把面對升學、職涯與創業的不安，長成帶得走的能力，並提供大學生、學校、企業與支持者四種參與路徑。"
     />
     <title>財團法人鄉育教育基金會｜青年尋路 × 行動賦能</title>
     <!-- SEO / 社群分享 meta(2026-06-26) -->
@@ -20,12 +20,12 @@
     <meta property="og:site_name" content="財團法人鄉育教育基金會" />
     <meta property="og:locale" content="zh_TW" />
     <meta property="og:title" content="財團法人鄉育教育基金會｜青年尋路 × 行動賦能" />
-    <meta property="og:description" content="鄉育以「定義、重組、設計、行動」四階段循環賦能青年，在真實場域練習判斷與行動，把面對升學、職涯與創業的不安，長成帶得走的能力，並提供學生、學校、企業與支持者四種參與路徑。" />
+    <meta property="og:description" content="鄉育以「定義、重組、設計、行動」四階段循環賦能青年，在真實場域練習判斷與行動，把面對升學、職涯與創業的不安，長成帶得走的能力，並提供大學生、學校、企業與支持者四種參與路徑。" />
     <meta property="og:url" content="https://countryedu.org.tw/" />
     <meta property="og:image" content="https://countryedu.org.tw/assets/photos/group-banner.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="財團法人鄉育教育基金會｜青年尋路 × 行動賦能" />
-    <meta name="twitter:description" content="鄉育以「定義、重組、設計、行動」四階段循環賦能青年，在真實場域練習判斷與行動，把面對升學、職涯與創業的不安，長成帶得走的能力，並提供學生、學校、企業與支持者四種參與路徑。" />
+    <meta name="twitter:description" content="鄉育以「定義、重組、設計、行動」四階段循環賦能青年，在真實場域練習判斷與行動，把面對升學、職涯與創業的不安，長成帶得走的能力，並提供大學生、學校、企業與支持者四種參與路徑。" />
     <meta name="twitter:image" content="https://countryedu.org.tw/assets/photos/group-banner.jpg" />
     <script type="application/ld+json">
     {
@@ -51,10 +51,10 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=4" />
 
-    <!-- 影響力數據「方案 3 錯落卡片」排版示意：只動 index.html、scope 到 .home #impact，
-         僅改排版(桌機 4 欄上下交錯)，顏色／字體沿用既有設定，刪掉這整段即可還原 -->
+    <!-- 影響力數據排版：只動 index.html、scope 到 .home #impact，
+         桌機 4 欄「整齊排列」(同高、頂齊、不交錯)，顏色／字體沿用既有設定，刪掉這整段即可還原 -->
     <style>
       .home #impact .impact-numbers div {
         display: flex;
@@ -65,10 +65,9 @@
         .home #impact .impact-numbers {
           grid-template-columns: repeat(4, 1fr);
           gap: 14px;
-          align-items: start;
+          align-items: stretch;
         }
         .home #impact .impact-numbers div { padding: 24px 20px; }
-        .home #impact .impact-numbers div:nth-child(even) { margin-top: 34px; }
         .home #impact .impact-numbers strong { font-size: 2.5rem; }
       }
     </style>
@@ -87,43 +86,40 @@
         </a>
         <nav class="desktop-nav" aria-label="主要導覽">
           <div class="nav-item">
-            <a href="about.html">關於鄉育</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="關於鄉育，展開子選單">關於鄉育</a>
             <div class="nav-dropdown" aria-label="關於鄉育子選單">
               <a href="mission-vision.html">使命願景</a>
-              <a href="story.html">成長軌跡</a>
+              <a href="story.html">發展歷程</a>
               <a href="team.html">我們的團隊</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="programs.html">大學專案</a>
-            <div class="nav-dropdown" aria-label="大學專案子選單">
-              <a href="programs.html#overview-title">專案一覽</a>
-              <a href="programs.html#journey-title">學習旅程</a>
-              <a href="programs.html#apply-title">報名與參與</a>
-              <a href="programs.html#companies-summary-title">與企業合作摘要</a>
-              <a href="programs.html#universities-summary-title">與大學合作摘要</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="我們的計畫，展開子選單">我們的計畫</a>
+            <div class="nav-dropdown" aria-label="我們的計畫子選單">
+              <a href="programs.html">尋路計畫</a>
+              <a href="program-corporate.html">企業新鮮人共育合作</a>
+              <a href="program-educator.html">高中教師 SEL 培力</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="impact.html">影響力</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="影響力，展開子選單">影響力</a>
             <div class="nav-dropdown" aria-label="影響力子選單">
-              <a href="impact.html#page-title">關鍵數據總覽</a>
-              <a href="impact.html#outcomes-title">學生的改變</a>
-              <a href="impact.html#partners-title">學校與企業回饋</a>
-              <a href="impact.html#reports-title">年報與研究</a>
+              <a href="impact.html">影響力數據</a>
+              <a href="outcomes.html">學生改變故事</a>
+              <a href="partner-voices.html">合作夥伴回饋</a>
+              <a href="reports.html">年報與研究成果</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="involve.html">參與我們</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="參與我們，展開子選單">參與我們</a>
             <div class="nav-dropdown" aria-label="參與我們子選單">
               <a href="give.html">支持鄉育</a>
-              <a href="for-companies.html">企業與基金會合作</a>
-              <a href="for-universities.html">大學合作</a>
-              <a href="involve.html#careers">志工與職涯機會</a>
+              <a href="corporate-partnership.html">企業合作</a>
+              <a href="university-partnership.html">大學合作</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="news.html">最新與資源</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="最新與資源，展開子選單">最新與資源</a>
             <div class="nav-dropdown" aria-label="最新與資源子選單">
               <a href="news.html">最新消息</a>
               <a href="press.html">媒體報導</a>
@@ -135,16 +131,12 @@
             <div class="nav-dropdown" aria-label="依身分瀏覽子選單">
               <a href="for-students.html">大學生專區</a>
               <a href="for-companies.html">企業專區</a>
-              <a href="for-donors.html">個人捐款者專區</a>
-              <a href="for-universities.html">大學合作專區</a>
+              <a href="for-donors.html">捐款人專區</a>
+              <a href="for-universities.html">大專院校專區</a>
             </div>
           </div>
         </nav>
         <div class="header-actions">
-          <a class="contact-dot" href="contact.html" aria-label="前往聯絡頁">
-            <span></span>
-            <b>Contact</b>
-          </a>
           <button class="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false" data-menu-toggle>
             <span></span>
             <span></span>
@@ -152,58 +144,55 @@
         </div>
       </header>
 
-      <div class="mobile-menu" data-mobile-menu>
+      <nav class="mobile-menu" data-mobile-menu aria-label="行動版主選單">
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="about.html">關於鄉育</a>
+            <span class="m-label">關於鄉育</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開關於鄉育子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
             <a href="mission-vision.html">使命願景</a>
-            <a href="story.html">成長軌跡</a>
+            <a href="story.html">發展歷程</a>
             <a href="team.html">我們的團隊</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="programs.html">大學專案</a>
-            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開大學專案子選單" data-m-toggle></button>
+            <span class="m-label">我們的計畫</span>
+            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開我們的計畫子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="programs.html#overview-title">專案一覽</a>
-            <a href="programs.html#journey-title">學習旅程</a>
-            <a href="programs.html#apply-title">報名與參與</a>
-            <a href="programs.html#companies-summary-title">與企業合作摘要</a>
-            <a href="programs.html#universities-summary-title">與大學合作摘要</a>
+            <a href="programs.html">尋路計畫</a>
+            <a href="program-corporate.html">企業新鮮人共育合作</a>
+            <a href="program-educator.html">高中教師 SEL 培力</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="impact.html">影響力</a>
+            <span class="m-label">影響力</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開影響力子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="impact.html#page-title">關鍵數據總覽</a>
-            <a href="impact.html#outcomes-title">學生的改變</a>
-            <a href="impact.html#partners-title">學校與企業回饋</a>
-            <a href="impact.html#reports-title">年報與研究</a>
+            <a href="impact.html">影響力數據</a>
+            <a href="outcomes.html">學生改變故事</a>
+            <a href="partner-voices.html">合作夥伴回饋</a>
+            <a href="reports.html">年報與研究成果</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="involve.html">參與我們</a>
+            <span class="m-label">參與我們</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開參與我們子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
             <a href="give.html">支持鄉育</a>
-            <a href="for-companies.html">企業與基金會合作</a>
-            <a href="for-universities.html">大學合作</a>
-            <a href="involve.html#careers">志工與職涯機會</a>
+            <a href="corporate-partnership.html">企業合作</a>
+            <a href="university-partnership.html">大學合作</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="news.html">最新與資源</a>
+            <span class="m-label">最新與資源</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開最新與資源子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
@@ -220,8 +209,13 @@
           <div class="m-sub">
             <a href="for-students.html">大學生專區</a>
             <a href="for-companies.html">企業專區</a>
-            <a href="for-donors.html">個人捐款者專區</a>
-            <a href="for-universities.html">大學合作專區</a>
+            <a href="for-donors.html">捐款人專區</a>
+            <a href="for-universities.html">大專院校專區</a>
+          </div>
+        </div>
+        <div class="m-group" data-m-group>
+          <div class="m-row">
+            <a href="login.html">大學生登入</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -229,22 +223,34 @@
             <a href="contact.html">聯絡我們</a>
           </div>
         </div>
-      </div>
+      </nav>
 
       <main id="top">
         <!-- 01 Hero 首屏 -->
         <section class="hero" aria-labelledby="hero-title">
-          <!-- Hero 裝飾圖示由頁尾 <script id="hero-decor-rand"> 於每次載入隨機產生（9 款挑 4–5、隨機位置/角度、互不重疊）。靜態勿加。 -->
+          <!-- Hero 裝飾圖示：已停用（業主要求 2026-06-29 移除 hero 所有 icon）。隨機注入腳本 <script id="hero-decor-rand"> 已改 type="text/plain" 不執行；要復原把該 type 屬性移除即可。底部地景 .hero-landscape 保留。 -->
           <!-- 底部手繪地景：固定墊底（土地／生長意象），非隨機 decor 之一 -->
           <img class="hero-landscape" src="assets/decor/hero-landscape.png" alt="" aria-hidden="true" />
+          <!-- 環境呼吸色雲：多色低透明柔光色團繞四周，中央文字淨空（方案1） -->
+          <div class="hero-blobs" aria-hidden="true">
+            <span class="hero-blob hb-1"></span>
+            <span class="hero-blob hb-2"></span>
+            <span class="hero-blob hb-3"></span>
+            <span class="hero-blob hb-4"></span>
+            <span class="hero-blob hb-5"></span>
+            <span class="hero-blob hb-6"></span>
+            <span class="hero-blob hb-7"></span>
+            <span class="hero-blob hb-8"></span>
+            <span class="hero-blob hb-9"></span>
+          </div>
           <div class="hero-content">
             <p class="eyebrow">青年尋路 × 行動賦能</p>
-            <h1 id="hero-title">青年缺的不是資源，<br />而是<span class="kw">練習世界的機會</span>。</h1>
+            <h1 id="hero-title">在真實場域<br />賦能大學生<span class="kw">長出能力</span></h1>
             <p class="hero-subtitle">
-              鄉育賦能學生面對升學、職涯、創業與人生選擇中的不確定，透過真實情境、專案式學習與行動設計，建立能反覆使用的判斷力、選擇力與實作力。
+              鄉育賦能大學生面對升學、職涯、創業與人生的種種選擇，透過真實情境、專案式學習與行動設計，建立能反覆使用的判斷力、選擇力與實作力。
             </p>
             <div class="hero-cta">
-              <a class="button-primary" href="#audiences">前往我的下一步</a>
+              <a class="button-primary" href="#audiences">More</a>
             </div>
           </div>
           <div class="hero-index" aria-hidden="true">
@@ -259,19 +265,37 @@
           <div class="section-grid">
             <div class="section-kicker">
               <svg class="kicker-icon kicker-icon--solid" viewBox="0 0 512 512" aria-hidden="true"><g><path d="m484.733 70.736c-12.724-28.104-37.051-48.012-64.947-53.822c-3.597-6.963-9.603-12.367-16.694-14.956c-6.9-2.519-14.228-2.22-20.638.841c-10.825 5.169-16.506 16.734-15.129 28.737l-118.949 54.37c-10.168 4.604-16.544 14.179-17.579 24.56l-71.191 32.229c-6.403 2.898-11.294 8.117-13.772 14.694c-2.478 6.578-2.247 13.727.652 20.129l.094.207-59.197 26.8c-9.433 4.271-14.913 13.729-14.608 23.486l-24.02 10.874c-2.762-2.714-6.08-4.852-9.812-6.258c-7.044-2.653-14.697-2.405-21.553.699c-14.153 6.407-20.456 23.135-14.049 37.287h.001l14.426 31.866c3.105 6.856 8.692 12.093 15.735 14.746c7.032 2.651 14.689 2.408 21.552-.699c6.856-3.104 12.093-8.692 14.746-15.734c1.406-3.733 1.989-7.637 1.772-11.503l24.897-11.271c7.141 5.617 17.273 6.872 25.552 3.025l59.198-26.8.093.206c4.248 9.381 13.349 15.052 23.001 15.424c.449 1.504.969 2.978 1.553 4.419l-111.402 177.364c-15.074 1.718-26.826 14.545-26.826 30.071c0 16.693 13.581 30.273 30.273 30.273h37.561c16.692 0 30.272-13.58 30.272-30.272c0-7.438-2.702-14.254-7.169-19.531l93.913-149.516 93.251 149.439c-4.506 5.287-7.235 12.132-7.235 19.607c0 16.692 13.581 30.272 30.273 30.272h37.56c16.693 0 30.272-13.58 30.272-30.272c0-15.485-11.688-28.284-26.704-30.056l-111.2-178.203c2.131-5.544 3.311-11.556 3.311-17.842c0-5.247-.819-10.305-2.328-15.06c5.998 1.069 12.088.298 17.728-2.25l118.688-54.25c7.911 9.481 21.905 13.456 33.15 7.917c13.303-6.353 18.843-22.362 13.054-36.977c13.824-24.652 15.006-56.48 2.424-84.27zm-19.104 8.649c7.233 15.978 8.72 33.555 4.788 49.255l-38.697-85.476c14.441 7.337 26.577 20.025 33.909 36.221zm-406.499 177.823 20.567-9.311 5.521 12.196-20.567 9.311zm-8.951 36.193c-.678 1.801-2.017 3.229-3.77 4.023-3.498 1.669-8.009-.031-9.535-3.592l-14.427-31.867h.001c-1.638-3.619-.027-7.896 3.592-9.535 3.622-1.639 7.896-.027 9.534 3.592l14.426 31.866c.794 1.755.857 3.712.179 5.513zm63.197-31.461c-2.63.75-3.705.346-5.185-1.953l-14.112-31.172c-.892-1.968-.015-4.295 1.953-5.186l59.198-26.8 17.344 38.311zm87.044-16.138-34.83-76.932c-.793-1.754-.423-3.313-.132-4.087.504-1.335 1.497-2.395 2.796-2.984l67.506-30.562 35.447 78.296c-5.882-2.444-12.326-3.8-19.082-3.8-25.018 0-45.789 18.511-49.349 42.554-1.003-.534-1.853-1.372-2.356-2.485zm168.359 205.653c-1.614 0-3.197.13-4.743.374l-93.502-149.842c5.673-2.261 10.84-5.524 15.271-9.584l99.25 159.053h-16.276zm-233.306 0h-16.118l99.612-158.588c4.466 3.981 9.65 7.168 15.331 9.35l-93.985 149.63c-1.576-.255-3.192-.392-4.84-.392zm145.575-195.828c0 15.948-12.975 28.923-28.923 28.923s-28.922-12.975-28.922-28.923 12.974-28.923 28.922-28.923 28.923 12.975 28.923 28.923zm-145.575 235.403h-37.561c-5.129 0-9.303-4.173-9.303-9.302s4.174-9.303 9.303-9.303h37.561c5.129 0 9.302 4.173 9.302 9.303-.001 5.128-4.173 9.302-9.302 9.302zm270.866 0h-37.56c-5.129 0-9.303-4.173-9.303-9.302s4.174-9.303 9.303-9.303h37.56c5.129 0 9.302 4.173 9.302 9.303 0 5.128-4.172 9.302-9.302 9.302zm-97.604-271.801c-2.244 1.016-4.749 1.097-7.052.229-2.304-.868-4.133-2.582-5.147-4.825l-44.105-97.423c-2.097-4.631-.036-10.104 4.629-12.216l117.507-53.71 51.71 114.219zm151.485-46.168c-1.646.785-3.304.469-4.408.066-2.333-.852-4.342-2.822-5.511-5.406l-61.165-135.101c-1.971-4.355-.893-9.345 2.355-10.896 1.404-.699 3.125-.555 4.408-.067 2.333.852 4.342 2.822 5.511 5.407l61.165 135.101c1.971 4.355.893 9.344-2.355 10.896z"></path><circle cx="252.125" cy="255.627" r="12.628"></circle><path d="m350.341 90.49c-2.461-5.242-8.707-7.5-13.947-5.037l-2.811 1.319c-5.243 2.461-7.498 8.705-5.037 13.947 1.785 3.802 5.56 6.033 9.499 6.033 2.387.139 5.118-1.284 7.259-2.315 5.242-2.461 7.497-8.705 5.037-13.947z"></path><path d="m306.082 99.681-23.745 11.146c-5.241 2.461-7.496 8.706-5.035 13.947 1.785 3.802 5.559 6.032 9.498 6.032 1.492 0 3.009-.32 4.449-.997l23.743-11.146c5.242-2.46 7.497-8.705 5.037-13.947-2.46-5.241-8.706-7.496-13.947-5.035z"></path><path d="m97.571 50.033c10.74 0 19.447-8.707 19.447-19.447s-8.707-19.447-19.447-19.447-19.447 8.707-19.447 19.447 8.707 19.447 19.447 19.447z"></path><path d="m502.929 0c-4.548 0-8.236 3.687-8.236 8.236 0 4.548 3.687 8.235 8.236 8.235s8.235-3.688 8.235-8.235c0-4.549-3.687-8.236-8.235-8.236z"></path><path d="m162.534 55.835 16.504 7.436c.707.318 1.267.949 1.55 1.744l6.606 18.576c.933 2.624 4.234 2.624 5.167 0l6.606-18.576c.283-.795.843-1.426 1.549-1.744l16.504-7.436c2.332-1.05 2.332-4.766 0-5.816l-16.504-7.436c-.707-.318-1.267-.949-1.549-1.744l-6.606-18.576c-.933-2.625-4.234-2.625-5.167 0l-6.606 18.576c-.283.795-.843 1.425-1.55 1.744l-16.504 7.436c-2.331 1.051-2.331 4.766 0 5.816z"></path><path d="m14.805 140.178 22.678 10.024c.971.429 1.74 1.279 2.129 2.351l9.078 25.042c1.282 3.538 5.818 3.538 7.1 0l9.078-25.042c.389-1.072 1.158-1.922 2.129-2.351l22.678-10.024c3.204-1.416 3.204-6.424 0-7.84l-22.678-10.024c-.971-.429-1.74-1.279-2.129-2.351l-9.078-25.044c-1.282-3.538-5.818-3.538-7.1 0l-9.078 25.042c-.389 1.072-1.158 1.922-2.129 2.351l-22.678 10.024c-3.204 1.417-3.204 6.426 0 7.842z"></path></g></svg>
-              <p>我們為什麼出發</p>
+              <p>鄉育的初衷</p>
             </div>
             <div>
-              <h2 id="why-title">選項變多了，能<span class="kw">為自己選擇</span>的人卻沒變多。</h2>
+              <h2 id="why-title">這個世代缺的是，<span class="kw">在真實場域</span>驗證自己能力的機會。</h2>
               <p class="lead">
                 這個時代給青年的選擇，比以往更多，也更模糊——升學、職涯、創業、跨域、地方參與，每一條路都攤在眼前，卻沒有人教他們怎麼判斷、怎麼選。
               </p>
-              <ul class="friction-list" aria-label="青年面對的真實困難">
-                <li>資訊太多，卻不知道什麼重要。</li>
-                <li>選項太多，卻不知道如何比較。</li>
-                <li>想行動，卻不知道從哪裡開始。</li>
-                <li>進入真實場域，才發現問題比想像更複雜。</li>
+              <div class="initiative-panel">
+              <ul class="initiative-cards" aria-label="青年面對的真實困難">
+                <li class="ic-card" style="--i:0">
+                  <span class="ic-num" aria-hidden="true">01</span>
+                  <span class="ic-tab">資訊太多</span>
+                  <p class="ic-gap">卻不知道什麼重要。</p>
+                </li>
+                <li class="ic-card" style="--i:1">
+                  <span class="ic-num" aria-hidden="true">02</span>
+                  <span class="ic-tab">選項太多</span>
+                  <p class="ic-gap">卻不知道如何比較。</p>
+                </li>
+                <li class="ic-card" style="--i:2">
+                  <span class="ic-num" aria-hidden="true">03</span>
+                  <span class="ic-tab">想行動</span>
+                  <p class="ic-gap">卻不知道從哪裡開始。</p>
+                </li>
+                <li class="ic-card" style="--i:3">
+                  <span class="ic-num" aria-hidden="true">04</span>
+                  <span class="ic-tab">進入真實場域</span>
+                  <p class="ic-gap">才發現問題比想像更複雜。</p>
+                </li>
               </ul>
+              </div>
               <p class="lead">
                 鄉育之所以存在，是相信每個青年都該有機會練出這份能力——而它不該因為家庭背景或所在地區的資源落差而被決定。
               </p>
@@ -281,12 +305,10 @@
 
         <!-- 03 我們怎麼賦能（承轉：四階段方法，保留互動圓盤） -->
         <section class="about-section section-pad has-decor" id="method" aria-labelledby="method-title">
-          <img class="decor" src="assets/decor/color/5_map.png" alt="" aria-hidden="true" style="--w:185px; top:76px; right:2%; --rot:7deg;" />
-          <img class="decor decor--hide-sm" src="assets/decor/color/7_magnifier.png" alt="" aria-hidden="true" style="--w:160px; bottom:54px; left:2%; --rot:-6deg; --op:.95;" />
           <div class="path-header">
             <div class="section-kicker">
               <svg class="kicker-icon kicker-icon--solid" viewBox="-96 1 511 511.999" aria-hidden="true"><path d="m231.496094 481.980469h-55.257813v-262.496094h22.324219c5.691406 0 10.890625-3.214844 13.429688-8.304687l45.886718-91.894532h10.730469c8.289063 0 15.011719-6.71875 15.011719-15.007812 0-8.289063-6.722656-15.011719-15.011719-15.011719h-12.710937l-45.523438-58.046875c-2.84375-3.625-7.199219-5.746094-11.808594-5.746094h-22.328125v-10.464844c0-8.289062-6.71875-15.007812-15.007812-15.007812-8.289063 0-15.011719 6.71875-15.011719 15.007812v10.464844h-22.324219c-4.609375 0-8.964843 2.121094-11.808593 5.746094l-45.527344 58.046875h-12.691406c-8.289063 0-15.007813 6.71875-15.007813 15.007813 0 8.289062 6.71875 15.011718 15.007813 15.011718h10.714843l45.882813 91.894532c2.542968 5.089843 7.742187 8.304687 13.429687 8.304687h22.324219v262.496094h-55.253906c-8.289063 0-15.011719 6.71875-15.011719 15.007812 0 8.289063 6.722656 15.011719 15.011719 15.011719h140.53125c8.289062 0 15.007812-6.722656 15.007812-15.011719 0-8.289062-6.71875-15.007812-15.007812-15.007812zm-100.296875-426.488281h60.0625l26.488281 33.773437h-113.039062zm1.976562 133.972656-35.042969-70.179688h126.191407l-35.042969 70.179688h-13.042969v-9.785156c0-8.292969-6.71875-15.011719-15.007812-15.011719-8.289063 0-15.011719 6.71875-15.011719 15.011719v9.785156zm0 0"></path><path d="m99.578125 255.546875c5.863281-5.863281 5.863281-15.367187 0-21.226563-5.859375-5.863281-15.363281-5.863281-21.226563 0l-21.800781 21.800782c-5.863281 5.863281-5.863281 15.367187 0 21.226562 2.929688 2.929688 6.773438 4.398438 10.613281 4.398438 3.84375 0 7.683594-1.46875 10.613282-4.398438zm0 0"></path><path d="m237.882812 234.320312c-5.863281-5.863281-15.367187-5.863281-21.226562 0-5.863281 5.863282-5.863281 15.363282 0 21.226563l21.800781 21.800781c2.929688 2.933594 6.773438 4.398438 10.613281 4.398438 3.839844 0 7.683594-1.464844 10.613282-4.398438 5.859375-5.859375 5.859375-15.363281 0-21.226562zm0 0"></path><path d="m304.023438 159.769531h-30.835938c-8.289062 0-15.007812 6.722657-15.007812 15.011719s6.71875 15.007812 15.007812 15.007812h30.835938c8.289062 0 15.007812-6.71875 15.007812-15.007812s-6.71875-15.011719-15.007812-15.011719zm0 0"></path><path d="m61.351562 174.78125c0-8.289062-6.71875-15.011719-15.007812-15.011719h-30.835938c-8.289062 0-15.007812 6.722657-15.007812 15.011719s6.71875 15.007812 15.007812 15.007812h30.835938c8.289062 0 15.007812-6.71875 15.007812-15.007812zm0 0"></path></svg>
-              <p>我們怎麼賦能</p>
+              <p>鄉育如何賦能</p>
             </div>
             <div>
               <h2 id="method-title">我們不給答案，而是<span class="kw">賦能青年</span>長出自己的方法。</h2>
@@ -296,32 +318,6 @@
             </div>
           </div>
           <div class="method-cycle" role="group" aria-label="四階段賦能循環的三層結構">
-            <div class="mc-fold" data-fold="foundation">
-              <button class="mc-fold-bar" type="button" aria-expanded="false" aria-controls="fold-foundation">
-                <span class="mc-fold-label">能力的生成起點 · Foundation</span>
-                <span class="mc-fold-meta">6 項能力</span>
-                <span class="mc-fold-ic" aria-hidden="true">＋</span>
-              </button>
-              <div class="mc-fold-body" id="fold-foundation" role="region" aria-label="能力的生成起點">
-                <div class="mc-fold-inner">
-                  <div class="mc-tier">
-                    <h3>面對未知，長出判斷力</h3>
-                    <p class="mc-sub">以面對未知、定義問題與重組資訊，作為賦能的起點。</p>
-                    <div class="mc-row">
-                      <div class="mc-node"><b>面對未知</b><span>Embrace</span></div>
-                      <div class="mc-node"><b>培養好奇</b><span>Curious</span></div>
-                      <div class="mc-node"><b>形成方向</b><span>Direction</span></div>
-                      <div class="mc-node"><b>建立判斷</b><span>Judgment</span></div>
-                      <div class="mc-node"><b>重組資訊</b><span>Reorganize</span></div>
-                      <div class="mc-node"><b>釐清問題</b><span>Clarify</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mc-conn" aria-hidden="true"><span class="mc-conn-line"></span><span class="mc-conn-tag">能力生成 ↓</span></div>
-
             <div class="mc-tier">
               <p class="mc-eyebrow">四階段賦能方法 · Process</p>
               <h3>從問題到行動的轉化路徑</h3>
@@ -392,33 +388,8 @@
               </div>
             </div>
 
-            <div class="mc-conn" aria-hidden="true"><span class="mc-conn-line"></span><span class="mc-conn-tag">成果擴散 ↓</span></div>
-
-            <div class="mc-fold" data-fold="outcome">
-              <button class="mc-fold-bar" type="button" aria-expanded="false" aria-controls="fold-outcome">
-                <span class="mc-fold-label">成果的展現 · Outcome</span>
-                <span class="mc-fold-meta">6 項成果</span>
-                <span class="mc-fold-ic" aria-hidden="true">＋</span>
-              </button>
-              <div class="mc-fold-body" id="fold-outcome" role="region" aria-label="成果的展現">
-                <div class="mc-fold-inner">
-                  <div class="mc-tier">
-                    <h3>以真實情境中的行動力</h3>
-                    <p class="mc-sub">四階段循環不斷推進，最終長成可被看見的成果。</p>
-                    <div class="mc-row">
-                      <div class="mc-node is-out"><b>看見真實需求</b><span>Insight</span></div>
-                      <div class="mc-node is-out"><b>設計可行方案</b><span>Plan</span></div>
-                      <div class="mc-node is-out"><b>推進執行</b><span>Execute</span></div>
-                      <div class="mc-node is-out"><b>產生影響</b><span>Impact</span></div>
-                      <div class="mc-node is-out"><b>持續迭代</b><span>Iterate</span></div>
-                      <div class="mc-node is-out"><b>創造價值</b><span>Value</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-          <p class="stage-loop"><span class="stage-loop-mark" aria-hidden="true">↻</span>鄉育為學生賦能，每一次迭代，都讓青年更能面對未知、定義並推進行動。</p>
+          <p class="stage-loop"><span class="stage-loop-mark" aria-hidden="true">↻</span>鄉育為大學生賦能，每一次迭代，都讓青年更能面對未知、定義並推進行動。</p>
         </section>
 
         <!-- 04 改變正在發生（腳印＝成果區）：方法之後，先讓改變被看見（見證＋數據），再邀請自我定位 -->
@@ -431,10 +402,10 @@
             <div>
               <h2 id="impact-title">把學習帶出教室，<br />讓能力回到<span class="kw">真實世界</span>。</h2>
               <p class="lead">
-                我們在意的不是學生完成一堂課，而是他能不能在下一個真實情境裡，繼續用上這些能力——這些累積，正在變成看得見的數字。
+                我們在意的不是大學生完成一堂課，而是他能不能在下一個真實情境裡，繼續用上這些能力——這些累積，正在變成看得見的數字。
               </p>
               <div class="impact-numbers" aria-label="鄉育影響力數據">
-                <div><strong>1,668</strong><span>累積參與學生數</span></div>
+                <div><strong>1,668</strong><span>累積參與大學生數</span></div>
                 <div><strong>35+</strong><span>合作學校與單位</span></div>
                 <div><strong>106+</strong><span>課程與真實場域專案</span></div>
                 <div><strong>12</strong><span>長期服務的縣市</span></div>
@@ -450,7 +421,7 @@
           <div class="path-header">
             <div class="section-kicker">
               <svg class="kicker-icon kicker-icon--solid" viewBox="0 0 68 68" aria-hidden="true"><g id="_x35_4"><path d="m4.8 29.3 6.9 5.2c.5.4-.3.2 19.1-2.2-.2 7.8-.5 25.3-.5 26.6-2.9.2-9.8.7-8.9 3.4-.1 1 .7 1.8 2 2.3 6.2 2.4 13.2 1.8 19.8.6.8-.2 1.6-.3 2.3-.8.7-.4 1.2-1.2 1.1-2-.1-.5-.4-1-.8-1.3-1.2-1.8-6.6-2.3-9.2-2.5.2-5.9.4-11.8.6-18.3l14.6 3.9h.2c.1 0 .2 0 .3-.1l7.7-3.2c.2-.1.3-.2.4-.4s.1-.4 0-.6l-3.9-7.9c-.1-.2-.3-.3-.5-.4l-18.4-4.8c0-.1.1-3.7.1-4.5l19.5-4.7c.2 0 .3-.1.4-.3l5.8-7c.1-.2.2-.4.2-.6s-.2-.4-.3-.5l-7.8-5.1c-.2-.1-.4-.1-.6-.1l-16.9 4.1c0-1.9.3-4.6-1.1-5.9-1.2-1-2.8-.8-3.8.3-.2.1-.4.3-.6.6-1 1.3-.9 2.9-1.2 13.8-21.3 2.5-20.6 2.1-21 2.6l-5.6 8.6c-.3.5-.2.9.1 1.2zm50.3 3.8 3.4 6.8-6.7 2.8-14.7-3.9.3-10.3zm-.4-27.3 6.9 4.5-5.1 6.1-18.9 4.5c.1-4.4.2-8.1.4-11.2zm-18.5-2.1c.5.9.4 2.8.4 3.7-.9 27 .1-4.3-.9 31.8v.1.4c-.1 3.8-.3 10.5-.7 21.6 0 .4.3.8.8.8.4 0 .7-.3.7-.7s0-.8 0-1.1c4.8.3 7.4 1.1 8 1.6 0 .1 0 .2-.1.3 0 .1-.1.1-.1.2-1.1.7-4.8 1.6-10.5 1.6-6.7 0-10.6-1.2-10.9-1.8.1-.3 1.9-1.2 7.5-1.6 0 .4.1.8.2.9.2.4 1.2.7 1.5.4.2-.1.4-.4.5-.7.3-13.5.3-28.6.7-43.2.1-.2 0-.3 0-.4.1-4.7.3-9.1.6-13 0-.6.5-1 .9-1.2.5-.4 1.1-.2 1.4.3zm-24.9 17.1 19.9-2.2c-.1 4.1-.2 8.2-.4 12.3l-18.5 2.3-6.1-4.6z"></path><path d="m16.8 29.5c.4 0 .7-.4.7-.8-.1-1.7.4-3.4 1.3-4.8.2-.4.1-.8-.2-1-.4-.2-.8-.1-1 .2-1 1.7-1.6 3.7-1.5 5.6-.1.5.3.8.7.8z"></path><path d="m21.4 29.5c.3 0 .6-.2.7-.6l1.4-5.5c.1-.4-.1-.8-.5-.9s-.8.1-.9.5l-1.4 5.5c-.1.5.2 1 .7 1z"></path><path d="m41.5 13.6c.1.3.4.6.7.6h.2l8-2.2c.4-.1.6-.5.5-.9s-.5-.6-.9-.5l-8 2.2c-.3 0-.6.4-.5.8z"></path><path d="m40.9 35.8 6.3 2.2h.2c.3 0 .6-.2.7-.5.1-.4-.1-.8-.5-1l-6.3-2.2c-.4-.1-.8.1-1 .5 0 .4.2.8.6 1z"></path><path d="m12.7 15.3c.3-.3.3-.8 0-1.1l-2-2.2c-.3-.3-.8-.3-1.1 0s-.3.8 0 1.1l2 2.2c.3.3.8.3 1.1 0z"></path><path d="m17 14.8c.4-.1.6-.6.5-1l-1.7-5c-.1-.4-.6-.6-1-.5s-.6.6-.5 1l1.7 5c.1.4.6.6 1 .5z"></path><path d="m21.4 13.5 1.3-5.8c.1-.4-.2-.8-.6-.9s-.8.2-.9.6l-1.2 5.8c-.1.4.2.8.6.9s.8-.2.8-.6z"></path></g></svg>
-              <p>你在這條路的哪裡</p>
+              <p>前往創造價值的路上</p>
             </div>
             <div>
               <h2 id="audiences-title">不同的角色，都有<span class="kw">一條參與的路</span>。</h2>
@@ -459,60 +430,48 @@
               </p>
             </div>
           </div>
-          <!-- 細線指向標牌系統（方案 B 強化版）：主桿＋桿頂主牌＋四面方向牌 -->
-          <div class="signpost-system" aria-label="四種參與角色">
-            <span class="signpost-post" aria-hidden="true"></span>
-            <span class="signpost-ground" aria-hidden="true"></span>
-
-            <div class="signpost-head" aria-hidden="true">
-              <span class="signpost-plate">下一步 <b>NEXT</b>
-                <span class="signpost-tip"><svg viewBox="0 0 14 100" preserveAspectRatio="none" fill="none"><path d="M-2 0 Q0 0 2 7.14 L12 43 Q14 50 12 57 L2 92.86 Q0 100 -2 100" vector-effect="non-scaling-stroke" /></svg></span>
-              </span>
-            </div>
-
-            <article class="signpost">
-              <span class="signpost-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16 16 8 M11 8 16 8 16 13" /></svg></span>
-              <div class="signpost-meta">
-                <p class="node-label">我是學生</p>
-                <h3>探索方向，練習行動</h3>
-                <p class="signpost-desc">我想找到方向，也想在真實場域裡，累積帶得走的能力。</p>
+          <!-- 四身分入口：色塊頭卡四宮格（一整行；2026-06-29 取代橫式路牌，方案 C） -->
+          <div class="aud-grid" aria-label="四種參與角色">
+            <a class="aud-card" href="for-students.html">
+              <div class="aud-head">
+                <span class="aud-tag">大學生專區</span>
               </div>
-              <a class="signpost-cta" href="for-students.html">找到我的學習路徑 <span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-              <span class="signpost-tip" aria-hidden="true"><svg viewBox="0 0 20 100" preserveAspectRatio="none" fill="none"><path d="M-2.5 0 Q0 0 2.5 6.25 L18 45 Q20 50 18 55 L2.5 93.75 Q0 100 -2.5 100" vector-effect="non-scaling-stroke" /></svg></span>
-            </article>
-
-            <article class="signpost">
-              <span class="signpost-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12 17 12 M13 8 17 12 13 16" /></svg></span>
-              <div class="signpost-meta">
-                <p class="node-label">我是學校／大學端</p>
-                <h3>導入真實學習</h3>
-                <p class="signpost-desc">我想帶學生走出教室，去碰真實世界的問題。</p>
+              <div class="aud-body">
+                <h3 class="aud-title">探索方向，練習行動</h3>
+                <p class="aud-desc">我想找到方向，也想在真實場域裡，累積帶得走的能力。</p>
+                <span class="aud-cta">找到我的學習路徑 <span class="cta-arrow" aria-hidden="true">&rarr;</span></span>
               </div>
-              <a class="signpost-cta" href="for-universities.html">了解學校合作 <span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-              <span class="signpost-tip" aria-hidden="true"><svg viewBox="0 0 20 100" preserveAspectRatio="none" fill="none"><path d="M-2.5 0 Q0 0 2.5 6.25 L18 45 Q20 50 18 55 L2.5 93.75 Q0 100 -2.5 100" vector-effect="non-scaling-stroke" /></svg></span>
-            </article>
-
-            <article class="signpost">
-              <span class="signpost-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8 16 16 M11 16 16 16 16 11" /></svg></span>
-              <div class="signpost-meta">
-                <p class="node-label">我是企業</p>
-                <h3>提供真實議題</h3>
-                <p class="signpost-desc">我想用真實議題與資源，帶青年理解職場與社會。</p>
+            </a>
+            <a class="aud-card" href="for-companies.html">
+              <div class="aud-head">
+                <span class="aud-tag">企業專區</span>
               </div>
-              <a class="signpost-cta" href="for-companies.html">了解企業合作 <span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-              <span class="signpost-tip" aria-hidden="true"><svg viewBox="0 0 20 100" preserveAspectRatio="none" fill="none"><path d="M-2.5 0 Q0 0 2.5 6.25 L18 45 Q20 50 18 55 L2.5 93.75 Q0 100 -2.5 100" vector-effect="non-scaling-stroke" /></svg></span>
-            </article>
-
-            <article class="signpost">
-              <span class="signpost-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16 16 8 M11 8 16 8 16 13" /></svg></span>
-              <div class="signpost-meta">
-                <p class="node-label">我是支持者／捐款者</p>
-                <h3>支持公平學習</h3>
-                <p class="signpost-desc">我想讓更多青年，擁有公平練習的機會。</p>
+              <div class="aud-body">
+                <h3 class="aud-title">提供真實議題</h3>
+                <p class="aud-desc">我想用真實議題與資源，帶青年理解職場與社會。</p>
+                <span class="aud-cta">了解企業合作 <span class="cta-arrow" aria-hidden="true">&rarr;</span></span>
               </div>
-              <a class="signpost-cta" href="for-donors.html">了解如何支持 <span class="cta-arrow" aria-hidden="true">&rarr;</span></a>
-              <span class="signpost-tip" aria-hidden="true"><svg viewBox="0 0 20 100" preserveAspectRatio="none" fill="none"><path d="M-2.5 0 Q0 0 2.5 6.25 L18 45 Q20 50 18 55 L2.5 93.75 Q0 100 -2.5 100" vector-effect="non-scaling-stroke" /></svg></span>
-            </article>
+            </a>
+            <a class="aud-card" href="for-donors.html">
+              <div class="aud-head">
+                <span class="aud-tag">捐款人專區</span>
+              </div>
+              <div class="aud-body">
+                <h3 class="aud-title">支持公平學習</h3>
+                <p class="aud-desc">我想讓更多青年，擁有公平練習的機會。</p>
+                <span class="aud-cta">了解如何支持 <span class="cta-arrow" aria-hidden="true">&rarr;</span></span>
+              </div>
+            </a>
+            <a class="aud-card" href="for-universities.html">
+              <div class="aud-head">
+                <span class="aud-tag">大專院校專區</span>
+              </div>
+              <div class="aud-body">
+                <h3 class="aud-title">導入真實學習</h3>
+                <p class="aud-desc">我想帶大學生走出教室，去碰真實世界的問題。</p>
+                <span class="aud-cta">了解學校合作 <span class="cta-arrow" aria-hidden="true">&rarr;</span></span>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -530,20 +489,33 @@
               </p>
             </div>
           </div>
-          <div class="partner-logos" aria-labelledby="home-partner-logos-title">
-            <p id="home-partner-logos-title" class="partner-logos-title">合作學校與夥伴</p>
-            <ul>
-              <li><img src="assets/partners/ncku.jpg" alt="國立成功大學" loading="lazy" /></li>
-              <li><img src="assets/partners/nthu.jpg" alt="國立清華大學" loading="lazy" /></li>
-              <li><img src="assets/partners/nknu.png" alt="國立高雄師範大學" loading="lazy" /></li>
-              <li><img src="assets/partners/mediatek.png" alt="聯發科技 MediaTek 志工社" loading="lazy" /></li>
-              <li><img src="assets/partners/yunpao.jpg" alt="雲豹能源" loading="lazy" /></li>
-              <li><img src="assets/partners/chinglan.jpg" alt="青澀芷蘭協會" loading="lazy" /></li>
-              <li><img src="assets/partners/check-hotels.png" alt="雀客國際酒店集團" loading="lazy" /></li>
-              <li><img src="assets/partners/iski.jpg" alt="iSKI 滑雪俱樂部" loading="lazy" /></li>
-              <li><img src="assets/partners/tesla.jpg" alt="Tesla Owners Taiwan" loading="lazy" /></li>
-              <li><img src="assets/partners/cmmt.jpg" alt="誠美材料科技" loading="lazy" /></li>
-            </ul>
+          <div class="partner-logos partner-marquee" aria-label="合作學校與夥伴">
+            <div class="marquee">
+              <ul class="marquee-track">
+                <li><img src="assets/partners/white/ncku.png" alt="國立成功大學" loading="lazy" /></li>
+                <li><img src="assets/partners/white/nthu.png" alt="國立清華大學" loading="lazy" /></li>
+                <li><img src="assets/partners/white/nknu.png" alt="國立高雄師範大學" loading="lazy" /></li>
+                <li><img src="assets/partners/white/mediatek.png" alt="聯發科技 MediaTek 志工社" loading="lazy" /></li>
+                <li><img src="assets/partners/white/yunpao.png" alt="雲豹能源" loading="lazy" /></li>
+                <li><img src="assets/partners/white/chinglan.png" alt="青澀芷蘭協會" loading="lazy" /></li>
+                <li><img src="assets/partners/white/check-hotels.png" alt="雀客國際酒店集團" loading="lazy" /></li>
+                <li><img src="assets/partners/white/iski.png" alt="iSKI 滑雪俱樂部" loading="lazy" /></li>
+                <li><img src="assets/partners/white/tesla.png" alt="Tesla Owners Taiwan" loading="lazy" /></li>
+                <li><img src="assets/partners/white/cmmt.png" alt="誠美材料科技" loading="lazy" /></li>
+              </ul>
+              <ul class="marquee-track" aria-hidden="true">
+                <li><img src="assets/partners/white/ncku.png" alt="" loading="lazy" /></li>
+                <li><img src="assets/partners/white/nthu.png" alt="" loading="lazy" /></li>
+                <li><img src="assets/partners/white/nknu.png" alt="" loading="lazy" /></li>
+                <li><img src="assets/partners/white/mediatek.png" alt="" loading="lazy" /></li>
+                <li><img src="assets/partners/white/yunpao.png" alt="" loading="lazy" /></li>
+                <li><img src="assets/partners/white/chinglan.png" alt="" loading="lazy" /></li>
+                <li><img src="assets/partners/white/check-hotels.png" alt="" loading="lazy" /></li>
+                <li><img src="assets/partners/white/iski.png" alt="" loading="lazy" /></li>
+                <li><img src="assets/partners/white/tesla.png" alt="" loading="lazy" /></li>
+                <li><img src="assets/partners/white/cmmt.png" alt="" loading="lazy" /></li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -563,7 +535,7 @@
         <!-- Hero 隨機裝飾產生器：每次載入從 9 款手繪圖示隨機挑 4–5 款，隨機位置/角度，
              以「實際圖樣框」碰撞檢測→互不重疊、不壓中央文字與左下 Explore；只作用於 .hero。
              想整體放大/縮小改 AREA；想多/少改 want。移除＝刪本 script。 -->
-        <script id="hero-decor-rand">
+        <script id="hero-decor-rand" type="text/plain" data-disabled="2026-06-29 業主要求 hero 不放 icon；移除此 type 屬性即可復原">
         (function () {
           function init() {
             var hero = document.querySelector('.hero');
@@ -699,18 +671,18 @@
               </a>
             </div>
             <ul class="footer-legal-ids">
-              <li>立案字號 臺教社（三）字第1100106099號</li>
+              <li>立案字號 臺教社（三）字第 1100106099 號</li>
               <li>統一編號 19278390</li>
               <li>公益勸募許可文號 申請中</li>
             </ul>
           </div>
-          <nav class="footer-sitemap" aria-label="分眾入口">
-            <h3>分眾入口</h3>
+          <nav class="footer-sitemap" aria-label="依身分瀏覽">
+            <h3>依身分瀏覽</h3>
             <ul>
-              <li><a href="for-students.html">給學生</a></li>
-              <li><a href="for-companies.html">給企業</a></li>
-              <li><a href="for-donors.html">給捐款者</a></li>
-              <li><a href="for-universities.html">給學校</a></li>
+              <li><a href="for-students.html">大學生專區</a></li>
+              <li><a href="for-companies.html">企業專區</a></li>
+              <li><a href="for-donors.html">捐款人專區</a></li>
+              <li><a href="for-universities.html">大專院校專區</a></li>
             </ul>
           </nav>
           <address class="footer-contact">
@@ -725,7 +697,7 @@
             </a>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=114%E5%8F%B0%E5%8C%97%E5%B8%82%E5%85%A7%E6%B9%96%E5%8D%80%E5%9F%BA%E6%B9%96%E8%B7%AF1%E8%99%9F4%E6%A8%93%E4%B9%8B%E4%B8%80" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              114 台北市內湖區基湖路1號4樓之一
+              114 台北市內湖區基湖路 1 號 4 樓之一
             </a>
           </address>
         </div>
@@ -739,6 +711,36 @@
           <small class="footer-receipt">捐款可開立收據，並依法列舉扣除</small>
         </div>
       </footer>
+      <!-- 全站快速入口：桌機＝右側常駐直 dock；手機＝右緣書籤，點一下向左滑出三項（捐款／登入／聯絡） -->
+      <div class="float-dock" data-float-dock>
+        <button class="float-dock__tab" type="button" aria-expanded="false" aria-controls="float-dock-actions" aria-label="開啟快速入口：捐款、學習登入、聯絡">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span class="float-dock__tab-text">支持</span>
+        </button>
+        <ul class="float-dock__actions" id="float-dock-actions">
+          <li>
+            <a class="float-dock__item is-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <span>線上捐款</span>
+            </a>
+          </li>
+          <li>
+            <a class="float-dock__item" href="login.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              <span>學習登入</span>
+            </a>
+          </li>
+          <li>
+            <a class="float-dock__item" href="contact.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <span>聯絡我們</span>
+            </a>
+          </li>
+        </ul>
+        <button class="float-dock__close" type="button" aria-label="收起快速入口">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

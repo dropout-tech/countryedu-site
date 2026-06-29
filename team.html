@@ -48,7 +48,7 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
   <body>
     <div class="site-shell">
@@ -58,43 +58,40 @@
         </a>
         <nav class="desktop-nav" aria-label="主要導覽">
           <div class="nav-item">
-            <a href="about.html">關於鄉育</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="關於鄉育，展開子選單">關於鄉育</a>
             <div class="nav-dropdown" aria-label="關於鄉育子選單">
               <a href="mission-vision.html">使命願景</a>
-              <a href="story.html">成長軌跡</a>
+              <a href="story.html">發展歷程</a>
               <a href="team.html">我們的團隊</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="programs.html">大學專案</a>
-            <div class="nav-dropdown" aria-label="大學專案子選單">
-              <a href="programs.html#overview-title">專案一覽</a>
-              <a href="programs.html#journey-title">學習旅程</a>
-              <a href="programs.html#apply-title">報名與參與</a>
-              <a href="programs.html#companies-summary-title">與企業合作摘要</a>
-              <a href="programs.html#universities-summary-title">與大學合作摘要</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="我們的計畫，展開子選單">我們的計畫</a>
+            <div class="nav-dropdown" aria-label="我們的計畫子選單">
+              <a href="programs.html">尋路計畫</a>
+              <a href="program-corporate.html">企業新鮮人共育合作</a>
+              <a href="program-educator.html">高中教師 SEL 培力</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="impact.html">影響力</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="影響力，展開子選單">影響力</a>
             <div class="nav-dropdown" aria-label="影響力子選單">
-              <a href="impact.html#page-title">關鍵數據總覽</a>
-              <a href="impact.html#outcomes-title">學生的改變</a>
-              <a href="impact.html#partners-title">學校與企業回饋</a>
-              <a href="impact.html#reports-title">年報與研究</a>
+              <a href="impact.html">影響力數據</a>
+              <a href="outcomes.html">學生改變故事</a>
+              <a href="partner-voices.html">合作夥伴回饋</a>
+              <a href="reports.html">年報與研究成果</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="involve.html">參與我們</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="參與我們，展開子選單">參與我們</a>
             <div class="nav-dropdown" aria-label="參與我們子選單">
               <a href="give.html">支持鄉育</a>
-              <a href="for-companies.html">企業與基金會合作</a>
-              <a href="for-universities.html">大學合作</a>
-              <a href="involve.html#careers">志工與職涯機會</a>
+              <a href="corporate-partnership.html">企業合作</a>
+              <a href="university-partnership.html">大學合作</a>
             </div>
           </div>
           <div class="nav-item">
-            <a href="news.html">最新與資源</a>
+            <a role="button" tabindex="0" aria-haspopup="true" aria-label="最新與資源，展開子選單">最新與資源</a>
             <div class="nav-dropdown" aria-label="最新與資源子選單">
               <a href="news.html">最新消息</a>
               <a href="press.html">媒體報導</a>
@@ -106,16 +103,12 @@
             <div class="nav-dropdown" aria-label="依身分瀏覽子選單">
               <a href="for-students.html">大學生專區</a>
               <a href="for-companies.html">企業專區</a>
-              <a href="for-donors.html">個人捐款者專區</a>
-              <a href="for-universities.html">大學合作專區</a>
+              <a href="for-donors.html">捐款人專區</a>
+              <a href="for-universities.html">大專院校專區</a>
             </div>
           </div>
         </nav>
         <div class="header-actions">
-          <a class="contact-dot" href="contact.html" aria-label="前往聯絡頁">
-            <span></span>
-            <b>Contact</b>
-          </a>
           <button class="menu-toggle" type="button" aria-label="開啟選單" aria-expanded="false" data-menu-toggle>
             <span></span>
             <span></span>
@@ -123,58 +116,55 @@
         </div>
       </header>
 
-      <div class="mobile-menu" data-mobile-menu>
+      <nav class="mobile-menu" data-mobile-menu aria-label="行動版主選單">
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="about.html">關於鄉育</a>
+            <span class="m-label">關於鄉育</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開關於鄉育子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
             <a href="mission-vision.html">使命願景</a>
-            <a href="story.html">成長軌跡</a>
+            <a href="story.html">發展歷程</a>
             <a href="team.html">我們的團隊</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="programs.html">大學專案</a>
-            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開大學專案子選單" data-m-toggle></button>
+            <span class="m-label">我們的計畫</span>
+            <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開我們的計畫子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="programs.html#overview-title">專案一覽</a>
-            <a href="programs.html#journey-title">學習旅程</a>
-            <a href="programs.html#apply-title">報名與參與</a>
-            <a href="programs.html#companies-summary-title">與企業合作摘要</a>
-            <a href="programs.html#universities-summary-title">與大學合作摘要</a>
+            <a href="programs.html">尋路計畫</a>
+            <a href="program-corporate.html">企業新鮮人共育合作</a>
+            <a href="program-educator.html">高中教師 SEL 培力</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="impact.html">影響力</a>
+            <span class="m-label">影響力</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開影響力子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="impact.html#page-title">關鍵數據總覽</a>
-            <a href="impact.html#outcomes-title">學生的改變</a>
-            <a href="impact.html#partners-title">學校與企業回饋</a>
-            <a href="impact.html#reports-title">年報與研究</a>
+            <a href="impact.html">影響力數據</a>
+            <a href="outcomes.html">學生改變故事</a>
+            <a href="partner-voices.html">合作夥伴回饋</a>
+            <a href="reports.html">年報與研究成果</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="involve.html">參與我們</a>
+            <span class="m-label">參與我們</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開參與我們子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
             <a href="give.html">支持鄉育</a>
-            <a href="for-companies.html">企業與基金會合作</a>
-            <a href="for-universities.html">大學合作</a>
-            <a href="involve.html#careers">志工與職涯機會</a>
+            <a href="corporate-partnership.html">企業合作</a>
+            <a href="university-partnership.html">大學合作</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
           <div class="m-row">
-            <a href="news.html">最新與資源</a>
+            <span class="m-label">最新與資源</span>
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開最新與資源子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
@@ -191,8 +181,13 @@
           <div class="m-sub">
             <a href="for-students.html">大學生專區</a>
             <a href="for-companies.html">企業專區</a>
-            <a href="for-donors.html">個人捐款者專區</a>
-            <a href="for-universities.html">大學合作專區</a>
+            <a href="for-donors.html">捐款人專區</a>
+            <a href="for-universities.html">大專院校專區</a>
+          </div>
+        </div>
+        <div class="m-group" data-m-group>
+          <div class="m-row">
+            <a href="login.html">大學生登入</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -200,264 +195,63 @@
             <a href="contact.html">聯絡我們</a>
           </div>
         </div>
-      </div>
+      </nav>
 
       <main id="top">
-        <header class="page-header">
-          <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><a href="about.html">關於鄉育</a><span>›</span><span class="page-crumb-current" aria-current="page">我們的團隊</span></nav>
+        <header class="page-header ph-about">
+          <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-parent">關於鄉育</span><span>›</span><span class="page-crumb-current" aria-current="page">我們的團隊</span></nav>
           <h1>我們的團隊</h1>
           <p class="page-header-en">Our Team</p>
+          <div class="page-header-blobs" aria-hidden="true">
+            <span class="phb phb-1"></span>
+            <span class="phb phb-2"></span>
+            <span class="phb phb-3"></span>
+          </div>
         </header>
-        <div class="story-layout">
-          <nav class="exit-nav" aria-label="本頁章節導覽">
-            <div class="exit-rail">
-              <a class="exit-sign exit-sign--main" href="#page-title" data-exit-target="page-title">
-                <span class="exit-eyebrow">OUR TEAM</span>
-                <span class="exit-name">我們的團隊</span>
-              </a>
-              <a class="exit-sign" href="#structure-title" data-exit-target="structure-title">
-                <span class="exit-tag">STOP 01</span>
-                <span class="exit-name">治理架構</span>
-                <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
-              </a>
-              <a class="exit-sign" href="#board-title" data-exit-target="board-title">
-                <span class="exit-tag">STOP 02</span>
-                <span class="exit-name">董事會與顧問</span>
-                <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
-              </a>
-              <a class="exit-sign" href="#team-title" data-exit-target="team-title">
-                <span class="exit-tag">STOP 03</span>
-                <span class="exit-name">專案團隊</span>
-                <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
-              </a>
-              <a class="exit-sign" href="#accountability-title" data-exit-target="accountability-title">
-                <span class="exit-tag">STOP 04</span>
-                <span class="exit-name">透明與課責</span>
-                <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
-              </a>
+        <section class="org-section section-pad" aria-labelledby="org-title">
+          <div class="org-intro">
+            <h2 id="org-title">決策、監督、執行，各司其職。</h2>
+            <p class="lead">鄉育依本會捐助章程與《財團法人法》運作：董事會決策、監察人監督、專案團隊執行，三者互相課責。</p>
+          </div>
+          <div class="org-chart" role="group" aria-label="鄉育組織架構圖">
+            <div class="org-tier org-tier--gov">
+              <article class="org-node org-node--board">
+                <span class="org-role">決策</span>
+                <h3>董事會</h3>
+                <p>最高決策機構，審議使命方向、年度計畫與預算。</p>
+              </article>
+              <article class="org-node org-node--audit">
+                <span class="org-role">監督</span>
+                <h3>監察人</h3>
+                <p>監督財務與業務執行，確保依法運作、資源妥善使用。</p>
+              </article>
             </div>
-          </nav>
-          <div class="story-flow">
-        <!-- 01 總覽：誰在經營鄉育、治理的態度 -->
-        <section class="problem-section section-pad sheet sheet--wheat" aria-labelledby="page-title">
-          <div class="section-grid">
-            <div class="section-kicker">
-              <span>總覽</span>
-              <p>我們的團隊 Our Team</p>
+            <div class="org-tier org-tier--exec">
+              <article class="org-node org-node--team">
+                <span class="org-role">執行</span>
+                <h3>專案團隊</h3>
+                <p>把方法論落實到第一線：課程設計、校企合作、引導員培訓與成效回饋。</p>
+              </article>
             </div>
-            <div>
-              <h2 id="page-title">一群相信地方教育的人，把資源妥善託付，把方法帶進教室。</h2>
-              <p class="lead">
-                鄉育由董事會、顧問與專案團隊共同推動。
-              </p>
-              <p class="lead">
-                董事會與顧問負責方向與監督，專案團隊在第一線把方法論落實到每一所學校。
-              </p>
-              <p class="lead">
-                我們相信，值得信任的教育組織，治理要透明、運作要負責、成效要能被看見。
-              </p>
-              <div class="signal-row" aria-label="鄉育治理重點">
-                <div>
-                  <strong>2022</strong>
-                  <span>財團法人鄉育教育基金會正式成立，確立長期使命</span>
-                </div>
-                <div>
-                  <strong>董事會</strong>
-                  <span>依捐助章程設立，負責決策、監督與資源託付</span>
-                </div>
-                <div>
-                  <strong>2025</strong>
-                  <span>已依法取得勸募許可，捐款專款專用、依法揭露</span>
-                </div>
-              </div>
-              <figure class="content-figure">
-                <img src="assets/photos/group-banner.jpg" alt="鄉育團隊與青年手持基金會布條合影" loading="lazy" width="1280" height="855" />
-                <figcaption>一群相信地方教育的人，把資源妥善託付，把方法帶進每一間教室。</figcaption>
-              </figure>
+            <div class="org-tier org-tier--units">
+              <article class="org-node org-node--unit">
+                <span class="org-role">職能</span>
+                <h4>大學生培力專案督導</h4>
+                <p>課程設計，學校與企業合作窗口。</p>
+              </article>
+              <article class="org-node org-node--unit">
+                <span class="org-role">職能</span>
+                <h4>課程引導團隊</h4>
+                <p>16 週課程引導與引導員培訓。</p>
+              </article>
+              <article class="org-node org-node--unit">
+                <span class="org-role">職能</span>
+                <h4>資料與行政團隊</h4>
+                <p>成效資料整理與營運支援。</p>
+              </article>
             </div>
           </div>
         </section>
-
-        <!-- 02 治理架構：決策／監督／執行三層 -->
-        <section class="about-section section-pad" aria-labelledby="structure-title">
-          <div class="large-watermark" aria-hidden="true">Trust</div>
-          <div class="section-grid">
-            <div class="section-kicker">
-              <span>01</span>
-              <p>治理架構</p>
-            </div>
-            <div class="about-copy">
-              <h2 id="structure-title">決策、監督與執行各司其職，讓使命被穩定地推進。</h2>
-              <p>作為財團法人，鄉育的運作建立在三個角色上——董事會做決策、監察人做監督、專案團隊做執行。</p>
-              <p>三者各司其職、互相課責，確保基金會依法運作，讓地方教育的承諾不會中斷。</p>
-              <p>實際組成與職權，依本會捐助章程及《財團法人法》辦理。</p>
-              <div class="mission-list">
-                <article>
-                  <span>01</span>
-                  <h3>董事會｜決策</h3>
-                  <p>依捐助章程設立，是最高決策機構，負責審議使命方向、年度計畫與預算，並定期檢視成效。</p>
-                </article>
-                <article>
-                  <span>02</span>
-                  <h3>監察人｜監督</h3>
-                  <p>依捐助章程設置，監督基金會的財務與業務執行，確保資源被妥善使用、合於法令。</p>
-                </article>
-                <article>
-                  <span>03</span>
-                  <h3>專案團隊｜執行</h3>
-                  <p>把方法論落實到第一線，負責課程設計、學校與企業合作、引導員培訓與成效資料的整理與回饋。</p>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- 03 董事會與顧問名單（姓名待當事人同意後公開，請勿自行填入） -->
-        <section class="path-section section-pad" aria-labelledby="board-title">
-          <div class="path-header">
-            <div class="section-kicker">
-              <span>02</span>
-              <p>董事會與顧問</p>
-            </div>
-            <div>
-              <h2 id="board-title">由一群關心教育的人，共同守護方向與資源。</h2>
-              <p class="lead">
-                董事會與顧問群匯集教育、產業與學術的經驗，為方向、治理與專業判斷把關。
-              </p>
-              <p class="lead">
-                以下為各角色的職責；具體名單將於取得當事人同意後正式公開。
-              </p>
-            </div>
-          </div>
-          <!-- TODO 內容待補：董事長／董事／監察人／顧問之姓名與職稱，須經當事人同意後刊登，請勿自行填入 -->
-          <dl class="roster" aria-label="董事會與顧問職責">
-            <div>
-              <dt>董事長</dt>
-              <dd>對外代表基金會，主持董事會、統籌使命方向與重大決策。<span class="pending">姓名待當事人同意後公開</span></dd>
-            </div>
-            <div>
-              <dt>董事</dt>
-              <dd>審議基金會的年度計畫、預算與重要合作，並監督執行成效。<span class="pending">名單待補</span></dd>
-            </div>
-            <div>
-              <dt>監察人</dt>
-              <dd>監督基金會財務與業務執行，確保依法運作、資源妥善使用。<span class="pending">名單待補</span></dd>
-            </div>
-            <div>
-              <dt>顧問群</dt>
-              <dd>提供教育、產業與學術領域的專業諮詢，協助方法論與課程的深化。<span class="pending">名單待補</span></dd>
-            </div>
-          </dl>
-        </section>
-
-        <!-- 04 專案團隊（成員介紹） -->
-        <section class="program-section section-pad" aria-labelledby="team-title">
-          <div class="path-header">
-            <div class="section-kicker">
-              <span>03</span>
-              <p>專案團隊</p>
-            </div>
-            <div>
-              <h2 id="team-title">第一線陪伴的人，把方法帶到每一位學生身邊。</h2>
-              <p class="lead">
-                專案團隊負責課程設計、學校與企業合作，以及大學生引導員的培訓。
-              </p>
-              <p class="lead">
-                隨著合作的縣市與學校增加，團隊也不斷成長；更完整的成員介紹將陸續補上。
-              </p>
-            </div>
-          </div>
-          <!-- TODO 內容待補：其餘團隊成員姓名、職稱與簡介待確認後補上；新增成員請沿用 .person-card 結構 -->
-          <div class="people-grid" aria-label="專案團隊成員">
-            <article class="person-card">
-              <span class="person-avatar" aria-hidden="true">林</span>
-              <h3>林妤蓁 Kari Lin</h3>
-              <p class="person-role">大學生培力專案督導</p>
-              <p>負責尋路計畫的課程設計、學校合作與企業洽詢窗口，是學校與企業夥伴的第一線聯絡人。</p>
-            </article>
-            <article class="person-card is-pending">
-              <span class="person-avatar" aria-hidden="true">＋</span>
-              <h3>課程引導團隊</h3>
-              <p class="person-role">課程設計與現場引導</p>
-              <p>負責 16 週課程的引導與陪伴，並培訓大學生成為高中生的引導員。成員介紹待補。</p>
-            </article>
-            <article class="person-card is-pending">
-              <span class="person-avatar" aria-hidden="true">＋</span>
-              <h3>資料與行政團隊</h3>
-              <p class="person-role">成效資料與營運支援</p>
-              <p>負責前後測與課程資料的整理、成效回饋，以及基金會日常營運與行政支援。成員介紹待補。</p>
-            </article>
-          </div>
-        </section>
-
-        <!-- 05 治理原則與課責：依法、透明、成效 -->
-        <section class="story-section section-pad" aria-labelledby="accountability-title">
-          <div class="section-grid">
-            <div class="section-kicker">
-              <span>04</span>
-              <p>透明與課責</p>
-            </div>
-            <div>
-              <h2 id="accountability-title">值得被信任，是因為我們願意被檢視。</h2>
-              <p class="lead">
-                鄉育以三個原則自我要求：依法治理、財務透明、成效課責。
-              </p>
-              <p class="lead">
-                教育的影響力要能被相信，組織的運作就要能被看見、被檢視。
-              </p>
-              <div class="mission-list">
-                <article>
-                  <span>01</span>
-                  <h3>依法治理</h3>
-                  <p>依《財團法人法》與本會捐助章程運作，董事會定期開會審議方向、計畫與成效。</p>
-                </article>
-                <article>
-                  <span>02</span>
-                  <h3>財務透明</h3>
-                  <p>年度財務與業務報告依法揭露；已依法取得勸募許可，捐款專款專用、用途公開。</p>
-                </article>
-                <article>
-                  <span>03</span>
-                  <h3>成效課責</h3>
-                  <p>以前後測數據與課程資料追蹤成效，形成可比較、可回饋、可累積的成長證據。</p>
-                </article>
-              </div>
-              <p class="lead">
-                完整的成效資料，可參考<a class="audience-cta" href="impact.html#reports-title">年度報告與影響力數據</a>。
-              </p>
-              <p class="lead">
-                基金會的統一編號、登記字號與勸募文號，揭露於本頁底部的法律資訊區（陸續補上）。
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 06 下一步 CTA -->
-        <section class="partners-section section-pad sheet sheet--forest" aria-labelledby="team-cta-title" data-exit-clear>
-          <div class="path-header">
-            <div class="section-kicker">
-              <span>下一步</span>
-              <p>Next</p>
-            </div>
-            <div>
-              <h2 id="team-cta-title">認識了我們是誰，歡迎一起把這件事做下去。</h2>
-              <p class="lead">
-                無論你是想參與的學生、想合作的學校或企業，還是願意支持的個人，都能在這裡找到屬於自己的下一步。
-              </p>
-            </div>
-          </div>
-          <div class="cta-band">
-            <div>
-              <h3>想更了解<span class="nw">鄉育</span>，或一起合作嗎？</h3>
-              <p>看看多元的參與方式，或直接與我們聊聊合作與支持的可能。</p>
-            </div>
-            <div class="cta-band-actions">
-              <a class="button-primary" href="involve.html">看看如何參與</a>
-            </div>
-          </div>
-        </section>
-          </div>
-        </div>
       </main>
 
       <footer class="site-footer" id="contact">
@@ -480,18 +274,18 @@
               </a>
             </div>
             <ul class="footer-legal-ids">
-              <li>立案字號 臺教社（三）字第1100106099號</li>
+              <li>立案字號 臺教社（三）字第 1100106099 號</li>
               <li>統一編號 19278390</li>
               <li>公益勸募許可文號 申請中</li>
             </ul>
           </div>
-          <nav class="footer-sitemap" aria-label="分眾入口">
-            <h3>分眾入口</h3>
+          <nav class="footer-sitemap" aria-label="依身分瀏覽">
+            <h3>依身分瀏覽</h3>
             <ul>
-              <li><a href="for-students.html">給學生</a></li>
-              <li><a href="for-companies.html">給企業</a></li>
-              <li><a href="for-donors.html">給捐款者</a></li>
-              <li><a href="for-universities.html">給學校</a></li>
+              <li><a href="for-students.html">大學生專區</a></li>
+              <li><a href="for-companies.html">企業專區</a></li>
+              <li><a href="for-donors.html">捐款人專區</a></li>
+              <li><a href="for-universities.html">大專院校專區</a></li>
             </ul>
           </nav>
           <address class="footer-contact">
@@ -506,7 +300,7 @@
             </a>
             <a href="https://www.google.com/maps/search/?api=1&amp;query=114%E5%8F%B0%E5%8C%97%E5%B8%82%E5%85%A7%E6%B9%96%E5%8D%80%E5%9F%BA%E6%B9%96%E8%B7%AF1%E8%99%9F4%E6%A8%93%E4%B9%8B%E4%B8%80" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              114 台北市內湖區基湖路1號4樓之一
+              114 台北市內湖區基湖路 1 號 4 樓之一
             </a>
           </address>
         </div>
@@ -520,6 +314,66 @@
           <small class="footer-receipt">捐款可開立收據，並依法列舉扣除</small>
         </div>
       </footer>
+      <!-- 全站快速入口：桌機＝右側常駐直 dock；手機＝右緣書籤，點一下向左滑出三項（捐款／登入／聯絡） -->
+      <div class="float-dock" data-float-dock>
+        <button class="float-dock__tab" type="button" aria-expanded="false" aria-controls="float-dock-actions" aria-label="開啟快速入口：捐款、學習登入、聯絡">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span class="float-dock__tab-text">支持</span>
+        </button>
+        <ul class="float-dock__actions" id="float-dock-actions">
+          <li>
+            <a class="float-dock__item is-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <span>線上捐款</span>
+            </a>
+          </li>
+          <li>
+            <a class="float-dock__item" href="login.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              <span>學習登入</span>
+            </a>
+          </li>
+          <li>
+            <a class="float-dock__item" href="contact.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <span>聯絡我們</span>
+            </a>
+          </li>
+        </ul>
+        <button class="float-dock__close" type="button" aria-label="收起快速入口">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <!-- 全站快速入口：桌機＝右側常駐直 dock；手機＝右緣書籤，點一下向左滑出三項（捐款／登入／聯絡） -->
+      <div class="float-dock" data-float-dock>
+        <button class="float-dock__tab" type="button" aria-expanded="false" aria-controls="float-dock-actions" aria-label="開啟快速入口：捐款、學習登入、聯絡">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <span class="float-dock__tab-text">支持</span>
+        </button>
+        <ul class="float-dock__actions" id="float-dock-actions">
+          <li>
+            <a class="float-dock__item is-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+              <span>線上捐款</span>
+            </a>
+          </li>
+          <li>
+            <a class="float-dock__item" href="login.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              <span>學習登入</span>
+            </a>
+          </li>
+          <li>
+            <a class="float-dock__item" href="contact.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <span>聯絡我們</span>
+            </a>
+          </li>
+        </ul>
+        <button class="float-dock__close" type="button" aria-label="收起快速入口">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

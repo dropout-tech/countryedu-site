@@ -78,6 +78,15 @@ audienceTabs.forEach((button) => {
   );
 });
 
+// 報名分頁（programs.html「如何報名」：常見問題 FAQ／開課學校選修／線上課程即將推出）
+const applyTabs = document.querySelectorAll("[data-apply]");
+const applyPanels = document.querySelectorAll("[data-apply-panel]");
+applyTabs.forEach((button) => {
+  button.addEventListener("click", () =>
+    activateTab(applyTabs, applyPanels, "apply", button.dataset.apply)
+  );
+});
+
 function scrollToHashTarget(behavior = "smooth") {
   const hash = window.location.hash;
   if (!hash || hash === "#top") return;
@@ -159,11 +168,13 @@ if (exitSigns.length) {
 }
 
 // ===== 旅程時間軸：橘色圓點隨捲動移動到目前節點（與 about「認識鄉育」一致）=====
-// 套用到全站每一條 .journey-line（about／programs／story／for-companies／for-students／
-// for-universities）。互動只在「直式排列」時啟用——此時節點由上到下串連，橘點隨捲動移到
-// 目前節點。包含：about 的里程碑、story 的 .is-vertical、以及所有頁面在窄螢幕(≤960px)回到
-// 單欄時。桌機上 programs／for-* 的時間軸是橫向三欄、節點同一條水平線，捲動高亮無意義，
-// 故維持原本的靜態 featured 高亮（移除 .is-spy／.is-active）。方向用實際幾何判斷，resize 自動切換。
+// 套用到全站每一條 .journey-line。所有時間軸都隨捲動動態點亮目前節點（並隨滑鼠 hover 變色，
+// 見 styles.css）：
+//   直式（about 里程碑、story 的 .is-vertical、窄螢幕單欄）＝節點由上到下，取最後一個頂端越過
+//     視窗 45% 判定線的節點。
+//   橫式（桌機 programs／for-*／合作頁的三欄水平線）＝節點同在一條水平線、無法逐點越線，改用整條
+//     時間軸通過視窗的捲動進度，由左到右依序點亮（捲到區段上緣＝第一點、下緣＝最後一點）。
+// 方向用實際幾何判斷（isStacked），resize 自動切換。
 const journeyLines = [...document.querySelectorAll(".journey-line")]
   .map((line) => ({ line, nodes: [...line.querySelectorAll(".journey-node")] }))
   .filter((entry) => entry.nodes.length > 1);
@@ -179,18 +190,24 @@ if (journeyLines.length) {
   let journeyTicking = false;
   const updateJourneyDots = () => {
     journeyTicking = false;
-    const markLine = window.innerHeight * 0.45; // 視窗 45% 高度為判定線
+    const vh = window.innerHeight;
+    const markLine = vh * 0.45; // 直式：視窗 45% 高度為判定線
     journeyLines.forEach(({ line, nodes }) => {
-      if (!isStacked(nodes)) {
-        line.classList.remove("is-spy");
-        nodes.forEach((node) => node.classList.remove("is-active"));
-        return;
-      }
       line.classList.add("is-spy");
-      let current = nodes[0];
-      nodes.forEach((node) => {
-        if (node.getBoundingClientRect().top <= markLine) current = node;
-      });
+      let current;
+      if (isStacked(nodes)) {
+        // 直式：取最後一個頂端已越過判定線的節點
+        current = nodes[0];
+        nodes.forEach((node) => {
+          if (node.getBoundingClientRect().top <= markLine) current = node;
+        });
+      } else {
+        // 橫式：整條時間軸通過視窗的捲動進度 → 由左到右依序點亮
+        const r = line.getBoundingClientRect();
+        const span = vh * 0.6 || 1;
+        const prog = Math.min(1, Math.max(0, (vh * 0.75 - r.top) / span));
+        current = nodes[Math.min(nodes.length - 1, Math.floor(prog * nodes.length))];
+      }
       nodes.forEach((node) => node.classList.toggle("is-active", node === current));
     });
   };
@@ -351,8 +368,8 @@ if (mcCycle && mcFoldBars.length) {
   });
 }
 
-// ===== 首頁 合作夥伴牆：捲入時依序淡入＋常駐微浮動（index.html #partners）=====
-document.querySelectorAll(".partner-logos").forEach((wall) => {
+// ===== 首頁 合作夥伴牆＋初衷痛點卡：捲入時依序淡入（index.html #partners／.initiative-cards）=====
+document.querySelectorAll(".partner-logos:not(.partner-marquee), .home .problem-section .initiative-cards").forEach((wall) => {
   const items = wall.querySelectorAll("li");
   if (!items.length) return;
   items.forEach((li, i) => li.style.setProperty("--i", i));
@@ -422,6 +439,33 @@ if (pressSortButtons.length) {
   }
 }
 
+// ===== 全站快速入口 float-dock：手機點書籤展開／收合（桌機常駐直 dock，不需 JS）=====
+const floatDock = document.querySelector("[data-float-dock]");
+if (floatDock) {
+  const dockTab = floatDock.querySelector(".float-dock__tab");
+  const dockClose = floatDock.querySelector(".float-dock__close");
+  const setDockOpen = (open) => {
+    floatDock.classList.toggle("is-open", open);
+    if (dockTab) dockTab.setAttribute("aria-expanded", String(open));
+  };
+  if (dockTab) {
+    dockTab.addEventListener("click", () => setDockOpen(!floatDock.classList.contains("is-open")));
+  }
+  if (dockClose) dockClose.addEventListener("click", () => setDockOpen(false));
+  // 點任一入口即收合（連結照常跳頁）
+  floatDock.querySelectorAll(".float-dock__item").forEach((link) => {
+    link.addEventListener("click", () => setDockOpen(false));
+  });
+  // 點 dock 以外的空白處收合
+  document.addEventListener("click", (event) => {
+    if (floatDock.classList.contains("is-open") && !floatDock.contains(event.target)) setDockOpen(false);
+  });
+  // Esc 收合
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && floatDock.classList.contains("is-open")) setDockOpen(false);
+  });
+}
+
 // ===== 大學專案頁 合作摘要：企業／大學 橫式展開鈕（方案 2，預設全收合、單開；programs.html）=====
 // 兩顆橫排鈕預設都收合；點一顆＝展開該面板並收起另一顆；再點同一顆＝收合（key 傳 null）。
 const collabTabs = document.querySelectorAll("[data-collab]");
@@ -451,3 +495,59 @@ if (collabTabs.length) {
   openCollabFromHash();
   window.addEventListener("hashchange", openCollabFromHash);
 }
+
+
+// ===== 合作夥伴 Logo 輪播：JS 啟用後變單行等寬卡片、左右箭頭循環（university-partnership.html）=====
+// 無 JS 時 track 換行全展(箭頭隱藏)；JS 加 .is-enhanced→單行、量測單格步距位移、到頭/到尾循環。
+document.querySelectorAll("[data-logo-carousel]").forEach((root) => {
+  const carousel = root.querySelector(".logo-carousel");
+  const track = root.querySelector("[data-logo-track]");
+  const prevBtn = root.querySelector("[data-logo-prev]");
+  const nextBtn = root.querySelector("[data-logo-next]");
+  if (!carousel || !track) return;
+  const slides = [...track.children];
+  if (!slides.length) return;
+
+  root.classList.add("is-enhanced");
+  let index = 0;
+
+  const perView = () => {
+    const w = window.innerWidth;
+    if (w <= 560) return 1;
+    if (w <= 920) return 2;
+    return 3;
+  };
+
+  const render = () => {
+    const per = perView();
+    track.style.setProperty("--per", per);
+    const maxIndex = Math.max(0, slides.length - per);
+    if (index > maxIndex) index = maxIndex;
+    if (index < 0) index = 0;
+    carousel.classList.toggle("is-static", slides.length <= per);
+    const step = slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : 0;
+    track.style.transform = "translateX(" + (-index * step) + "px)";
+  };
+
+  const go = (dir) => {
+    const per = perView();
+    const maxIndex = Math.max(0, slides.length - per);
+    index += dir;
+    if (index > maxIndex) index = 0;
+    if (index < 0) index = maxIndex;
+    render();
+  };
+
+  if (prevBtn) prevBtn.addEventListener("click", () => go(-1));
+  if (nextBtn) nextBtn.addEventListener("click", () => go(1));
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(render, 120);
+  }, { passive: true });
+
+  render();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+  window.addEventListener("load", render);
+});
