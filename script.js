@@ -443,15 +443,16 @@ if (pressSortButtons.length) {
 const floatDock = document.querySelector("[data-float-dock]");
 if (floatDock) {
   const dockTab = floatDock.querySelector(".float-dock__tab");
-  const dockClose = floatDock.querySelector(".float-dock__close");
   const setDockOpen = (open) => {
     floatDock.classList.toggle("is-open", open);
-    if (dockTab) dockTab.setAttribute("aria-expanded", String(open));
+    if (dockTab) {
+      dockTab.setAttribute("aria-expanded", String(open));
+      dockTab.setAttribute("aria-label", open ? "收起快速入口" : "開啟快速入口：捐款、學習登入、聯絡");
+    }
   };
   if (dockTab) {
     dockTab.addEventListener("click", () => setDockOpen(!floatDock.classList.contains("is-open")));
   }
-  if (dockClose) dockClose.addEventListener("click", () => setDockOpen(false));
   // 點任一入口即收合（連結照常跳頁）
   floatDock.querySelectorAll(".float-dock__item").forEach((link) => {
     link.addEventListener("click", () => setDockOpen(false));

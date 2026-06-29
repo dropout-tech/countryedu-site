@@ -435,7 +435,8 @@
       <!-- 全站快速入口：桌機＝右側常駐直 dock；手機＝右緣書籤，點一下向左滑出三項（捐款／登入／聯絡） -->
       <div class="float-dock" data-float-dock>
         <button class="float-dock__tab" type="button" aria-expanded="false" aria-controls="float-dock-actions" aria-label="開啟快速入口：捐款、學習登入、聯絡">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <svg class="float-dock__tab-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          <svg class="float-dock__tab-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
           <span class="float-dock__tab-text">支持</span>
         </button>
         <ul class="float-dock__actions" id="float-dock-actions">
@@ -458,9 +459,6 @@
             </a>
           </li>
         </ul>
-        <button class="float-dock__close" type="button" aria-label="收起快速入口">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
       </div>
     </div>
     <script src="script.js"></script>
