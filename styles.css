@@ -8728,6 +8728,36 @@ body.line-frame .story-flow .section-pad:not(.sheet):not(.final-cta):not(.cta-ba
 }
 
 /* ============================================================
+   方向二-lite · 頁首招牌角標 .ph-stamp（2026-07-03；全站頁首可共用）
+   把 hero 的「色塊＋圓角路徑線＋節點＋星芒」縮成頁首右上一顆招牌，
+   與 line-frame 的轉角 elbow 同語彙。色彩用 --ph-accent（每個子頁在自己的
+   .ph-* 上設一色，沿用 sheet 13 色）。桌機貼頁首右上、避開被右推的 h1；
+   ≤960 隱藏（與 line-frame 轉角同步收起、手機不橫捲）。
+   回退：刪本段 ＋ 各頁 .page-header 內 <div class="ph-stamp"> ＋ .ph-* 的 --ph-accent。
+   ============================================================ */
+.ph-about { --ph-accent: var(--apricot); }   /* 使命願景＝杏橙 */
+
+.ph-stamp {
+  position: absolute;
+  top: 76px;
+  right: var(--gutter);
+  width: 150px;
+  height: 120px;
+  z-index: 0;
+  pointer-events: none;
+}
+.ph-stamp-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.ph-stamp-svg .phs-block { fill: var(--ph-accent, var(--apricot)); }
+.ph-stamp-svg .phs-line  { fill: none; stroke: var(--deep); stroke-width: 2.2; stroke-linecap: round; }
+.ph-stamp-svg .phs-node  { fill: var(--deep); }
+.ph-stamp-svg .phs-end   { fill: var(--path); }
+.ph-stamp-svg .phs-spark { fill: var(--path); }
+
+@media (max-width: 960px) {
+  .ph-stamp { display: none; }
+}
+
+/* ============================================================
    方向三 · 區段節拍分隔帶（barcode rule-band）
    每條分隔帶「長度／顏色／線寬」皆不同，鋪在子頁白底 section 頂緣，
    當作段落之間的印刷分隔節拍（取代純空白）。
