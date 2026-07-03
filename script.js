@@ -552,3 +552,77 @@ document.querySelectorAll("[data-logo-carousel]").forEach((root) => {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
   window.addEventListener("load", render);
 });
+
+// ===== 首頁合作夥伴 Logo 帶：可拖曳 + 緩速自動捲（滑鼠／觸控皆可直接拖）=====
+// 業主 2026-06-30：手機與桌面都用滑鼠或手指直接拖曳 logo，取代偏慢的自動跑馬燈。
+// 作法：兩條等寬複製軌（index.html 既有）＋ JS 以 scrollLeft 做無縫循環。
+// 自動緩捲（hover/拖曳時暫停）＋拖曳即時跟手＋放手慣性；尊重 reduce-motion。
+(function setupPartnerDragScroll() {
+  const marquee = document.querySelector(".partner-marquee .marquee");
+  if (!marquee) return;
+  const track = marquee.querySelector(".marquee-track");
+  if (!track) return;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const AUTO_SPEED = 0.8; // px/frame；~48px/s 的環境緩捲，拖曳可隨意加速
+
+  let loopWidth = 0;
+  const measure = () => { loopWidth = track.getBoundingClientRect().width; };
+  measure();
+  window.addEventListener("resize", measure);
+  marquee.querySelectorAll("img").forEach((img) => {
+    if (!img.complete) img.addEventListener("load", measure, { once: true });
+  });
+
+  // 安全環繞：把任意位置取模到 [0, loopWidth)，避免 scrollLeft 觸底被夾住
+  const setScroll = (x) => {
+    if (loopWidth > 0) x = ((x % loopWidth) + loopWidth) % loopWidth;
+    marquee.scrollLeft = x;
+  };
+
+  let dragging = false, hovering = false;
+  let lastX = 0, velocity = 0, moved = 0, resumeAt = 0;
+
+  const frame = (now) => {
+    if (!dragging) {
+      if (Math.abs(velocity) > 0.2) {
+        setScroll(marquee.scrollLeft - velocity); // 放手後慣性
+        velocity *= 0.93;
+      } else if (!reduceMotion && !hovering && loopWidth > 0 && now >= resumeAt) {
+        setScroll(marquee.scrollLeft + AUTO_SPEED); // 環境緩捲
+      }
+    }
+    requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+
+  marquee.addEventListener("mouseenter", () => { hovering = true; });
+  marquee.addEventListener("mouseleave", () => { hovering = false; });
+
+  marquee.addEventListener("pointerdown", (e) => {
+    dragging = true; moved = 0; velocity = 0; lastX = e.clientX;
+    marquee.classList.add("is-grabbing");
+    try { marquee.setPointerCapture(e.pointerId); } catch (_) {}
+  });
+  marquee.addEventListener("pointermove", (e) => {
+    if (!dragging) return;
+    const dx = e.clientX - lastX;
+    lastX = e.clientX;
+    velocity = dx;
+    moved += Math.abs(dx);
+    setScroll(marquee.scrollLeft - dx); // 跟手：往右拖→內容往右
+  });
+  const release = (e) => {
+    if (!dragging) return;
+    dragging = false;
+    marquee.classList.remove("is-grabbing");
+    resumeAt = performance.now() + 1500; // 互動後稍等再自動捲
+    try { marquee.releasePointerCapture(e.pointerId); } catch (_) {}
+  };
+  marquee.addEventListener("pointerup", release);
+  marquee.addEventListener("pointercancel", release);
+  // 拖曳後抑制誤觸點擊（logo 目前非連結，仍保險留著）
+  marquee.addEventListener("click", (e) => {
+    if (moved > 6) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+})();

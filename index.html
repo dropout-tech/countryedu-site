@@ -51,7 +51,7 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=7" />
 
     <!-- 影響力數據排版：只動 index.html、scope 到 .home #impact，
          桌機 4 欄「整齊排列」(同高、頂齊、不交錯)，顏色／字體沿用既有設定，刪掉這整段即可還原 -->
@@ -78,7 +78,7 @@
       .home #hero-title .kw { white-space: nowrap; }
     </style>
   </head>
-  <body class="home">
+  <body class="home hero-jp">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -96,7 +96,7 @@
           <div class="nav-item">
             <a role="button" tabindex="0" aria-haspopup="true" aria-label="我們的計畫，展開子選單">我們的計畫</a>
             <div class="nav-dropdown" aria-label="我們的計畫子選單">
-              <a href="programs.html">尋路計畫</a>
+              <a href="programs.html">大學生職涯賦能</a>
               <a href="program-corporate.html">企業新鮮人共育合作</a>
               <a href="program-educator.html">高中教師 SEL 培力</a>
             </div>
@@ -122,7 +122,6 @@
             <a role="button" tabindex="0" aria-haspopup="true" aria-label="最新與資源，展開子選單">最新與資源</a>
             <div class="nav-dropdown" aria-label="最新與資源子選單">
               <a href="news.html">最新消息</a>
-              <a href="press.html">媒體報導</a>
               <a href="resources.html">課程資源</a>
             </div>
           </div>
@@ -162,7 +161,7 @@
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開我們的計畫子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="programs.html">尋路計畫</a>
+            <a href="programs.html">大學生職涯賦能</a>
             <a href="program-corporate.html">企業新鮮人共育合作</a>
             <a href="program-educator.html">高中教師 SEL 培力</a>
           </div>
@@ -197,7 +196,6 @@
           </div>
           <div class="m-sub">
             <a href="news.html">最新消息</a>
-            <a href="press.html">媒體報導</a>
             <a href="resources.html">課程資源</a>
           </div>
         </div>
@@ -211,16 +209,6 @@
             <a href="for-companies.html">企業專區</a>
             <a href="for-donors.html">捐款人專區</a>
             <a href="for-universities.html">大專院校專區</a>
-          </div>
-        </div>
-        <div class="m-group" data-m-group>
-          <div class="m-row">
-            <a href="login.html">學習系統登入入口</a>
-          </div>
-        </div>
-        <div class="m-group" data-m-group>
-          <div class="m-row">
-            <a href="contact.html">聯絡我們</a>
           </div>
         </div>
       </nav>
@@ -243,9 +231,79 @@
             <span class="hero-blob hb-8"></span>
             <span class="hero-blob hb-9"></span>
           </div>
+          <!-- 業主示意圖直做雙變體（2026-07-03，業主確認按最新兩張示意圖直做）：
+               hero-mock-a＝圖A 線路網版、hero-mock-b＝圖B 有機色塊版。
+               由 <body> class 啟用（hero-mock-a / hero-mock-b 擇一，與 home 並列）；無 class 時兩層 display:none、原色團 hero 不受影響。
+               回退＝body class 移除；徹底回退＝刪本兩區塊＋styles.css 末段「示意圖直做雙變體」整段。 -->
+          <div class="mka-stage" aria-hidden="true">
+            <svg class="mka-lines" viewBox="0 0 760 860" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false">
+              <path d="M550,-10 V250 a52,52 0 0 1 -52,52 H350" fill="none" stroke="var(--deep)" stroke-width="2.5" />
+              <path d="M350,302 H762" fill="none" stroke="var(--deep)" stroke-width="1.25" opacity=".45" />
+              <path d="M150,870 V660 a56,56 0 0 1 56,-56 H310 a56,56 0 0 0 56,-56 V360" fill="none" stroke="var(--deep)" stroke-width="2.5" />
+              <path d="M64,480 H560" fill="none" stroke="var(--path)" stroke-width="2.5" />
+              <path d="M366,360 C366,470 318,520 318,650" fill="none" stroke="var(--wheat)" stroke-width="1.75" stroke-dasharray="6 9" opacity=".85" />
+              <path d="M212,716 L286,642" fill="none" stroke="var(--deep)" stroke-width="1.5" stroke-dasharray="4 7" opacity=".6" />
+              <circle cx="350" cy="302" r="7" fill="var(--deep)" />
+              <circle cx="366" cy="360" r="6" fill="var(--deep)" />
+              <circle cx="560" cy="480" r="8" fill="var(--path)" />
+            </svg>
+            <svg class="mka-elbow" viewBox="0 0 260 150" preserveAspectRatio="xMinYMax meet" xmlns="http://www.w3.org/2000/svg" focusable="false">
+              <path d="M10,160 V96 a44,44 0 0 1 44,-44 H262" fill="none" stroke="var(--path)" stroke-width="2" />
+            </svg>
+            <span class="mka-sq mka-sq--bl"></span>
+            <span class="mka-hatch mka-hatch--bl"></span>
+            <span class="mka-sq mka-sq--bls"></span>
+            <span class="mka-sq mka-sq--tr"></span>
+            <span class="mka-hatch mka-hatch--tr"></span>
+            <span class="mka-sq mka-sq--br"></span>
+            <span class="mka-hatch mka-hatch--br"></span>
+          </div>
+          <div class="mkb-stage" aria-hidden="true">
+            <span class="mkb-frame"></span>
+            <span class="mkb-blk mkb-blk--tr"></span>
+            <span class="mkb-blk mkb-blk--apricot"></span>
+            <span class="mkb-blk mkb-blk--butter"></span>
+            <span class="mkb-blk mkb-blk--bl"></span>
+            <span class="mkb-blk mkb-blk--bm"></span>
+            <span class="mkb-blk mkb-blk--br"></span>
+            <span class="mkb-vline"></span>
+            <span class="mkb-dots"></span>
+          </div>
+          <!-- hero-jp 高級日式版（2026-07-03 業主指示自由變換；同日再修：移除大圓與印章，
+               改色塊＋刷線＋星芒＝參考圖 1/2/3 的變體）。啟用＝body.hero-jp；與 mka/mkb 三者擇一。 -->
+          <div class="mkc-stage" aria-hidden="true">
+            <!-- 圖2 變體：奶油方塊＋左側橙直刷線 -->
+            <span class="jpc-block jpc-block--cream"></span>
+            <span class="jpc-stripes jpc-stripes--orange"></span>
+            <!-- 圖1 變體：深綠方塊＋下方綠直刷線 -->
+            <span class="jpc-block jpc-block--green"></span>
+            <span class="jpc-stripes jpc-stripes--green"></span>
+            <!-- 路徑線（業主指示加回）：綠色大圓角轉折線 drape 於奶油方塊＋節點圓＋淡延伸線（圖1），
+                 橙色水平線收端點圓＋起點綠豎點（圖2）。桌機限定，≤1160 隱藏。 -->
+            <svg class="jpc-lines" viewBox="0 0 760 860" preserveAspectRatio="xMaxYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false">
+              <path d="M 540 -20 V 200 a 96 96 0 0 1 -96 96 H 250 a 96 96 0 0 0 -96 96 V 900" fill="none" stroke="var(--deep)" stroke-width="2.5" />
+              <path d="M 444 296 H 760" fill="none" stroke="var(--deep)" stroke-width="1" opacity="0.3" />
+              <circle cx="444" cy="296" r="7" fill="var(--deep)" />
+              <path d="M 322 470 H 632" fill="none" stroke="var(--path)" stroke-width="2.5" />
+              <path d="M 322 456 V 484" fill="none" stroke="var(--deep)" stroke-width="2.5" />
+              <circle cx="632" cy="470" r="8" fill="var(--path)" />
+            </svg>
+            <!-- 圖3 變體：四角星芒（大＝深綠＋十字光軌；小＝橙、不帶軌） -->
+            <svg class="jpc-spark jpc-spark--lg" viewBox="-42 -42 184 184" xmlns="http://www.w3.org/2000/svg" focusable="false">
+              <line x1="50" y1="-40" x2="50" y2="140" stroke="var(--deep)" stroke-width="1.3" />
+              <line x1="-40" y1="50" x2="140" y2="50" stroke="var(--deep)" stroke-width="1.3" />
+              <path d="M50 4 C53 31 69 47 96 50 C69 53 53 69 50 96 C47 69 31 53 4 50 C31 47 47 31 50 4 Z" fill="var(--deep)" />
+            </svg>
+            <svg class="jpc-spark jpc-spark--sm" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" focusable="false">
+              <path d="M50 4 C53 31 69 47 96 50 C69 53 53 69 50 96 C47 69 31 53 4 50 C31 47 47 31 50 4 Z" fill="var(--path)" />
+            </svg>
+            <span class="jpc-vtext">CountryEDU Charity Foundation</span>
+            <span class="jpc-hatch"></span>
+            <span class="jpc-sq"></span>
+          </div>
           <div class="hero-content">
             <p class="eyebrow">青年尋路 × 行動賦能</p>
-            <h1 id="hero-title">在真實場域<br />賦能大學生<span class="kw">長出能力</span></h1>
+            <h1 id="hero-title">真實的場域<br />練出<span class="kw">真實的能力</span></h1>
             <p class="hero-subtitle">
               鄉育賦能大學生面對升學、職涯、創業與人生的種種選擇，透過真實情境、專案式學習與行動設計，建立能反覆使用的判斷力、選擇力與實作力。
             </p>
@@ -268,9 +326,9 @@
               <p>鄉育的初衷</p>
             </div>
             <div>
-              <h2 id="why-title">這個世代缺的是，<span class="kw">在真實場域</span>驗證自己能力的機會。</h2>
+              <h2 id="why-title">當答案變得便宜，<span class="nw"><span class="kw">判斷</span>就成了最貴的東西。</span></h2>
               <p class="lead">
-                這個時代給青年的選擇，比以往更多，也更模糊——升學、職涯、創業、跨域、地方參與，每一條路都攤在眼前，卻沒有人教他們怎麼判斷、怎麼選。
+                AI 幫你想、幫你答、幫你做決定，已經很便宜。真正貴的——是那些必須自己走一趟、一次一次練出來的判斷力、選擇力與行動力。而這個世代的青年，選項比以往更多，也更模糊，卻沒有人陪他們練這件事。
               </p>
               <div class="initiative-panel">
               <ul class="initiative-cards" aria-label="青年面對的真實困難">
@@ -313,7 +371,7 @@
             <div>
               <h2 id="method-title">我們不給答案，而是<span class="kw">賦能青年</span>長出自己的方法。</h2>
               <p class="lead">
-                面對一個真實問題，鄉育用四階段循環賦能青年——走過定義、重組、設計到行動，把「不知道怎麼開始」，一步步變成「我可以自己推進」。
+                面對一個真實問題，鄉育用四階段循環賦能大學生——走過定義、重組、設計到行動，把它練成能反覆使用、帶到任何場景的方法。
               </p>
             </div>
           </div>
@@ -322,7 +380,9 @@
               <p class="mc-eyebrow">四階段賦能方法 · Process</p>
               <h3>從問題到行動的轉化路徑</h3>
               <p class="mc-sub">鄉育的賦能核心是 PM 管理能力：管理問題、方案與推進。</p>
-              <div class="mc-wheel">
+              <div class="mc-stage">
+                <div class="mc-wheel-col">
+                  <div class="mc-wheel">
                 <svg viewBox="0 0 350 350" role="img" aria-label="四階段循環：01 定義資訊、02 重組資訊、03 設計行動、04 落地迭代，不斷循環、持續推值">
                   <defs>
                     <marker id="mcArrow" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="7" markerHeight="7" orient="auto">
@@ -358,9 +418,10 @@
                   <text class="mc-hub-t" text-anchor="middle" x="175" y="170">不斷循環</text>
                   <text class="mc-hub-t" text-anchor="middle" x="175" y="192">持續推值</text>
                 </svg>
-              </div>
-              <p class="mc-hint" aria-hidden="true">將滑鼠移到（或點擊）階段，看見每一階段的轉變</p>
-              <div class="mc-detail" aria-live="polite">
+                  </div>
+                  <p class="mc-hint" aria-hidden="true">將滑鼠移到（或點擊）階段，看見每一階段的轉變</p>
+                </div>
+                <div class="mc-detail" aria-live="polite">
                 <article class="mc-detail-item is-active" data-stage="1">
                   <p class="mc-detail-h"><span class="mc-detail-no">01</span>定義資訊<span class="mc-detail-en">Define</span></p>
                   <p class="mc-detail-sub">定義目標與關鍵關係人</p>
@@ -385,6 +446,7 @@
                   <p class="mc-detail-desc">在執行中產生新問題，循環回到定義、重組與設計，持續迭代。</p>
                   <p class="mc-detail-shift">賦能重點：從「完成任務」<b>→</b>「能持續迭代的行動力」</p>
                 </article>
+                </div>
               </div>
             </div>
 
@@ -402,7 +464,7 @@
             <div>
               <h2 id="impact-title">把學習帶出教室，<br />讓能力回到<span class="kw">真實世界</span>。</h2>
               <p class="lead">
-                我們在意的不是大學生完成一堂課，而是他能不能在下一個真實情境裡，繼續用上這些能力——這些累積，正在變成看得見的數字。
+                我們在意的不是完成一堂課，而是這些能力能不能被大學生帶進下一個真實情境——這些累積，正在變成看得見的數字。
               </p>
               <div class="impact-numbers" aria-label="鄉育影響力數據">
                 <div><strong>1,668</strong><span>累積參與大學生數</span></div>
@@ -448,7 +510,7 @@
               </div>
               <div class="aud-body">
                 <h3 class="aud-title">提供真實議題</h3>
-                <p class="aud-desc">我想用真實議題與資源，帶青年理解職場與社會。</p>
+                <p class="aud-desc">我想用真實議題與場域，和大學一起建構青年的教育現場。</p>
                 <span class="aud-cta">了解企業合作 <span class="cta-arrow" aria-hidden="true">&rarr;</span></span>
               </div>
             </a>
@@ -523,7 +585,7 @@
         <section class="section-pad final-cta" id="support" aria-labelledby="final-title">
           <div class="cta-band">
             <div>
-              <h2 id="final-title">你的支持，讓更多青年走上<span class="kw">尋路的旅程</span>。</h2>
+              <h2 id="final-title">你的支持，讓更多<span class="nw">青年</span>走上<span class="kw">尋路的旅程</span>。</h2>
               <p>每一份支持，都讓更多沒有資源的青年，有機會練習面對真實世界的判斷力與行動力。立即支持鄉育，成為他們路上的一盞燈。</p>
             </div>
             <div class="cta-band-actions">
