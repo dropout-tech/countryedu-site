@@ -4496,7 +4496,10 @@ main.wip-mode > *:not(.wip-screen) {
 }
 @media (max-width: 560px) {
   .signal-row--terms strong {
-    font-size: 1.7rem;
+    font-size: 1.55rem;
+    /* 窄螢幕（尤其 sheet 深底段左右 padding 較大）三欄塞不下 4 字 nowrap 會撐爆右緣，
+       整塊內容被推到右側溢出 → 允許斷行（2×2），配合下方 cell min-width:0 讓欄可縮 */
+    white-space: normal;
   }
 }
 
@@ -7908,10 +7911,11 @@ body.menu-open .float-dock { display: none; }
     padding: 14px 9px;
     min-height: 0;
     gap: 6px;
+    min-width: 0;   /* 讓三欄格子可縮到容器內、不撐爆右緣（配合 --terms strong 允許斷行） */
   }
-  .signal-row:not(.signal-row--ids) strong {
+  .signal-row:not(.signal-row--ids):not(.signal-row--terms) strong {
     font-size: clamp(1.25rem, 6.2vw, 1.95rem);
-    white-space: nowrap;
+    white-space: nowrap;   /* 只鎖數字型(94.6%)不斷行；--terms 四字標籤改由上方 4498 允許斷行 */
   }
   .signal-row:not(.signal-row--ids) span {
     font-size: 0.74rem;
@@ -8725,6 +8729,60 @@ body.line-frame .story-flow .section-pad:not(.sheet):not(.final-cta):not(.cta-ba
 /* ≤960px：story-layout 收單欄→關轉角引標(負位移防橫捲)；尺帶沿用對方 RWD */
 @media (max-width: 960px) {
   .line-frame .story-flow .section-grid h2::before { display: none; }
+}
+
+/* ============================================================
+   B 母題下放首頁 hero 以下（body.home，2026-07-03；改「區塊左下角」版）
+   使用者要求：把轉角＋尺帶母題放在每個區塊(section)的「左下角」。
+   作法：section::after＝一枚 L 形轉角括號(左邊直臂↑＋圓角＋底邊→)＋端點圓
+        ＋沿底邊的短刻度尺，錨在區塊左下角。section::before 是色塊/furrow(不動)，
+        改用空著的 ::after；標題自動落回原本橘底線。
+   底色實測配對比色：why 杏橙→深綠線 / method 白→橙線 / impact 深綠→亮 sun 線 /
+                    audiences 嫩葉綠→深綠線 / partners 麥穗金→深綠線；圓點多為橙。
+   守則：16 色 token、深綠底改亮線、不撞色塊 ::before、#method overflow:clip 故用正位移、
+        ≤960 關閉(手機不橫捲)。回退：刪本整段（標題橘底線自動回復）。
+   ============================================================ */
+.home .problem-section::after,
+.home #method::after,
+.home #impact::after,
+.home #audiences::after,
+.home #partners::after {
+  content: "";
+  position: absolute;
+  left: clamp(20px, 4vw, 64px);
+  bottom: 40px;
+  height: 56px;
+  z-index: 1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+.home .problem-section::after {
+  width: 140px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='56'><path d='M6,6 V40 a10,10 0 0 0 10,10 H134' fill='none' stroke='%233d5527' stroke-width='2.6' stroke-linecap='round'/><circle cx='134' cy='50' r='4.2' fill='%23f28c0a'/><path d='M26,50 V41 M40,50 V41 M54,50 V41 M68,50 V41 M82,50 V41 M96,50 V41 M110,50 V41 M124,50 V41' stroke='%233d5527' stroke-width='1.6' stroke-linecap='round'/></svg>");
+}
+.home #method::after {
+  width: 180px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='56'><path d='M6,6 V40 a10,10 0 0 0 10,10 H174' fill='none' stroke='%23f28c0a' stroke-width='2.6' stroke-linecap='round'/><circle cx='174' cy='50' r='4.2' fill='%233d5527'/><path d='M26,50 V41 M40,50 V41 M54,50 V41 M68,50 V41 M82,50 V41 M96,50 V41 M110,50 V41 M124,50 V41 M138,50 V41 M152,50 V41 M166,50 V41' stroke='%23f28c0a' stroke-width='1.6' stroke-linecap='round'/></svg>");
+}
+.home #impact::after {
+  width: 150px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='150' height='56'><path d='M6,6 V40 a10,10 0 0 0 10,10 H144' fill='none' stroke='%23fce08c' stroke-width='2.8' stroke-linecap='round'/><circle cx='144' cy='50' r='4.4' fill='%23f28c0a'/><path d='M26,50 V41 M40,50 V41 M54,50 V41 M68,50 V41 M82,50 V41 M96,50 V41 M110,50 V41 M124,50 V41 M138,50 V41' stroke='%23fce08c' stroke-width='1.8' stroke-linecap='round'/></svg>");
+}
+.home #audiences::after {
+  width: 118px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='118' height='56'><path d='M6,6 V40 a10,10 0 0 0 10,10 H112' fill='none' stroke='%233d5527' stroke-width='2.8' stroke-linecap='round'/><circle cx='112' cy='50' r='4.2' fill='%23f28c0a'/><path d='M26,50 V41 M40,50 V41 M54,50 V41 M68,50 V41 M82,50 V41 M96,50 V41' stroke='%233d5527' stroke-width='1.6' stroke-linecap='round'/></svg>");
+}
+.home #partners::after {
+  width: 190px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='190' height='56'><path d='M6,6 V40 a10,10 0 0 0 10,10 H184' fill='none' stroke='%233d5527' stroke-width='2.6' stroke-linecap='round'/><circle cx='184' cy='50' r='4.2' fill='%23f28c0a'/><path d='M26,50 V41 M40,50 V41 M54,50 V41 M68,50 V41 M82,50 V41 M96,50 V41 M110,50 V41 M124,50 V41 M138,50 V41 M152,50 V41 M166,50 V41' stroke='%233d5527' stroke-width='1.6' stroke-linecap='round'/></svg>");
+}
+@media (max-width: 960px) {
+  .home .problem-section::after,
+  .home #method::after,
+  .home #impact::after,
+  .home #audiences::after,
+  .home #partners::after { display: none; }
 }
 
 /* ============================================================
