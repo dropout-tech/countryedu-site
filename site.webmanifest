@@ -1,0 +1,10 @@
+{
+  "name": "財團法人鄉育教育基金會",
+  "short_name": "鄉育",
+  "icons": [
+    { "src": "xiangyu-favicon-mark-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "xiangyu-favicon-mark-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#4F9F1D",
+  "background_color": "#ffffff"
+}

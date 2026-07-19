@@ -1,0 +1,14 @@
+
+
+body.aud-student { --aud: var(--leaf);  --aud-strong: var(--brand-green); --aud-soft: rgba(142, 196, 87, 0.16); }
+body.aud-school  { --aud: var(--deep);  --aud-strong: var(--leaf-700);    --aud-soft: rgba(61, 85, 39, 0.09); }
+body.aud-company { --aud: var(--path);  --aud-strong: var(--sunset);      --aud-soft: rgba(242, 140, 10, 0.13); }
+body.aud-donor   { --aud: var(--sun);   --aud-strong: var(--wheat);       --aud-soft: var(--butter); }
+
+body.aud-company .button-primary {
+  background: var(--deep); color: #fff; border-color: var(--deep);
+}
+body.aud-company .button-primary:hover,
+body.aud-company .button-primary:focus-visible {
+  background: var(--leaf-700); border-color: var(--leaf-700); color: #fff;
+}

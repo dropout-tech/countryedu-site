@@ -1,0 +1,359 @@
+
+
+body.company-spine-page {
+  --company-spine-green: var(--deep);
+  --company-spine-orange: var(--path);
+  --company-spine-label: var(--sun);
+  overflow-anchor: none;
+}
+
+body.company-spine-page main.rf {
+  position: relative;
+  isolation: isolate;
+  overflow-anchor: none;
+}
+
+body.company-spine-page .rf-joint {
+  height: clamp(54px, 5.5vw, 70px);
+}
+
+body.company-spine-page .rf-joint > * {
+  visibility: hidden;
+}
+
+body.company-spine-page .rf-ribbon {
+  height: clamp(58px, 6vw, 76px);
+  background: transparent;
+}
+
+body.company-spine-page .rf-ribbon::before,
+body.company-spine-page .rf-ribbon > * {
+  display: none;
+}
+
+body.company-spine-page .rf-card .rf-dot,
+body.company-spine-page .rf-goldpath circle {
+  display: none !important;
+}
+
+body.company-spine-page .rf-hero {
+  padding-block: clamp(48px, 7vw, 88px) clamp(38px, 5vw, 64px);
+}
+
+body.company-spine-page .rf-scene:not(.rf-scene--panel) {
+  padding-block: clamp(38px, 5vw, 64px);
+}
+
+body.company-spine-page .rf-scene--panel > .rf-panel {
+  padding-block: clamp(38px, 5vw, 64px);
+}
+
+body.company-spine-page .rf-cta {
+  padding-block: clamp(40px, 5vw, 64px) clamp(54px, 6vw, 78px);
+}
+
+body.company-spine-page .company-title-accent {
+  color: var(--path);
+}
+
+body.company-spine-page .rf-scene--panel .company-title-accent,
+body.company-spine-page .rf-panel-cta .company-title-accent {
+  color: inherit;
+}
+
+body.company-spine-page .company-hl {
+  position: relative;
+  z-index: 0;
+  font-weight: 750;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+body.company-spine-page .company-hl--01 {
+  padding-inline: 0.03em;
+  box-shadow: inset 0 -0.5em 0 var(--sun);
+}
+
+body.company-spine-page .company-hl--04 {
+  margin-inline: 0.04em;
+  padding: 0.03em 0.28em 0.08em;
+  border-radius: 0.32em;
+  border-bottom: 3px solid var(--path);
+  background: var(--sun);
+  white-space: nowrap;
+}
+
+body.company-spine-page .rf-scene--panel .company-hl--01,
+body.company-spine-page .rf-panel-cta .company-hl--01 {
+  box-shadow: inset 0 -0.5em 0 var(--paper);
+}
+
+body.company-spine-page .rf-scene--panel .company-hl--04,
+body.company-spine-page .rf-panel-cta .company-hl--04 {
+  color: var(--deep);
+  border-bottom-color: var(--sunset);
+  background: var(--paper);
+}
+
+body.company-spine-page .company-hero-title {
+  white-space: nowrap;
+}
+
+@media (min-width: 921px) {
+  body.company-spine-page [aria-labelledby="company-onsite-title"] .rf-media > figure {
+    order: -1;
+  }
+}
+
+.company-spine-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.company-spine-layer svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.company-spine-base,
+.company-spine-bridge {
+  fill: none;
+  stroke: var(--company-spine-green);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.company-spine-base {
+  opacity: 0.72;
+}
+
+.company-spine-bridge {
+  opacity: 0.56;
+}
+
+.company-spine-tail {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 4px var(--path));
+}
+
+.company-spine-attach-tab {
+  fill: var(--company-spine-orange);
+  opacity: 0.88;
+}
+
+.company-spine-label-outline,
+.company-spine-label-band,
+.company-spine-label-guide {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.company-spine-label-outline {
+  stroke: var(--path);
+  stroke-width: 26;
+  opacity: 0.62;
+  filter: drop-shadow(0 3px 7px var(--line));
+}
+
+.company-spine-label-band {
+  stroke: var(--company-spine-label);
+  stroke-width: 24;
+  filter: drop-shadow(0 3px 7px var(--line));
+}
+
+.company-spine-label-guide {
+  stroke: transparent;
+  stroke-width: 1;
+}
+
+.company-spine-label-text {
+  fill: var(--deep);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 9.5px;
+  font-weight: 750;
+  letter-spacing: 1.35px;
+  dominant-baseline: middle;
+}
+
+.company-spine-dot {
+  fill: var(--company-spine-orange);
+  stroke: var(--paper);
+  stroke-width: 2.5;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 5px var(--path));
+}
+
+.company-spine-decor { opacity: 0.96; }
+.company-spine-edge-shape,
+.company-spine-accent-path { shape-rendering: geometricPrecision; }
+.company-spine-accent-path,
+.company-spine-accent-dot { vector-effect: non-scaling-stroke; }
+.company-spine-accent-dot { fill: var(--path); }
+
+.company-spine-accent-path-start { stop-color: var(--path); }
+.company-spine-accent-sunset-end { stop-color: var(--sunset); }
+.company-spine-accent-peach-start { stop-color: var(--peach); stop-opacity: 0.9; }
+.company-spine-accent-path-end { stop-color: var(--path); stop-opacity: 0.86; }
+.company-spine-accent-apricot-start { stop-color: var(--apricot); stop-opacity: 0.72; }
+.company-spine-accent-honey-end { stop-color: var(--honey); stop-opacity: 0.38; }
+
+.company-spine-fill-orange { fill: url(#company-spine-accent-orange); }
+.company-spine-fill-sunset { fill: url(#company-spine-accent-orange); }
+.company-spine-fill-peach { fill: url(#company-spine-accent-peach); }
+.company-spine-fill-soft { fill: url(#company-spine-accent-soft); }
+
+body.company-spine-page .rf-blocks {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.company-spine-pattern-bg { fill: var(--paper); }
+.company-spine-pattern-line { fill: var(--deep); }
+.company-spine-tail-stop { stop-color: var(--path); }
+.company-spine-geo-butter { fill: var(--butter); }
+.company-spine-geo-green { fill: var(--deep); }
+.company-spine-geo-orange { fill: var(--path); }
+.company-spine-geo-path { fill: var(--path); }
+.company-spine-geo-sunset { fill: var(--sunset); }
+.company-spine-geo-apricot { fill: var(--apricot); }
+.company-spine-geo-peach { fill: var(--peach); }
+.company-spine-geo-sun { fill: var(--sun); }
+.company-spine-geo-orange-soft { fill: var(--honey); }
+.company-spine-geo-green-soft { fill: var(--leaf); }
+.company-spine-geo-stripe { fill: url(#company-spine-stripes); }
+
+body.company-spine-page .rf-bleeds { display: none; }
+
+@media (max-width: 920px) {
+  .company-spine-layer {
+    z-index: 4;
+  }
+
+  .company-spine-base,
+  .company-spine-bridge {
+    stroke-width: 2;
+  }
+
+  .company-spine-tail {
+    stroke-width: 4;
+  }
+
+  .company-spine-label-outline {
+    stroke-width: 22;
+  }
+
+  .company-spine-label-band {
+    stroke-width: 20;
+  }
+
+  body.company-spine-page .rf-joint,
+  body.company-spine-page .rf-ribbon {
+    height: 48px;
+  }
+}
+
+@media (max-width: 700px) {
+
+  body.company-spine-page .rf-wrap,
+  body.company-spine-page .rf-scene--bleed .rf-col {
+    padding-inline: 32px;
+  }
+
+  body.company-spine-page .rf-scene--panel > .rf-panel,
+  body.company-spine-page .rf-cta .rf-panel-cta {
+    padding-inline: 32px;
+  }
+
+  body.company-spine-page .company-hero-title {
+    font-size: clamp(1rem, 6vw, 2.9rem);
+  }
+
+  body.company-spine-page .rf-scene--bleed .rf-tabs-m {
+    display: block;
+    position: relative;
+    height: 118px;
+    margin-inline: -32px;
+  }
+
+  body.company-spine-page .rf-scene--bleed .rf-tabs-m span {
+    position: absolute;
+    height: 54px;
+    border-radius: 19px;
+  }
+
+  body.company-spine-page .rf-scene--bleed .rf-tabs-m .t1 {
+    top: 0;
+    left: 0;
+    width: 44.8%;
+    margin-left: 0;
+    border-radius: 0 19px 19px 0;
+  }
+
+  body.company-spine-page .rf-scene--bleed .rf-tabs-m .t2 {
+    top: 64px;
+    left: 50%;
+    width: 25.6%;
+    transform: translateX(-50%);
+  }
+
+  body.company-spine-page .rf-scene--bleed .rf-tabs-m .t3 {
+    top: 0;
+    right: 0;
+    width: 38.4%;
+    margin-right: 0;
+    border-radius: 19px 0 0 19px;
+  }
+
+  body.company-spine-page .rf-hero,
+  body.company-spine-page .rf-scene:not(.rf-scene--panel) {
+    padding-block: 36px;
+  }
+
+  body.company-spine-page .rf-scene--panel > .rf-panel {
+    padding-block: 36px;
+  }
+
+  .company-spine-bridges {
+    display: none;
+  }
+
+  .company-spine-decor {
+    opacity: 0.88;
+  }
+
+  .company-spine-label-text {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .company-spine-tail,
+  .company-spine-dot,
+  .company-spine-label-outline,
+  .company-spine-label-band {
+    filter: none;
+  }
+}
+
+@media print {
+  .company-spine-layer {
+    display: none;
+  }
+}
