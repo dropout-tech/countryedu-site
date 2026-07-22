@@ -14,9 +14,11 @@
     <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/xiangyu-favicon-mark-192.png" />
     <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
     <link rel="manifest" href="assets/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="page-latest">
+  <body class="page-latest audience-spine-page spine-gentle grp-news" data-spine-route="mid" data-spine-label="PRESS">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -154,13 +156,15 @@
         </div>
       </nav>
 
-      <main id="top">
-        <section class="redirect-note" role="status">
+      <main id="top" class="rf">
+        <section class="redirect-note rf-scene" role="status">
+          <div class="rf-wrap">
           <div class="redirect-card">
             <p class="redirect-title">「媒體報導」已併入<strong>最新消息</strong></p>
             <p class="redirect-sub">歷年媒體報導現在整理在「最新消息」頁。若未自動跳轉，請點下方連結。</p>
             <a class="button-primary" href="news.html">前往最新消息 &rarr;</a>
           </div>
+        </div>
         </section>
       </main>
 
@@ -254,5 +258,6 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

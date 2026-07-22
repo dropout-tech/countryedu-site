@@ -733,3 +733,34 @@ document.querySelectorAll("[data-ig-carousel]").forEach((root) => {
   window.addEventListener("resize", queue);
   if (window.ResizeObserver) { var m = document.querySelector("main"); if (m) new ResizeObserver(queue).observe(m); }
 })();
+
+document.querySelectorAll("[data-caserail]").forEach((rail) => {
+  const track = rail.querySelector("[data-caserail-track]");
+  if (!track) return;
+  const slides = Array.from(track.children);
+  const nav = rail.querySelector("[data-caserail-nav]");
+  const prev = rail.querySelector("[data-caserail-prev]");
+  const next = rail.querySelector("[data-caserail-next]");
+  const dotsWrap = rail.querySelector("[data-caserail-dots]");
+  if (slides.length <= 1) { if (nav) nav.hidden = true; return; }
+  let idx = 0;
+  const go = (n) => {
+    idx = Math.max(0, Math.min(slides.length - 1, n));
+    track.style.transform = "translateX(-" + idx * 100 + "%)";
+    dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
+    if (prev) prev.disabled = idx === 0;
+    if (next) next.disabled = idx === slides.length - 1;
+  };
+  const dots = slides.map((_, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "rf-caserail-dot";
+    b.setAttribute("aria-label", "第 " + (i + 1) + " 筆案例");
+    b.addEventListener("click", () => go(i));
+    if (dotsWrap) dotsWrap.appendChild(b);
+    return b;
+  });
+  if (prev) prev.addEventListener("click", () => go(idx - 1));
+  if (next) next.addEventListener("click", () => go(idx + 1));
+  go(0);
+});

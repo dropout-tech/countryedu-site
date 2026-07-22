@@ -23,9 +23,11 @@
     <meta name="twitter:title" content="學習系統登入入口｜財團法人鄉育教育基金會" />
     <meta name="twitter:description" content="鄉育大學生專屬學習空間登入入口。會員制 AI 學習空間建置中，正式開放將以 email 通知已報名大學生。" />
     <meta name="twitter:image" content="https://countryedu.org.tw/assets/photos/group-banner.jpg" />
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="page-doc rspine" style="--spine-c: #f8cd5f;">
+  <body class="page-doc rspine audience-spine-page spine-gentle grp-neutral" data-spine-route="wave" data-spine-label="LOGIN" style="--spine-c: #f8cd5f;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -161,23 +163,20 @@
           </div>
         </div>
       </nav>
-      <main id="top">
-        <header class="page-header phk phk-neutral" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+      <main id="top" class="rf">
+                <section class="rf-hero rf-scene" id="rf-hero-top">
+          <div class="rf-wrap">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">學習系統登入入口</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">學習系統登入入口</h1>
-              <p class="page-header-en">Learning System Login</p>
+              <h1>學習系統登入入口</h1>
+              <p class="rf-hero-en">Learning System Login</p>
             </div>
           </div>
-        </header>
-        <section class="about-section section-pad" aria-labelledby="login-title">
+        </div>
+        </section>
+        <section class="about-section section-pad rf-scene rf-scene--panel" aria-labelledby="login-title">
+          <div class="rf-panel">
           <div class="section-grid">
             <div class="section-kicker">
               <span>01</span>
@@ -198,6 +197,7 @@
               </p>
             </div>
           </div>
+        </div>
         </section>
       </main>
       <footer class="site-footer" id="contact">
@@ -290,5 +290,6 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

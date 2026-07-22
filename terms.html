@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="page-legal rspine" style="--spine-c: #8ec457;">
+  <body class="page-legal rspine audience-spine-page spine-gentle grp-neutral" data-spine-route="straight" data-spine-label="TERMS" style="--spine-c: #8ec457;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,23 +190,20 @@
         </div>
       </nav>
 
-      <main id="top">
-        <header class="page-header phk phk-neutral" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+      <main id="top" class="rf">
+                <section class="rf-hero rf-scene" id="rf-hero-top">
+          <div class="rf-wrap">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">服務條款</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">服務條款</h1>
-              <p class="page-header-en">Terms of Service</p>
+              <h1>服務條款</h1>
+              <p class="rf-hero-en">Terms of Service</p>
             </div>
           </div>
-        </header>
-        <section class="path-section section-pad legal-doc" aria-labelledby="terms-title">
+        </div>
+        </section>
+        <section class="path-section section-pad legal-doc rf-scene rf-scene--panel" aria-labelledby="terms-title">
+          <div class="rf-panel">
           <div class="path-header">
             <div class="section-kicker">
               <span>00</span>
@@ -447,6 +446,7 @@
               <p class="node-label">本條款由本會擬訂並公告，於前列生效日起生效。如本條款與本會正式用印之書面文件有衝突，以後者為準；本會保留依法令及實際營運需要更新本條款之權利。</p>
             </div>
           </div>
+        </div>
         </section>
       </main>
 
@@ -540,5 +540,6 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="no-decor rspine" style="--spine-c: #fbb05b;">
+  <body class="no-decor rspine audience-spine-page spine-gentle grp-about" data-spine-route="mid" data-spine-label="OUR MISSION" style="--spine-c: #fbb05b;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,25 +190,19 @@
         </div>
       </nav>
 
-      <main id="top">
-        <header class="page-header phk phk-about" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+      <main id="top" class="rf">
+                <section class="rf-hero" id="rf-hero-top">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-parent">關於鄉育</span><span>›</span><span class="page-crumb-current" aria-current="page">使命願景</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">使命願景</h1>
-              <p class="page-header-en">Mission &amp; Vision</p>
+              <h1>使命<span class="company-title-accent">願景</span></h1>
+              <p class="rf-hero-en">Mission &amp; Vision</p>
             </div>
           </div>
-        </header>
+        </section>
 
-        <div class="story-layout">
-          <nav class="exit-nav" aria-label="本頁章節導覽">
+        <div class="exit-nav-col">
+        <nav class="exit-nav" aria-label="本頁章節導覽">
             <div class="exit-rail">
               <a class="exit-sign exit-sign--main" href="#top">
                 <span class="exit-eyebrow">MISSION & VISION</span>
@@ -244,37 +240,39 @@
               </a>
             </div>
           </nav>
-          <div class="story-flow">
-        <section class="about-section section-pad" aria-labelledby="vision-title">
-          <div class="large-watermark" aria-hidden="true">Vision</div>
+        </div>
+
+        <section class="about-section section-pad rf-scene" aria-labelledby="vision-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>01</span>
               <p>願景 Vision</p>
             </div>
             <div class="about-copy">
-              <h2 id="vision-title">我們想打造一個未來：<br /><span class="nw">每個大學生</span>都能為自己選擇。</h2>
+              <h2 id="vision-title">我們想打造一個未來：<br /><span class="nw company-title-accent">每個大學生</span>都能為自己選擇。</h2>
               <p>不只少數幸運者被看見。不分城鄉與家境，每個青年都握有同一套工具，會判斷、會行動。</p>
               <p>成長也看得見：學校看見成效，企業看見潛力，青年看見自己走過的路。</p>
               <p>鄉育從一所地方高中起步，逐步走進更多教室、大學與合作現場，陪每位青年長出選擇的力量。</p>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="about-section section-pad" aria-labelledby="why-title">
-          <div class="large-watermark" aria-hidden="true">Why</div>
+        <section class="about-section section-pad rf-scene rf-scene--panel" aria-labelledby="why-title">
+          <div class="rf-panel">
           <div class="section-grid">
             <div class="section-kicker">
               <span>02</span>
               <p>世代痛點 Why</p>
             </div>
             <div>
-              <h2 id="why-title">這個時代不缺資源<br />大學生卻更難<span class="nw">回答</span>：我要往哪走？</h2>
+              <h2 id="why-title">這個時代不缺資源<br />大學生卻更難<span class="nw company-title-accent">回答</span>：我要往哪走？</h2>
               <p class="lead">
-                選項很多，卻不知道怎麼比較；想法很多，卻不知道從哪裡開始。鄉育陪青年，把問題重新問對。
+                選項很多，卻不知道怎麼比較；想法很多，卻不知道從哪裡開始。鄉育陪青年，<span class="company-hl company-hl--01">把問題重新問對</span>。
               </p>
               <p class="lead">
-                這不只是個別大學生的問題。升學一結束，幾乎沒人教他們怎麼面對真實的選擇。
+                這不只是個別大學生的問題。升學一結束，幾乎沒人教他們怎麼面對<span class="company-hl company-hl--01">真實的選擇</span>。
               </p>
               <div class="signal-row signal-row--cited signal-row--tag signal-row--hl" aria-label="鄉育關注的世代課題數據">
                 <div>
@@ -297,25 +295,27 @@
                 數字背後，是真實的心聲：「很努力，卻不知道方向」「怕選錯」。
               </p>
               <p class="lead">
-                所以我們相信：與其更早做決定，青年更需要看懂自己與社會。
+                所以我們相信：與其更早做決定，青年更需要<span class="company-hl company-hl--01">看懂自己與社會</span>。
               </p>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="problem-section section-pad" aria-labelledby="mission-title">
+        <section class="problem-section section-pad rf-scene" aria-labelledby="mission-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>03</span>
               <p>使命 Mission</p>
             </div>
             <div>
-              <h2 id="mission-title"><span class="nw">鄉育</span>存在，是為了<br />陪<span class="nw">大學生</span>長出選擇的能力。</h2>
+              <h2 id="mission-title"><span class="nw company-title-accent">鄉育</span>存在，是為了陪<span class="nw company-title-accent">大學生</span><br />長出選擇的能力。</h2>
+              <div class="section-deck">
+                <h3>我們不替誰決定未來，也不催青年早做選擇。</h3>
+              </div>
               <p class="lead">
-                我們不替誰決定未來，也不催青年早做選擇。
-              </p>
-              <p class="lead">
-                每到一個路口，我們想給的不是標準答案，而是一套能一直用的能力。
+                每到一個路口，我們想給的不是標準答案，而是一套<span class="company-hl company-hl--01">能一直用的能力</span>。
               </p>
               <div class="signal-row signal-row--terms signal-row--hl" aria-label="鄉育陪青年練習的能力">
                 <div>
@@ -333,25 +333,29 @@
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="section-pad" aria-label="情境照片">
+        <section class="section-pad rf-scene rf-scene--panel" aria-label="情境照片">
+          <div class="rf-panel">
           <div class="figure-solo">
             <figure class="content-figure">
               <img src="assets/photos/lecture-hall.jpg" alt="學生齊聚講堂，專注聆聽課程與講座" loading="lazy" width="1280" height="853" />
               <figcaption>從 2021 年一所地方高中的教室起步，鄉育想把選擇的能力，交到每位青年手上。</figcaption>
             </figure>
           </div>
+        </div>
         </section>
 
-        <section class="path-section section-pad" aria-labelledby="values-title">
+        <section class="path-section section-pad rf-scene" aria-labelledby="values-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>04</span>
               <p>核心價值 Values</p>
             </div>
             <div class="about-copy">
-              <h2 id="values-title">我們相信三件事</h2>
+              <h2 id="values-title">我們相信<span class="company-title-accent">三件事</span></h2>
               <p>這三項核心價值，是鄉育陪伴青年的日常準則。</p>
               <p>每一項都從「我們相信，所以我們承諾」出發，決定我們怎麼陪青年、怎麼合作。</p>
               <div class="mission-list mission-list--badge">
@@ -376,21 +380,23 @@
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="path-section section-pad" aria-labelledby="how-title">
+        <section class="path-section section-pad rf-scene rf-scene--panel" aria-labelledby="how-title">
+          <div class="rf-panel">
           <div class="section-grid">
             <div class="section-kicker">
               <span>05</span>
               <p>教育理念 How</p>
             </div>
             <div>
-              <h2 id="how-title">不是教一套公式，而是<br />陪<span class="nw">大學生</span>長出能一直用的判斷力。</h2>
+              <h2 id="how-title">不是教一套公式，<br />而是陪<span class="nw company-title-accent">大學生</span>長出能一直用的判斷力。</h2>
               <p class="lead">
-                鄉育的課程不給標準答案，而是幫大學生打好能一直用的底層能力。
+                鄉育的課程不給標準答案，而是幫大學生打好能一直用的<span class="company-hl company-hl--01">底層能力</span>。
               </p>
               <p class="lead">
-                我們以「決策設計」為核心：把面對複雜情境、主動設計出一條選擇路徑的能力，拆成四階段方法，搭配何倫碼與國際框架，化成大學生做得到的步驟。
+                我們以「<span class="company-hl company-hl--04">決策設計</span>」為核心：把面對複雜情境、主動設計出一條選擇路徑的能力，拆成四階段方法，搭配何倫碼與國際框架，化成大學生做得到的步驟。
               </p>
               <div class="signal-row signal-row--terms signal-row--hl" aria-label="鄉育教育方法的三個原則">
                 <div>
@@ -408,40 +414,42 @@
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="about-section section-pad" aria-labelledby="taught-title">
-          <div class="large-watermark" aria-hidden="true">Taught</div>
+        <section class="about-section section-pad rf-scene" aria-labelledby="taught-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>06</span>
               <p>國際同軌 Taught</p>
             </div>
             <div>
-              <h2 id="taught-title">決策力，是可以被<span class="nw">教會</span>的能力。</h2>
+              <h2 id="taught-title">決策力，是可以被<span class="nw company-title-accent">教會</span>的能力。</h2>
               <p class="lead">
-                在美國，Alliance for Decision Education 自 2014 年起推動 K-12 決策教育，主張決策力和閱讀、數學一樣，可以被學習、隨時間長大。
+                在美國，Alliance for Decision Education 自 2014 年起推動 K-12 決策教育，主張決策力和閱讀、數學一樣，<span class="company-hl company-hl--01">可以被學習</span>、隨時間長大。
               </p>
               <p class="lead">
-                鄉育想做的，是把這套國際共識帶回台灣：整合認知科學、設計思維與決策智能，並以企業真實情境為學習場域——這在台灣幾乎還是一片空白。
+                鄉育想做的，是把這套國際共識<span class="company-hl company-hl--01">帶回台灣</span>：整合認知科學、設計思維與決策智能，並以企業真實情境為學習場域——這在台灣幾乎還是一片空白。
               </p>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="section-pad final-cta" aria-labelledby="mv-cta-title" data-exit-clear>
+        <section class="section-pad final-cta rf-scene" aria-labelledby="mv-cta-title" data-exit-clear>
+          <div class="rf-wrap">
           <div class="cta-band">
             <div>
               <h3 id="mv-cta-title">讀到這裡，你也能在<span class="nw">鄉育</span>找到自己的下一步。</h3>
-              <p>不論你是青年、學校、企業或支持者，都能從這裡走下去。先看看我們怎麼陪青年，或直接加入。</p>
+              <p>不論你是青年、學校、企業或支持者，都能從這裡走下去。<br />先看看我們怎麼陪青年，或直接加入。</p>
             </div>
             <div class="cta-band-actions">
               <a class="button-primary" href="programs.html">了解尋路計畫</a>
             </div>
           </div>
-        </section>
-          </div>
         </div>
+        </section>
       </main>
 
       <footer class="site-footer" id="contact">
@@ -534,5 +542,7 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="reframe.js?v=6" defer></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

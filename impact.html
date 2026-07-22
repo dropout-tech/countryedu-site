@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=29" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="rspine" style="--spine-c: #fbb05b;">
+  <body class="rspine audience-spine-page spine-gentle grp-impact" data-spine-route="mid" data-spine-label="OUR IMPACT" style="--spine-c: #fbb05b;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,25 +190,20 @@
         </div>
       </nav>
 
-      <main id="top">
+      <main id="top" class="rf">
 
-        <header class="page-header phk phk-impact" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+                <section class="rf-hero" id="rf-hero-top">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">影響力數據</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">影響力數據</h1>
-              <p class="page-header-en">At a Glance</p>
+              <h1>影響力數據</h1>
+              <p class="rf-hero-en">At a Glance</p>
             </div>
           </div>
-        </header>
-        <div class="story-layout">
-          <nav class="exit-nav" aria-label="本頁章節導覽">
+        </section>
+
+        <div class="exit-nav-col">
+        <nav class="exit-nav" aria-label="本頁章節導覽">
             <div class="exit-rail">
               <a class="exit-sign exit-sign--main" href="#page-title" data-exit-target="page-title">
                 <span class="exit-eyebrow">AT A GLANCE</span>
@@ -224,19 +221,23 @@
               </a>
             </div>
           </nav>
-          <div class="story-flow">
-            <section class="impact-section section-pad" aria-labelledby="page-title">
+        </div>
+
+            <section class="impact-section section-pad rf-scene" aria-labelledby="page-title">
+          <div class="rf-wrap">
               <div class="impact-layout">
                 <div>
-                  <h2 id="page-title">從地方出發，累積可被看見的教育影響力。</h2>
+                  <h2 id="page-title">從地方出發，累積可被看見的<span class="company-title-accent">教育影響力</span>。</h2>
                   <p class="lead">
-                    鄉育不以單次活動衡量成效，而是用持續累積的服務課堂、學生人次與合作夥伴，呈現尋路計畫真實的足跡。數據以歷年資料為準，並持續更新。
+                    鄉育不以單次活動衡量成效，而是用<span class="company-hl company-hl--01">持續累積</span>的服務課堂、學生人次與合作夥伴，呈現尋路計畫<span class="company-hl company-hl--01">真實的足跡</span>。數據以歷年資料為準，並持續更新。
                   </p>
                 </div>
               </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="impact-stepper section-pad" id="impact-data" data-impact-stepper aria-label="影響力四項成果數據">
+            <section class="impact-stepper section-pad rf-scene" id="impact-data" data-impact-stepper aria-label="影響力四項成果數據">
+          <div class="rf-wrap">
               <div class="istep-track">
                 <div class="istep-sticky">
                   <p class="istep-eyebrow">// 成果 IMPACT</p>
@@ -246,7 +247,7 @@
                         <span class="istep-sq" aria-hidden="true"></span>
                         <span class="istep-num">01</span>
                         <div class="istep-copy">
-                          <h2 id="stat-classes">服務課堂數</h2>
+                          <h2 id="stat-classes">服務<span class="company-title-accent">課堂數</span></h2>
                           <strong class="istep-stat">106+</strong>
                           <p>在校園與線上累積開設的課程與講座場次，把尋路方法帶進真實課堂。</p>
                         </div>
@@ -255,7 +256,7 @@
                         <span class="istep-sq" aria-hidden="true"></span>
                         <span class="istep-num">02</span>
                         <div class="istep-copy">
-                          <h2 id="stat-students">學生人次</h2>
+                          <h2 id="stat-students">學生<span class="company-title-accent">人次</span></h2>
                           <strong class="istep-stat">1,668</strong>
                           <p>歷年累積參與尋路課程與活動的學生人次，足跡橫跨多個縣市。</p>
                         </div>
@@ -264,7 +265,7 @@
                         <span class="istep-sq" aria-hidden="true"></span>
                         <span class="istep-num">03</span>
                         <div class="istep-copy">
-                          <h2 id="stat-partners">合作學校／企業</h2>
+                          <h2 id="stat-partners">合作<span class="company-title-accent">學校／企業</span></h2>
                           <strong class="istep-stat">35+</strong>
                           <p>與鄉育共備課程、提供場域、業師與資源的學校與企業夥伴。</p>
                         </div>
@@ -284,14 +285,18 @@
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="impact-section section-pad" aria-labelledby="impact-demand-title">
+            <section class="impact-section section-pad rf-scene" aria-labelledby="impact-demand-title">
+          <div class="rf-wrap">
               <div class="section-grid">
                 <div class="section-kicker"><span>05</span><p>市場訊號 Market Signal</p></div>
                 <div>
-                  <h2 id="impact-demand-title">AI 接手資料之後，<span class="nw">決策能力</span>成為最持久的優勢。</h2>
-                  <p class="lead">當技術能處理資料，企業真正需要的是能定義問題、權衡選項、做出判斷的人。這不是空話，而是攤在桌上的職場數字。</p>
+                  <h2 id="impact-demand-title">AI 接手資料之後，<span class="nw company-title-accent">決策能力</span>成為最持久的優勢。</h2>
+                  <div class="section-deck">
+                    <h3>當技術能處理資料，企業真正需要的是能定義問題、權衡選項、做出判斷的人。這不是空話，而是攤在桌上的職場數字。</h3>
+                  </div>
                   <div class="signal-row signal-row--cited signal-row--tag signal-row--hl" aria-label="決策能力在職場的價值數據">
                     <div><strong>41%</strong><span>美國職缺明確要求決策能力；電腦與數學類 68%、管理職 55%。</span><cite class="signal-source"><b>來源</b>Burning Glass Institute × Alliance for Decision Education，2025 年 11 月</cite></div>
                     <div><strong>23%</strong><span>雇主為具備決策能力的職位，提供的最高薪資溢價。</span><cite class="signal-source"><b>來源</b>Burning Glass Institute，2025 年 11 月</cite></div>
@@ -300,21 +305,22 @@
                   <p class="node-label">「當新興技術威脅自動化大量技能，決策能力依然是最持久的人類優勢。」—— Matt Sigelman，Burning Glass Institute 總裁</p>
                 </div>
               </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="program-section section-pad" data-exit-clear>
+            <section class="program-section section-pad rf-scene" data-exit-clear>
+          <div class="rf-wrap">
               <div class="cta-band">
                 <div>
                   <h3>想成為下一份成果的一部分？</h3>
-                  <p>無論是企業合作、學校共備或個人小額支持，每一份參與，都讓更多青年走上尋路的旅程。</p>
+                  <p>無論是企業合作、學校共備或個人小額支持，<br />每一份參與，都讓更多青年走上尋路的旅程。</p>
                 </div>
                 <div class="cta-band-actions">
                   <a class="button-primary" href="give.html">了解如何參與 &rarr;</a>
                 </div>
               </div>
-            </section>
-          </div>
-        </div>
+            </div>
+        </section>
       </main>
 
       <footer class="site-footer" id="contact">
@@ -407,5 +413,7 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="reframe.js?v=6" defer></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

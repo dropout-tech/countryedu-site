@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="page-legal rspine" style="--spine-c: #fdd2a6;">
+  <body class="page-legal rspine audience-spine-page spine-gentle grp-neutral" data-spine-route="straight" data-spine-label="DISCLOSURE" style="--spine-c: #fdd2a6;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,30 +190,27 @@
         </div>
       </nav>
 
-      <main id="top">
-        <header class="page-header phk phk-neutral" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+      <main id="top" class="rf">
+                <section class="rf-hero rf-scene" id="rf-hero-top">
+          <div class="rf-wrap">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">財務徵信與公開</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">財務徵信與公開</h1>
-              <p class="page-header-en">Financial Disclosure</p>
+              <h1>財務徵信與公開</h1>
+              <p class="rf-hero-en">Financial Disclosure</p>
             </div>
           </div>
-        </header>
-        <section class="path-section section-pad" aria-labelledby="disclosure-title">
+        </div>
+        </section>
+        <section class="path-section section-pad rf-scene" aria-labelledby="disclosure-title">
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>00</span>
               <p>財務徵信與公開</p>
             </div>
             <div>
-              <h2 id="disclosure-title">依法主動公開，讓<span class="nw">每一份</span>支持都被看見。</h2>
+              <h2 id="disclosure-title">依法主動公開，讓<span class="nw company-title-accent">每一份</span>支持都被看見。</h2>
               <p class="lead">作為財團法人與公益勸募團體，鄉育依《財團法人法》與《公益勸募條例》主動公開財務與勸募徵信資訊。年度報告與徵信資料正在彙整與會計查核，完成後於本頁開放下載。</p>
               <div class="signal-row signal-row--ids" aria-label="基金會基本資料">
                 <div><strong>2022&nbsp;年</strong><span>基金會成立</span></div>
@@ -252,6 +251,7 @@
               <a class="button-primary" href="contact.html">聯絡鄉育</a>
             </div>
           </div>
+        </div>
         </section>
       </main>
 
@@ -345,5 +345,7 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="reframe.js?v=6" defer></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="no-decor rspine" style="--spine-c: #8ec457;">
+  <body class="no-decor rspine audience-spine-page spine-gentle grp-about" data-spine-route="mid" data-spine-label="OUR STORY" style="--spine-c: #8ec457;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,24 +190,19 @@
         </div>
       </nav>
 
-      <main id="top">
-        <header class="page-header phk phk-about" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+      <main id="top" class="rf">
+                <section class="rf-hero" id="rf-hero-top">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-parent">關於鄉育</span><span>›</span><span class="page-crumb-current" aria-current="page">發展歷程</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">發展歷程</h1>
-              <p class="page-header-en">Our Journey</p>
+              <h1>發展<span class="company-title-accent">歷程</span></h1>
+              <p class="rf-hero-en">Our Journey</p>
             </div>
           </div>
-        </header>
-        <div class="story-layout">
-          <nav class="exit-nav" aria-label="本頁章節導覽">
+        </section>
+
+        <div class="exit-nav-col">
+        <nav class="exit-nav" aria-label="本頁章節導覽">
             <div class="exit-rail">
               <a class="exit-sign exit-sign--main" href="#page-title" data-exit-target="page-title">
                 <span class="exit-eyebrow">OUR JOURNEY</span>
@@ -218,33 +215,37 @@
               </a>
             </div>
           </nav>
-          <div class="story-flow">
-        <section class="problem-section section-pad" aria-labelledby="page-title">
+        </div>
+
+        <section class="problem-section section-pad rf-scene" aria-labelledby="page-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>緣起</span>
               <p>發展歷程 Our Journey</p>
             </div>
             <div>
-              <h2 id="page-title">看見落差，走進地方，陪青年長出選擇的力量。</h2>
+              <h2 id="page-title">看見落差，走進地方，陪青年長出<span class="company-title-accent">選擇的力量</span>。</h2>
               <p class="lead">
-                鄉育的起點，來自對台灣教育現場的長期觀察。從看見城鄉與資訊落差，到實際走進地方、陪伴大學生探索學習歷程與未來方向，鄉育一步步將理念化為課程、工作坊、校園合作與跨界行動。
+                鄉育的起點，來自對台灣教育現場的長期觀察。從看見城鄉與資訊落差，到實際<span class="company-hl company-hl--01">走進地方</span>、陪伴大學生探索學習歷程與未來方向，鄉育一步步將理念化為課程、工作坊、校園合作與<span class="company-hl company-hl--01">跨界行動</span>。
               </p>
-              <p class="lead">
-                每一個節點，都是為了讓更多孩子在資源有限的環境裡，也能看見自己、理解世界，並勇敢做出選擇。
-              </p>
+              <div class="section-deck">
+                <h3>每一個節點，都是為了讓更多孩子在資源有限的環境裡，也能看見自己、理解世界，並勇敢做出選擇。</h3>
+              </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="program-section section-pad" aria-labelledby="timeline-title">
+        <section class="program-section section-pad rf-scene rf-scene--panel" aria-labelledby="timeline-title">
+          <div class="rf-panel">
           <div class="path-header">
             <div class="section-kicker">
               <span>軌跡</span>
               <p>Milestones</p>
             </div>
             <div>
-              <h2 id="timeline-title">這些年，<span class="nw">鄉育</span><span class="nw">一步步</span>走成的路。</h2>
+              <h2 id="timeline-title">這些年，<span class="nw company-title-accent">鄉育</span><span class="nw company-title-accent">一步步</span>走成的路。</h2>
             </div>
           </div>
           <div class="journey-line is-vertical has-figures" aria-label="鄉育歷年發展軌跡">
@@ -337,18 +338,20 @@
               </figure>
             </article>
           </div>
+        </div>
         </section>
 
-        <section class="partners-section section-pad" aria-labelledby="story-cta-title" data-exit-clear>
+        <section class="partners-section section-pad rf-scene" aria-labelledby="story-cta-title" data-exit-clear>
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>下一步</span>
               <p>Next</p>
             </div>
             <div>
-              <h2 id="story-cta-title">認識了我們的故事，<span class="nw">歡迎</span>成為故事的一部分。</h2>
+              <h2 id="story-cta-title">認識了我們的故事，<span class="nw company-title-accent">歡迎</span>成為故事的一部分。</h2>
               <p class="lead">
-                鄉育的下一頁，需要更多人一起寫。無論你是大學生、學校、企業或支持者，都能在這裡找到自己的位置。
+                鄉育的下一頁，需要更多人<span class="company-hl company-hl--01">一起寫</span>。無論你是大學生、學校、企業或支持者，都能在這裡找到自己的位置。
               </p>
             </div>
           </div>
@@ -361,9 +364,8 @@
               <a class="button-primary" href="give.html">看看如何參與</a>
             </div>
           </div>
-        </section>
-          </div>
         </div>
+        </section>
       </main>
 
       <footer class="site-footer" id="contact">
@@ -456,5 +458,6 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

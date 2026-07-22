@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=29" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="page-latest rspine" style="--spine-c: #fdd2a6;">
+  <body class="page-latest rspine audience-spine-page spine-gentle grp-news" data-spine-route="mid" data-spine-label="JOIN US" style="--spine-c: #fdd2a6;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,34 +190,30 @@
         </div>
       </nav>
 
-      <main id="top">
+      <main id="top" class="rf">
 
-        <header class="page-header phk phk-news" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-              <span class="phk-b phk-b4"></span>
-            </div>
-            <div class="phk-copy">
+                <section class="rf-hero rf-scene" id="rf-hero-top">
+          <div class="rf-wrap">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-parent">媒體與資源</span><span>›</span><span class="page-crumb-current" aria-current="page">企業職缺與實習</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">企業職缺與<span class="nw">實習</span></h1>
-              <p class="page-header-en">Jobs &amp; Internships</p>
+              <h1>企業職缺與<span class="nw company-title-accent">實習</span></h1>
+              <p class="rf-hero-en">Jobs &amp; Internships</p>
             </div>
           </div>
-        </header>
-        <section class="path-section section-pad" aria-labelledby="jobs-title">
+        </div>
+        </section>
+        <section class="path-section section-pad rf-scene rf-scene--panel" aria-labelledby="jobs-title">
+          <div class="rf-panel">
           <div class="path-header">
             <div class="section-kicker">
               <span>01</span>
               <p>企業職缺與實習</p>
             </div>
             <div>
-              <h2 id="jobs-title">從課堂到職場，這裡有下一步。</h2>
+              <h2 id="jobs-title">從課堂到職場，這裡有<span class="company-title-accent">下一步</span>。</h2>
               <p class="lead">
-                這裡刊登的職缺與實習機會，由鄉育的合作與贊助企業提供——這些企業參與我們的課堂、提供真實職場經驗，也願意把機會開放給正在尋路的青年。
+                這裡刊登的職缺與實習機會，由鄉育的<span class="company-hl company-hl--01">合作與贊助企業</span>提供——這些企業參與我們的課堂、提供<span class="company-hl company-hl--01">真實職場經驗</span>，也願意把機會開放給正在尋路的青年。
               </p>
             </div>
           </div>
@@ -231,18 +229,20 @@
           <p class="node-label">
             本頁職缺資訊由合作企業提供，應徵流程、勞動條件與聘僱關係由該企業負責，鄉育不介入招募程序；本頁僅開放鄉育合作與贊助企業刊登職缺與實習資訊。
           </p>
+        </div>
         </section>
 
-        <section class="program-section section-pad" aria-labelledby="jobs-cta-title">
+        <section class="program-section section-pad rf-scene" aria-labelledby="jobs-cta-title">
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>02</span>
               <p>企業合作</p>
             </div>
             <div>
-              <h2 id="jobs-cta-title">想在這裡刊登職缺、與鄉育<span class="nw">共育</span>人才？</h2>
+              <h2 id="jobs-cta-title">想在這裡刊登職缺、與鄉育<span class="nw company-title-accent">共育</span>人才？</h2>
               <p class="lead">
-                職缺露出是鄉育企業合作權益之一。歡迎企業參與我們的課堂、提供真實職場經驗，一起陪青年走完從課堂到職場的最後一哩。
+                職缺露出是鄉育<span class="company-hl company-hl--01">企業合作權益</span>之一。歡迎企業參與我們的課堂、提供真實職場經驗，一起陪青年走完從課堂到職場的<span class="company-hl company-hl--01">最後一哩</span>。
               </p>
             </div>
           </div>
@@ -255,6 +255,7 @@
               <a class="button-primary" href="for-companies.html">前往企業專區</a>
             </div>
           </div>
+        </div>
         </section>
       </main>
 
@@ -348,5 +349,6 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

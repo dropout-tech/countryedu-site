@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=29" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="page-latest rspine" style="--spine-c: #fdd2a6;">
+  <body class="page-latest rspine audience-spine-page spine-gentle grp-news" data-spine-route="mid" data-spine-label="RESOURCES" style="--spine-c: #fdd2a6;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,34 +190,30 @@
         </div>
       </nav>
 
-      <main id="top">
+      <main id="top" class="rf">
 
-        <header class="page-header phk phk-news" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-              <span class="phk-b phk-b4"></span>
-            </div>
-            <div class="phk-copy">
+                <section class="rf-hero rf-scene" id="rf-hero-top">
+          <div class="rf-wrap">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-parent">媒體與資源</span><span>›</span><span class="page-crumb-current" aria-current="page">開放資源</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">開放資源</h1>
-              <p class="page-header-en">Open Resources</p>
+              <h1>開放<span class="company-title-accent">資源</span></h1>
+              <p class="rf-hero-en">Open Resources</p>
             </div>
           </div>
-        </header>
-        <section class="path-section section-pad" aria-labelledby="resources-title">
+        </div>
+        </section>
+        <section class="path-section section-pad rf-scene" aria-labelledby="resources-title">
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>01</span>
               <p>開放資源</p>
             </div>
             <div>
-              <h2 id="resources-title">把課堂裡用過的工具帶著走。</h2>
+              <h2 id="resources-title">把課堂裡用過的<span class="company-title-accent">工具帶著走</span>。</h2>
               <p class="lead">
-                這裡整理鄉育課程中使用與延伸的自我探索工具，以及可公開分享的簡報教材。
+                這裡整理鄉育課程中使用與延伸的<span class="company-hl company-hl--01">自我探索工具</span>，以及可公開分享的<span class="company-hl company-hl--01">簡報教材</span>。
               </p>
             </div>
           </div>
@@ -243,6 +241,7 @@
               <a class="button-primary" href="programs.html">了解尋路計畫</a>
             </div>
           </div>
+        </div>
         </section>
       </main>
 
@@ -336,5 +335,7 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="reframe.js?v=6" defer></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

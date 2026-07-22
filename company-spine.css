@@ -357,3 +357,5 @@ body.company-spine-page .rf-bleeds { display: none; }
     display: none;
   }
 }
+
+.company-spine-fill-peach { fill: var(--leaf); }
