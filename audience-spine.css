@@ -1,0 +1,328 @@
+
+
+body.audience-spine-page {
+  --company-spine-green: var(--deep);
+  --company-spine-label: var(--sun);
+  overflow-anchor: none;
+}
+
+body.aud-student.audience-spine-page { --spine-accent: var(--brand-green); --company-spine-label: var(--leaf); }
+body.aud-donor.audience-spine-page   { --spine-accent: var(--wheat);       --company-spine-label: var(--sun); }
+body.aud-school.audience-spine-page  { --spine-accent: var(--leaf-700);    --company-spine-label: var(--leaf); }
+
+body.audience-spine-page main.rf {
+  position: relative;
+  isolation: isolate;
+  overflow-anchor: none;
+}
+
+body.audience-spine-page .rf-joint { height: clamp(54px, 5.5vw, 70px); }
+body.audience-spine-page .rf-joint > * { visibility: hidden; }
+body.audience-spine-page .rf-ribbon { height: clamp(58px, 6vw, 76px); background: transparent; }
+body.audience-spine-page .rf-ribbon::before,
+body.audience-spine-page .rf-ribbon > * { display: none; }
+
+body.audience-spine-page .rf-card .rf-dot,
+body.audience-spine-page .rf-goldpath circle { display: none !important; }
+
+body.audience-spine-page .rf-hero { padding-block: clamp(48px, 7vw, 88px) clamp(38px, 5vw, 64px); }
+body.audience-spine-page .rf-scene:not(.rf-scene--panel) { padding-block: clamp(38px, 5vw, 64px); }
+body.audience-spine-page .rf-scene--panel > .rf-panel { padding-block: clamp(38px, 5vw, 64px); }
+body.audience-spine-page .rf-cta { padding-block: clamp(40px, 5vw, 64px) clamp(54px, 6vw, 78px); }
+
+body.audience-spine-page .rf-blocks {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+body.audience-spine-page .rf-bleeds { display: none; }
+
+.audience-spine-gate .company-spine-layer, 
+body.audience-spine-page .company-spine-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  pointer-events: none;
+}
+body.audience-spine-page .company-spine-layer svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+body.audience-spine-page .company-spine-base,
+body.audience-spine-page .company-spine-bridge {
+  fill: none;
+  stroke: var(--company-spine-green);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+body.audience-spine-page .company-spine-base { opacity: 0.72; }
+body.audience-spine-page .company-spine-bridge { opacity: 0.56; }
+
+body.audience-spine-page .company-spine-tail {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 4px var(--spine-accent));
+}
+
+body.audience-spine-page .company-spine-attach-tab {
+  fill: var(--spine-accent);
+  opacity: 0.88;
+}
+
+body.audience-spine-page .company-spine-label-outline,
+body.audience-spine-page .company-spine-label-band,
+body.audience-spine-page .company-spine-label-guide {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+body.audience-spine-page .company-spine-label-outline {
+  stroke: var(--spine-accent);
+  stroke-width: 26;
+  opacity: 0.62;
+  filter: drop-shadow(0 3px 7px var(--line));
+}
+body.audience-spine-page .company-spine-label-band {
+  stroke: var(--company-spine-label);
+  stroke-width: 24;
+  filter: drop-shadow(0 3px 7px var(--line));
+}
+body.audience-spine-page .company-spine-label-guide {
+  stroke: transparent;
+  stroke-width: 1;
+}
+body.audience-spine-page .company-spine-label-text {
+  fill: var(--deep);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 9.5px;
+  font-weight: 750;
+  letter-spacing: 1.35px;
+  dominant-baseline: middle;
+}
+body.audience-spine-page .company-spine-dot {
+  fill: var(--spine-accent);
+  stroke: var(--paper);
+  stroke-width: 2.5;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 5px var(--spine-accent));
+}
+body.audience-spine-page .company-spine-tail-stop { stop-color: var(--spine-accent); }
+
+body.audience-spine-page .company-spine-decor { opacity: 0.96; }
+body.audience-spine-page .company-spine-edge-shape,
+body.audience-spine-page .company-spine-accent-path { shape-rendering: geometricPrecision; }
+body.audience-spine-page .company-spine-accent-path,
+body.audience-spine-page .company-spine-accent-dot { vector-effect: non-scaling-stroke; }
+body.audience-spine-page .company-spine-accent-dot { fill: var(--spine-accent); }
+
+body.audience-spine-page .company-spine-fill-orange { fill: url(#company-spine-accent-orange); }
+body.audience-spine-page .company-spine-fill-sunset { fill: url(#company-spine-accent-orange); }
+body.audience-spine-page .company-spine-fill-peach { fill: url(#company-spine-accent-peach); }
+body.audience-spine-page .company-spine-fill-soft { fill: url(#company-spine-accent-soft); }
+
+body.aud-student .company-spine-accent-path-start { stop-color: var(--brand-green); }
+body.aud-student .company-spine-accent-sunset-end { stop-color: var(--leaf); }
+body.aud-student .company-spine-accent-peach-start { stop-color: var(--sun); stop-opacity: 0.9; }
+body.aud-student .company-spine-accent-path-end { stop-color: var(--wheat); stop-opacity: 0.86; }
+body.aud-student .company-spine-accent-apricot-start { stop-color: var(--butter); stop-opacity: 0.72; }
+body.aud-student .company-spine-accent-honey-end { stop-color: var(--honey); stop-opacity: 0.38; }
+
+body.aud-donor .company-spine-accent-path-start { stop-color: var(--wheat); }
+body.aud-donor .company-spine-accent-sunset-end { stop-color: var(--amber); }
+body.aud-donor .company-spine-accent-peach-start { stop-color: var(--leaf); stop-opacity: 0.9; }
+body.aud-donor .company-spine-accent-path-end { stop-color: var(--brand-green); stop-opacity: 0.86; }
+body.aud-donor .company-spine-accent-apricot-start { stop-color: var(--butter); stop-opacity: 0.72; }
+body.aud-donor .company-spine-accent-honey-end { stop-color: var(--honey); stop-opacity: 0.38; }
+
+body.aud-school .company-spine-accent-path-start { stop-color: var(--leaf-700); }
+body.aud-school .company-spine-accent-sunset-end { stop-color: var(--leaf); }
+body.aud-school .company-spine-accent-peach-start { stop-color: var(--sun); stop-opacity: 0.9; }
+body.aud-school .company-spine-accent-path-end { stop-color: var(--wheat); stop-opacity: 0.86; }
+body.aud-school .company-spine-accent-apricot-start { stop-color: var(--honey); stop-opacity: 0.78; }
+body.aud-school .company-spine-accent-honey-end { stop-color: var(--butter); stop-opacity: 0.4; }
+
+@media (max-width: 920px) {
+  body.audience-spine-page .company-spine-layer { z-index: 4; }
+  body.audience-spine-page .company-spine-base,
+  body.audience-spine-page .company-spine-bridge { stroke-width: 2; }
+  body.audience-spine-page .company-spine-tail { stroke-width: 4; }
+  body.audience-spine-page .company-spine-label-outline { stroke-width: 22; }
+  body.audience-spine-page .company-spine-label-band { stroke-width: 20; }
+  body.audience-spine-page .rf-joint,
+  body.audience-spine-page .rf-ribbon { height: 48px; }
+}
+
+@media (max-width: 700px) {
+
+  body.audience-spine-page .rf-wrap,
+  body.audience-spine-page .rf-scene--bleed .rf-col { padding-inline: 32px; }
+  body.audience-spine-page .rf-scene--panel > .rf-panel,
+  body.audience-spine-page .rf-cta .rf-panel-cta { padding-inline: 32px; }
+  body.audience-spine-page .rf-hero,
+  body.audience-spine-page .rf-scene:not(.rf-scene--panel) { padding-block: 36px; }
+  body.audience-spine-page .rf-scene--panel > .rf-panel { padding-block: 36px; }
+  body.audience-spine-page .company-spine-bridges { display: none; }
+  body.audience-spine-page .company-spine-decor { opacity: 0.88; }
+  body.audience-spine-page .company-spine-label-text { font-size: 8px; letter-spacing: 1px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.audience-spine-page .company-spine-tail,
+  body.audience-spine-page .company-spine-dot,
+  body.audience-spine-page .company-spine-label-outline,
+  body.audience-spine-page .company-spine-label-band { filter: none; }
+}
+
+@media print {
+  body.audience-spine-page .company-spine-layer { display: none; }
+}
+
+body.spine-gentle main {
+  position: relative;
+  isolation: isolate;
+  overflow-anchor: none;
+}
+
+body.spine-gentle .rroute,
+body.spine-gentle .rroute-over,
+body.spine-gentle .rspine-vlabel,
+body.spine-gentle .rspine-mark { display: none !important; }
+
+@media (min-width: 961px) {
+  body.spine-gentle .story-layout .exit-nav {
+    padding: 14px;
+    margin: -14px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(61, 85, 39, 0.14);
+    border-radius: 18px;
+    box-shadow: 0 6px 22px rgba(61, 85, 39, 0.08);
+  }
+}
+
+body.grp-about.audience-spine-page { --spine-accent: var(--sunset); --company-spine-label: var(--apricot); }
+body.grp-about .company-spine-accent-path-start { stop-color: var(--peach); }
+body.grp-about .company-spine-accent-sunset-end { stop-color: var(--apricot); }
+body.grp-about .company-spine-accent-peach-start { stop-color: var(--leaf); stop-opacity: 0.9; }
+body.grp-about .company-spine-accent-path-end { stop-color: var(--brand-green); stop-opacity: 0.86; }
+body.grp-about .company-spine-accent-apricot-start { stop-color: var(--butter); stop-opacity: 0.72; }
+body.grp-about .company-spine-accent-honey-end { stop-color: var(--honey); stop-opacity: 0.38; }
+
+body.grp-programs.audience-spine-page { --spine-accent: var(--leaf-700); --company-spine-label: var(--leaf); }
+body.grp-programs .company-spine-accent-path-start { stop-color: var(--leaf-700); }
+body.grp-programs .company-spine-accent-sunset-end { stop-color: var(--leaf); }
+body.grp-programs .company-spine-accent-peach-start { stop-color: var(--sun); stop-opacity: 0.9; }
+body.grp-programs .company-spine-accent-path-end { stop-color: var(--wheat); stop-opacity: 0.86; }
+body.grp-programs .company-spine-accent-apricot-start { stop-color: var(--honey); stop-opacity: 0.78; }
+body.grp-programs .company-spine-accent-honey-end { stop-color: var(--butter); stop-opacity: 0.4; }
+
+body.grp-impact.audience-spine-page { --spine-accent: var(--brand-green); --company-spine-label: var(--leaf); }
+body.grp-impact .company-spine-accent-path-start { stop-color: var(--brand-green); }
+body.grp-impact .company-spine-accent-sunset-end { stop-color: var(--leaf); }
+body.grp-impact .company-spine-accent-peach-start { stop-color: var(--wheat); stop-opacity: 0.9; }
+body.grp-impact .company-spine-accent-path-end { stop-color: var(--amber); stop-opacity: 0.86; }
+body.grp-impact .company-spine-accent-apricot-start { stop-color: var(--butter); stop-opacity: 0.72; }
+body.grp-impact .company-spine-accent-honey-end { stop-color: var(--honey); stop-opacity: 0.38; }
+
+body.grp-involve.audience-spine-page { --spine-accent: var(--wheat); --company-spine-label: var(--sun); }
+body.grp-involve .company-spine-accent-path-start { stop-color: var(--wheat); }
+body.grp-involve .company-spine-accent-sunset-end { stop-color: var(--amber); }
+body.grp-involve .company-spine-accent-peach-start { stop-color: var(--leaf); stop-opacity: 0.9; }
+body.grp-involve .company-spine-accent-path-end { stop-color: var(--brand-green); stop-opacity: 0.86; }
+body.grp-involve .company-spine-accent-apricot-start { stop-color: var(--butter); stop-opacity: 0.72; }
+body.grp-involve .company-spine-accent-honey-end { stop-color: var(--honey); stop-opacity: 0.38; }
+
+body.grp-news.audience-spine-page { --spine-accent: var(--amber); --company-spine-label: var(--sun); }
+body.grp-news .company-spine-accent-path-start { stop-color: var(--amber); }
+body.grp-news .company-spine-accent-sunset-end { stop-color: var(--sun); }
+body.grp-news .company-spine-accent-peach-start { stop-color: var(--brand-green); stop-opacity: 0.9; }
+body.grp-news .company-spine-accent-path-end { stop-color: var(--leaf); stop-opacity: 0.86; }
+body.grp-news .company-spine-accent-apricot-start { stop-color: var(--honey); stop-opacity: 0.78; }
+body.grp-news .company-spine-accent-honey-end { stop-color: var(--butter); stop-opacity: 0.4; }
+
+body.grp-neutral.audience-spine-page { --spine-accent: var(--brand-green); --company-spine-label: var(--honey); }
+body.grp-neutral .company-spine-accent-path-start { stop-color: var(--leaf); stop-opacity: 0.85; }
+body.grp-neutral .company-spine-accent-sunset-end { stop-color: var(--honey); stop-opacity: 0.6; }
+body.grp-neutral .company-spine-accent-peach-start { stop-color: var(--sun); stop-opacity: 0.8; }
+body.grp-neutral .company-spine-accent-path-end { stop-color: var(--wheat); stop-opacity: 0.7; }
+body.grp-neutral .company-spine-accent-apricot-start { stop-color: var(--honey); stop-opacity: 0.7; }
+body.grp-neutral .company-spine-accent-honey-end { stop-color: var(--butter); stop-opacity: 0.35; }
+
+body.grp-about    { --frame: var(--sunset);      --runner: var(--deep);  --aud-soft: var(--apricot); --aud: var(--apricot); --aud-strong: var(--deep); }
+body.grp-programs { --frame: var(--leaf-700);    --runner: var(--wheat); --aud-soft: var(--honey);   --aud: var(--leaf);    --aud-strong: var(--leaf-700); }
+body.grp-impact   { --frame: var(--brand-green); --runner: var(--deep);  --aud-soft: var(--honey);   --aud: var(--leaf);    --aud-strong: var(--brand-green); }
+body.grp-involve  { --frame: var(--wheat);       --runner: var(--deep);  --aud-soft: var(--butter);  --aud: var(--sun);     --aud-strong: var(--deep); }
+body.grp-news     { --frame: var(--amber);       --runner: var(--deep);  --aud-soft: var(--butter);  --aud: var(--sun);     --aud-strong: var(--deep); }
+body.grp-neutral  { --frame: var(--brand-green); --runner: var(--deep);  --aud-soft: var(--honey);   --aud: var(--leaf);    --aud-strong: var(--deep); }
+
+body.audience-spine-page .company-hl {
+  position: relative; z-index: 0; font-weight: 750;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+body.audience-spine-page .company-hl--01 { padding-inline: 0.03em; box-shadow: inset 0 -0.5em 0 var(--sun); }
+body.audience-spine-page .company-hl--04 {
+  margin-inline: 0.04em; padding: 0.03em 0.28em 0.08em; border-radius: 0.32em;
+  border-bottom: 3px solid var(--spine-accent); background: var(--sun); white-space: nowrap;
+}
+body.audience-spine-page .rf-scene--panel .company-hl--01,
+body.audience-spine-page .rf-panel-cta .company-hl--01 { box-shadow: inset 0 -0.5em 0 var(--paper); }
+body.audience-spine-page .rf-scene--panel .company-hl--04,
+body.audience-spine-page .rf-panel-cta .company-hl--04 { color: var(--deep); border-bottom-color: var(--spine-accent); background: var(--paper); }
+body.audience-spine-page .rf-lead strong, body.audience-spine-page .rf-lead b,
+body.audience-spine-page .lead strong, body.audience-spine-page .lead b {
+  font-weight: 750;
+  padding-inline: 0.03em;
+  box-shadow: inset 0 -0.5em 0 var(--sun);
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+body.audience-spine-page .rf-scene--panel .lead strong, body.audience-spine-page .rf-scene--panel .lead b,
+body.audience-spine-page .rf-scene--panel .rf-lead strong, body.audience-spine-page .rf-scene--panel .rf-lead b { box-shadow: inset 0 -0.5em 0 var(--paper); }
+
+body.audience-spine-page main.rf section.section-pad { padding-block: clamp(38px, 5vw, 64px); }
+
+body.audience-spine-page .company-spine-fill-extra { fill: url(#company-spine-accent-extra); }
+
+body.grp-about .company-spine-accent-extra-start { stop-color: var(--sun); stop-opacity: 0.92; }
+body.grp-about .company-spine-accent-extra-end { stop-color: var(--wheat); stop-opacity: 0.85; }
+body.grp-programs .company-spine-accent-extra-start { stop-color: var(--apricot); stop-opacity: 0.9; }
+body.grp-programs .company-spine-accent-extra-end { stop-color: var(--peach); stop-opacity: 0.82; }
+body.grp-impact .company-spine-accent-extra-start { stop-color: var(--apricot); stop-opacity: 0.9; }
+body.grp-impact .company-spine-accent-extra-end { stop-color: var(--peach); stop-opacity: 0.82; }
+body.grp-involve .company-spine-accent-extra-start { stop-color: var(--apricot); stop-opacity: 0.9; }
+body.grp-involve .company-spine-accent-extra-end { stop-color: var(--peach); stop-opacity: 0.82; }
+body.grp-news .company-spine-accent-extra-start { stop-color: var(--leaf); stop-opacity: 0.88; }
+body.grp-news .company-spine-accent-extra-end { stop-color: var(--brand-green); stop-opacity: 0.8; }
+body.grp-neutral .company-spine-accent-extra-start { stop-color: var(--sun); stop-opacity: 0.85; }
+body.grp-neutral .company-spine-accent-extra-end { stop-color: var(--wheat); stop-opacity: 0.75; }
+
+body.aud-student .company-spine-accent-extra-start { stop-color: var(--wheat); stop-opacity: 0.9; }
+body.aud-student .company-spine-accent-extra-end { stop-color: var(--sun); stop-opacity: 0.82; }
+body.aud-donor .company-spine-accent-extra-start { stop-color: var(--apricot); stop-opacity: 0.9; }
+body.aud-donor .company-spine-accent-extra-end { stop-color: var(--peach); stop-opacity: 0.82; }
+body.aud-school .company-spine-accent-extra-start { stop-color: var(--sun); stop-opacity: 0.9; }
+body.aud-school .company-spine-accent-extra-end { stop-color: var(--wheat); stop-opacity: 0.82; }
+
+body.grp-about    { --title-accent: var(--sunset); }
+body.grp-programs { --title-accent: var(--leaf-700); }
+body.grp-impact   { --title-accent: var(--brand-green); }
+body.grp-involve  { --title-accent: var(--path); }
+body.grp-news     { --title-accent: var(--sunset); }
+body.grp-neutral  { --title-accent: var(--brand-green); }
+body.aud-student  { --title-accent: var(--brand-green); }
+body.aud-donor    { --title-accent: var(--path); }
+body.aud-school   { --title-accent: var(--leaf-700); }
+body.audience-spine-page .company-title-accent { color: var(--title-accent, var(--path)); }
+body.audience-spine-page .rf-scene--panel .company-title-accent,
+body.audience-spine-page .rf-panel-cta .company-title-accent { color: inherit; }

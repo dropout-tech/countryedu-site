@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="rspine" style="--spine-c: #fce08c;">
+  <body class="rspine audience-spine-page spine-gentle grp-neutral" data-spine-route="wave" data-spine-label="CONTACT" style="--spine-c: #fce08c;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,24 +190,19 @@
         </div>
       </nav>
 
-      <main id="top">
-        <header class="page-header phk phk-neutral" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+      <main id="top" class="rf">
+                <section class="rf-hero" id="rf-hero-top">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">聯絡我們</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">聯絡我們</h1>
-              <p class="page-header-en">Contact</p>
+              <h1>聯絡我們</h1>
+              <p class="rf-hero-en">Contact</p>
             </div>
           </div>
-        </header>
-        <div class="story-layout">
-          <nav class="exit-nav" aria-label="本頁章節導覽">
+        </section>
+
+        <div class="exit-nav-col">
+        <nav class="exit-nav" aria-label="本頁章節導覽">
             <div class="exit-rail">
               <a class="exit-sign exit-sign--main" href="#contact-title" data-exit-target="contact-title">
                 <span class="exit-eyebrow">CONTACT</span>
@@ -218,17 +215,19 @@
               </a>
             </div>
           </nav>
-          <div class="story-flow">
-        <section class="path-section section-pad" aria-labelledby="contact-title">
+        </div>
+
+        <section class="path-section section-pad rf-scene" aria-labelledby="contact-title">
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>01</span>
               <p>聯絡我們</p>
             </div>
             <div>
-              <h2 id="contact-title">想跟我們一起為青年<span class="nw">尋路</span>？先從一封訊息開始。</h2>
+              <h2 id="contact-title">想跟我們一起為青年<span class="nw company-title-accent">尋路</span>？先從一封訊息開始。</h2>
               <p class="lead">
-                無論是企業合作、學校共備課程、捐款支持，或想為自己與孩子諮詢課程報名，歡迎透過 Email 或電話與我們聯繫。我們會在收到訊息後，由專責同仁與您聯繫，安排後續對談。
+                無論是企業合作、學校共備課程、捐款支持，或想為自己與孩子諮詢課程報名，歡迎透過 <span class="company-hl company-hl--01">Email 或電話</span>與我們聯繫。我們會在收到訊息後，由專責同仁與您聯繫，安排後續對談。
               </p>
             </div>
           </div>
@@ -260,17 +259,19 @@
               <a class="button-primary" href="give.html">查看參與方式 &rarr;</a>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="path-section section-pad" id="contact-faq" aria-labelledby="contact-faq-title">
+        <section class="path-section section-pad rf-scene" id="contact-faq" aria-labelledby="contact-faq-title">
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>02</span>
               <p>常見問題</p>
             </div>
             <div>
-              <h2 id="contact-faq-title">聯絡前，先看看這幾個常見問題</h2>
-              <p class="lead">關於聯絡與後續對談的幾個常見疑問，先在這裡說明。若有未列出的疑問，歡迎<a href="contact.html">與我們聯絡</a>。</p>
+              <h2 id="contact-faq-title">聯絡前，先看看這幾個<span class="company-title-accent">常見問題</span></h2>
+              <p class="lead">關於聯絡與後續對談的幾個<span class="company-hl company-hl--01">常見疑問</span>，先在這裡說明。若有未列出的疑問，歡迎<a href="contact.html">與我們聯絡</a>。</p>
             </div>
           </div>
           <div class="faq-list">
@@ -296,9 +297,8 @@
               <p class="faq-answer">您可以直接寄信到 <a href="mailto:support@countryedu.org.tw">support@countryedu.org.tw</a>，或撥打 <a href="tel:+886226271169">02-2627-1169</a>。若想當面討論，辦公室位於 114 台北市內湖區基湖路 1 號 4 樓之一，建議來訪前先與我們約定時間，以便安排合適的同仁接待。</p>
             </details>
           </div>
-        </section>
-          </div>
         </div>
+        </section>
       </main>
 
       <footer class="site-footer" id="contact">
@@ -391,5 +391,6 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

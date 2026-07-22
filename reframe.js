@@ -10,7 +10,7 @@
     lit.forEach(function (el) { io.observe(el); });
   }
 
-  var cards = document.querySelectorAll(".rf-card");
+  var cards = document.querySelectorAll(".rf-card, .rf-bracketstats .rbk, .rf-spinestats .sp, .mission-list article, .module-cards .module-card, .signal-row > div, .prepost-card");
   cards.forEach(function (card) {
     if (card.querySelector("svg.rf-edge")) return;
     var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -23,10 +23,12 @@
       svg.appendChild(r);
     });
     card.insertBefore(svg, card.firstChild);
-    var dot = document.createElement("span");
-    dot.className = "rf-dot";
-    dot.setAttribute("aria-hidden", "true");
-    card.appendChild(dot);
+    if (card.classList.contains("rf-card")) {
+      var dot = document.createElement("span");
+      dot.className = "rf-dot";
+      dot.setAttribute("aria-hidden", "true");
+      card.appendChild(dot);
+    }
   });
 
   function fitEdges() {
@@ -34,11 +36,12 @@
       var w = card.offsetWidth, h = card.offsetHeight;
       var svg = card.querySelector("svg.rf-edge");
       if (!svg || !w) return;
+      var rx = Math.max(0, (parseFloat(getComputedStyle(card).borderTopLeftRadius) || 19.75) - 0.75);
       svg.setAttribute("viewBox", "0 0 " + w + " " + h);
       svg.querySelectorAll("rect").forEach(function (r) {
         r.setAttribute("x", 0.75); r.setAttribute("y", 0.75);
         r.setAttribute("width", w - 1.5); r.setAttribute("height", h - 1.5);
-        r.setAttribute("rx", 19);
+        r.setAttribute("rx", rx);
       });
     });
   }

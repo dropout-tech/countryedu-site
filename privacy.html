@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="page-legal rspine" style="--spine-c: #fbb05b;">
+  <body class="page-legal rspine audience-spine-page spine-gentle grp-neutral" data-spine-route="straight" data-spine-label="PRIVACY" style="--spine-c: #fbb05b;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,23 +190,20 @@
         </div>
       </nav>
 
-      <main id="top">
-        <header class="page-header phk phk-neutral" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+      <main id="top" class="rf">
+                <section class="rf-hero rf-scene" id="rf-hero-top">
+          <div class="rf-wrap">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">隱私權與 Cookie 政策</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">隱私權與 Cookie 政策</h1>
-              <p class="page-header-en">Privacy & Cookie Policy</p>
+              <h1>隱私權與 Cookie 政策</h1>
+              <p class="rf-hero-en">Privacy & Cookie Policy</p>
             </div>
           </div>
-        </header>
-        <section class="path-section section-pad legal-doc" aria-labelledby="privacy-title">
+        </div>
+        </section>
+        <section class="path-section section-pad legal-doc rf-scene rf-scene--panel" aria-labelledby="privacy-title">
+          <div class="rf-panel">
           <div class="path-header">
             <div class="section-kicker">
               <span>00</span>
@@ -371,6 +370,7 @@
               <p class="node-label">本政策之最終條文，以基金會法律顧問正式審閱公告之版本為準。如本頁文字與正式公告版本有出入，依正式公告版本辦理。</p>
             </div>
           </div>
+        </div>
         </section>
       </main>
 
@@ -464,5 +464,6 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

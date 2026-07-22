@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="page-latest rspine" style="--spine-c: #f5b62d;">
+  <body class="page-latest rspine audience-spine-page spine-gentle grp-news" data-spine-route="mid" data-spine-label="NEWS" style="--spine-c: #f5b62d;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,30 +190,26 @@
         </div>
       </nav>
 
-      <main id="top">
+      <main id="top" class="rf">
 
-        <header class="page-header phk phk-news" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-              <span class="phk-b phk-b4"></span>
-            </div>
-            <div class="phk-copy">
+                <section class="rf-hero rf-scene" id="rf-hero-top">
+          <div class="rf-wrap">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">最新消息</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">最新消息</h1>
-              <p class="page-header-en">News &amp; Press</p>
+              <h1>最新<span class="company-title-accent">消息</span></h1>
+              <p class="rf-hero-en">News &amp; Press</p>
             </div>
           </div>
-        </header>
-        <section class="path-section section-pad" aria-labelledby="news-title">
+        </div>
+        </section>
+        <section class="path-section section-pad rf-scene" aria-labelledby="news-title">
+          <div class="rf-wrap">
           <div class="path-header">
             <div>
-              <h2 id="news-title">記錄<span class="nw">鄉育</span>的最新動態，與媒體如何看見我們。</h2>
+              <h2 id="news-title">記錄<span class="nw company-title-accent">鄉育</span>的最新動態，與媒體如何看見我們。</h2>
               <p class="lead">
-                這裡彙整<span class="nw">鄉育</span>的課程動態、合作消息，以及自 2022 年成立以來的歷年媒體報導。基金會消息可點入內文閱讀，媒體報導則連向原始報導。
+                這裡彙整<span class="nw">鄉育</span>的<span class="company-hl company-hl--01">課程動態、合作消息</span>，以及自 2022 年成立以來的<span class="company-hl company-hl--01">歷年媒體報導</span>。基金會消息可點入內文閱讀，媒體報導則連向原始報導。
               </p>
             </div>
           </div>
@@ -328,15 +326,7 @@
               </a></li>
             </ul>
           </div>
-          <div class="cta-band">
-            <div>
-              <h3>媒體採訪與報導邀約</h3>
-              <p>歡迎媒體朋友與我們聯繫，索取新聞稿、影像素材或安排採訪；也歡迎追蹤<span class="nw">鄉育</span>社群，掌握最新動態。</p>
-            </div>
-            <div class="cta-band-actions">
-              <a class="button-primary" href="contact.html">聯絡我們</a>
-            </div>
-          </div>
+        </div>
         </section>
       </main>
 
@@ -430,5 +420,6 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

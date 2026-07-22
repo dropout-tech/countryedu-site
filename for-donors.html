@@ -48,9 +48,12 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="theme-tokens.css?v=1" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="rspine" style="--spine-c: #fbb05b;">
+  <body class="aud-donor audience-spine-page" data-spine-label="FOR DONORS">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,213 +191,176 @@
         </div>
       </nav>
 
-      <main id="top">
+      <main id="top" class="rf">
 
-        <div class="rroute" aria-hidden="true"></div>
-        <div class="rroute-over" aria-hidden="true"></div>
-
-        <header class="page-header phk phk-audiences" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-              <span class="phk-b phk-b4"></span>
-            </div>
-            <div class="phk-copy">
-              <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">捐款人專區</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">捐款人專區</h1>
-              <p class="page-header-en">For Donors</p>
-            </div>
+        <div class="exit-nav-col">
+        <nav class="exit-nav" aria-label="本頁章節導覽">
+          <div class="exit-rail">
+            <a class="exit-sign exit-sign--main" href="#rf-hero-top" data-exit-target="rf-hero-top">
+              <span class="exit-eyebrow">FOR DONORS</span>
+              <span class="exit-name">捐款人專區</span>
+            </a>
+            <a class="exit-sign" href="#donor-change-title" data-exit-target="donor-change-title">
+              <span class="exit-tag">STOP 01</span>
+              <span class="exit-name">學生故事與成效</span>
+              <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
+            </a>
+            <a class="exit-sign" href="#usage-title" data-exit-target="usage-title">
+              <span class="exit-tag">STOP 02</span>
+              <span class="exit-name">捐款用途</span>
+              <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
+            </a>
+            <a class="exit-sign" href="#donor-how-title" data-exit-target="donor-how-title">
+              <span class="exit-tag">STOP 03</span>
+              <span class="exit-name">捐款方式</span>
+              <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
+            </a>
+            <a class="exit-sign" href="#donor-faq-title" data-exit-target="donor-faq-title">
+              <span class="exit-tag">STOP 04</span>
+              <span class="exit-name">常見問題</span>
+              <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
+            </a>
           </div>
-        </header>
-        <div class="story-layout">
-          <nav class="exit-nav" aria-label="本頁章節導覽">
-            <div class="exit-rail">
-              <a class="exit-sign exit-sign--main" href="#donor-intro-title" data-exit-target="donor-intro-title">
-                <span class="exit-eyebrow">FOR DONORS</span>
-                <span class="exit-name">捐款人專區</span>
-              </a>
-              <a class="exit-sign" href="#donor-change-title" data-exit-target="donor-change-title">
-                <span class="exit-tag">STOP 01</span>
-                <span class="exit-name">學生故事與成效</span>
-                <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
-              </a>
-              <a class="exit-sign" href="#usage-title" data-exit-target="usage-title">
-                <span class="exit-tag">STOP 02</span>
-                <span class="exit-name">捐款用途</span>
-                <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
-              </a>
-              <a class="exit-sign" href="#donor-how-title" data-exit-target="donor-how-title">
-                <span class="exit-tag">STOP 03</span>
-                <span class="exit-name">捐款方式</span>
-                <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
-              </a>
-              <a class="exit-sign" href="#donor-faq-title" data-exit-target="donor-faq-title">
-                <span class="exit-tag">STOP 04</span>
-                <span class="exit-name">常見問題</span>
-                <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
-              </a>
-            </div>
-          </nav>
-          <div class="story-flow">
-        <section class="problem-section section-pad" aria-labelledby="donor-intro-title">
-          <div class="section-grid">
-            <div class="section-kicker">
-              <span>01</span>
-              <p>給支持者</p>
-            </div>
+        </nav>
+        </div>
+
+        <section class="rf-hero" id="rf-hero-top">
+          <div class="rf-wrap">
             <div>
-              <h2 id="donor-intro-title">你的支持，讓更多<span class="nw">青年</span>長出選擇的力量。</h2>
-              <p class="lead">
-                每一份小額捐款，都會成為某位地方青年走上尋路旅程的入場券。鄉育不替青年決定未來，而是陪他們長出在升學、就業與人生選擇中，能反覆使用的判斷與行動能力——你的支持，讓更多地方青年有機會被陪伴、被看見。
-              </p>
-              <div class="signal-row signal-row--hl" aria-label="鄉育服務概況">
-                <div>
-                  <strong>1,668</strong>
-                  <span>累積陪伴的青年</span>
-                </div>
-                <div>
-                  <strong>35+</strong>
-                  <span>合作高中與大專院校</span>
-                </div>
-                <div>
-                  <strong>12</strong>
-                  <span>已合作縣市</span>
-                </div>
-              </div>
-              <p><a class="button-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">我想立即捐款</a></p>
+              <nav class="rf-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a> › <b>捐款人專區</b></nav>
+              <h1>你的支持，讓更多<span class="nw company-title-accent">青年</span>長出選擇的力量。</h1>
+              <p class="rf-hero-en">For Donors</p>
+              <p class="rf-lead">每一份小額捐款，都會成為某位地方青年走上尋路旅程的<span class="company-hl company-hl--01">入場券</span>。鄉育不替青年決定未來，而是陪他們長出在升學、就業與人生選擇中，能反覆使用的<span class="company-hl company-hl--01">判斷與行動能力</span>——你的支持，讓更多地方青年有機會被陪伴、被看見。</p>
+              <div class="rf-hero-actions"><a class="button-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">我想立即捐款</a></div>
             </div>
+            <div class="rf-blocks" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
           </div>
         </section>
 
-        <section class="section-pad" aria-label="情境照片">
-          <div class="figure-solo">
-            <figure class="content-figure">
+        <div class="rf-joint" aria-hidden="true"><i></i><b></b><i></i></div>
+
+        <section class="rf-scene rf-scene--panel" aria-labelledby="donor-change-title">
+          <div class="rf-panel">
+            <p class="rf-eyebrow">Stories・學生故事與早期成效</p>
+            <h2 id="donor-change-title">青年的改變正在發生，<span class="company-title-accent">早期成效</span>這樣被看見。</h2>
+            <p class="rf-lead">你的捐款轉化為<span class="company-hl company-hl--01">可被追蹤的教育影響力</span>。透過<span class="company-hl company-hl--01">前後測、課程紀錄與專案作品</span>，青年的成長被一筆筆記錄下來——這些是你支持後，最早能看見的早期成效。</p>
+            <div class="rf-bracketstats" aria-label="鄉育服務概況">
+              <div class="rbk rbk1 c-tl">
+                <div class="rbk-in">
+                  <div class="rbk-num">1,668</div>
+                  <p class="rbk-lbl">累積陪伴的青年</p>
+                </div>
+              </div>
+              <div class="rbk rbk2 c-tr">
+                <div class="rbk-in">
+                  <div class="rbk-num">35+</div>
+                  <p class="rbk-lbl">合作高中與大專院校</p>
+                </div>
+              </div>
+              <div class="rbk rbk3 c-br">
+                <div class="rbk-in">
+                  <div class="rbk-num">12</div>
+                  <p class="rbk-lbl">已合作縣市</p>
+                </div>
+              </div>
+            </div>
+            <p class="node-label">完整的青年學習歷程與真實故事，請見 <a href="outcomes.html">學生改變故事</a>。</p>
+          </div>
+        </section>
+
+        <section class="rf-scene" aria-label="情境照片">
+          <div class="rf-wrap">
+            <figure class="content-figure" data-spine-bridge>
               <img src="assets/photos/mentor-dialogue.jpg" alt="鄉育導師與青年圍坐座談，專注聆聽彼此" loading="lazy" width="1280" height="853" />
               <figcaption>你的支持化為一次次真實的陪伴對話——讓更多地方青年被看見、被陪伴。</figcaption>
             </figure>
           </div>
         </section>
 
-        <section class="about-section section-pad" aria-labelledby="donor-change-title">
-          <div class="large-watermark" aria-hidden="true">Stories</div>
-          <div class="section-grid">
-            <div class="section-kicker">
-              <span>02</span>
-              <p>學生故事與早期成效</p>
+        <div class="rf-joint" aria-hidden="true"><i></i><b></b><i></i></div>
+
+        <section class="rf-scene" aria-labelledby="usage-title">
+          <div class="rf-wrap">
+            <p class="rf-eyebrow">Usage・捐款用途</p>
+            <h2 id="usage-title">你的每一筆<span class="nw company-title-accent">捐款</span>，這樣被使用。</h2>
+            <p class="rf-lead">捐款主要投入<span class="company-hl company-hl--01">三個方向</span>，讓資源真正落在青年的學習與成長上。</p>
+            <div class="usage-diagram" role="img" aria-label="捐款用途簡圖：一筆捐款投入 地方青年培力、公益線上課程、累積成長證據 三個用途">
+              <div class="usage-source">一筆捐款</div>
+              <ul class="usage-uses">
+                <li><strong>地方青年培力</strong><span>支持偏鄉與非都會青年參與 16 週尋路課程</span></li>
+                <li><strong>公益線上課程</strong><span>製作可重複使用、對外公開的課程資源</span></li>
+                <li><strong>累積成長證據</strong><span>前後測、作品與評量，讓每一份成長被看見</span></li>
+              </ul>
             </div>
-            <div class="about-copy">
-              <h2 id="donor-change-title">青年的改變正在發生，早期成效這樣被看見。</h2>
-              <p>
-                你的捐款轉化為可被追蹤的教育影響力。透過前後測、課程紀錄與專案作品，青年的成長被一筆筆記錄下來——這些是你支持後，最早能看見的早期成效。
-              </p>
-              <p class="node-label">完整的青年學習歷程與真實故事，請見 <a href="outcomes.html">學生改變故事</a>。</p>
+            <p class="node-label">用途比例依各年度方案而定，實際運用情形將於年度報告中公開。</p>
+          </div>
+        </section>
+
+        <section class="rf-scene rf-scene--panel" aria-labelledby="donor-how-title">
+          <div class="rf-panel">
+            <p class="rf-eyebrow">Support・捐款方式</p>
+            <h2 id="donor-how-title">選擇一個適合你的<span class="nw company-title-accent">方式</span>，一起支持<span class="nw company-title-accent">青年</span>尋路。</h2>
+            <p class="rf-lead">無論是<span class="company-hl company-hl--01">單筆小額或定期定額</span>，每一份支持都會回到地方青年的<span class="company-hl company-hl--01">培力現場</span>。線上捐款已開放，點下方按鈕即可前往線上捐款頁，選擇單筆或設定定期定額完成支持。</p>
+            <div class="mission-list mission-list--badge badge--forest-sun">
+              <article>
+                <span>01</span>
+                <h3>單筆小額捐款</h3>
+                <p>點下方「我想小額捐款」即可在線上完成一次性的小額捐款，支持鄉育的青年培力工作；若有其他支持方向想討論，也歡迎來信，由團隊協助後續。</p>
+              </article>
+              <article>
+                <span>02</span>
+                <h3>定期定額支持</h3>
+                <p>線上捐款頁已開放定期定額：在捐款頁切換到「定期定額」，即可設定固定金額，長期穩定地支持鄉育的青年培力工作。</p>
+              </article>
+              <article>
+                <span>03</span>
+                <h3>捐款收據與報稅</h3>
+                <p>鄉育全面採用電子收據，於隔年年初統一上傳國稅局申報，原則上不主動寄發紙本；需紙本者可於捐款時備註收件地址。</p>
+              </article>
             </div>
           </div>
         </section>
 
-        <section class="about-section section-pad" aria-labelledby="usage-title">
-          <div class="section-grid">
-            <div class="section-kicker">
-              <span>03</span>
-              <p>捐款用途</p>
-            </div>
-            <div>
-              <h2 id="usage-title">你的每一筆<span class="nw">捐款</span>，這樣被使用。</h2>
-              <p class="lead">捐款主要投入三個方向，讓資源真正落在青年的學習與成長上。</p>
-              <div class="usage-diagram" role="img" aria-label="捐款用途簡圖：一筆捐款投入 地方青年培力、公益線上課程、累積成長證據 三個用途">
-                <div class="usage-source">一筆捐款</div>
-                <ul class="usage-uses">
-                  <li><strong>地方青年培力</strong><span>支持偏鄉與非都會青年參與 16 週尋路課程</span></li>
-                  <li><strong>公益線上課程</strong><span>製作可重複使用、對外公開的課程資源</span></li>
-                  <li><strong>累積成長證據</strong><span>前後測、作品與評量，讓每一份成長被看見</span></li>
-                </ul>
-              </div>
-              <p class="node-label">用途比例依各年度方案而定，實際運用情形將於年度報告中公開。</p>
+        <div class="rf-joint" aria-hidden="true"><i></i><b></b><i></i></div>
+
+        <section class="rf-scene" id="donor-faq" aria-labelledby="donor-faq-title">
+          <div class="rf-wrap">
+            <p class="rf-eyebrow">FAQ・常見問題</p>
+            <h2 id="donor-faq-title">關於支持<span class="nw company-title-accent">鄉育</span>，你可能想知道的事。</h2>
+            <p class="rf-lead">這裡先回答支持者最常問的幾個問題；更完整的捐款操作說明，請見<a href="give.html#faq-title">完整捐款常見問題</a>。若有未列出的疑問，歡迎<a href="contact.html">與我們聯絡</a>。</p>
+            <div class="faq-list">
+              <details class="faq-item">
+                <summary>
+                  <span>可以開立收據、用來報稅嗎？</span>
+                  <span class="faq-mark" aria-hidden="true"></span>
+                </summary>
+                <p class="faq-answer">可以。鄉育可依法開立捐款收據、供綜合所得稅列舉扣除。為響應環保，鄉育全面採用電子收據，於隔年年初統一上傳國稅局申報，原則上不主動寄發紙本；若需紙本收據，請於捐款時備註收件地址。</p>
+              </details>
+              <details class="faq-item">
+                <summary>
+                  <span>可以設定定期定額嗎？</span>
+                  <span class="faq-mark" aria-hidden="true"></span>
+                </summary>
+                <p class="faq-answer">可以。鄉育的線上捐款頁同時提供單筆與定期定額——點下方按鈕前往後，切換到「定期定額」即可設定固定金額，長期穩定地支持青年尋路。</p>
+              </details>
+              <details class="faq-item">
+                <summary>
+                  <span>可以指定捐款用途嗎？</span>
+                  <span class="faq-mark" aria-hidden="true"></span>
+                </summary>
+                <p class="faq-answer">小額捐款主要會投入基金會整體的青年培力工作，由我們依當下需求做最合適的運用，讓每一份心意都用在刀口上。若你有特定的支持方向想討論，歡迎<a href="contact.html">來信與我們聊聊</a>，由團隊協助後續安排。</p>
+              </details>
             </div>
           </div>
         </section>
 
-        <section class="program-section section-pad" aria-labelledby="donor-how-title">
-          <div class="section-grid">
-            <div class="section-kicker">
-              <span>04</span>
-              <p>捐款方式</p>
-            </div>
-            <div>
-              <h2 id="donor-how-title">選擇一個適合你的<span class="nw">方式</span>，一起支持<span class="nw">青年</span>尋路。</h2>
-              <p class="lead">
-                無論是單筆小額或定期定額，每一份支持都會回到地方青年的培力現場。線上捐款已開放，點下方按鈕即可前往線上捐款頁，選擇單筆或設定定期定額完成支持。
-              </p>
-              <div class="mission-list mission-list--badge badge--forest-sun">
-                <article>
-                  <span>01</span>
-                  <h3>單筆小額捐款</h3>
-                  <p>點下方「我想小額捐款」即可在線上完成一次性的小額捐款，支持鄉育的青年培力工作；若有其他支持方向想討論，也歡迎來信，由團隊協助後續。</p>
-                </article>
-                <article>
-                  <span>02</span>
-                  <h3>定期定額支持</h3>
-                  <p>線上捐款頁已開放定期定額：在捐款頁切換到「定期定額」，即可設定固定金額，長期穩定地支持鄉育的青年培力工作。</p>
-                </article>
-                <article>
-                  <span>03</span>
-                  <h3>捐款收據與報稅</h3>
-                  <p>鄉育全面採用電子收據，於隔年年初統一上傳國稅局申報，原則上不主動寄發紙本；需紙本者可於捐款時備註收件地址。</p>
-                </article>
-              </div>
-              <div class="cta-band">
-                <div>
-                  <h3>一起讓更多青年走上尋路的旅程</h3>
-                  <p>你的每一份支持，都讓青年多一個長出選擇能力的機會。歡迎來信開始小額捐款，或先深入了解鄉育的教育影響力。</p>
-                </div>
-                <div class="cta-band-actions">
-                  <a class="button-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">我想小額捐款</a>
-                </div>
-              </div>
-            </div>
+        <section class="rf-cta" aria-labelledby="donor-cta-title">
+          <div class="rf-panel-cta">
+            <h2 id="donor-cta-title">一起讓更多青年走上<span class="company-title-accent">尋路的旅程</span></h2>
+            <p>你的每一份支持，都讓青年多一個長出選擇能力的機會。歡迎來信開始小額捐款，或先深入了解鄉育的教育影響力。</p>
+            <div class="rf-hero-actions"><a class="button-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">我想小額捐款</a></div>
           </div>
         </section>
-
-        <section class="problem-section section-pad" id="donor-faq" aria-labelledby="donor-faq-title">
-          <div class="section-grid">
-            <div class="section-kicker">
-              <span>05</span>
-              <p>常見問題</p>
-            </div>
-            <div>
-              <h2 id="donor-faq-title">關於支持<span class="nw">鄉育</span>，你可能想知道的事。</h2>
-              <p class="lead">這裡先回答支持者最常問的幾個問題；更完整的捐款操作說明，請見<a href="give.html#faq-title">完整捐款常見問題</a>。若有未列出的疑問，歡迎<a href="contact.html">與我們聯絡</a>。</p>
-            </div>
-          </div>
-          <div class="faq-list">
-            <details class="faq-item">
-              <summary>
-                <span>可以開立收據、用來報稅嗎？</span>
-                <span class="faq-mark" aria-hidden="true"></span>
-              </summary>
-              <p class="faq-answer">可以。鄉育可依法開立捐款收據、供綜合所得稅列舉扣除。為響應環保，鄉育全面採用電子收據，於隔年年初統一上傳國稅局申報，原則上不主動寄發紙本；若需紙本收據，請於捐款時備註收件地址。</p>
-            </details>
-            <details class="faq-item">
-              <summary>
-                <span>可以設定定期定額嗎？</span>
-                <span class="faq-mark" aria-hidden="true"></span>
-              </summary>
-              <p class="faq-answer">可以。鄉育的線上捐款頁同時提供單筆與定期定額——點下方按鈕前往後，切換到「定期定額」即可設定固定金額，長期穩定地支持青年尋路。</p>
-            </details>
-            <details class="faq-item">
-              <summary>
-                <span>可以指定捐款用途嗎？</span>
-                <span class="faq-mark" aria-hidden="true"></span>
-              </summary>
-              <p class="faq-answer">小額捐款主要會投入基金會整體的青年培力工作，由我們依當下需求做最合適的運用，讓每一份心意都用在刀口上。若你有特定的支持方向想討論，歡迎<a href="contact.html">來信與我們聊聊</a>，由團隊協助後續安排。</p>
-            </details>
-          </div>
-        </section>
-          </div>
-        </div>
       </main>
 
       <footer class="site-footer" id="contact">
@@ -487,5 +453,7 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="reframe.js?v=6" defer></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

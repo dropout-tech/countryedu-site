@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="page-latest rspine" style="--spine-c: #fce08c;">
+  <body class="page-latest rspine audience-spine-page spine-gentle grp-news" data-spine-route="mid" data-spine-label="NEWS" style="--spine-c: #fce08c;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,23 +190,18 @@
         </div>
       </nav>
 
-      <main id="top">
-        <header class="page-header phk phk-news" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-              <span class="phk-b phk-b4"></span>
-            </div>
-            <div class="phk-copy">
+      <main id="top" class="rf">
+                <section class="rf-hero rf-scene" id="rf-hero-top">
+          <div class="rf-wrap">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><a href="news.html">最新消息</a><span>›</span><span class="page-crumb-current" aria-current="page">消息內文頁</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">消息內文頁・版面示意</h1>
-              <p class="page-header-en">Article Sample</p>
+              <h1>消息內文頁・版面示意</h1>
+              <p class="rf-hero-en">Article Sample</p>
             </div>
           </div>
-        </header>
+        </div>
+        </section>
 
         <article class="article section-pad">
           <p class="article__notice">本頁是「最新消息」單篇內文的<strong>版面示意</strong>。實際消息由基金會提供後，會以相同版型置換標題、日期、照片與內文；照片放在內文頁（列表頁不放縮圖）。</p>
@@ -213,7 +210,7 @@
             <span class="post-row__tag tag--sample">內文範例</span>
             <time class="article__date">版面示意・日期待補</time>
           </div>
-          <h2 class="article__title">消息標題會顯示在這裡，呈現一則<span class="nw">鄉育</span>消息的完整內文</h2>
+          <h2 class="article__title">消息標題會顯示在這裡，呈現一則<span class="nw company-title-accent">鄉育</span>消息的完整內文</h2>
 
           <figure class="article__media">
             <img src="assets/photos/lecture-hall.jpg" alt="鄉育課程現場示意照片" loading="eager" />
@@ -240,7 +237,8 @@
           </a>
         </article>
 
-        <section class="program-section section-pad">
+        <section class="program-section section-pad rf-scene">
+          <div class="rf-wrap">
           <div class="cta-band">
             <div>
               <h3>想掌握<span class="nw">鄉育</span>的最新動態？</h3>
@@ -250,6 +248,7 @@
               <a class="button-primary" href="contact.html">聯絡鄉育團隊</a>
             </div>
           </div>
+        </div>
         </section>
       </main>
 
@@ -343,5 +342,6 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

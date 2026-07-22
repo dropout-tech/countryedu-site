@@ -49,9 +49,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="rspine" style="--spine-c: #f8cd5f;">
+  <body class="rspine audience-spine-page spine-gentle grp-about" data-spine-route="mid" data-spine-label="OUR APPROACH" style="--spine-c: #f8cd5f;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -189,24 +191,19 @@
         </div>
       </nav>
 
-      <main id="top">
-        <header class="page-header phk phk-about" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+      <main id="top" class="rf">
+                <section class="rf-hero" id="rf-hero-top">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-parent">關於鄉育</span><span>›</span><span class="page-crumb-current" aria-current="page">教育方法與理念</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">教育方法與理念</h1>
-              <p class="page-header-en">Decision Design</p>
+              <h1>教育方法與<span class="company-title-accent">理念</span></h1>
+              <p class="rf-hero-en">Decision Design</p>
             </div>
           </div>
-        </header>
-        <div class="story-layout">
-          <nav class="exit-nav" aria-label="本頁章節導覽">
+        </section>
+
+        <div class="exit-nav-col">
+        <nav class="exit-nav" aria-label="本頁章節導覽">
             <div class="exit-rail">
               <a class="exit-sign exit-sign--main" href="#approach-intro-title" data-exit-target="approach-intro-title">
                 <span class="exit-eyebrow">OUR APPROACH</span>
@@ -244,17 +241,19 @@
               </a>
             </div>
           </nav>
-          <div class="story-flow">
-        <section class="problem-section section-pad" aria-labelledby="approach-intro-title">
+        </div>
+
+        <section class="problem-section section-pad rf-scene" aria-labelledby="approach-intro-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>00</span>
               <p>理念 Philosophy</p>
             </div>
             <div>
-              <h2 id="approach-intro-title">不是教一套固定公式，而是陪<span class="nw">大學生</span>長出能反覆使用的判斷力。</h2>
+              <h2 id="approach-intro-title">不是教一套固定公式，<br />而是陪<span class="nw company-title-accent">大學生</span>長出能反覆使用的判斷力。</h2>
               <p class="lead">
-                鄉育的課程價值，不在於給出標準答案，而是讓大學生建立一套能在升學、就業、創業與人生選擇中反覆使用的底層能力。我們把這套能力稱為決策設計（Decision Design）——面對定義不清、沒有單一正解的情境，不是把問題當麻煩去消除，而是主動設計出一條屬於自己的選擇路徑；搭配何倫碼自我探索與多套國際框架，把抽象的能力，轉譯成大學生看得懂、做得到的方法。
+                鄉育的課程價值，不在於給出標準答案，而是讓大學生建立一套能在升學、就業、創業與人生選擇中反覆使用的<span class="company-hl company-hl--01">底層能力</span>。我們把這套能力稱為<span class="company-hl company-hl--04">決策設計</span>（Decision Design）——面對定義不清、沒有單一正解的情境，不是把問題當麻煩去消除，而是主動設計出一條屬於自己的選擇路徑；搭配何倫碼自我探索與多套國際框架，把抽象的能力，轉譯成大學生看得懂、做得到的方法。
               </p>
               <div class="signal-row signal-row--terms signal-row--hl" aria-label="鄉育教育方法的三個原則">
                 <div>
@@ -272,28 +271,31 @@
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="section-pad" aria-label="情境照片">
+        <section class="section-pad rf-scene rf-scene--panel" aria-label="情境照片">
+          <div class="rf-panel">
           <div class="figure-solo">
             <figure class="content-figure">
               <img src="assets/photos/design-thinking.jpg" alt="兩位學員一起研究模型與設計圖，討論解決方案" loading="lazy" width="1280" height="853" />
               <figcaption>未來職場真正稀缺的，是能定義問題、整合資源、把方案設計出來的人。</figcaption>
             </figure>
           </div>
+        </div>
         </section>
 
-        <section class="about-section section-pad" aria-labelledby="why-pm-title">
-          <div class="large-watermark" aria-hidden="true">Design</div>
+        <section class="about-section section-pad rf-scene" aria-labelledby="why-pm-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>01</span>
               <p>為什麼是決策設計</p>
             </div>
             <div>
-              <h2 id="why-pm-title">AI 世代要的，不是會答題的人——是能<span class="nw">定義問題</span>、整合資源、做出判斷的人。</h2>
+              <h2 id="why-pm-title">AI 世代要的，不是會答題的人——<br />是能<span class="nw company-title-accent">定義問題</span>、整合資源、做出判斷的人。</h2>
               <p class="lead">
-                AI 能替你想、替你答，這件事已經是常態。真正難以外包的，是判斷、是行動、是在真實場域裡練出來的手感——這一段路，AI 沒辦法替你走。鄉育把決策設計視為大學生走這一段路的核心能力：當 AI 能處理資料，人真正該練的，是決定要做什麼、以及這個決定如何影響未來。
+                AI 能替你想、替你答，這件事已經是常態。真正難以外包的，<span class="company-hl company-hl--01">是判斷、是行動</span>、是在<span class="company-hl company-hl--01">真實場域裡練出來的手感</span>——這一段路，AI 沒辦法替你走。鄉育把決策設計視為大學生走這一段路的核心能力：當 AI 能處理資料，人真正該練的，是決定要做什麼、以及這個決定如何影響未來。
               </p>
               <p class="node-label">
                 這裡的決策設計，指的是面對複雜、模糊、沒有標準答案的情境時，主動設計出一條可行選擇路徑的能力——跨產業、跨職能皆適用，重點不在管理問題，而在把「做選擇」本身當成一門可以學、可以練的功夫。
@@ -317,19 +319,20 @@
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="about-section section-pad" aria-labelledby="theory-title">
-          <div class="large-watermark" aria-hidden="true">Theory</div>
+        <section class="about-section section-pad rf-scene rf-scene--panel" aria-labelledby="theory-title">
+          <div class="rf-panel">
           <div class="section-grid">
             <div class="section-kicker">
               <span>02</span>
               <p>理論依據 Foundations</p>
             </div>
             <div>
-              <h2 id="theory-title">為什麼是<span class="nw">決策設計</span>？三層理論，撐起一套能力。</h2>
+              <h2 id="theory-title">為什麼是<span class="nw company-title-accent">決策設計</span>？三層理論，撐起一套能力。</h2>
               <p class="lead">
-                決策設計不是鄉育自創的口號，而是站在三個成熟研究領域之上：人如何思考、如何面對模糊問題，以及如何在 AI 時代把決策當成核心能力。
+                決策設計不是鄉育自創的口號，而是站在<span class="company-hl company-hl--01">三個成熟研究領域</span>之上：<br />人如何思考、<span class="company-hl company-hl--01">如何面對模糊問題</span>，以及如何在 AI 時代把決策當成核心能力。
               </p>
               <div class="mission-list">
                 <article>
@@ -350,18 +353,20 @@
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="path-section section-pad" aria-labelledby="method-title">
+        <section class="path-section section-pad rf-scene" aria-labelledby="method-title">
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>03</span>
               <p>鄉育方法論</p>
             </div>
             <div>
-              <h2 id="method-title">決策設計核心課程：從定義問題到落地迭代的四階段循環。</h2>
+              <h2 id="method-title">決策設計核心課程：<br />從定義問題到落地迭代的<span class="company-title-accent">四階段循環</span>。</h2>
               <p class="lead">
-                鄉育課程的核心，是一套能反覆練習、能帶到升學、職場、創業與人生選擇中的能力系統。四個階段——定義資訊、重組資訊、設計行動、落地迭代——同時對應課程的 ACT 能力模型（Assess 理解現況／Clarify 釐清問題／Transform 整合落地），透過 16 週真實企業情境螺旋式加深，並在落地後循環回到定義，持續迭代。
+                鄉育課程的核心，是一套能反覆練習、能帶到升學、職場、創業與人生選擇中的<span class="company-hl company-hl--01">能力系統</span>。四個階段——<span class="company-hl company-hl--01">定義資訊、重組資訊、設計行動、落地迭代</span>——同時對應課程的 ACT 能力模型（Assess 理解現況／Clarify 釐清問題／Transform 整合落地），透過 16 週真實企業情境螺旋式加深，並在落地後循環回到定義，持續迭代。
               </p>
             </div>
           </div>
@@ -396,18 +401,20 @@
               </article>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="program-section section-pad" aria-labelledby="holland-title">
+        <section class="program-section section-pad rf-scene rf-scene--panel" aria-labelledby="holland-title">
+          <div class="rf-panel">
           <div class="section-grid">
             <div class="section-kicker">
               <span>04</span>
               <p>何倫碼 Holland Codes</p>
             </div>
             <div>
-              <h2 id="holland-title">從何倫碼開始，理解<span class="nw">自己</span>的特質如何影響判斷。</h2>
+              <h2 id="holland-title">從何倫碼開始，理解<span class="nw company-title-accent">自己</span>的特質如何影響判斷。</h2>
               <p class="lead">
-                方法論的第一步是認識自己。鄉育以何倫碼（Holland Codes，又稱 RIASEC）作為自我探索的共同語言，讓大學生盤點興趣與特質，理解個人特質如何影響決策與問題解讀，再帶著這份理解走進團隊與真實問題。何倫碼將職業興趣分成六種類型：
+                方法論的第一步是認識自己。鄉育以<span class="company-hl company-hl--01">何倫碼</span>（Holland Codes，又稱 RIASEC）作為自我探索的共同語言，讓大學生盤點<span class="company-hl company-hl--01">興趣與特質</span>，理解個人特質如何影響決策與問題解讀，再帶著這份理解走進團隊與真實問題。何倫碼將職業興趣分成六種類型：
               </p>
               <div class="mission-list">
                 <article>
@@ -444,18 +451,20 @@
               <p class="node-label">何倫碼是探索的起點而非標籤。鄉育用它打開對話，而不是替大學生定義未來。</p>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="story-section section-pad" aria-labelledby="frameworks-title">
+        <section class="story-section section-pad rf-scene" aria-labelledby="frameworks-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>05</span>
               <p>國際框架引用</p>
             </div>
             <div>
-              <h2 id="frameworks-title">站在成熟的方法論<span class="nw">之上</span>，而不是憑空設計。</h2>
+              <h2 id="frameworks-title">站在成熟的方法論<span class="nw company-title-accent">之上</span>，而不是憑空設計。</h2>
               <p class="lead">
-                鄉育的課程整合多套國際通用的職涯探索與決策設計方法，並轉譯成大學生能理解、能練習的語言。以下是課程主要引用的方法與工具。
+                鄉育的課程整合多套國際通用的<span class="company-hl company-hl--01">職涯探索與決策設計方法</span>，並轉譯成大學生能理解、能練習的語言。以下是課程主要引用的方法與工具。
               </p>
               <div class="mission-list">
                 <article>
@@ -492,19 +501,20 @@
               <p class="node-label">鄉育的四階段——定義、重組、設計、迭代——正是設計思維（同理／定義／發想／原型／測試）的教育轉譯：不是憑空設計，而是把國際公認的方法，翻成台灣青年練得起來的步驟。</p>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="about-section section-pad" aria-labelledby="demand-title">
-          <div class="large-watermark" aria-hidden="true">Signal</div>
+        <section class="about-section section-pad rf-scene rf-scene--panel" aria-labelledby="demand-title">
+          <div class="rf-panel">
           <div class="section-grid">
             <div class="section-kicker">
               <span>06</span>
               <p>市場訊號 Market Signal</p>
             </div>
             <div>
-              <h2 id="demand-title">AI 接手資料之後，<span class="nw">決策能力</span>成為最持久的優勢。</h2>
+              <h2 id="demand-title">AI 接手資料之後，<span class="nw company-title-accent">決策能力</span>成為最持久的優勢。</h2>
               <p class="lead">
-                這不是教育界的一廂情願。2025 年 11 月一份分析超過 680 萬份美國職缺的研究，把「決策能力」放到了徵才的檯面上。
+                這不是教育界的一廂情願。2025 年 11 月一份分析超過 <span class="company-hl company-hl--01">680 萬份美國職缺</span>的研究，把「<span class="company-hl company-hl--04">決策能力</span>」放到了徵才的檯面上。
               </p>
               <div class="signal-row signal-row--cited signal-row--tag signal-row--hl" aria-label="決策能力在職場的價值數據">
                 <div>
@@ -526,18 +536,20 @@
               <p class="node-label">「當新興技術威脅自動化大量技能，決策能力依然是最持久的人類優勢。」—— Matt Sigelman，Burning Glass Institute 總裁</p>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="partners-section section-pad" aria-labelledby="approach-cta-title" data-exit-clear>
+        <section class="partners-section section-pad rf-scene" aria-labelledby="approach-cta-title" data-exit-clear>
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>07</span>
               <p>下一步</p>
             </div>
             <div>
-              <h2 id="approach-cta-title">想看這套方法在 16 週裡如何展開？</h2>
+              <h2 id="approach-cta-title">想看這套方法在 <span class="company-title-accent">16 週</span>裡如何展開？</h2>
               <p class="lead">
-                理念與方法之外，課程把它們落實成一週一步的學習旅程。歡迎進一步了解尋路計畫，或直接與我們聊聊合作的可能。
+                理念與方法之外，課程把它們落實成<span class="company-hl company-hl--01">一週一步的學習旅程</span>。歡迎進一步了解尋路計畫，或直接與我們聊聊合作的可能。
               </p>
             </div>
           </div>
@@ -550,9 +562,8 @@
               <a class="button-primary" href="programs.html">看完整課程設計</a>
             </div>
           </div>
-        </section>
-          </div>
         </div>
+        </section>
       </main>
 
       <footer class="site-footer" id="contact">
@@ -645,5 +656,7 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="reframe.js?v=6" defer></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

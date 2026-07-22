@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="rspine" style="--spine-c: #fbb05b;">
+  <body class="rspine audience-spine-page spine-gentle grp-involve" data-spine-route="mid" data-spine-label="GET INVOLVED" style="--spine-c: #fbb05b;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,26 +190,20 @@
         </div>
       </nav>
 
-      <main id="top">
+      <main id="top" class="rf">
 
-        <header class="page-header phk phk-involve" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+                <section class="rf-hero" id="rf-hero-top">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">加入我們</span></nav>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">加入我們</h1>
-              <p class="page-header-en">Join Our Team</p>
+              <h1>加入我們</h1>
+              <p class="rf-hero-en">Join Our Team</p>
             </div>
           </div>
-        </header>
+        </section>
 
-        <div class="story-layout">
-          <nav class="exit-nav" aria-label="本頁章節導覽">
+        <div class="exit-nav-col">
+        <nav class="exit-nav" aria-label="本頁章節導覽">
             <div class="exit-rail">
               <a class="exit-sign exit-sign--main" href="#involve-title" data-exit-target="involve-title">
                 <span class="exit-eyebrow">JOIN US</span>
@@ -225,17 +221,19 @@
               </a>
             </div>
           </nav>
-          <div class="story-flow">
-        <section class="problem-section section-pad" aria-labelledby="involve-title">
+        </div>
+
+        <section class="problem-section section-pad rf-scene" aria-labelledby="involve-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>01</span>
               <p>參與我們</p>
             </div>
             <div>
-              <h2 id="involve-title">每一份參與，都讓更多青年走上尋路的旅程。</h2>
+              <h2 id="involve-title">每一份參與，都讓更多青年走上<span class="company-title-accent">尋路的旅程</span>。</h2>
               <p class="lead">
-                鄉育需要的不只是課程，而是一個讓青年接觸真實世界的支持網絡。無論你是個人、企業、學校，或願意投入時間與專業，都能在這裡找到屬於自己的參與方式與下一步行動。
+                鄉育需要的不只是課程，而是一個讓青年接觸真實世界的<span class="company-hl company-hl--01">支持網絡</span>。無論你是個人、企業、學校，或願意投入時間與專業，都能在這裡找到屬於自己的參與方式與<span class="company-hl company-hl--01">下一步行動</span>。
               </p>
               <div class="signal-row signal-row--hl" aria-label="鄉育服務概況">
                 <div>
@@ -253,27 +251,31 @@
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="section-pad" aria-label="情境照片">
+        <section class="section-pad rf-scene rf-scene--panel" aria-label="情境照片">
+          <div class="rf-panel">
           <div class="figure-solo">
             <figure class="content-figure">
               <img src="assets/photos/career-day.jpg" alt="鄉育職涯探索日活動，青年與夥伴大合影" loading="lazy" width="1280" height="838" />
               <figcaption>個人、企業、學校與志工的每一份參與，都串成讓青年接觸真實世界的支持網絡。</figcaption>
             </figure>
           </div>
+        </div>
         </section>
 
-        <section class="partners-section section-pad" id="entries" aria-labelledby="entries-title">
+        <section class="partners-section section-pad rf-scene" id="entries" aria-labelledby="entries-title">
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>02</span>
               <p>參與入口</p>
             </div>
             <div>
-              <h2 id="entries-title">選擇一種適合你的方式，與<span class="nw">鄉育</span>一起陪伴青年。</h2>
+              <h2 id="entries-title">選擇一種適合你的方式，與<span class="nw company-title-accent">鄉育</span>一起陪伴青年。</h2>
               <p class="lead">
-                四種參與方式各自通往不同的下一步。點選最貼近你的角色，深入了解合作內容、回饋與聯繫方式。
+                <span class="company-hl company-hl--01">四種參與方式</span>各自通往<span class="company-hl company-hl--01">不同的下一步</span>。點選最貼近你的角色，深入了解合作內容、回饋與聯繫方式。
               </p>
             </div>
           </div>
@@ -320,18 +322,20 @@
               </div>
             </a>
           </div>
+        </div>
         </section>
 
-        <section class="program-section section-pad" id="careers" aria-labelledby="careers-title">
+        <section class="program-section section-pad rf-scene" id="careers" aria-labelledby="careers-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>04</span>
               <p>志工・職缺</p>
             </div>
             <div>
-              <h2 id="careers-title">把時間與專業，<span class="nw">投入</span>青年的尋路現場。</h2>
+              <h2 id="careers-title">把時間與專業，<span class="nw company-title-accent">投入</span>青年的尋路現場。</h2>
               <p class="lead">
-                鄉育的課程，需要更多人一起走進現場。無論你想擔任引導員、課程志工，或加入鄉育成為夥伴，都歡迎先來信告訴我們你想參與的方式——招募條件、梯次與職缺資訊將陸續公告。
+                鄉育的課程，需要更多人一起<span class="company-hl company-hl--01">走進現場</span>。無論你想擔任<span class="company-hl company-hl--01">引導員、課程志工</span>，或加入鄉育成為夥伴，都歡迎先來信告訴我們你想參與的方式——招募條件、梯次與職缺資訊將陸續公告。
               </p>
               <div class="mission-list" aria-label="志工與職缺機會">
                 <article>
@@ -360,9 +364,11 @@
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="section-pad final-cta" aria-labelledby="involve-final-title" data-exit-clear>
+        <section class="section-pad final-cta rf-scene" aria-labelledby="involve-final-title" data-exit-clear>
+          <div class="rf-wrap">
           <div class="cta-band">
             <div>
               <h3 id="involve-final-title">準備好一起陪伴青年尋路了嗎？</h3>
@@ -372,9 +378,8 @@
               <a class="button-primary" href="mailto:support@countryedu.org.tw?subject=參與鄉育洽詢">合作洽詢</a>
             </div>
           </div>
-        </section>
-          </div>
         </div>
+        </section>
       </main>
 
       <footer class="site-footer" id="contact">
@@ -467,5 +472,7 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="reframe.js?v=6" defer></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>

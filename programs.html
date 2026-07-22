@@ -48,9 +48,11 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=28" />
+    <link rel="stylesheet" href="styles.css?v=54" />
+    <link rel="stylesheet" href="reframe.css?v=28" />
+    <link rel="stylesheet" href="audience-spine.css?v=10" />
   </head>
-  <body class="rspine" style="--spine-c: #fce08c;">
+  <body class="rspine audience-spine-page spine-gentle grp-programs" data-spine-route="mid" data-spine-label="PATHFINDER" style="--spine-c: #fce08c;">
     <div class="site-shell">
       <header class="site-header" data-header>
         <a class="brand-lockup" href="index.html" aria-label="回到首頁">
@@ -188,26 +190,20 @@
         </div>
       </nav>
 
-      <main id="top">
+      <main id="top" class="rf">
 
-        <header class="page-header phk phk-programs" aria-labelledby="ph-h1">
-          <div class="phk-inner">
-            <div class="phk-decor" aria-hidden="true">
-              <span class="phk-b phk-b1"></span>
-              <span class="phk-b phk-b2"></span>
-              <span class="phk-b phk-b3"></span>
-            </div>
-            <div class="phk-copy">
+                <section class="rf-hero" id="rf-hero-top">
+          <div class="rf-wrap">
+            <div>
               <nav class="page-crumb" aria-label="麵包屑導覽"><a href="index.html">首頁</a><span>›</span><span class="page-crumb-current" aria-current="page">大學生職涯賦能</span></nav>
-              <p class="page-header-kicker">尋路計畫</p>
-              <span class="phk-bar" aria-hidden="true"></span>
-              <h1 id="ph-h1">大學生職涯賦能</h1>
-              <p class="page-header-en">Pathfinder Program</p>
+              <h1>大學生職涯賦能</h1>
+              <p class="rf-hero-en">Pathfinder Program</p>
             </div>
           </div>
-        </header>
-        <div class="story-layout">
-          <nav class="exit-nav" aria-label="本頁章節導覽">
+        </section>
+
+        <div class="exit-nav-col">
+        <nav class="exit-nav" aria-label="本頁章節導覽">
             <div class="exit-rail">
               <a class="exit-sign exit-sign--main" href="#why-title" data-exit-target="why-title">
                 <span class="exit-eyebrow">PATHFINDER PROGRAM</span>
@@ -245,22 +241,24 @@
               </a>
             </div>
           </nav>
-          <div class="story-flow">
-        <section class="problem-section section-pad" aria-labelledby="why-title">
+        </div>
+
+        <section class="problem-section section-pad rf-scene" aria-labelledby="why-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>01</span>
               <p>欲解決的問題</p>
             </div>
             <div>
-              <h2 id="why-title">面對選擇，青年最常<span class="nw">卡在</span>「不知道怎麼開始」。</h2>
+              <h2 id="why-title">面對選擇，青年最常<span class="nw company-title-accent">卡在</span>「不知道怎麼開始」。</h2>
               <p class="lead">
-                升學、職涯、人生的每一次選擇，年輕人面對的往往是資訊太多、方向太少。傳統教育擅長給標準答案，卻很少教人如何面對「沒有標準答案」的真實世界——當問題本身都還沒被看清楚，再多的知識也難以使上力。
+                升學、職涯、人生的每一次選擇，年輕人面對的往往是<span class="company-hl company-hl--01">資訊太多、方向太少</span>。傳統教育擅長給標準答案，卻很少教人如何面對「<span class="company-hl company-hl--04">沒有標準答案</span>」的真實世界——當問題本身都還沒被看清楚，再多的知識也難以使上力。
               </p>
               <p class="lead">
-                我們把青年尋路歷程升級為一套「決策設計」的底層能力——面對沒有標準答案的情境，不急著解題，而是主動設計出一條屬於自己的選擇路徑。當 AI 已能處理資料，真正稀缺的是能定義問題、權衡選項、做出決定的人。
+                我們把青年尋路歷程升級為一套「<span class="company-hl company-hl--04">決策設計</span>」的底層能力——面對沒有標準答案的情境，不急著解題，而是主動設計出一條屬於自己的<span class="company-hl company-hl--01">選擇路徑</span>。當 AI 已能處理資料，真正稀缺的是能定義問題、權衡選項、做出決定的人。
               </p>
-              <div class="signal-row signal-row--terms signal-row--hl" aria-label="課程概覽">
+              <div class="signal-row signal-row--hl" aria-label="課程概覽">
                 <div>
                   <strong>16&nbsp;週</strong>
                   <span>完整課程節奏</span>
@@ -276,27 +274,31 @@
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="section-pad" aria-label="情境照片">
+        <section class="section-pad rf-scene rf-scene--panel" aria-label="情境照片">
+          <div class="rf-panel">
           <div class="figure-solo">
             <figure class="content-figure">
               <img src="assets/photos/workshop-discussion.jpg" alt="學生圍桌討論、書寫並運用數位工具協作學習歷程" loading="lazy" width="1280" height="853" />
               <figcaption>在工作坊裡，大學生反覆練習定義問題、整理資訊與協作——能力在真實情境中被練出來。</figcaption>
             </figure>
           </div>
+        </div>
         </section>
 
-        <section class="path-section section-pad" aria-labelledby="framework-title">
+        <section class="path-section section-pad rf-scene" aria-labelledby="framework-title">
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>02</span>
               <p>培育架構 ‧ 四階段能力</p>
             </div>
             <div>
-              <h2 id="framework-title">從覺察、探索到行動，一條可反覆使用的尋路路徑。</h2>
+              <h2 id="framework-title">從覺察、探索到行動，一條可反覆使用的<span class="company-title-accent">尋路路徑</span>。</h2>
               <p class="lead">
-                培育架構同時也是拆解問題與風險的能力地圖——先辨識問題與現況，再導入方法與設計路徑，最後把計畫轉化為可視的實踐成果。
+                培育架構同時也是拆解問題與風險的<span class="company-hl company-hl--01">能力地圖</span>——先辨識問題與現況，再導入方法與設計路徑，最後把計畫轉化為可視的實踐成果。
               </p>
             </div>
           </div>
@@ -332,35 +334,35 @@
               <div class="mc-stage">
                 <div class="mc-wheel-col">
                   <div class="mc-wheel">
-                <svg viewBox="0 0 350 350" role="img" aria-label="四階段循環：01 定義資訊、02 重組資訊、03 設計行動、04 落地迭代，不斷循環、持續推值">
+                <svg viewBox="0 0 350 350" role="img" aria-label="四階段循環：D1 釐清目標、D2 梳理關鍵、D3 設計規劃、D4 行動迭代，不斷循環、持續推值">
                   <defs>
                     <marker id="mcArrow" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="7" markerHeight="7" orient="auto">
                       <path class="mc-arrowhead" d="M1,1 L11,6 L1,11 L4,6 Z" />
                     </marker>
                   </defs>
-                  <g class="mc-wedge is-active" data-stage="1" tabindex="0" role="button" aria-label="01 定義資訊：查看此階段的賦能重點" text-anchor="middle">
+                  <g class="mc-wedge is-active" data-stage="1" tabindex="0" role="button" aria-label="D1 釐清目標：查看此階段說明" text-anchor="middle">
                     <path class="mc-w1" d="M58.33,58.33 A165,165 0 0 1 291.67,58.33 L232.98,117.02 A82,82 0 0 0 117.02,117.02 Z" />
-                    <text class="mc-wt-n mc-on-light" x="175" y="39.5">01</text>
-                    <text class="mc-wt-name mc-on-light" x="175" y="56.5">定義資訊</text>
-                    <text class="mc-wt-en mc-on-light" x="175" y="71.5">DEFINE</text>
+                    <text class="mc-wt-n mc-on-light" x="175" y="39.5">D1</text>
+                    <text class="mc-wt-name mc-on-light" x="175" y="56.5">釐清目標</text>
+                    <text class="mc-wt-en mc-on-light" x="175" y="71.5">Define the Goal</text>
                   </g>
-                  <g class="mc-wedge" data-stage="2" tabindex="0" role="button" aria-label="02 重組資訊：查看此階段的賦能重點" text-anchor="middle">
+                  <g class="mc-wedge" data-stage="2" tabindex="0" role="button" aria-label="D2 梳理關鍵：查看此階段說明" text-anchor="middle">
                     <path class="mc-w2" d="M291.67,58.33 A165,165 0 0 1 291.67,291.67 L232.98,232.98 A82,82 0 0 0 232.98,117.02 Z" />
-                    <text class="mc-wt-n mc-on-light" x="298.5" y="163">02</text>
-                    <text class="mc-wt-name mc-on-light" x="298.5" y="180">重組資訊</text>
-                    <text class="mc-wt-en mc-on-light" x="298.5" y="195">REORGANIZE</text>
+                    <text class="mc-wt-n mc-on-light" x="298.5" y="156">D2</text>
+                    <text class="mc-wt-name mc-on-light" x="298.5" y="172">梳理關鍵</text>
+                    <text class="mc-wt-en mc-on-light" x="298.5" y="186.5"><tspan x="298.5">Decide What</tspan><tspan x="298.5" dy="11">Matters</tspan></text>
                   </g>
-                  <g class="mc-wedge" data-stage="3" tabindex="0" role="button" aria-label="03 設計行動：查看此階段的賦能重點" text-anchor="middle">
+                  <g class="mc-wedge" data-stage="3" tabindex="0" role="button" aria-label="D3 設計規劃：查看此階段說明" text-anchor="middle">
                     <path class="mc-w3" d="M291.67,291.67 A165,165 0 0 1 58.33,291.67 L117.02,232.98 A82,82 0 0 0 232.98,232.98 Z" />
-                    <text class="mc-wt-n mc-on-dark" x="175" y="286.5">03</text>
-                    <text class="mc-wt-name mc-on-dark" x="175" y="303.5">設計行動</text>
-                    <text class="mc-wt-en mc-on-dark" x="175" y="318.5">DESIGN</text>
+                    <text class="mc-wt-n mc-on-dark" x="175" y="286.5">D3</text>
+                    <text class="mc-wt-name mc-on-dark" x="175" y="303.5">設計規劃</text>
+                    <text class="mc-wt-en mc-on-dark" x="175" y="318.5">Design SMART Plans</text>
                   </g>
-                  <g class="mc-wedge" data-stage="4" tabindex="0" role="button" aria-label="04 落地迭代：查看此階段的賦能重點" text-anchor="middle">
+                  <g class="mc-wedge" data-stage="4" tabindex="0" role="button" aria-label="D4 行動迭代：查看此階段說明" text-anchor="middle">
                     <path class="mc-w4" d="M58.33,291.67 A165,165 0 0 1 58.33,58.33 L117.02,117.02 A82,82 0 0 0 117.02,232.98 Z" />
-                    <text class="mc-wt-n mc-on-dark" x="51.5" y="163">04</text>
-                    <text class="mc-wt-name mc-on-dark" x="51.5" y="180">落地迭代</text>
-                    <text class="mc-wt-en mc-on-dark" x="51.5" y="195">ITERATE</text>
+                    <text class="mc-wt-n mc-on-dark" x="51.5" y="156">D4</text>
+                    <text class="mc-wt-name mc-on-dark" x="51.5" y="172">行動迭代</text>
+                    <text class="mc-wt-en mc-on-dark" x="51.5" y="186.5"><tspan x="51.5">Develop through</tspan><tspan x="51.5" dy="11">Action</tspan></text>
                   </g>
                   <circle class="mc-hub" cx="175" cy="175" r="82" />
                   <path class="mc-loop" d="M200.36,120.62 A60,60 0 1 1 149.64,120.62" marker-end="url(#mcArrow)" />
@@ -368,49 +370,45 @@
                   <text class="mc-hub-t" text-anchor="middle" x="175" y="192">持續推值</text>
                 </svg>
                   </div>
-                  <p class="mc-hint" aria-hidden="true">將滑鼠移到（或點擊）階段，看見每一階段的轉變</p>
                 </div>
+                <div class="mc-detail-col">
                 <div class="mc-detail" aria-live="polite">
                 <article class="mc-detail-item is-active" data-stage="1">
-                  <p class="mc-detail-h"><span class="mc-detail-no">01</span>定義資訊<span class="mc-detail-en">Define</span></p>
-                  <p class="mc-detail-sub">定義目標與關鍵關係人</p>
-                  <p class="mc-detail-desc">先確認關鍵關係人真正想要什麼，定義資訊與目標，而不是急著假設問題。</p>
-                  <p class="mc-detail-shift">賦能重點：從「急著解題」<b>→</b>「先把問題定義清楚」</p>
+                  <p class="mc-detail-h"><span class="mc-detail-no">D1</span>釐清目標<span class="mc-detail-en">Define the Goal</span></p>
+                  <p class="mc-detail-desc">先理解自己真正想完成的是什麼，而不是急著開始努力。</p>
                 </article>
                 <article class="mc-detail-item" data-stage="2">
-                  <p class="mc-detail-h"><span class="mc-detail-no">02</span>重組資訊<span class="mc-detail-en">Reorganize</span></p>
-                  <p class="mc-detail-sub">釐清真正的問題</p>
-                  <p class="mc-detail-desc">重新整理資訊，分辨表面說法與真正需求，找出真正要解決的問題。</p>
-                  <p class="mc-detail-shift">賦能重點：從「拿到資訊就動手」<b>→</b>「能重組資訊」</p>
+                  <p class="mc-detail-h"><span class="mc-detail-no">D2</span>梳理關鍵<span class="mc-detail-en">Decide What Matters</span></p>
+                  <p class="mc-detail-desc">資訊不是越多越好，而是跟目標越有關越好。</p>
                 </article>
                 <article class="mc-detail-item" data-stage="3">
-                  <p class="mc-detail-h"><span class="mc-detail-no">03</span>設計行動<span class="mc-detail-en">Design</span></p>
-                  <p class="mc-detail-sub">設計可執行的方案</p>
-                  <p class="mc-detail-desc">把釐清後的需求，轉化為量身打造、可被執行的行動方案。</p>
-                  <p class="mc-detail-shift">賦能重點：從「知道方向」<b>→</b>「知道怎麼做」</p>
+                  <p class="mc-detail-h"><span class="mc-detail-no">D3</span>設計規劃<span class="mc-detail-en">Design SMART Plans</span></p>
+                  <p class="mc-detail-desc">沒有最好的方法，只有最適合當下情境的方法。</p>
                 </article>
                 <article class="mc-detail-item" data-stage="4">
-                  <p class="mc-detail-h"><span class="mc-detail-no">04</span>落地迭代<span class="mc-detail-en">Practice／Iterate</span></p>
-                  <p class="mc-detail-sub">執行並循環修正</p>
-                  <p class="mc-detail-desc">在執行中產生新問題，循環回到定義、重組與設計，持續迭代。</p>
-                  <p class="mc-detail-shift">賦能重點：從「完成任務」<b>→</b>「能持續迭代的行動力」</p>
+                  <p class="mc-detail-h"><span class="mc-detail-no">D4</span>行動迭代<span class="mc-detail-en">Develop through Action</span></p>
+                  <p class="mc-detail-desc">好的決策，是透過持續行動與反思得出的，而不是一次到位。</p>
                 </article>
+                </div>
+                <p class="mc-hint" aria-hidden="true">將滑鼠移到（或點擊）階段，看見每一階段的轉變</p>
                 </div>
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="program-section section-pad" aria-labelledby="content-title">
+        <section class="program-section section-pad rf-scene rf-scene--panel" aria-labelledby="content-title">
+          <div class="rf-panel">
           <div class="section-grid">
             <div class="section-kicker">
               <span>03</span>
               <p>課程內容</p>
             </div>
             <div>
-              <h2 id="content-title">三大模組 × 16 週，把一套能力反覆練成。</h2>
+              <h2 id="content-title"><span class="company-title-accent">三大模組 × 16 週</span>，把一套能力反覆練成。</h2>
               <p class="lead">
-                尋路計畫以三個模組串起整段歷程——先認識自己，再把想法做出來，最後成為未來的自己；並以 16 週、ACT 能力模型（Assess／Clarify／Transform）為骨幹，搭配真實企業案例與企業參訪展開。
+                尋路計畫以<span class="company-hl company-hl--01">三個模組</span>串起整段歷程——先認識自己，再把想法做出來，最後成為未來的自己；並以 16 週、ACT 能力模型（Assess／Clarify／Transform）為骨幹，搭配真實企業案例與企業參訪展開。
               </p>
               <div class="module-cards">
                 <article class="module-card">
@@ -432,7 +430,7 @@
                   <p>透過跨域協作與專案實作，在真實情境中驗證並持續修正，累積可被看見的能力證據。</p>
                 </article>
               </div>
-              <p class="lead">16 週課程，依 ACT 能力模型展開為四個階段，點各階段看完整內容：</p>
+              <p class="lead">16 週課程，依 ACT 能力模型展開為<span class="company-hl company-hl--01">四個階段</span>，點各階段看完整內容：</p>
               <div class="apply-tabs week-tabs">
                 <div class="apply-tabnav" role="tablist" aria-label="16 週課程四階段">
                   <button class="apply-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="week-w1" data-tab="w1">01–04<small>理解現況</small></button>
@@ -460,18 +458,20 @@
               <p class="node-label">完整逐週大綱與企業案例情境，可於洽談合作時提供。</p>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="program-section section-pad" aria-labelledby="seven-title">
+        <section class="program-section section-pad rf-scene" aria-labelledby="seven-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>04</span>
               <p>決策設計七大能力</p>
             </div>
             <div>
-              <h2 id="seven-title">四階段是骨架，<span class="nw">七大能力</span>是每一階段裡練成的內功。</h2>
+              <h2 id="seven-title">四階段是骨架，<span class="nw company-title-accent">七大能力</span>是每一階段裡練成的內功。</h2>
               <p class="lead">
-                定義、重組、設計、迭代是尋路計畫的操作流程；而在這四階段裡，大學生真正長出的，是決策設計的七大能力面向。兩者不是兩套課綱，而是同一套能力的骨架與內功——點各項看它如何被練成。
+                定義、重組、設計、迭代是尋路計畫的操作流程；而在這四階段裡，大學生真正長出的，是決策設計的<span class="company-hl company-hl--01">七大能力面向</span>。兩者不是兩套課綱，而是同一套能力的骨架與內功——點各項看它如何被練成。
               </p>
             </div>
           </div>
@@ -536,18 +536,20 @@
             </div>
           </div>
           <p class="node-label">四階段（定義／重組／設計／迭代）是骨架，七大能力是四階段裡內含的能力面向——兩者不並列成兩套課綱，而是同一套能力的操作流程與內功。</p>
+        </div>
         </section>
 
-        <section class="story-section section-pad" aria-labelledby="outcomes-title">
+        <section class="story-section section-pad rf-scene rf-scene--panel" aria-labelledby="outcomes-title">
+          <div class="rf-panel">
           <div class="section-grid">
             <div class="section-kicker">
               <span>05</span>
               <p>學生成果</p>
             </div>
             <div>
-              <h2 id="outcomes-title">課程結束，留下的是<span class="nw">帶得走</span>的能力與證據。</h2>
+              <h2 id="outcomes-title">課程結束，留下的是<span class="nw company-title-accent">帶得走</span>的能力與證據。</h2>
               <p class="lead">
-                我們在意的不是學生完成一堂課，而是他能不能在下一個真實情境裡繼續用上這些能力。尋路計畫讓成長被看見——既是一套可遷移的底層能力，也是一份可被檢核的成長證據。
+                我們在意的不是學生完成一堂課，而是他能不能在下一個真實情境裡繼續用上這些能力。尋路計畫讓成長被看見——既是一套<span class="company-hl company-hl--01">可遷移的底層能力</span>，也是一份可被檢核的<span class="company-hl company-hl--01">成長證據</span>。
               </p>
               <p class="lead">帶得走的六大底層能力：</p>
               <div class="mission-list mission-list--badge">
@@ -584,16 +586,18 @@
               </div>
             </div>
           </div>
+        </div>
         </section>
 
-        <section class="partners-section section-pad" id="programs-faq" aria-labelledby="apply-title">
+        <section class="partners-section section-pad rf-scene" id="programs-faq" aria-labelledby="apply-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>06</span>
               <p>如何報名</p>
             </div>
             <div>
-              <h2 id="apply-title">如何加入尋路計畫？</h2>
+              <h2 id="apply-title">如何加入<span class="company-title-accent">尋路計畫</span>？</h2>
               <p class="lead">無論你是想加入課程的大學生，或想為學校、企業引入尋路計畫的夥伴，都可以從下列分頁找到需要的資訊。若有未列出的疑問，歡迎<a href="contact.html">與我們聯絡</a>。</p>
             </div>
           </div>
@@ -678,23 +682,24 @@
               <a class="button-primary" href="for-students.html">我是大學生，想加入 &rarr;</a>
             </div>
           </div>
+        </div>
         </section>
-        <section class="program-section section-pad" aria-labelledby="internship-title">
+        <section class="program-section section-pad rf-scene" aria-labelledby="internship-title">
+          <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>07</span>
               <p>實習專區</p>
             </div>
             <div>
-              <h2 id="internship-title">最新實習資訊，將在這裡更新。</h2>
+              <h2 id="internship-title">最新<span class="company-title-accent">實習資訊</span>，將在這裡更新。</h2>
               <p class="lead">
-                鄉育長期與多家企業合作，從企業講座、參訪到共創真實專案，讓學生在課程中就接觸真實職場。實習與企業合作的最新機會將陸續在這裡公告——歡迎<a href="contact.html">與我們保持聯絡</a>，搶先得知第一手實習資訊。
+                鄉育長期與多家企業合作，從企業講座、參訪到共創真實專案，讓學生在課程中就接觸<span class="company-hl company-hl--01">真實職場</span>。實習與企業合作的最新機會將陸續在這裡公告——歡迎<a href="contact.html">與我們保持聯絡</a>，搶先得知第一手實習資訊。
               </p>
             </div>
           </div>
-        </section>
-          </div>
         </div>
+        </section>
       </main>
 
       <footer class="site-footer" id="contact">
@@ -787,5 +792,7 @@
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="reframe.js?v=6" defer></script>
+    <script src="audience-spine.js?v=12" defer></script>
   </body>
 </html>
