@@ -326,3 +326,5 @@ body.aud-school   { --title-accent: var(--leaf-700); }
 body.audience-spine-page .company-title-accent { color: var(--title-accent, var(--path)); }
 body.audience-spine-page .rf-scene--panel .company-title-accent,
 body.audience-spine-page .rf-panel-cta .company-title-accent { color: inherit; }
+
+body.grp-impact .company-spine-accent-dot { display: none; }
