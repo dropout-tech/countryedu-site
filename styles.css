@@ -9381,6 +9381,12 @@ body.aud-school.audience-spine-page .rf-hero + .rf-scene { padding-top: clamp(6p
 .cta-band p { margin-left: 0; margin-right: 0; }
 .cta-band-actions { align-items: flex-start; }
 
+.rf-hero .rf-wrap .rf-wrap { display: block; padding-inline: 0; }
+
+@media (max-width: 900px) {
+  main.rf { padding-top: 82px; }
+}
+
 .section-deck .company-hl,
 .section-deck .company-hl--01,
 .section-deck .company-hl--04 {

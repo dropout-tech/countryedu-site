@@ -339,7 +339,7 @@
     decor.replaceChildren();
 
     var mobileDecor = state.width <= 700;
-    if (gentle) {
+    if (state.gentleActive) {
 
       if (mobileDecor || state.width < 1360) return;
       var decorMode = body.getAttribute("data-spine-decor") || "rich";
@@ -361,20 +361,52 @@
         var headerEl = main.querySelector(".page-header") || main.querySelector(":scope > .rf-hero");
         var heroH = clamp(headerEl ? Math.round(headerEl.getBoundingClientRect().height) - 8 : 210, 170, 320);
         var heroWideW = Math.min(330 * gScale, mar + 140);
-        gentleEdgeRect("right", startY + 4, heroWideW, heroH, 50 * gScale, "company-spine-fill-orange", 0.82);
-        gentleAccent(SHAPES[0], "right", startY + heroH * 0.32, bigW, 0.74, "company-spine-fill-extra");
-        gentleEdgeRect("left", startY + 24, midW, heroH * 0.94, 46 * gScale, "company-spine-fill-peach", 0.62);
-        gentleAccent(SHAPES[2], "left", startY + heroH * 0.5, Math.min(midW, chipW * 1.5), 0.55, "company-spine-fill-soft");
+        if (grp === "programs") {
+
+          gentleEdgeRect("right", startY + 6, heroWideW, heroH * 1.35, 54 * gScale, "company-spine-fill-orange", 0.82);
+          gentleEdgeRect("left", startY + 20, midW, heroH * 0.84, 46 * gScale, "company-spine-fill-peach", 0.5);
+          gentleEdgeRect("left", startY + 64 * gScale, midW * 0.78, heroH * 0.58, 40 * gScale, "company-spine-fill-extra", 0.3);
+        } else if (grp === "impact") {
+
+          gentleEdgeRect("right", startY + 4, heroWideW, heroH * 0.72, 48 * gScale, "company-spine-fill-orange", 0.82);
+          gentleAccent(SHAPES[0], "right", startY + heroH * 0.5, bigW, 0.6, "company-spine-fill-extra");
+          gentleEdgeRect("left", startY + heroH * 0.52, midW, heroH * 0.86, 44 * gScale, "company-spine-fill-peach", 0.64);
+        } else if (grp === "involve") {
+
+          gentleEdgeRect("right", startY + 4, heroWideW, heroH * 0.56, 46 * gScale, "company-spine-fill-orange", 0.8);
+          gentleEdgeRect("right", startY + heroH * 0.62, midW, heroH * 0.42, 42 * gScale, "company-spine-fill-peach", 0.72);
+          gentleAccent(SHAPES[0], "right", startY + heroH * 0.34, bigW, 0.6, "company-spine-fill-extra");
+          gentleEdgeRect("left", startY + 30, midW, heroH * 0.82, 44 * gScale, "company-spine-fill-soft", 0.6);
+        } else if (grp === "news") {
+
+          gentleEdgeRect("right", startY + 8, heroWideW, heroH * 0.92, 50 * gScale, "company-spine-fill-orange", 0.8);
+          gentleEdgeRect("right", startY + heroH * 0.3, midW, heroH * 0.66, 44 * gScale, "company-spine-fill-extra", 0.42);
+          gentleEdgeRect("right", startY + heroH * 0.56, midW * 0.8, heroH * 0.52, 40 * gScale, "company-spine-fill-peach", 0.26);
+          gentleEdgeRect("left", startY + 20, midW, heroH * 0.86, 46 * gScale, "company-spine-fill-soft", 0.5);
+        } else if (grp === "neutral") {
+
+          gentleEdgeRect("right", startY + 8, heroWideW * 0.84, heroH * 0.92, 46 * gScale, "company-spine-fill-orange", 0.72);
+          gentleEdgeRect("left", startY + 8, midW, heroH * 0.9, 44 * gScale, "company-spine-fill-soft", 0.6);
+        } else {
+
+          var aDrop = heroH * 0.3;
+          gentleEdgeRect("right", startY + aDrop, heroWideW, heroH * 0.5, 48 * gScale, "company-spine-fill-orange", 0.82);
+          gentleEdgeRect("right", startY + aDrop + heroH * 0.68, midW, heroH * 0.5, 44 * gScale, "company-spine-fill-peach", 0.6);
+          gentleEdgeRect("left", startY + aDrop + heroH * 0.16, midW, heroH * 0.66, 46 * gScale, "company-spine-fill-extra", 0.56);
+        }
 
         var bTop = startY + heroH + 44;
         var bSpan = Math.max(1, state.height - bTop);
         var i, y, rN, rH, sideA, sideB;
         if (grp === "news") {
 
-          rN = clamp(Math.round(bSpan / 1180), 2, 7); rH = bSpan / rN;
+          rN = clamp(Math.round(bSpan / 1050), 2, 6); rH = bSpan / rN;
           for (i = 0; i < rN; i++) {
             y = bTop + (i + 0.5) * rH;
-            gentleEdgeRect(i % 2 ? "left" : "right", y, chipW, 80 * gScale, 30 * gScale, RICH[i % RICH.length], 0.6);
+            sideA = i % 2 ? "left" : "right";
+            gentleEdgeRect(sideA, y - 60 * gScale, midW, 230 * gScale, 48 * gScale, RICH[i % RICH.length], 0.62);
+            gentleEdgeRect(sideA, y - 10 * gScale, midW * 0.8, 170 * gScale, 42 * gScale, RICH[(i + 2) % RICH.length], 0.4);
+            gentleEdgeRect(sideA, y + 34 * gScale, midW * 0.6, 120 * gScale, 34 * gScale, RICH[(i + 4) % RICH.length], 0.26);
           }
         } else if (grp === "neutral") {
 
@@ -386,12 +418,13 @@
           }
         } else if (grp === "programs") {
 
-          rN = clamp(Math.round(bSpan / 600), 3, 12); rH = bSpan / rN;
+          rN = clamp(Math.round(bSpan / 760), 3, 9); rH = bSpan / rN;
           for (i = 0; i < rN; i++) {
             y = bTop + (i + 0.5) * rH;
-            sideA = i % 2 ? "left" : "right"; sideB = i % 2 ? "right" : "left";
-            gentleAccent(SHAPES[i % SHAPES.length], sideA, y - 62 * gScale, bigW, 0.7, RICH[i % RICH.length]);
-            gentleEdgeRect(sideB, y - 6 * gScale, midW, 152 * gScale, 42 * gScale, RICH[(i + 3) % RICH.length], 0.6);
+            sideA = i % 2 ? "left" : "right";
+            gentleEdgeRect(sideA, y - 50 * gScale, midW, 210 * gScale, 46 * gScale, RICH[i % RICH.length], 0.56);
+            gentleEdgeRect(sideA, y + 6 * gScale, midW * 0.8, 150 * gScale, 40 * gScale, RICH[(i + 2) % RICH.length], 0.36);
+            gentleEdgeRect(sideA, y + 48 * gScale, midW * 0.6, 104 * gScale, 32 * gScale, RICH[(i + 4) % RICH.length], 0.24);
           }
         } else if (grp === "impact") {
 
@@ -552,6 +585,8 @@
           edgeRect("left", ctaPanel.bottom + 2, 88 * mobileEdgeBoost, 32 * mobileEdgeBoost, 16 * mobileEdgeBoost, "company-spine-fill-peach", 0.68);
         }
       }
+
+      clearTitleOverlaps();
       return;
     }
 
@@ -584,6 +619,53 @@
     }
   }
 
+  function textInkRect(el) {
+    if (!el || !(el.textContent || "").trim()) return null;
+    var r;
+    try {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      r = range.getBoundingClientRect();
+    } catch (e) { r = el.getBoundingClientRect(); }
+    return (r && r.width >= 1 && r.height >= 1) ? r : null;
+  }
+
+  function titleInkRects() {
+    var rects = [];
+    Array.prototype.slice.call(main.querySelectorAll("h1, h2, h3")).forEach(function (el) {
+      var r = textInkRect(el);
+      if (r) rects.push(r);
+    });
+    var hero = main.querySelector(":scope > .rf-hero");
+    if (hero) {
+      Array.prototype.slice.call(hero.querySelectorAll("*")).forEach(function (el) {
+        if (el.children.length === 0 && (el.textContent || "").trim()) {
+          var r = textInkRect(el);
+          if (r) rects.push(r);
+        }
+      });
+    }
+    return rects;
+  }
+
+  function clearTitleOverlaps(pad) {
+    pad = pad == null ? 8 : pad;
+    var rects = titleInkRects();
+    if (!rects.length) return;
+    Array.prototype.slice.call(decor.children).forEach(function (el) {
+      var b = el.getBoundingClientRect();
+      if (b.width < 1 || b.height < 1) return;
+      for (var i = 0; i < rects.length; i++) {
+        var r = rects[i];
+        if (b.left < r.right + pad && b.right > r.left - pad &&
+            b.top < r.bottom + pad && b.bottom > r.top - pad) {
+          el.style.display = "none";
+          return;
+        }
+      }
+    });
+  }
+
   function drawPath() {
     var oldTotal = state.total || 1;
     var oldProgress = state.current / oldTotal;
@@ -595,6 +677,8 @@
     state.width = width;
     state.height = height;
     state.mobile = width <= 700;
+
+    state.gentleActive = gentle && !state.mobile;
     var hero = main.querySelector(gentle ? ".page-header, :scope > .rf-hero" : ":scope > .rf-hero");
     var topNav = main.querySelector(":scope > .exit-nav--top");
     var heroTop = hero ? hero.getBoundingClientRect().top - metrics.rectTop : 0;
@@ -674,13 +758,13 @@
     }
 
     var sep = separators();
-    var penX = gentle ? startX : state.xRight;
+    var penX = state.gentleActive ? startX : state.xRight;
     var penY = state.pathStartY;
     var d = "M" + penX + " " + state.pathStartY;
     var turns = [];
     var steps;
 
-    if (gentle) {
+    if (state.gentleActive) {
       steps = seq;
     } else {
       steps = sep.map(function (el) {
