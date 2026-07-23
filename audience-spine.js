@@ -335,13 +335,68 @@
     return group;
   }
 
+  function gentleMobileDecor() {
+    var grp = (body.className.match(/grp-([a-z]+)/) || [])[1] || "about";
+    var heroEl = main.querySelector(":scope > .rf-hero") || main.querySelector(".page-header");
+    var top = state.pathStartY;
+    var heroH = clamp(heroEl ? Math.round(heroEl.getBoundingClientRect().height) : 200, 150, 320);
+    var R = "company-spine-fill-orange", P = "company-spine-fill-peach",
+        S = "company-spine-fill-soft", X = "company-spine-fill-extra";
+    var loY = top + heroH * 0.78; 
+
+    if (grp === "programs") {
+
+      gentleEdgeRect("right", top + 6, 118, heroH * 0.34, 40, R, 0.78);
+      gentleAccent(SHAPES[0], "right", top + heroH * 0.30, 150, 0.66, X);
+      gentleAccent(SHAPES[3], "left", loY - heroH * 0.10, 128, 0.6, S);
+    } else if (grp === "impact") {
+
+      gentleEdgeRect("right", top + 4, 150, heroH * 0.5, 42, R, 0.82);
+      gentleAccent(SHAPES[0], "right", top + heroH * 0.48, 118, 0.62, X);
+      gentleEdgeRect("left", loY, 108, heroH * 0.48, 36, P, 0.62);
+    } else if (grp === "involve") {
+
+      gentleEdgeRect("right", top + 4, 140, heroH * 0.44, 40, R, 0.8);
+      gentleEdgeRect("right", top + heroH * 0.52, 116, heroH * 0.42, 36, P, 0.72);
+      gentleAccent(SHAPES[0], "right", top + heroH * 0.28, 112, 0.56, X);
+      gentleEdgeRect("left", loY, 92, heroH * 0.4, 34, S, 0.6);
+    } else if (grp === "news") {
+
+      gentleEdgeRect("right", top + 4, 168, heroH * 0.92, 50, R, 0.82);
+      gentleEdgeRect("left", loY - heroH * 0.18, 118, heroH * 0.56, 46, P, 0.6);
+    } else if (grp === "neutral") {
+
+      gentleEdgeRect("right", top + 8, 132, heroH * 0.86, 42, R, 0.72);
+      gentleEdgeRect("left", loY, 100, heroH * 0.4, 34, S, 0.6);
+    } else {
+
+      gentleEdgeRect("right", top + 6, 152, heroH * 0.66, 44, R, 0.82);
+      gentleAccent(SHAPES[0], "right", top + heroH * 0.28, 126, 0.7, X);
+      gentleEdgeRect("left", loY, 100, heroH * 0.46, 36, P, 0.62);
+    }
+
+    var metrics = mainMetrics();
+    var cyc = [R, P, S, X];
+    Array.prototype.slice.call(main.querySelectorAll(":scope > section.rf-scene")).forEach(function (sc, i) {
+      var r = sc.getBoundingClientRect();
+      var y = Math.round(r.bottom - metrics.rectTop) - 66;
+      gentleAccent(SHAPES[(i + 1) % SHAPES.length], i % 2 ? "left" : "right", y, 116, 0.7, cyc[i % 4]);
+    });
+  }
+
   function drawDecor() {
     decor.replaceChildren();
 
     var mobileDecor = state.width <= 700;
-    if (state.gentleActive) {
+    if (gentle) {
 
-      if (mobileDecor || state.width < 1360) return;
+      if (mobileDecor) {
+        gentleMobileDecor();
+        clearTitleOverlaps();
+        return;
+      }
+
+      if (state.width < 1360) return;
       var decorMode = body.getAttribute("data-spine-decor") || "rich";
       var gScale = clamp((state.width - 1120) / 320, 0.55, 1);
       var span = Math.max(1, state.height - state.pathStartY);
