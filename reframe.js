@@ -50,16 +50,32 @@
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitEdges);
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function startLap(card) {
+    if (reduced || !card || card.classList.contains("rf-running")) return;
+    if (!card.querySelector("svg.rf-edge .runner")) return;
+    card.classList.add("rf-running");
+
+    setTimeout(function () { card.classList.remove("rf-running"); }, 1800);
+  }
+
+  cards.forEach(function (card) {
+    var run = card.querySelector("svg.rf-edge .runner");
+    if (!run) return;
+    run.addEventListener("animationend", function () { card.classList.remove("rf-running"); });
+  });
+
+  if (!reduced && window.matchMedia("(hover: hover)").matches) {
+    cards.forEach(function (card) {
+      card.addEventListener("pointerenter", function () { startLap(card); });
+    });
+  }
+
   if (!reduced && window.matchMedia("(hover: none)").matches && "IntersectionObserver" in window) {
     var io2 = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (!e.isIntersecting) return;
-        var run = e.target.querySelector("svg.rf-edge .runner");
-        if (run) {
-          run.style.opacity = 1;
-          run.style.strokeDashoffset = -88;
-          setTimeout(function () { run.style.opacity = 0; }, 1700);
-        }
+        startLap(e.target);
         io2.unobserve(e.target);
       });
     }, { threshold: 0.6 });

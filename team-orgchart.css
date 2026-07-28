@@ -293,3 +293,19 @@
 .orghz-3 .orghz-3-role{font-size:1.02rem}
 .orghz-3 .orghz-3-card--board .orghz-3-role{font-size:1.16rem}
 }
+
+.org-section .org-intro h2{ margin-left:auto; margin-right:auto; }
+
+.orgset-1 .os1-connect{ z-index:3; }
+.orgset-1 .os1-stub{ top:-15px; height:43px; }
+
+@media (min-width:681px){
+  .orgset-1{ max-width:912px; padding:54px 30px 58px; }
+  .orgset-1 .os1-node{ padding:23px 32px; }
+  .orgset-1 .os1-title{ font-size:26px; }
+  .orgset-1 .os1-node--board{ max-width:480px; padding:31px 38px; }
+  .orgset-1 .os1-node--board .os1-title{ font-size:32px; }
+  .orgset-1 .os1-node--chair{ max-width:400px; }
+  .orgset-1 .os1-node--ceo{ max-width:374px; }
+  .orgset-1 .os1-node--deputy{ max-width:374px; }
+}

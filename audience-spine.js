@@ -65,6 +65,15 @@
   make("stop", { class: "company-spine-accent-extra-start", offset: "0%" }, accentExtra);
   make("stop", { class: "company-spine-accent-extra-end", offset: "100%" }, accentExtra);
 
+  var baseGrad = make("linearGradient", {
+    id: "company-spine-base-gradient",
+    gradientUnits: "userSpaceOnUse",
+    spreadMethod: "reflect",
+    x1: "0", y1: "0", x2: "0", y2: "0"
+  }, defs);
+  make("stop", { class: "company-spine-base-gradient-start", offset: "0%" }, baseGrad);
+  make("stop", { class: "company-spine-base-gradient-end", offset: "100%" }, baseGrad);
+
   var basePath = make("path", { class: "company-spine-base" });
   var bridges = make("g", { class: "company-spine-bridges" });
   var decor = make("g", { class: "company-spine-decor" });
@@ -92,6 +101,8 @@
   layer.appendChild(svg);
   main.insertBefore(layer, main.firstChild);
 
+  svg.insertBefore(decor, basePath);
+
   var state = {
     width: 0, height: 0, total: 1, current: 0, target: 0,
     mobile: false, frame: 0, xLeft: 0, xRight: 0, pathStartY: 0, guideKeys: []
@@ -107,6 +118,14 @@
       rectTop: r.top,
       rectLeft: r.left
     };
+  }
+
+  function edgeGutter() {
+    var wrap = main.querySelector(".rf-wrap");
+    if (!wrap) return Math.max(0, Math.round((state.width - 1160) / 2));
+    var g = wrap.getBoundingClientRect().left - mainMetrics().rectLeft;
+    if (!isFinite(g)) g = (state.width - 1160) / 2;
+    return Math.max(0, Math.round(g));
   }
 
   function separators() {
@@ -300,7 +319,17 @@
     "company-spine-fill-peach"
   ];
 
+  var DECOR_GROW = 1.72, GUT_REF = 218;
+
+  var DECOR_GROW_MOBILE = 1.3;
+
+  var DECOR_BOOST = 1.3, DECOR_MAX = 0.95;
+  function boostOpacity(o) { return o == null ? o : Math.min(DECOR_MAX, +(o * DECOR_BOOST).toFixed(3)); }
+
   function gentleEdgeRect(side, y, visibleWidth, height, radius, className, opacity) {
+    opacity = boostOpacity(opacity);
+
+    radius = Math.min(radius, height * 0.45);
     var bleed = Math.max(18, radius + 6);
     var x = side === "left" ? -bleed : state.width - visibleWidth;
     var shape = make("rect", {
@@ -314,6 +343,63 @@
     if (opacity != null) shape.setAttribute("opacity", opacity);
     return shape;
   }
+
+  var DEEP_FILL = ["company-spine-fill-orange", "company-spine-fill-extra"];
+  var LITE_FILL = ["company-spine-fill-soft", "company-spine-fill-peach"];
+
+  var SPLIT_DECOR = body.classList.contains("grp-involve");
+  function splitGap(h) { return Math.max(14, h * 0.16); }
+
+  function gentleDuo(side, y, width, height, radius, i, deepOpacity, liteOpacity) {
+
+    var offY = height * 0.62;
+    if (SPLIT_DECOR) {
+      var gap = splitGap(height);
+      offY = height + gap;
+      y -= (height * 0.38 + gap) / 2;
+    }
+    tagMotif(gentleEdgeRect(side, y, width, height, radius,
+      DEEP_FILL[i % DEEP_FILL.length], deepOpacity || 0.88), "duo");
+    tagMotif(gentleEdgeRect(side, y + offY, width * 0.72, height * 0.72, radius * 0.82,
+      LITE_FILL[i % LITE_FILL.length], liteOpacity || 0.58), "duo");
+  }
+
+  function organicHeight(shape, width) { return width * shape.viewHeight / shape.viewWidth; }
+  function tagMotif(el, motif) { if (el) el.setAttribute("data-motif", motif); return el; }
+
+  function gentleOrganic(side, y, width, i, opacity) {
+    return tagMotif(gentleAccent(SHAPES[i % SHAPES.length], side, y, width,
+      opacity == null ? 0.8 : opacity, DEEP_FILL[i % DEEP_FILL.length]), "organic");
+  }
+
+  function gentleCombo(side, y, width, radius, i) {
+    var shape = SHAPES[i % SHAPES.length];
+    var ow = width * 0.78;
+    var oh = organicHeight(shape, ow);
+
+    var barY = y + oh * 0.46;
+    if (SPLIT_DECOR) {
+      var gap = splitGap(oh);
+      y -= (oh * 0.42 + gap) / 2;
+      barY = y + oh + gap;
+    }
+    tagMotif(gentleAccent(shape, side, y, ow, 0.82, DEEP_FILL[i % DEEP_FILL.length]), "combo");
+    tagMotif(gentleEdgeRect(side, barY, width, oh * 0.42, radius,
+      LITE_FILL[i % LITE_FILL.length], 0.62), "combo");
+  }
+
+  function gentleSolo(side, y, width, height, radius, i) {
+    return tagMotif(gentleEdgeRect(side, y, width, height, radius,
+      DEEP_FILL[(i + 1) % DEEP_FILL.length], 0.74), "solo");
+  }
+
+  function gentleMotif(kind, side, y, width, radius, i, gScale) {
+    if (kind === "duo") gentleDuo(side, y, width, 172 * gScale, radius, i);
+    else if (kind === "organic") gentleOrganic(side, y, width * 0.94, i);
+    else if (kind === "combo") gentleCombo(side, y, width, radius, i);
+    else gentleSolo(side, y, width * 0.86, 138 * gScale, radius, i);
+  }
+
   function gentleAccent(shape, side, y, width, opacity, className) {
     var scale = width / shape.viewWidth;
     var bleed = 12;
@@ -331,57 +417,32 @@
     }, decor);
     if (opacity != null) group.setAttribute("opacity", opacity);
     make("path", { class: "company-spine-accent-path " + className, d: shape.path }, group);
-    make("circle", { class: "company-spine-accent-dot", cx: shape.dotX, cy: shape.dotY, r: shape.dotR || 8 }, group);
+
+    if (!SPLIT_DECOR) {
+      make("circle", { class: "company-spine-accent-dot", cx: shape.dotX, cy: shape.dotY, r: shape.dotR || 8 }, group);
+    }
     return group;
   }
 
   function gentleMobileDecor() {
-    var grp = (body.className.match(/grp-([a-z]+)/) || [])[1] || "about";
     var heroEl = main.querySelector(":scope > .rf-hero") || main.querySelector(".page-header");
     var top = state.pathStartY;
-    var heroH = clamp(heroEl ? Math.round(heroEl.getBoundingClientRect().height) : 200, 150, 320);
-    var R = "company-spine-fill-orange", P = "company-spine-fill-peach",
-        S = "company-spine-fill-soft", X = "company-spine-fill-extra";
-    var loY = top + heroH * 0.78; 
 
-    if (grp === "programs") {
+    var heroH = heroEl ? Math.round(heroEl.getBoundingClientRect().height) : 200;
 
-      gentleEdgeRect("right", top + 6, 118, heroH * 0.34, 40, R, 0.78);
-      gentleAccent(SHAPES[0], "right", top + heroH * 0.30, 150, 0.66, X);
-      gentleAccent(SHAPES[3], "left", loY - heroH * 0.10, 128, 0.6, S);
-    } else if (grp === "impact") {
+    var mTop = top + heroH + 36;
+    var mSpan = Math.max(1, state.height - mTop);
+    var mN = clamp(Math.round(mSpan / 380), 10, 18);
+    var mRH = mSpan / mN;
+    var mOrder = ["organic", "duo", "combo", "solo"];
 
-      gentleEdgeRect("right", top + 4, 150, heroH * 0.5, 42, R, 0.82);
-      gentleAccent(SHAPES[0], "right", top + heroH * 0.48, 118, 0.62, X);
-      gentleEdgeRect("left", loY, 108, heroH * 0.48, 36, P, 0.62);
-    } else if (grp === "involve") {
+    var lockSide = body.getAttribute("data-mobile-decor-side");
+    for (var mi = 0; mi < mN; mi++) {
 
-      gentleEdgeRect("right", top + 4, 140, heroH * 0.44, 40, R, 0.8);
-      gentleEdgeRect("right", top + heroH * 0.52, 116, heroH * 0.42, 36, P, 0.72);
-      gentleAccent(SHAPES[0], "right", top + heroH * 0.28, 112, 0.56, X);
-      gentleEdgeRect("left", loY, 92, heroH * 0.4, 34, S, 0.6);
-    } else if (grp === "news") {
-
-      gentleEdgeRect("right", top + 4, 168, heroH * 0.92, 50, R, 0.82);
-      gentleEdgeRect("left", loY - heroH * 0.18, 118, heroH * 0.56, 46, P, 0.6);
-    } else if (grp === "neutral") {
-
-      gentleEdgeRect("right", top + 8, 132, heroH * 0.86, 42, R, 0.72);
-      gentleEdgeRect("left", loY, 100, heroH * 0.4, 34, S, 0.6);
-    } else {
-
-      gentleEdgeRect("right", top + 6, 152, heroH * 0.66, 44, R, 0.82);
-      gentleAccent(SHAPES[0], "right", top + heroH * 0.28, 126, 0.7, X);
-      gentleEdgeRect("left", loY, 100, heroH * 0.46, 36, P, 0.62);
+      gentleMotif(mOrder[mi % 4], lockSide || (mi % 2 ? "left" : "right"),
+        mTop + (mi + 0.5) * mRH - 22, 44 * DECOR_GROW_MOBILE, 14 * DECOR_GROW_MOBILE,
+        mi, 0.32 * DECOR_GROW_MOBILE);
     }
-
-    var metrics = mainMetrics();
-    var cyc = [R, P, S, X];
-    Array.prototype.slice.call(main.querySelectorAll(":scope > section.rf-scene")).forEach(function (sc, i) {
-      var r = sc.getBoundingClientRect();
-      var y = Math.round(r.bottom - metrics.rectTop) - 66;
-      gentleAccent(SHAPES[(i + 1) % SHAPES.length], i % 2 ? "left" : "right", y, 116, 0.7, cyc[i % 4]);
-    });
   }
 
   function drawDecor() {
@@ -396,9 +457,10 @@
         return;
       }
 
-      if (state.width < 1360) return;
+      var gut = edgeGutter();
+      if (gut < 40) return;
       var decorMode = body.getAttribute("data-spine-decor") || "rich";
-      var gScale = clamp((state.width - 1120) / 320, 0.55, 1);
+      var gScale = clamp(gut / GUT_REF, 0.55, 1) * DECOR_GROW;
       var span = Math.max(1, state.height - state.pathStartY);
       var gi, gy, count;
       if (decorMode === "rich") {
@@ -406,7 +468,7 @@
         var RICH = ["company-spine-fill-orange", "company-spine-fill-extra", "company-spine-fill-soft",
                     "company-spine-fill-peach", "company-spine-fill-orange", "company-spine-fill-soft",
                     "company-spine-fill-extra", "company-spine-fill-peach"];
-        var mar = Math.max(60, (state.width - 1160) / 2);
+        var mar = gut;
         var bigW = Math.min(300 * gScale, mar - 6);
         var midW = Math.min(224 * gScale, mar - 6);
         var chipW = Math.max(60, Math.min(150 * gScale, mar - 26));
@@ -415,12 +477,18 @@
 
         var headerEl = main.querySelector(".page-header") || main.querySelector(":scope > .rf-hero");
         var heroH = clamp(headerEl ? Math.round(headerEl.getBoundingClientRect().height) - 8 : 210, 170, 320);
+
+        var heroRealH = headerEl ? Math.round(headerEl.getBoundingClientRect().height) : heroH;
         var heroWideW = Math.min(330 * gScale, mar + 140);
-        if (grp === "programs") {
+
+        var HERO_BLOCKS_OFF = true;
+        if (HERO_BLOCKS_OFF) {
+
+        } else if (grp === "programs") {
 
           gentleEdgeRect("right", startY + 6, heroWideW, heroH * 1.35, 54 * gScale, "company-spine-fill-orange", 0.82);
-          gentleEdgeRect("left", startY + 20, midW, heroH * 0.84, 46 * gScale, "company-spine-fill-peach", 0.5);
-          gentleEdgeRect("left", startY + 64 * gScale, midW * 0.78, heroH * 0.58, 40 * gScale, "company-spine-fill-extra", 0.3);
+
+          gentleDuo("left", startY + 20, midW, heroH * 0.7, 46 * gScale, 1);
         } else if (grp === "impact") {
 
           gentleEdgeRect("right", startY + 4, heroWideW, heroH * 0.72, 48 * gScale, "company-spine-fill-orange", 0.82);
@@ -434,10 +502,8 @@
           gentleEdgeRect("left", startY + 30, midW, heroH * 0.82, 44 * gScale, "company-spine-fill-soft", 0.6);
         } else if (grp === "news") {
 
-          gentleEdgeRect("right", startY + 8, heroWideW, heroH * 0.92, 50 * gScale, "company-spine-fill-orange", 0.8);
-          gentleEdgeRect("right", startY + heroH * 0.3, midW, heroH * 0.66, 44 * gScale, "company-spine-fill-extra", 0.42);
-          gentleEdgeRect("right", startY + heroH * 0.56, midW * 0.8, heroH * 0.52, 40 * gScale, "company-spine-fill-peach", 0.26);
-          gentleEdgeRect("left", startY + 20, midW, heroH * 0.86, 46 * gScale, "company-spine-fill-soft", 0.5);
+          gentleDuo("right", startY + 8, heroWideW, heroH * 0.78, 50 * gScale, 0);
+          gentleEdgeRect("left", startY + 20, midW, heroH * 0.86, 46 * gScale, "company-spine-fill-soft", 0.6);
         } else if (grp === "neutral") {
 
           gentleEdgeRect("right", startY + 8, heroWideW * 0.84, heroH * 0.92, 46 * gScale, "company-spine-fill-orange", 0.72);
@@ -450,69 +516,30 @@
           gentleEdgeRect("left", startY + aDrop + heroH * 0.16, midW, heroH * 0.66, 46 * gScale, "company-spine-fill-extra", 0.56);
         }
 
-        var bTop = startY + heroH + 44;
+        var bTop = startY + Math.max(heroH, heroRealH) + 44;
         var bSpan = Math.max(1, state.height - bTop);
         var i, y, rN, rH, sideA, sideB;
-        if (grp === "news") {
+        var PLAN = {
 
-          rN = clamp(Math.round(bSpan / 1050), 2, 6); rH = bSpan / rN;
-          for (i = 0; i < rN; i++) {
-            y = bTop + (i + 0.5) * rH;
-            sideA = i % 2 ? "left" : "right";
-            gentleEdgeRect(sideA, y - 60 * gScale, midW, 230 * gScale, 48 * gScale, RICH[i % RICH.length], 0.62);
-            gentleEdgeRect(sideA, y - 10 * gScale, midW * 0.8, 170 * gScale, 42 * gScale, RICH[(i + 2) % RICH.length], 0.4);
-            gentleEdgeRect(sideA, y + 34 * gScale, midW * 0.6, 120 * gScale, 34 * gScale, RICH[(i + 4) % RICH.length], 0.26);
-          }
-        } else if (grp === "neutral") {
+          news:     { order: ["duo", "organic", "combo", "solo"], gap: 900, max: 8,  alt: "row",  chip: false, w: 1 },
+          programs: { order: ["combo", "duo", "solo", "organic"], gap: 700, max: 10, alt: "pair", chip: false, w: 1 },
+          impact:   { order: ["organic", "duo", "combo", "solo"], gap: 620, max: 12, alt: "pair", chip: true,  w: 0.94 },
+          involve:  { order: ["combo", "solo", "duo", "organic"], gap: 680, max: 11, alt: "row",  chip: true,  w: 1 },
+          neutral:  { order: ["solo", "organic", "duo", "combo"], gap: 780, max: 10, alt: "row",  chip: false, w: 0.78 },
+          about:    { order: ["organic", "combo", "solo", "duo"], gap: 640, max: 12, alt: "row",  chip: true,  w: 1 }
+        };
+        var plan = PLAN[grp] || PLAN.about;
+        rN = clamp(Math.round(bSpan / plan.gap), 4, plan.max); rH = bSpan / rN;
+        for (i = 0; i < rN; i++) {
+          y = bTop + (i + 0.5) * rH;
+          sideA = (plan.alt === "pair" ? Math.floor(i / 2) : i) % 2 ? "left" : "right";
+          sideB = sideA === "left" ? "right" : "left";
+          gentleMotif(plan.order[i % 4], sideA, y - 60 * gScale, midW * plan.w, 44 * gScale, i, gScale * plan.w);
 
-          rN = clamp(Math.round(bSpan / 740), 3, 12); rH = bSpan / rN;
-          for (i = 0; i < rN; i++) {
-            y = bTop + (i + 0.5) * rH;
-            gentleEdgeRect("left", y, chipW, 98 * gScale, 30 * gScale, RICH[i % RICH.length], 0.58);
-            gentleEdgeRect("right", y + rH * 0.44, chipW, 84 * gScale, 28 * gScale, RICH[(i + 2) % RICH.length], 0.58);
-          }
-        } else if (grp === "programs") {
-
-          rN = clamp(Math.round(bSpan / 760), 3, 9); rH = bSpan / rN;
-          for (i = 0; i < rN; i++) {
-            y = bTop + (i + 0.5) * rH;
-            sideA = i % 2 ? "left" : "right";
-            gentleEdgeRect(sideA, y - 50 * gScale, midW, 210 * gScale, 46 * gScale, RICH[i % RICH.length], 0.56);
-            gentleEdgeRect(sideA, y + 6 * gScale, midW * 0.8, 150 * gScale, 40 * gScale, RICH[(i + 2) % RICH.length], 0.36);
-            gentleEdgeRect(sideA, y + 48 * gScale, midW * 0.6, 104 * gScale, 32 * gScale, RICH[(i + 4) % RICH.length], 0.24);
-          }
-        } else if (grp === "impact") {
-
-          rN = clamp(Math.round(bSpan / 520), 4, 15); rH = bSpan / rN;
-          for (i = 0; i < rN; i++) {
-            y = bTop + (i + 0.5) * rH;
-            sideA = Math.floor(i / 2) % 2 ? "left" : "right";
-            sideB = sideA === "left" ? "right" : "left";
-            if (i % 2 === 0) gentleAccent(SHAPES[i % SHAPES.length], sideA, y - 52 * gScale, bigW, 0.7, RICH[i % RICH.length]);
-            else gentleEdgeRect(sideA, y - 6 * gScale, midW, 142 * gScale, 40 * gScale, RICH[(i + 2) % RICH.length], 0.6);
-            gentleEdgeRect(sideB, y + 26 * gScale, chipW, 86 * gScale, 30 * gScale, RICH[(i + 4) % RICH.length], 0.58);
-          }
-        } else if (grp === "involve") {
-
-          rN = clamp(Math.round(bSpan / 700), 3, 11); rH = bSpan / rN;
-          for (i = 0; i < rN; i++) {
-            y = bTop + (i + 0.5) * rH;
-            sideA = i % 2 ? "left" : "right"; sideB = sideA === "left" ? "right" : "left";
-            gentleAccent(SHAPES[i % SHAPES.length], sideA, y - 72 * gScale, bigW, 0.72, RICH[i % RICH.length]);
-            gentleEdgeRect(sideA, y + 58 * gScale, midW, 132 * gScale, 40 * gScale, RICH[(i + 2) % RICH.length], 0.6);
-            gentleEdgeRect(sideB, y + rH * 0.5, chipW, 92 * gScale, 30 * gScale, RICH[(i + 1) % RICH.length], 0.6);
-          }
-        } else {
-
-          rN = clamp(Math.round(bSpan / 640), 3, 13); rH = bSpan / rN;
-          for (i = 0; i < rN; i++) {
-            y = bTop + (i + 0.5) * rH;
-            sideA = i % 2 ? "left" : "right"; sideB = sideA === "left" ? "right" : "left";
-            gentleAccent(SHAPES[i % SHAPES.length], sideA, y - 70 * gScale, bigW, 0.72, RICH[i % RICH.length]);
-            gentleEdgeRect(sideA, y + 44 * gScale, midW, 148 * gScale, 42 * gScale, RICH[(i + 2) % RICH.length], 0.6);
-            gentleEdgeRect(sideB, y + rH * 0.4, midW * 0.9, 130 * gScale, 40 * gScale, RICH[(i + 1) % RICH.length], 0.62);
-          }
+          if (plan.chip && i % 2 === 1) gentleSolo(sideB, y + rH * 0.42, chipW, 88 * gScale, 28 * gScale, i);
         }
+
+        if (SPLIT_DECOR) clearTitleOverlaps();
         return;
       }
       if (decorMode === "tabs") {
@@ -541,10 +568,13 @@
       }
       return;
     }
-    if (!mobileDecor && state.width < 1220) return;
+    var gutN = mobileDecor ? 0 : edgeGutter();
+    if (!mobileDecor && gutN < 40) return;
 
     var metrics = mainMetrics();
-    var decorScale = mobileDecor ? 1 : clamp((state.width - 1120) / 320, 0.55, 1);
+    var decorScale = mobileDecor ? DECOR_GROW_MOBILE : clamp(gutN / GUT_REF, 0.55, 1) * DECOR_GROW;
+
+    var innerLimit = mobileDecor ? Infinity : Math.max(28, gutN - 6);
 
     function box(el) {
       if (!el) return null;
@@ -556,6 +586,8 @@
       visibleWidth *= decorScale;
       height *= decorScale;
       radius *= decorScale;
+      visibleWidth = Math.min(visibleWidth, innerLimit);
+      radius = Math.min(radius, visibleWidth * 0.5);
       var bleed = Math.max(18, radius + 6);
       var x = side === "left" ? -bleed : state.width - visibleWidth;
       var shape = make("rect", {
@@ -572,9 +604,10 @@
 
     function accent(options) {
       var shape = options.shape;
-      var renderedWidth = options.width * decorScale;
-      var scale = renderedWidth / shape.viewWidth;
       var bleed = (options.bleed || 12) * decorScale;
+
+      var renderedWidth = Math.min(options.width * decorScale, innerLimit + bleed);
+      var scale = renderedWidth / shape.viewWidth;
       var y = options.y;
       var transform;
       if (options.side === "left") {
@@ -609,30 +642,40 @@
 
       var mobileShapeBoost = 1.8;
       var mobileEdgeBoost = 1.6;
-      if (hero) {
-        accent({
-          shape: SHAPES[1], side: "left", y: hero.top + 26,
-          width: 126 * mobileEdgeBoost, bleed: 10, opacity: 0.72,
-          className: "company-spine-fill-peach"
-        });
-        edgeRect("left", hero.top + 118, 58 * mobileEdgeBoost, 30 * mobileEdgeBoost, 15 * mobileEdgeBoost, "company-spine-fill-soft", 0.7);
-        edgeRect("right", hero.top + 110, 72 * mobileEdgeBoost, 38 * mobileEdgeBoost, 19 * mobileEdgeBoost, "company-spine-fill-orange", 0.76);
-        accent({
-          shape: SHAPES[0], side: "right", y: hero.bottom - 12,
-          width: 88 * mobileShapeBoost, bleed: 10, opacity: 0.9,
-          className: "company-spine-fill-orange"
-        });
-      }
-      scenes.forEach(function (scene, i) {
-        accent({
-          shape: SHAPES[(i + 1) % SHAPES.length],
-          side: i % 2 ? "right" : "left",
-          y: scene.bottom - (i % 2 ? 46 : 12),
-          width: 88 * mobileShapeBoost, bleed: 10,
-          opacity: i % 2 ? 0.88 : 0.8,
-          className: FILL_CYCLE[i % FILL_CYCLE.length]
-        });
-      });
+
+      var mLock = body.getAttribute("data-mobile-decor-side");
+      var mSide = function (i) { return mLock || (i % 2 ? "right" : "left"); };
+      var mPlace = function (i, y) {
+        var kind = ["organic", "duo", "combo", "solo"][i % 4];
+        var side = mSide(i);
+
+        var ow = 62;
+        if (kind === "duo") {
+          tagMotif(edgeRect(side, y, 44, 34, 13, "company-spine-fill-orange", 0.88), "duo");
+          tagMotif(edgeRect(side, y + 34 * 0.62, 32, 24, 11, "company-spine-fill-soft", 0.6), "duo");
+          return;
+        }
+        if (kind === "solo") {
+          tagMotif(edgeRect(side, y, 40, 28, 12, FILL_CYCLE[i % FILL_CYCLE.length], 0.76), "solo");
+          return;
+        }
+        var shape = SHAPES[(i + 1) % SHAPES.length];
+        tagMotif(accent({
+          shape: shape, side: side, y: y, width: ow, bleed: 10, opacity: 0.86,
+          className: kind === "combo" ? "company-spine-fill-extra" : FILL_CYCLE[i % FILL_CYCLE.length]
+        }), kind === "combo" ? "combo" : "organic");
+        if (kind === "combo") {
+          var oh = ow * shape.viewHeight / shape.viewWidth;
+          tagMotif(edgeRect(side, y + oh * 0.58, ow * 0.62, oh * 0.66, 14,
+            "company-spine-fill-peach", 0.66), "combo");
+        }
+      };
+
+      var aTop = (hero ? hero.bottom : 200) + 40;
+
+      var aSpan = Math.max(1, (cta ? cta.top - 80 : state.height) - aTop);
+      var aN = clamp(Math.round(aSpan / 380), 10, 18);
+      for (var ai = 0; ai < aN; ai++) mPlace(ai, aTop + (ai + 0.5) * (aSpan / aN) - 20);
       if (cta) {
         edgeRect("right", cta.top - 28, 72 * mobileEdgeBoost, 32 * mobileEdgeBoost, 16 * mobileEdgeBoost, "company-spine-fill-orange", 0.76);
         edgeRect("left", cta.top - 16, 106 * mobileEdgeBoost, 34 * mobileEdgeBoost, 17 * mobileEdgeBoost, "company-spine-fill-soft", 0.72);
@@ -645,10 +688,16 @@
       return;
     }
 
-    if (hero) {
-      edgeRect("left", hero.top + hero.height * 0.42, 132, 300, 44, "company-spine-fill-orange");
-      edgeRect("right", hero.top + 8, 170, 360, 44, "company-spine-fill-orange");
-      edgeRect("right", hero.bottom - 126, 255, 128, 42, "company-spine-fill-soft", 0.78);
+    var heroFloorL = -Infinity, heroFloorR = -Infinity;
+    if (hero && state.width > 920) {
+      var hy1 = hero.top + hero.height * 0.42;
+      var hy2 = hero.top + 8;
+      var hy3 = hero.bottom - 126 * decorScale;
+      edgeRect("left", hy1, 132, 300, 44, "company-spine-fill-orange");
+      edgeRect("right", hy2, 170, 360, 44, "company-spine-fill-orange");
+      edgeRect("right", hy3, 255, 128, 42, "company-spine-fill-soft", 0.78);
+      heroFloorL = hy1 + 300 * decorScale;
+      heroFloorR = Math.max(hy2 + 360 * decorScale, hy3 + 128 * decorScale);
     }
 
     scenes.forEach(function (scene, i) {
@@ -656,15 +705,37 @@
       var other = side === "left" ? "right" : "left";
       var shape = SHAPES[i % SHAPES.length];
       var tall = Math.max(220, scene.height);
-      accent({
-        shape: shape, side: side,
-        y: scene.top + Math.min(30 * decorScale, tall * 0.1),
-        width: 200 + (i % 3) * 22,
-        className: FILL_CYCLE[i % FILL_CYCLE.length]
-      });
-      edgeRect(other, scene.top + tall * 0.32, 96 + (i % 2) * 34, 120, 36, FILL_CYCLE[(i + 1) % FILL_CYCLE.length], 0.72);
-      if (tall > 460) {
-        edgeRect(side, scene.bottom - 150 * decorScale, 72 + (i % 3) * 26, 96, 34, FILL_CYCLE[(i + 2) % FILL_CYCLE.length], 0.66);
+      var top = scene.top + Math.min(30 * decorScale, tall * 0.1);
+
+      var floorSame = side === "left" ? heroFloorL : heroFloorR;
+      var floorOther = other === "left" ? heroFloorL : heroFloorR;
+      if (i === 0 && isFinite(floorSame)) top = Math.max(top, floorSame + 26);
+      var kind = i % 3;
+      var ow = 200 + (i % 3) * 22;
+      if (kind === 1) {
+
+        tagMotif(edgeRect(side, top, 128, 190, 44, "company-spine-fill-orange", 0.88), "duo");
+        tagMotif(edgeRect(side, top + 190 * decorScale * 0.62, 92, 138, 36, "company-spine-fill-soft", 0.6), "duo");
+      } else {
+        tagMotif(accent({
+          shape: shape, side: side, y: top, width: ow,
+          className: kind === 2 ? "company-spine-fill-extra" : FILL_CYCLE[i % FILL_CYCLE.length]
+        }), kind === 2 ? "combo" : "organic");
+        if (kind === 2) {
+
+          var oh = ow * shape.viewHeight / shape.viewWidth;
+          tagMotif(edgeRect(side, top + oh * decorScale * 0.58, ow * 0.62, oh * 0.66, 34,
+            "company-spine-fill-peach", 0.66), "combo");
+        }
+      }
+      var otherY = scene.top + tall * 0.32;
+      if (i === 0 && isFinite(floorOther)) otherY = Math.max(otherY, floorOther + 26);
+      tagMotif(edgeRect(other, otherY, 96 + (i % 2) * 34, 120, 36,
+        FILL_CYCLE[(i + 1) % FILL_CYCLE.length], 0.72), "solo");
+
+      if (tall > 460 * decorScale) {
+        tagMotif(edgeRect(side, scene.bottom - 150 * decorScale, 72 + (i % 3) * 26, 96, 34,
+          FILL_CYCLE[(i + 2) % FILL_CYCLE.length], 0.66), "solo");
       }
     });
 
@@ -703,9 +774,34 @@
     return rects;
   }
 
+  function allInkRects() {
+    var rects = [];
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!(node.nodeValue || "").trim()) return NodeFilter.FILTER_REJECT;
+        var pe = node.parentElement;
+        if (!pe || layer.contains(pe)) return NodeFilter.FILTER_REJECT;
+        var cs = window.getComputedStyle(pe);
+        if (cs.display === "none" || cs.visibility === "hidden") return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node, list, i, r;
+    while ((node = walker.nextNode())) {
+      var range = document.createRange();
+      try { range.selectNodeContents(node); } catch (e) { continue; }
+      list = range.getClientRects();
+      for (i = 0; i < list.length; i++) {
+        r = list[i];
+        if (r.width >= 1 && r.height >= 1) rects.push(r);
+      }
+    }
+    return rects;
+  }
+
   function clearTitleOverlaps(pad) {
     pad = pad == null ? 8 : pad;
-    var rects = titleInkRects();
+    var rects = allInkRects();
     if (!rects.length) return;
     Array.prototype.slice.call(decor.children).forEach(function (el) {
       var b = el.getBoundingClientRect();
@@ -752,21 +848,15 @@
       state.xLeft = width - 14;
       dot.setAttribute("r", "5.7");
     } else if (gentle) {
-      var cor = (width - 1160) / 2;
-      var softA, softJog;
-      if (cor >= 130) {
-        softA = width - 78;
-        softJog = Math.min(48, cor - 92);
-      } else {
-        softA = width - 14;
-        softJog = 6;
-      }
-      softA = Math.round(softA);
+
+      var cor = edgeGutter();
+      var softA = Math.round(width - clamp(cor * 0.56, 24, 78));
+      var softJog = Math.round(clamp(cor * 0.34, 10, 48));
       var softB = Math.round(softA - Math.max(6, softJog));
-      var farL = Math.round(Math.max(34, (width - 1240) / 2 - 14));
-      var farR = Math.round(Math.min(width - 82, width - Math.max(34, (width - 1240) / 2 - 14)));
+      var farL = Math.round(clamp(cor * 0.6, 30, 100));
+      var farR = Math.round(Math.min(width - 82, width - farL));
       var secYs = gentleTurnYs(metrics);
-      var wide = cor >= 130; 
+      var wide = cor >= 70; 
       seq = [];
       startX = wide && (route === "mid" || route === "cross" || route === "full") ? farR : softA;
       if (route === "straight") {
@@ -806,9 +896,9 @@
       state.xLeft = softB;
       dot.setAttribute("r", "6.5");
     } else {
-      var contentGutter = Math.max(34, (width - 1240) / 2 - 14);
-      state.xLeft = Math.round(contentGutter);
-      state.xRight = Math.round(Math.min(width - 82, width - contentGutter));
+      var corridor = Math.round(clamp(edgeGutter() * 0.6, 30, 100));
+      state.xLeft = corridor;
+      state.xRight = Math.round(Math.min(width - 82, width - corridor));
       dot.setAttribute("r", "6.5");
     }
 
@@ -872,6 +962,13 @@
     state.current = clamp(oldProgress * state.total, 0, state.total);
     state.target = state.current;
     state.turnList = turns;
+
+    var segPeriod = turns.length >= 2
+      ? (turns[turns.length - 1].y - turns[0].y) / (turns.length - 1)
+      : (height - state.pathStartY) / 4;
+    segPeriod = clamp(segPeriod, 360, 900);
+    baseGrad.setAttribute("y1", state.pathStartY);
+    baseGrad.setAttribute("y2", state.pathStartY + segPeriod);
     buildGuideKeys(turns);
     drawBridges(metrics);
     drawDecor();
@@ -883,7 +980,11 @@
     var manualLead = Math.min(window.scrollY * 0.15, maxLead);
     var targetY = state.pathStartY + window.scrollY + manualLead;
     var labelCenterOffset = state.mobile ? 46 : 58;
-    return labelCenterOffset + distanceAtGuideY(targetY);
+    var dist = labelCenterOffset + distanceAtGuideY(targetY);
+
+    var maxScroll = Math.max(1, (document.documentElement.scrollHeight || state.height) - window.innerHeight);
+    var tail = clamp((window.scrollY / maxScroll - 0.8) / 0.2, 0, 1);
+    return dist + (state.total - dist) * tail;
   }
 
   function updateTarget(immediate) {
