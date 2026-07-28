@@ -11,7 +11,8 @@ body.aud-neutral  { --frame: var(--brand-green); --runner: var(--deep);  --aud-s
 
 .rf { display: block; overflow: clip; }
 .rf * { box-sizing: border-box; }
-.rf-wrap { width: min(1160px, 100%); margin: 0 auto; padding-inline: clamp(24px, 5vw, 64px); }
+
+.rf-wrap { width: min(var(--rf-max, 1160px), 100%); margin: 0 auto; padding-inline: clamp(24px, 5vw, 64px); }
 
 .bicon { display: inline-block; width: 24px; height: 24px; background: currentColor;
   -webkit-mask: var(--m) center/contain no-repeat; mask: var(--m) center/contain no-repeat; }
@@ -86,7 +87,7 @@ body.aud-neutral  .rf-ribbon { --rb1: var(--leaf);        --rb2: var(--path);  -
 .rf-scene { position: relative; padding: clamp(48px, 7vw, 88px) 0; }
 .rf-scene--panel { padding: 0; }
 .rf-scene--panel > .rf-panel {
-  width: min(1240px, calc(100% - 32px)); margin: 0 auto;
+  width: min(var(--rf-panel-max, 1240px), calc(100% - 32px)); margin: 0 auto;
   border-radius: clamp(26px, 3vw, 40px);
   padding: clamp(44px, 6vw, 80px) clamp(24px, 5vw, 88px);
   background: var(--aud-soft, var(--apricot)); 
@@ -143,9 +144,11 @@ body.aud-donor .rf-stat strong { color: var(--deep); }
 .rf-card svg.rf-edge rect { fill: none; vector-effect: non-scaling-stroke; }
 .rf-card svg.rf-edge .base { stroke: var(--frame); stroke-width: 1px; }
 .rf-card svg.rf-edge .runner { stroke: var(--runner); stroke-width: 2.5px; stroke-linecap: round;
-  stroke-dasharray: 12 88; stroke-dashoffset: 12; opacity: 0;
-  transition: stroke-dashoffset 1.3s cubic-bezier(0.45, 0.05, 0.35, 1), opacity 0.2s ease; }
-.rf-card:hover svg.rf-edge .runner { opacity: 1; stroke-dashoffset: -88; } 
+  stroke-dasharray: 12 88; stroke-dashoffset: 12; opacity: 0; }
+
+.rf-card.rf-running svg.rf-edge .runner {
+  animation: rf-runner-lap 1.3s cubic-bezier(0.45, 0.05, 0.35, 1) both,
+             rf-runner-fade 1.3s linear both; }
 .rf-card .rf-dot { display: none; } 
 .rf-card .rf-card-n { position: absolute; left: 24px; top: -16px; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 14px; background: var(--deep); color: #fff0c3; z-index: 3; box-shadow: 0 7px 16px rgba(61, 85, 39, 0.30); font-family: var(--font-en); font-weight: 800; font-size: 22px; line-height: 1; }
 .rf-card h3 { margin: 0 0 6px; font-size: 1.02rem; color: var(--deep); }
@@ -153,7 +156,7 @@ body.aud-donor .rf-stat strong { color: var(--deep); }
 .rf-card p { margin: 0; font-size: 0.88rem; line-height: 1.8; color: var(--muted); }
 @media (prefers-reduced-motion: reduce) {
   .rf-card { transition: none; }
-  .rf-card svg.rf-edge .runner { transition: opacity 0.2s ease; }
+  .rf-card.rf-running svg.rf-edge .runner { animation: none; }
 }
 
 .rf-quote { position: relative; margin: 34px 0 0; border-radius: 24px; padding: 34px 32px 24px; background: #fff;
@@ -185,7 +188,7 @@ body.aud-donor .rf-qchip { color: var(--deep); }
 .rf-cta { padding: clamp(48px, 7vw, 88px) 0 clamp(64px, 8vw, 100px); }
 .rf-cta .rf-panel-cta {
   position: relative; overflow: hidden;
-  width: min(1240px, calc(100% - 32px)); margin: 0 auto;
+  width: min(var(--rf-panel-max, 1240px), calc(100% - 32px)); margin: 0 auto;
   border-radius: clamp(26px, 3vw, 40px);
   padding: clamp(44px, 6vw, 72px) clamp(24px, 5vw, 88px);
   background: var(--deep); color: #fff;
@@ -223,8 +226,8 @@ body.aud-company .rf-hero .button-primary:hover, body.aud-company .rf-hero .butt
 body.aud-student .rf-hero .button-primary { background: var(--leaf-700); border-color: var(--leaf-700); color: #fff; }
 body.aud-student .rf-hero .button-primary:hover, body.aud-student .rf-hero .button-primary:focus-visible { background: var(--deep); border-color: var(--deep); color: #fff; }
 
-body.aud-student .rf-panel-cta .rf-hero-actions .button-primary { background: var(--leaf); border-color: var(--leaf); color: #000; }
-body.aud-student .rf-panel-cta .rf-hero-actions .button-primary:hover, body.aud-student .rf-panel-cta .rf-hero-actions .button-primary:focus-visible { background: var(--brand-green); border-color: var(--brand-green); color: #000; }
+body.aud-student .rf-panel-cta .rf-hero-actions .button-primary { background: var(--sun); border-color: var(--sun); color: #000; }
+body.aud-student .rf-panel-cta .rf-hero-actions .button-primary:hover, body.aud-student .rf-panel-cta .rf-hero-actions .button-primary:focus-visible { background: var(--amber); border-color: var(--amber); color: #000; }
 
 body:is(.aud-company, .audience-spine-page):has(.exit-nav-col) .rf-cta .rf-panel-cta { background: var(--sunset); }
 body.aud-company .rf-panel-cta .rf-hero-actions .button-primary { background: var(--apricot); border-color: var(--apricot); color: #000; }
@@ -326,7 +329,7 @@ body.aud-company .rf-panel-cta .rf-hero-actions .button-primary:hover, body.aud-
 .rf-bracketstats .rbk::before {
   content: ""; position: absolute; right: 20px; top: -6px;
   width: 11px; height: 11px; border-radius: 50%; background: var(--acc);
-  z-index: 2; pointer-events: none;
+  z-index: 3; pointer-events: none; 
 }
 .rf-bracketstats .rbk1 { --acc: var(--path);   --num: var(--leaf-700); --glow: rgba(242, 140, 10, 0.20); }
 .rf-bracketstats .rbk2 { --acc: var(--wheat);  --num: var(--deep);      --glow: rgba(245, 182, 45, 0.26); }
@@ -557,7 +560,27 @@ body.aud-company .rf-panel-cta .rf-hero-actions .button-primary:hover, body.aud-
     --exitnav-clear: calc(max(clamp(10px, 1.5vw, 24px), (100vw - var(--max)) / 2 + clamp(24px, 5vw, 64px) - 240px) + 204px + 20px);
     width: auto;
     margin-left: var(--exitnav-clear);
-    margin-right: max(16px, calc((100% - 1240px) / 2));
+    margin-right: max(16px, calc((100% - var(--rf-panel-max, 1240px)) / 2));
+  }
+
+  body:is(.aud-company, .audience-spine-page):has(.exit-nav-col) .rf-scene--bleed > .rf-col {
+    --exitnav-clear: calc(max(clamp(10px, 1.5vw, 24px), (100vw - var(--max)) / 2 + clamp(24px, 5vw, 64px) - 240px) + 204px + 20px);
+    --rf-col-left: max(var(--exitnav-clear), calc((100vw - 760px) / 2));
+    width: auto;
+    margin-left: var(--rf-col-left);
+    margin-right: max(16px, calc((100% - 760px) / 2));
+  }
+
+  body:is(.aud-company, .audience-spine-page):has(.exit-nav-col) .rf-scene--bleed .rf-story {
+    width: min(980px, 94vw, calc(100% + 2 * (var(--rf-col-left) - var(--exitnav-clear))));
+  }
+
+  body:is(.aud-company, .audience-spine-page):has(.exit-nav-col) .rf-scene--bleed .rf-bracketstats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(12px, 1.4vw, 18px);
+  }
+  body:is(.aud-company, .audience-spine-page):has(.exit-nav-col) .rf-scene--bleed .rf-bracketstats .rbk {
+    padding: 30px clamp(14px, 1.8vw, 24px) 26px;
   }
 }
 @media (max-width: 960px) {
@@ -580,13 +603,16 @@ body.aud-company .rf-panel-cta .rf-hero-actions .button-primary:hover, body.aud-
 .rf-spinestats .sp svg.rf-edge .runner {
   stroke: var(--runner, var(--deep)); stroke-width: 2.5px; stroke-linecap: round;
   stroke-dasharray: 12 88; stroke-dashoffset: 12; opacity: 0;
-  transition: stroke-dashoffset 1.3s cubic-bezier(0.45, 0.05, 0.35, 1), opacity 0.2s ease;
 }
-.rf-bracketstats .rbk:hover svg.rf-edge .runner,
-.rf-spinestats .sp:hover svg.rf-edge .runner { opacity: 1; stroke-dashoffset: -88; }
+
+.rf-bracketstats .rbk.rf-running svg.rf-edge .runner,
+.rf-spinestats .sp.rf-running svg.rf-edge .runner {
+  animation: rf-runner-lap 1.3s cubic-bezier(0.45, 0.05, 0.35, 1) both,
+             rf-runner-fade 1.3s linear both;
+}
 @media (prefers-reduced-motion: reduce) {
-  .rf-bracketstats .rbk svg.rf-edge .runner,
-  .rf-spinestats .sp svg.rf-edge .runner { transition: opacity 0.2s ease; }
+  .rf-bracketstats .rbk.rf-running svg.rf-edge .runner,
+  .rf-spinestats .sp.rf-running svg.rf-edge .runner { animation: none; }
 }
 
 @media all {

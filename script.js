@@ -63,27 +63,33 @@ function activateTab(buttons, panels, key, attr) {
   });
 }
 
-const actTabs = document.querySelectorAll("[data-tab]");
-const actPanels = document.querySelectorAll("[data-tab-panel]");
-actTabs.forEach((button) => {
-  button.addEventListener("click", () => activateTab(actTabs, actPanels, "tab", button.dataset.tab));
-});
+function tabScope(button, panelAttr) {
+  let node = button.parentElement;
+  while (node) {
+    if (node.querySelector(`[${panelAttr}]`)) return node;
+    node = node.parentElement;
+  }
+  return document;
+}
 
-const audienceTabs = document.querySelectorAll("[data-audience]");
-const audiencePanels = document.querySelectorAll("[data-audience-panel]");
-audienceTabs.forEach((button) => {
-  button.addEventListener("click", () =>
-    activateTab(audienceTabs, audiencePanels, "audience", button.dataset.audience)
-  );
-});
+function bindTabs(key, panelAttr) {
+  document.querySelectorAll(`[data-${key}]`).forEach((button) => {
+    button.addEventListener("click", () => {
+      const scope = tabScope(button, panelAttr);
+      activateTab(
+        scope.querySelectorAll(`[data-${key}]`),
+        scope.querySelectorAll(`[${panelAttr}]`),
+        key,
+        button.dataset[key]
+      );
+    });
+  });
+}
 
-const applyTabs = document.querySelectorAll("[data-apply]");
-const applyPanels = document.querySelectorAll("[data-apply-panel]");
-applyTabs.forEach((button) => {
-  button.addEventListener("click", () =>
-    activateTab(applyTabs, applyPanels, "apply", button.dataset.apply)
-  );
-});
+bindTabs("tab", "data-tab-panel");
+bindTabs("audience", "data-audience-panel");
+
+bindTabs("apply", "data-apply-panel");
 
 function scrollToHashTarget(behavior = "smooth") {
   const hash = window.location.hash;
@@ -764,3 +770,147 @@ document.querySelectorAll("[data-caserail]").forEach((rail) => {
   if (next) next.addEventListener("click", () => go(idx + 1));
   go(0);
 });
+
+const heightLocks = [];
+function runHeightLocks() {
+  heightLocks
+    .slice()
+    .sort((a, b) => a.order - b.order)
+    .forEach((lock) => lock.run());
+}
+
+document.querySelectorAll("[data-faq-lock]").forEach((list) => {
+  const items = Array.from(list.querySelectorAll(".faq-item"));
+  if (!items.length) return;
+
+  let measuring = false;
+
+  items.forEach((item) => {
+    item.addEventListener("toggle", () => {
+      if (measuring || !item.open) return;
+      items.forEach((other) => { if (other !== item) other.open = false; });
+    });
+  });
+
+  const reserve = () => {
+    measuring = true;
+    list.classList.add("is-faq-measuring");
+    const wasOpen = items.filter((item) => item.open);
+    list.style.minHeight = "";
+    items.forEach((item) => { item.open = false; });
+
+    const measure = () => list.getBoundingClientRect().height;
+    let tallest = measure();
+    items.forEach((item) => {
+      item.open = true;
+      tallest = Math.max(tallest, measure());
+      item.open = false;
+    });
+    wasOpen.forEach((item) => { item.open = true; });
+    list.style.minHeight = (Math.ceil(tallest) + 1) + "px";
+
+    void list.offsetHeight;
+    list.classList.remove("is-faq-measuring");
+    measuring = false;
+  };
+
+  heightLocks.push({ order: 0, run: reserve });
+  reserve();
+});
+
+document.querySelectorAll("[data-panel-lock]").forEach((group) => {
+  const attr = group.dataset.panelLock === "apply" ? "data-apply-panel" : "data-tab-panel";
+  const panels = Array.from(group.querySelectorAll(`[${attr}]`));
+  if (panels.length < 2) return;
+
+  const reserve = () => {
+    const wasActive = panels.find((p) => p.classList.contains("is-active")) || panels[0];
+    group.style.minHeight = "";
+    let tallest = 0;
+    panels.forEach((panel) => {
+
+      panels.forEach((p) => p.classList.toggle("is-active", p === panel));
+      tallest = Math.max(tallest, group.getBoundingClientRect().height);
+    });
+    panels.forEach((p) => p.classList.toggle("is-active", p === wasActive));
+
+    group.style.minHeight = Math.ceil(tallest) + 1 + "px";
+  };
+
+  heightLocks.push({ order: 1, run: reserve });
+  reserve();
+});
+
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(runHeightLocks);
+window.addEventListener("load", runHeightLocks);
+let heightLockTimer = 0;
+window.addEventListener("resize", () => {
+  window.clearTimeout(heightLockTimer);
+  heightLockTimer = window.setTimeout(runHeightLocks, 150);
+});
+
+(() => {
+  const modals = Array.from(document.querySelectorAll(".fp-modal"));
+  if (!modals.length) return;
+
+  const FOCUSABLE =
+    'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+  let openModal = null;
+  let lastTrigger = null;
+
+  const close = () => {
+    if (!openModal) return;
+    openModal.hidden = true;
+    document.body.classList.remove("fp-lock");
+    openModal = null;
+    if (lastTrigger) lastTrigger.focus();
+    lastTrigger = null;
+  };
+
+  const open = (modal, trigger) => {
+    if (!modal) return;
+    lastTrigger = trigger || null;
+    modal.hidden = false;
+    document.body.classList.add("fp-lock");
+    openModal = modal;
+    const panel = modal.querySelector(".fp-modal__panel");
+    if (panel) panel.scrollTop = 0;
+    const first = modal.querySelector(".fp-modal__close") || panel;
+    if (first) first.focus();
+  };
+
+  document.querySelectorAll("[data-fp-open]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      open(document.getElementById(btn.getAttribute("data-fp-open")), btn);
+    });
+  });
+
+  modals.forEach((modal) => {
+    modal.querySelectorAll("[data-fp-close]").forEach((el) => {
+      el.addEventListener("click", close);
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!openModal) return;
+    if (e.key === "Escape") {
+      close();
+      return;
+    }
+    if (e.key !== "Tab") return;
+
+    const items = Array.from(openModal.querySelectorAll(FOCUSABLE)).filter(
+      (el) => el.offsetParent !== null
+    );
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+})();

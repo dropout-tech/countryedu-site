@@ -70,6 +70,15 @@
   make("stop", { class: "company-spine-accent-apricot-start", offset: "0%" }, accentSoft);
   make("stop", { class: "company-spine-accent-honey-end", offset: "100%" }, accentSoft);
 
+  var baseGrad = make("linearGradient", {
+    id: "company-spine-base-gradient",
+    gradientUnits: "userSpaceOnUse",
+    spreadMethod: "reflect",
+    x1: "0", y1: "0", x2: "0", y2: "0"
+  }, defs);
+  make("stop", { class: "company-spine-base-gradient-start", offset: "0%" }, baseGrad);
+  make("stop", { class: "company-spine-base-gradient-end", offset: "100%" }, baseGrad);
+
   var basePath = make("path", { class: "company-spine-base" });
   var bridges = make("g", { class: "company-spine-bridges" });
   var decor = make("g", { class: "company-spine-decor" });
@@ -99,6 +108,8 @@
   layer.appendChild(svg);
   main.insertBefore(layer, main.firstChild);
 
+  if (body.classList.contains("aud-company")) svg.insertBefore(decor, basePath);
+
   var state = {
     width: 0,
     height: 0,
@@ -123,6 +134,14 @@
       rectTop: r.top,
       rectLeft: r.left
     };
+  }
+
+  function edgeGutter() {
+    var wrap = main.querySelector(".rf-wrap");
+    if (!wrap) return Math.max(0, Math.round((state.width - 1160) / 2));
+    var g = wrap.getBoundingClientRect().left - mainMetrics().rectLeft;
+    if (!isFinite(g)) g = (state.width - 1160) / 2;
+    return Math.max(0, Math.round(g));
   }
 
   function separators() {
@@ -299,10 +318,14 @@
     decor.replaceChildren();
 
     var mobileDecor = state.width <= 700;
-    if (!mobileDecor && state.width < 1220) return;
+
+    var gutN = mobileDecor ? 0 : edgeGutter();
+    if (!mobileDecor && gutN < 40) return;
 
     var metrics = mainMetrics();
-    var decorScale = mobileDecor ? 1 : clamp((state.width - 1120) / 320, 0.55, 1);
+
+    var DECOR_GROW = 1.72, GUT_REF = 218, DECOR_GROW_MOBILE = 1.3;
+    var decorScale = mobileDecor ? DECOR_GROW_MOBILE : clamp(gutN / GUT_REF, 0.55, 1) * DECOR_GROW;
 
     function sectionBox(selector) {
       var el = main.querySelector(selector);
@@ -316,6 +339,10 @@
     }
 
     function edgeRect(side, y, visibleWidth, height, radius, className, opacity) {
+
+      if (opacity != null) opacity = Math.min(0.95, +(opacity * 1.3).toFixed(3));
+
+      radius = Math.min(radius, height * 0.45);
       visibleWidth *= decorScale;
       height *= decorScale;
       radius *= decorScale;
@@ -332,6 +359,7 @@
         ry: radius.toFixed(1)
       }, decor);
       if (opacity != null) shape.setAttribute("opacity", opacity);
+      shape.setAttribute("data-motif", "solo");
       return shape;
     }
 
@@ -364,7 +392,20 @@
         cy: options.dotY,
         r: options.dotR || 8
       }, group);
+      group.setAttribute("data-motif", options.motif || "organic");
       return group;
+    }
+
+    function tagM(el, motif) { if (el) el.setAttribute("data-motif", motif); return el; }
+    function duo(side, y, w, h, r) {
+      tagM(edgeRect(side, y, w, h, r, "company-spine-fill-orange", 0.88), "duo");
+      tagM(edgeRect(side, y + h * decorScale * 0.62, w * 0.72, h * 0.72, r * 0.82,
+        "company-spine-fill-soft", 0.6), "duo");
+    }
+    function comboBand(side, y, ow, viewW, viewH) {
+      var oh = ow * viewH / viewW;
+      tagM(edgeRect(side, y + oh * decorScale * 0.58, ow * 0.62, oh * 0.66, 34,
+        "company-spine-fill-peach", 0.66), "combo");
     }
 
     var hero = sectionBox(":scope > .rf-hero");
@@ -381,26 +422,7 @@
 
       var mobileShapeBoost = 1.8;
       var mobileEdgeBoost = 1.6;
-      if (hero) {
 
-        accent({
-          id: "B-hero", side: "left", y: hero.top + 26,
-          width: 126 * mobileEdgeBoost, viewWidth: 260, viewHeight: 210, bleed: 10, opacity: 0.72,
-          className: "company-spine-fill-peach",
-          path: "M260 0H200C173 0 161 14 156 39C151 62 136 75 111 75H74C55 75 40 90 40 109V116C40 135 55 150 74 150H260Z",
-          dotX: 18, dotY: 24
-        });
-        edgeRect("left", hero.top + 118, 58 * mobileEdgeBoost, 30 * mobileEdgeBoost, 15 * mobileEdgeBoost, "company-spine-fill-soft", 0.7);
-        edgeRect("right", hero.top + 110, 72 * mobileEdgeBoost, 38 * mobileEdgeBoost, 19 * mobileEdgeBoost, "company-spine-fill-orange", 0.76);
-
-        accent({
-          id: "A", side: "right", y: hero.bottom - 12,
-          width: 88 * mobileShapeBoost, viewWidth: 260, viewHeight: 210, bleed: 10, opacity: 0.9,
-          className: "company-spine-fill-orange",
-          path: "M260 0H74C54 0 40 15 40 34V40C40 60 55 73 74 73H109C137 73 151 87 156 111C161 136 176 150 200 150H260Z",
-          dotX: 18, dotY: 180
-        });
-      }
       if (why) {
         accent({
           id: "B", side: "left", y: why.bottom - 12,
@@ -421,13 +443,18 @@
         });
       }
       if (model) {
+
         accent({
-          id: "E", side: "left", y: model.bottom - 12,
+          id: "E", side: "left", y: model.bottom - 12, motif: "combo",
           width: 96 * mobileShapeBoost, viewWidth: 270, viewHeight: 200, bleed: 10, opacity: 0.78,
           className: "company-spine-fill-peach",
           path: "M270 0H78C57 0 40 17 40 38V40C40 60 56 72 78 72H182C210 72 214 87 214 108V112C214 135 227 147 250 147H270Z",
           dotX: 18, dotY: 176
         });
+        var mComboH = 96 * mobileShapeBoost * 200 / 270;
+        tagM(edgeRect("left", model.bottom - 12 + mComboH * 0.58, 96 * mobileShapeBoost * 0.62,
+          mComboH * 0.66, 16 * mobileEdgeBoost, "company-spine-fill-peach", 0.66), "combo");
+        duo("left", model.top + 60, 82 * mobileEdgeBoost, 46 * mobileEdgeBoost, 18 * mobileEdgeBoost);
       }
       if (onsite) {
         accent({
@@ -447,19 +474,25 @@
           edgeRect("left", ctaPanel.bottom + 2, 88 * mobileEdgeBoost, 32 * mobileEdgeBoost, 16 * mobileEdgeBoost, "company-spine-fill-peach", 0.68);
         }
       }
+
+      clearTextOverlaps();
       return;
     }
 
-    if (hero) {
+    var heroFloorR = -Infinity;
+    if (hero && state.width > 920) {
+      var hy2 = hero.top + 8;
+      var hy3 = hero.bottom - 126 * decorScale;
       edgeRect("left", hero.top + hero.height * 0.42, 132, 300, 44, "company-spine-fill-orange");
-      edgeRect("right", hero.top + 8, 170, 360, 44, "company-spine-fill-orange");
-      edgeRect("right", hero.bottom - 126, 255, 128, 42, "company-spine-fill-soft", 0.78);
+      edgeRect("right", hy2, 170, 360, 44, "company-spine-fill-orange");
+      edgeRect("right", hy3, 255, 128, 42, "company-spine-fill-soft", 0.78);
+      heroFloorR = Math.max(hy2 + 360 * decorScale, hy3 + 128 * decorScale);
     }
 
     if (why) {
 
       accent({
-        id: "A", side: "right", y: why.top - 40 * decorScale,
+        id: "A", side: "right", y: Math.max(why.top - 40 * decorScale, heroFloorR + 26),
         width: 220, viewWidth: 260, viewHeight: 210,
         className: "company-spine-fill-orange",
         path: "M260 0H74C54 0 40 15 40 34V40C40 60 55 73 74 73H109C137 73 151 87 156 111C161 136 176 150 200 150H260Z",
@@ -470,7 +503,7 @@
 
     if (data) {
       edgeRect("left", data.top + 82 * decorScale, 82, 282, 40, "company-spine-fill-peach", 0.62);
-      edgeRect("left", data.bottom - 132 * decorScale, 136, 92, 34, "company-spine-fill-orange");
+      duo("left", data.bottom - 132 * decorScale, 136, 92, 34);
       edgeRect("right", data.top + 156 * decorScale, 76, 164, 36, "company-spine-fill-soft", 0.68);
     }
 
@@ -505,12 +538,13 @@
       edgeRect("left", onsite.bottom - 116 * decorScale, 64, 108, 34, "company-spine-fill-soft", 0.7);
 
       accent({
-        id: "E", side: "right", y: onsite.bottom + 10 * decorScale,
+        id: "E", side: "right", y: onsite.bottom + 10 * decorScale, motif: "combo",
         width: 258, viewWidth: 270, viewHeight: 200,
         className: "company-spine-fill-peach",
         path: "M270 0H78C57 0 40 17 40 38V40C40 60 56 72 78 72H182C210 72 214 87 214 108V112C214 135 227 147 250 147H270Z",
         dotX: 18, dotY: 176
       });
+      comboBand("right", onsite.bottom + 10 * decorScale, 258, 270, 200);
     }
 
     if (cases) {
@@ -530,6 +564,49 @@
       edgeRect("left", cta.top + 132 * decorScale, 116, 92, 34, "company-spine-fill-soft", 0.68);
       edgeRect("right", cta.top + 236 * decorScale, 72, 154, 34, "company-spine-fill-peach", 0.58);
     }
+  }
+
+  function allInkRects() {
+    var rects = [];
+    var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        if (!(node.nodeValue || "").trim()) return NodeFilter.FILTER_REJECT;
+        var pe = node.parentElement;
+        if (!pe || layer.contains(pe)) return NodeFilter.FILTER_REJECT;
+        var cs = window.getComputedStyle(pe);
+        if (cs.display === "none" || cs.visibility === "hidden") return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node, list, i, r;
+    while ((node = walker.nextNode())) {
+      var range = document.createRange();
+      try { range.selectNodeContents(node); } catch (e) { continue; }
+      list = range.getClientRects();
+      for (i = 0; i < list.length; i++) {
+        r = list[i];
+        if (r.width >= 1 && r.height >= 1) rects.push(r);
+      }
+    }
+    return rects;
+  }
+
+  function clearTextOverlaps(pad) {
+    pad = pad == null ? 8 : pad;
+    var rects = allInkRects();
+    if (!rects.length) return;
+    Array.prototype.slice.call(decor.children).forEach(function (el) {
+      var b = el.getBoundingClientRect();
+      if (b.width < 1 || b.height < 1) return;
+      for (var i = 0; i < rects.length; i++) {
+        var r = rects[i];
+        if (b.left < r.right + pad && b.right > r.left - pad &&
+            b.top < r.bottom + pad && b.bottom > r.top - pad) {
+          el.style.display = "none";
+          return;
+        }
+      }
+    });
   }
 
   function drawPath() {
@@ -559,9 +636,9 @@
       state.xLeft = width - 14;
       dot.setAttribute("r", "5.7");
     } else {
-      var contentGutter = Math.max(34, (width - 1240) / 2 - 14);
-      state.xLeft = Math.round(contentGutter);
-      state.xRight = Math.round(Math.min(width - 82, width - contentGutter));
+      var corridor = Math.round(clamp(edgeGutter() * 0.6, 30, 100));
+      state.xLeft = corridor;
+      state.xRight = Math.round(Math.min(width - 82, width - corridor));
       dot.setAttribute("r", "6.5");
     }
 
@@ -598,6 +675,13 @@
     state.total = Math.max(1, basePath.getTotalLength());
     state.current = clamp(oldProgress * state.total, 0, state.total);
     state.target = state.current;
+
+    var segPeriod = turns.length >= 2
+      ? (turns[turns.length - 1].y - turns[0].y) / (turns.length - 1)
+      : (height - state.pathStartY) / 4;
+    segPeriod = clamp(segPeriod, 360, 900);
+    baseGrad.setAttribute("y1", state.pathStartY);
+    baseGrad.setAttribute("y2", state.pathStartY + segPeriod);
     buildGuideKeys(turns);
     drawBridges(metrics);
     drawDecor(turns);
@@ -610,7 +694,11 @@
     var manualLead = Math.min(window.scrollY * 0.15, maxLead);
     var targetY = state.pathStartY + window.scrollY + manualLead;
     var labelCenterOffset = state.mobile ? 46 : 58;
-    return labelCenterOffset + distanceAtGuideY(targetY);
+    var dist = labelCenterOffset + distanceAtGuideY(targetY);
+
+    var maxScroll = Math.max(1, (document.documentElement.scrollHeight || state.height) - window.innerHeight);
+    var tail = clamp((window.scrollY / maxScroll - 0.8) / 0.2, 0, 1);
+    return dist + (state.total - dist) * tail;
   }
 
   function updateTarget(immediate) {

@@ -663,7 +663,7 @@ body.home-remake .rf-bracketstats .rbk {
 body.home-remake .rf-bracketstats .rbk::before {
   content: ""; position: absolute; right: 20px; top: -6px;
   width: 11px; height: 11px; border-radius: 50%; background: var(--acc);
-  z-index: 2; pointer-events: none;
+  z-index: 3; pointer-events: none; 
 }
 body.home-remake .rf-bracketstats .rbk1 { --acc: var(--path);   --num: var(--leaf-700); --glow: rgba(242, 140, 10, 0.20); }
 body.home-remake .rf-bracketstats .rbk2 { --acc: var(--wheat);  --num: var(--deep);      --glow: rgba(245, 182, 45, 0.26); }
@@ -838,9 +838,34 @@ body.home-remake .rf-bracketstats .rbk svg.rf-edge .base { stroke: none; }
 body.home-remake .rf-bracketstats .rbk svg.rf-edge .runner {
   stroke: var(--deep); stroke-width: 2.5px; stroke-linecap: round;
   stroke-dasharray: 12 88; stroke-dashoffset: 12; opacity: 0;
-  transition: stroke-dashoffset 1.3s cubic-bezier(0.45, 0.05, 0.35, 1), opacity 0.2s ease;
 }
-body.home-remake .rf-bracketstats .rbk:hover svg.rf-edge .runner { opacity: 1; stroke-dashoffset: -88; }
+
+body.home-remake .rf-bracketstats .rbk.rf-running svg.rf-edge .runner {
+  animation: rf-runner-lap 1.3s cubic-bezier(0.45, 0.05, 0.35, 1) both,
+             rf-runner-fade 1.3s linear both;
+}
 @media (prefers-reduced-motion: reduce) {
-  body.home-remake .rf-bracketstats .rbk svg.rf-edge .runner { transition: opacity 0.2s ease; }
+  body.home-remake .rf-bracketstats .rbk.rf-running svg.rf-edge .runner { animation: none; }
+}
+
+body.home-remake .rhero h1 br.brm { display: none; }
+@media (max-width: 700px) {
+  body.home-remake .rhero h1 br.brm { display: inline; }
+
+  body.home-remake .rhero h1#hero-title { text-wrap: normal; }
+
+  body.home-remake .rhero h1 { font-size: clamp(30px, 9.4vw, 56px); }
+}
+
+body.home-remake .problem-section .section-grid:not(:has(.initiative-cards)) {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "kicker"
+    "copy";
+}
+
+@media (min-width: 901px) {
+  body.home-remake .problem-section .section-grid:not(:has(.initiative-cards)) .initiative-copy .lead {
+    max-width: 600px;
+  }
 }
