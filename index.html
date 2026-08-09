@@ -51,9 +51,9 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=80" />
+    <link rel="stylesheet" href="styles.css?v=88" />
 
-    <link rel="stylesheet" href="home.css?v=37" />
+    <link rel="stylesheet" href="home.css?v=41" />
 
     <style>
       .home #impact .impact-numbers div {
@@ -207,6 +207,8 @@
       <main id="top">
 
         <div class="rroute" aria-hidden="true"></div>
+
+        <div class="rroute-car" aria-hidden="true"></div>
 
         <section class="rhero" aria-labelledby="hero-title">
           <div class="rhero-decor" aria-hidden="true">
@@ -481,6 +483,13 @@
         <script>
         (function () {
           var NS = 'http://www.w3.org/2000/svg';
+
+          var CAR = {
+            path: null, total: 0, keys: [], narrow: false, mainTop: 0, height: 0,
+            outline: null, band: null, guide: null, dot: null, tail: null, grad: null,
+            len: 0, dotGap: 0, tailLen: 0
+          };
+          function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
           function draw() {
             var route = document.querySelector('.rroute');
             var main = document.querySelector('main');
@@ -488,6 +497,7 @@
             var W = main.clientWidth, H = main.scrollHeight;
             if (!W || !H || W < 360) {
               route.innerHTML = '';
+              clearCar();
               var ov0 = document.getElementById('rroute-over');
               if (ov0) ov0.remove();
               return;
@@ -498,16 +508,46 @@
             var secs = [];
             for (var i = 0; i < picks.length; i++) {
               var el = document.querySelector(picks[i]);
-              if (el) secs.push({ top: el.offsetTop, h: el.offsetHeight });
+              if (el) secs.push({ top: el.offsetTop, h: el.offsetHeight, key: picks[i] });
             }
             if (secs.length < 3) return;
 
             var FX = narrow
-              ? [0.92, 0.85, 0.965, 0.87, 0.965, 0.87, 0.92]
+              ? [0.92, 0.85, 0.965, 0.87, 0.965, 0.92, 0.92]
               : [0.82, 0.62, 0.88, 0.64, 0.88, 0.64, 0.80];
-            function X(i) { return Math.round(W * FX[i % FX.length]); }
+
+            var LEFT_LANE = { '#impact': '#impact h2', '#partners': '#partners .pgroup-label' };
+
+            var carHalf = narrow ? 13.5 : 18;
+            function leftLaneX(key, fallback) {
+              var ref = LEFT_LANE[key] && document.querySelector(LEFT_LANE[key]);
+              if (!ref) return fallback;
+
+              var gutter = Math.round(ref.getBoundingClientRect().left - main.getBoundingClientRect().left);
+              var lo = Math.ceil(carHalf + 6), hi = Math.floor(gutter - carHalf - 8);
+              if (hi >= lo) return Math.min(Math.max(Math.round(gutter / 2), lo), hi);
+
+              return narrow ? Math.round(W * 0.965) : fallback;
+            }
+            var xs = [];
+            for (var k = 0; k < secs.length; k++) {
+              var bx = Math.round(W * FX[k % FX.length]);
+              xs.push(LEFT_LANE[secs[k].key] ? leftLaneX(secs[k].key, bx) : bx);
+            }
+
+            if (!narrow) {
+              var bandEl = document.querySelector('.final-cta .cta-band');
+              if (bandEl) {
+                var bandRight = bandEl.getBoundingClientRect().right - main.getBoundingClientRect().left;
+                var capped = Math.round(bandRight - 150);
+                var last = xs.length - 1;
+                if (capped > 0 && capped < xs[last]) xs[last] = capped;
+              }
+            }
+            function X(i) { return xs[i]; }
             var R = 80;
             var d = 'M' + X(0) + ' 0';
+            var turns = [];
             for (var j = 0; j < secs.length - 1; j++) {
               var yb = Math.round(secs[j + 1].top);
               var x1 = X(j), x2 = X(j + 1);
@@ -518,8 +558,18 @@
                    ' Q' + x1 + ' ' + yb + ' ' + (x1 + sg * r) + ' ' + yb +
                    ' H' + (x2 - sg * r) +
                    ' Q' + x2 + ' ' + yb + ' ' + x2 + ' ' + (yb + r);
+              turns.push({ y: yb, r: r });
             }
-            d += ' V' + (H - 20);
+
+            var ctaEl = document.querySelector('.final-cta .cta-band');
+            var endY = H - 20;
+            if (ctaEl) {
+              var mrect = main.getBoundingClientRect();
+
+              endY = Math.round(ctaEl.getBoundingClientRect().bottom - mrect.top) - 3;
+            }
+            if (endY <= secs[secs.length - 1].top) endY = H - 20;
+            d += ' V' + endY;
             var svg = document.createElementNS(NS, 'svg');
             svg.setAttribute('width', W); svg.setAttribute('height', H);
             svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
@@ -533,24 +583,8 @@
               if (dash) p.setAttribute('stroke-dasharray', dash);
               svg.appendChild(p); return p;
             }
-            function C(cx, cy, rr, color) {
-              var c = document.createElementNS(NS, 'circle');
-              c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', rr);
-              c.setAttribute('fill', color); svg.appendChild(c);
-            }
             var cs = getComputedStyle(document.documentElement);
             var GREEN = (cs.getPropertyValue('--deep') || '#3d5527').trim();
-            var ORANGE = (cs.getPropertyValue('--path') || '#f28c0a').trim();
-            var GOLD = (cs.getPropertyValue('--amber') || '#f8cd5f').trim();
-
-            var branch = [
-              [1, GREEN, 5.5],  
-              [2, ORANGE, 9],   
-              [3, GOLD, 6.5],   
-              [4, GREEN, 5.5],  
-              [5, GREEN, 5.5]   
-            ];
-            function branchY(k) { return Math.round(secs[k].top + 132); }
 
             var ds = narrow ? 0.6 : 1;
             var m = secs[2], xr = Math.min(X(2) + Math.round(70 * ds), W - (narrow ? 10 : 34));
@@ -562,15 +596,159 @@
 
             P(d, narrow ? 2.4 : 2.8, GREEN).setAttribute('opacity', '.92');
 
-            branch.forEach(function (b) {
-              if (!secs[b[0]]) return;
-              C(X(b[0]), branchY(b[0]), Math.max(2.6, b[2] * ds), b[1]);
-            });
-
             route.innerHTML = '';
             route.appendChild(svg);
             var ov0 = document.getElementById('rroute-over'); if (ov0) ov0.remove();
+
+            buildCar(main, W, H, d, narrow, turns);
           }
+
+          function mk(tag, attrs, parent) {
+            var n = document.createElementNS(NS, tag);
+            for (var k in attrs) { if (Object.prototype.hasOwnProperty.call(attrs, k)) n.setAttribute(k, attrs[k]); }
+            parent.appendChild(n);
+            return n;
+          }
+          function clearCar() {
+            var host = document.querySelector('.rroute-car');
+            if (host) host.innerHTML = '';
+            CAR.path = null; CAR.total = 0;
+          }
+          function ptAt(dist) { return CAR.path.getPointAtLength(clamp(dist, 0, CAR.total)); }
+          function distAtY(y, last) {
+            y = clamp(y, 0, CAR.height - 4);
+            var lo = 0, hi = CAR.total;
+            for (var i = 0; i < 26; i++) {
+              var mid = (lo + hi) / 2;
+              var v = ptAt(mid).y;
+              if (last ? v <= y : v < y) lo = mid; else hi = mid;
+            }
+            return (lo + hi) / 2;
+          }
+          function subpath(a, b) {
+            a = clamp(a, 0, CAR.total); b = clamp(b, 0, CAR.total);
+            if (Math.abs(b - a) < 0.1) return '';
+            var len = Math.abs(b - a), dir = b > a ? 1 : -1;
+            var steps = Math.max(8, Math.ceil(len / 7));
+            var s = '';
+            for (var i = 0; i <= steps; i++) {
+              var p = ptAt(a + dir * len * (i / steps));
+              s += (i ? ' L' : 'M') + p.x.toFixed(1) + ' ' + p.y.toFixed(1);
+            }
+            return s;
+          }
+
+          function buildKeys(turns, H) {
+            var keys = [{ y: 0, distance: 0 }];
+            for (var i = 0; i < turns.length; i++) {
+              var t = turns[i];
+              var prevY = i ? turns[i - 1].y : 0;
+              var nextY = i < turns.length - 1 ? turns[i + 1].y : H;
+              var maxHalf = Math.max(40, Math.min((t.y - prevY) / 3, (nextY - t.y) / 3));
+              var half = Math.min(CAR.narrow ? 70 : 190, maxHalf);
+              var dStart = distAtY(t.y - t.r + 0.25, false);
+              var dEnd = distAtY(t.y + t.r - 0.25, true);
+              var prev = keys[keys.length - 1];
+              if (t.y - half > prev.y + 1 && dStart > prev.distance + 1) keys.push({ y: t.y - half, distance: dStart });
+              keys.push({ y: t.y + half, distance: dEnd });
+            }
+            keys.push({ y: H, distance: CAR.total });
+            return keys;
+          }
+          function distanceAtGuideY(y) {
+            var keys = CAR.keys;
+            if (!keys.length) return distAtY(y, false);
+            y = clamp(y, 0, CAR.height);
+            for (var i = 1; i < keys.length; i++) {
+              if (y > keys[i].y) continue;
+              var a = keys[i - 1], b = keys[i];
+              var range = Math.max(1, b.y - a.y);
+              return a.distance + (b.distance - a.distance) * clamp((y - a.y) / range, 0, 1);
+            }
+            return CAR.total;
+          }
+          function buildCar(main, W, H, d, narrow, turns) {
+            var host = document.querySelector('.rroute-car');
+            if (!host) return;
+            host.innerHTML = '';
+            var svg = document.createElementNS(NS, 'svg');
+            svg.setAttribute('width', W); svg.setAttribute('height', H);
+            svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+            svg.setAttribute('role', 'presentation');
+            svg.style.cssText = 'position:absolute;top:0;left:0;display:block;overflow:visible';
+            var defs = mk('defs', {}, svg);
+            var grad = mk('linearGradient', { id: 'rcar-tail-grad', gradientUnits: 'userSpaceOnUse' }, defs);
+            mk('stop', { 'class': 'rcar-tail-stop', offset: '0%', 'stop-opacity': '0' }, grad);
+            mk('stop', { 'class': 'rcar-tail-stop', offset: '55%', 'stop-opacity': '.5' }, grad);
+            mk('stop', { 'class': 'rcar-tail-stop', offset: '100%', 'stop-opacity': '1' }, grad);
+
+            var ref = mk('path', { d: d, fill: 'none', stroke: 'none' }, svg);
+            var tail = mk('path', { 'class': 'rcar-tail', stroke: 'url(#rcar-tail-grad)' }, svg);
+            var outline = mk('path', { 'class': 'rcar-outline' }, svg);
+            var band = mk('path', { 'class': 'rcar-band' }, svg);
+            var guide = mk('path', { 'class': 'rcar-guide', id: 'rcar-guide' }, svg);
+            var text = mk('text', { 'class': 'rcar-text' }, svg);
+            var tp = mk('textPath', { href: '#rcar-guide', startOffset: '50%', 'text-anchor': 'middle' }, text);
+            tp.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#rcar-guide');
+            tp.textContent = 'COUNTRYEDU';
+            var dot = mk('circle', { 'class': 'rcar-dot', r: narrow ? 7.4 : 9.4 }, svg);
+            host.appendChild(svg);
+
+            CAR.path = ref;
+            CAR.total = Math.max(1, ref.getTotalLength());
+            CAR.narrow = narrow;
+            CAR.height = H;
+            CAR.mainTop = Math.round(main.getBoundingClientRect().top + window.scrollY);
+            CAR.outline = outline; CAR.band = band; CAR.guide = guide;
+            CAR.dot = dot; CAR.tail = tail; CAR.grad = grad;
+
+            CAR.len = narrow ? 132 : 174;
+            CAR.dotGap = narrow ? 12 : 16;
+            CAR.tailLen = narrow ? 108 : 160;
+            CAR.keys = buildKeys(turns, H);
+            renderCar(carDistance());
+          }
+          function carDistance() {
+            var lead = Math.min(window.scrollY * 0.15, 160) + (CAR.narrow ? 96 : 150);
+            var targetY = window.scrollY - CAR.mainTop + lead;
+            var dist = (CAR.narrow ? 44 : 60) + distanceAtGuideY(targetY);
+
+            var maxScroll = Math.max(1, (document.documentElement.scrollHeight || CAR.height) - window.innerHeight);
+            var tail = clamp((window.scrollY / maxScroll - 0.8) / 0.2, 0, 1);
+            return dist + (CAR.total - dist) * tail;
+          }
+          function renderCar(distance) {
+            if (!CAR.path || !CAR.total) return;
+            var len = CAR.len, gap = CAR.dotGap;
+
+            var endPad = CAR.narrow ? 20 : 28;
+            var maxD = Math.max(len / 2, CAR.total - len / 2 - gap - endPad);
+            distance = clamp(distance, len / 2, maxD);
+            var a = distance - len / 2, b = distance + len / 2;
+            var bandD = subpath(a, b);
+            var pa = ptAt(a), pb = ptAt(b);
+
+            var leftward = Math.abs(pb.x - pa.x) > Math.abs(pb.y - pa.y) && pb.x < pa.x;
+            CAR.outline.setAttribute('d', bandD);
+            CAR.band.setAttribute('d', bandD);
+            CAR.guide.setAttribute('d', leftward ? subpath(b, a) : bandD);
+            var dp = ptAt(distance + len / 2 + gap);
+            CAR.dot.setAttribute('cx', dp.x.toFixed(1));
+            CAR.dot.setAttribute('cy', dp.y.toFixed(1));
+            var te = distance - len / 2 - 5, ts = te - CAR.tailLen;
+            CAR.tail.setAttribute('d', subpath(ts, te));
+            var sp = ptAt(ts), ep = ptAt(te);
+            CAR.grad.setAttribute('x1', sp.x.toFixed(1));
+            CAR.grad.setAttribute('y1', sp.y.toFixed(1));
+            CAR.grad.setAttribute('x2', ep.x.toFixed(1));
+            CAR.grad.setAttribute('y2', ep.y.toFixed(1));
+          }
+          var carFrame = 0;
+          window.addEventListener('scroll', function () {
+            if (carFrame || !CAR.path) return;
+            carFrame = requestAnimationFrame(function () { carFrame = 0; renderCar(carDistance()); });
+          }, { passive: true });
+
           var t;
           function queue() { clearTimeout(t); t = setTimeout(draw, 120); }
           if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', draw);
@@ -586,15 +764,6 @@
         <div class="footer-main">
           <div class="footer-brand">
             <img src="assets/countryedu-logo.png" alt="財團法人鄉育教育基金會 CountryEDU Charity Foundation" />
-            <p class="footer-desc">鄉育賦能青年面對升學、職涯、創業與人生選擇中的不確定，透過真實情境與專案式學習，長出能反覆使用的判斷力、選擇力與實作力。</p>
-            <div class="footer-social">
-              <a href="https://www.facebook.com/countryedu2021/?locale=zh_TW" target="_blank" rel="noopener" aria-label="鄉育 Facebook 粉絲專頁">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.6H6.61v3.56h3.07V22h3.68v-9.14h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73Z"/></svg>
-              </a>
-              <a href="https://www.instagram.com/countryedu2022/" target="_blank" rel="noopener" aria-label="鄉育 Instagram">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
-              </a>
-            </div>
             <ul class="footer-legal-ids">
               <li>立案字號 臺教社（三）字第 1100106099 號</li>
               <li>統一編號 19278390</li>
@@ -624,6 +793,15 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               114 台北市內湖區基湖路 1 號 4 樓之一
             </a>
+
+            <div class="footer-social">
+              <a href="https://www.facebook.com/countryedu2021/?locale=zh_TW" target="_blank" rel="noopener" aria-label="鄉育 Facebook 粉絲專頁">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2c-2.72 0-4.58 1.66-4.58 4.7v2.6H6.61v3.56h3.07V22h3.68v-9.14h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.76-1.73Z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/countryedu2022/" target="_blank" rel="noopener" aria-label="鄉育 Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+              </a>
+            </div>
           </address>
         </div>
         <nav class="footer-legal-links" aria-label="法定與政策連結">

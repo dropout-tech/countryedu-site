@@ -155,8 +155,9 @@ body.aud-school .company-spine-accent-honey-end { stop-color: var(--butter); sto
   body.audience-spine-page .company-spine-base,
   body.audience-spine-page .company-spine-bridge { stroke-width: 2; }
   body.audience-spine-page .company-spine-tail { stroke-width: 4; }
-  body.audience-spine-page .company-spine-label-outline { stroke-width: 22; }
-  body.audience-spine-page .company-spine-label-band { stroke-width: 20; }
+
+  body.audience-spine-page .company-spine-label-outline { stroke-width: 27; }
+  body.audience-spine-page .company-spine-label-band { stroke-width: 24; }
   body.audience-spine-page .rf-joint,
   body.audience-spine-page .rf-ribbon { height: 48px; }
 }
@@ -164,15 +165,16 @@ body.aud-school .company-spine-accent-honey-end { stop-color: var(--butter); sto
 @media (max-width: 700px) {
 
   body.audience-spine-page .rf-wrap,
-  body.audience-spine-page .rf-scene--bleed .rf-col { padding-inline: 32px; }
+  body.audience-spine-page .rf-scene--bleed .rf-col { padding-inline: 26px 72px; }
   body.audience-spine-page .rf-scene--panel > .rf-panel,
-  body.audience-spine-page .rf-cta .rf-panel-cta { padding-inline: 32px; }
+  body.audience-spine-page .rf-cta .rf-panel-cta { padding-inline: 26px 72px; }
   body.audience-spine-page .rf-hero,
   body.audience-spine-page .rf-scene:not(.rf-scene--panel) { padding-block: 36px; }
   body.audience-spine-page .rf-scene--panel > .rf-panel { padding-block: 36px; }
   body.audience-spine-page .company-spine-bridges { display: none; }
   body.audience-spine-page .company-spine-decor { opacity: 0.88; }
-  body.audience-spine-page .company-spine-label-text { font-size: 8px; letter-spacing: 1px; }
+
+  body.audience-spine-page .company-spine-label-text { font-size: 9.5px; letter-spacing: 1.35px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -514,4 +516,17 @@ body.aud-donor .company-spine-accent-path-end     { stop-color: var(--brand-gree
   body.aud-student .rf-hero h1,
   body.aud-school .rf-hero h1,
   body.aud-donor .rf-hero h1 { font-size: clamp(1.5rem, 7.2vw, 1.9rem); }
+}
+
+@media (max-width: 920px) {
+  body.audience-spine-page .company-spine-base {
+    stroke: var(--company-spine-green);
+    stroke-width: 2.4;
+    opacity: 0.92;
+  }
+  body.audience-spine-page .company-spine-bridge {
+    stroke: var(--company-spine-green);
+    stroke-width: 2;
+    opacity: 0.56;
+  }
 }
