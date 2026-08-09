@@ -51,7 +51,7 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=79" />
+    <link rel="stylesheet" href="styles.css?v=80" />
 
     <link rel="stylesheet" href="home.css?v=37" />
 
@@ -553,12 +553,6 @@
             function branchY(k) { return Math.round(secs[k].top + 132); }
 
             var ds = narrow ? 0.6 : 1;
-            branch.forEach(function (b) {
-              if (!secs[b[0]]) return;
-              var xs = X(b[0]), yy = branchY(b[0]);
-              var xe = Math.min(xs + Math.round(W * 0.17 * ds), W - (narrow ? 12 : 40));
-              if (xe - xs > (narrow ? 16 : 44)) P('M' + xs + ' ' + yy + ' H' + xe, 1.8 * ds + 0.6, ORANGE).setAttribute('opacity', '.92');
-            });
             var m = secs[2], xr = Math.min(X(2) + Math.round(70 * ds), W - (narrow ? 10 : 34));
             var yA = Math.round(m.top + m.h * 0.22), yB = Math.round(m.top + m.h * 0.78);
             var bw = Math.round(150 * ds), bq = Math.round(46 * ds);

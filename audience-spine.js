@@ -418,9 +418,6 @@
     if (opacity != null) group.setAttribute("opacity", opacity);
     make("path", { class: "company-spine-accent-path " + className, d: shape.path }, group);
 
-    if (!SPLIT_DECOR) {
-      make("circle", { class: "company-spine-accent-dot", cx: shape.dotX, cy: shape.dotY, r: shape.dotR || 8 }, group);
-    }
     return group;
   }
 
@@ -626,10 +623,7 @@
         class: "company-spine-accent-path " + options.className,
         d: shape.path
       }, group);
-      make("circle", {
-        class: "company-spine-accent-dot",
-        cx: shape.dotX, cy: shape.dotY, r: shape.dotR || 8
-      }, group);
+
       return group;
     }
 

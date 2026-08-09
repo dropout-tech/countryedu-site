@@ -9527,33 +9527,30 @@ body.aud-school.audience-spine-page .rf-hero + .rf-scene { padding-top: clamp(6p
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
 
-:root { --hl-brush: rgba(245, 182, 45, 0.65); --hl-line: var(--path); }
+:root { --hl-brush: rgba(245, 182, 45, 0.65); }
 
-.rf-panel { --hl-brush: rgba(142, 196, 87, 0.65); --hl-line: var(--leaf-700); }
+.rf-panel { --hl-brush: rgba(142, 196, 87, 0.65); }
 
 :is(.mission-list > article, .rf-card, .aud-card, .faq-item, .prepost-card, .method-cycle, .sp,
     .rollup, .fp-card, .fp-modal__panel) {
-  --hl-brush: rgba(245, 182, 45, 0.65); --hl-line: var(--path);
+  --hl-brush: rgba(245, 182, 45, 0.65);
 }
 
-:is(.cta-band, .ig-feature, .rf-panel-cta) { --hl-brush: var(--butter); --hl-line: var(--path); }
+:is(.cta-band, .ig-feature, .rf-panel-cta) { --hl-brush: var(--butter); }
 
 :is(.company-hl--01, .lead strong, .lead b, .rf-lead strong, .rf-lead b) {
   color: var(--deep);
   box-shadow: inset 0 -0.5em 0 var(--hl-brush);
-  border-bottom: 2px solid var(--hl-line);
 }
 .company-hl--04 {
   color: var(--deep);
   background: var(--hl-brush);
-  border-bottom: 3px solid var(--hl-line);
 }
 
 :is(.cta-band, .ig-feature, .rf-panel-cta) :is(.company-hl--01, .lead strong, .lead b, .rf-lead strong, .rf-lead b) {
   box-shadow: none;
   background: var(--hl-brush);
   margin-inline: 0.04em; padding: 0.03em 0.28em 0.08em; border-radius: 0.32em;
-  border-bottom-width: 3px;
 }
 
 .section-actions { margin-top: 32px; }
