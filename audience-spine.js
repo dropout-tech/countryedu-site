@@ -128,6 +128,81 @@
     return Math.max(0, Math.round(g));
   }
 
+  function contentLeft() {
+    var ml = mainMetrics().rectLeft;
+    var els = main.querySelectorAll("h1, h2, h3, p, li");
+    var min = Infinity, seen = 0;
+    for (var i = 0; i < els.length && seen < 500; i++) {
+      var el = els[i];
+      if (el.closest && el.closest(".exit-nav")) continue;
+      var r = el.getBoundingClientRect();
+      if (r.width < 8 || r.height < 8) continue;
+      seen++;
+      var l = r.left - ml;
+      if (l >= 0 && l < min) min = l;
+    }
+    return isFinite(min) ? min : edgeGutter();
+  }
+
+  function contentRight() {
+    var ml = mainMetrics().rectLeft;
+    var els = main.querySelectorAll("h1, h2, h3, p, li");
+    var max = -Infinity, seen = 0;
+    for (var i = 0; i < els.length && seen < 500; i++) {
+      var el = els[i];
+      if (el.closest && el.closest(".exit-nav")) continue;
+      var r = el.getBoundingClientRect();
+      if (r.width < 8 || r.height < 8) continue;
+      seen++;
+      var rt = r.right - ml;
+      if (rt > max) max = rt;
+    }
+    return isFinite(max) ? max : state.width - 32;
+  }
+
+  function textRows() {
+    var mt = mainMetrics().rectTop;
+    var els = main.querySelectorAll("h1, h2, h3, h4, p, li, dd, dt, figcaption");
+    var rows = [], seen = 0;
+    for (var i = 0; i < els.length && seen < 800; i++) {
+      var r = els[i].getBoundingClientRect();
+      if (r.width < 8 || r.height < 8) continue;
+      seen++;
+      rows.push({ t: r.top - mt, b: r.bottom - mt });
+    }
+    return rows;
+  }
+
+  function bandHit(y, rows, half) {
+    var hit = null;
+    for (var i = 0; i < rows.length; i++) {
+      if (y + half > rows[i].t && y - half < rows[i].b) {
+        if (!hit) hit = { t: rows[i].t, b: rows[i].b };
+        else { hit.t = Math.min(hit.t, rows[i].t); hit.b = Math.max(hit.b, rows[i].b); }
+      }
+    }
+    return hit;
+  }
+
+  function safeTurnY(y, rows, half) {
+    var LIMIT = 240;
+    var cur = y;
+    for (var pass = 0; pass < 6; pass++) {
+      var hit = bandHit(cur, rows, half);
+      if (!hit) return cur;
+      var up = hit.t - half - 6;
+      var down = hit.b + half + 6;
+      var pick = Math.abs(up - y) <= Math.abs(down - y) ? up : down;
+      if (Math.abs(pick - y) > LIMIT) {
+        var other = pick === up ? down : up;
+        if (Math.abs(other - y) > LIMIT) return y;   
+        pick = other;
+      }
+      cur = pick;
+    }
+    return bandHit(cur, rows, half) ? y : cur;
+  }
+
   function separators() {
     return Array.prototype.slice.call(main.children).filter(function (el) {
       return el.classList && (el.classList.contains("rf-joint") || el.classList.contains("rf-ribbon"));
@@ -350,7 +425,13 @@
   var SPLIT_DECOR = body.classList.contains("grp-involve");
   function splitGap(h) { return Math.max(14, h * 0.16); }
 
+  var GENTLE_BIG_SHRINK = 0.75;
+  var gentleBigH = 200;
+  function bigShrink(h) { return h > gentleBigH ? GENTLE_BIG_SHRINK : 1; }
+
   function gentleDuo(side, y, width, height, radius, i, deepOpacity, liteOpacity) {
+    var k = bigShrink(height);
+    width *= k; height *= k; radius *= k;
 
     var offY = height * 0.62;
     if (SPLIT_DECOR) {
@@ -368,12 +449,16 @@
   function tagMotif(el, motif) { if (el) el.setAttribute("data-motif", motif); return el; }
 
   function gentleOrganic(side, y, width, i, opacity) {
-    return tagMotif(gentleAccent(SHAPES[i % SHAPES.length], side, y, width,
+    var shape0 = SHAPES[i % SHAPES.length];
+    width *= bigShrink(organicHeight(shape0, width));
+    return tagMotif(gentleAccent(shape0, side, y, width,
       opacity == null ? 0.8 : opacity, DEEP_FILL[i % DEEP_FILL.length]), "organic");
   }
 
   function gentleCombo(side, y, width, radius, i) {
     var shape = SHAPES[i % SHAPES.length];
+    var k = bigShrink(organicHeight(shape, width * 0.78));
+    width *= k; radius *= k;
     var ow = width * 0.78;
     var oh = organicHeight(shape, ow);
 
@@ -389,7 +474,8 @@
   }
 
   function gentleSolo(side, y, width, height, radius, i) {
-    return tagMotif(gentleEdgeRect(side, y, width, height, radius,
+    var k = bigShrink(height);
+    return tagMotif(gentleEdgeRect(side, y, width * k, height * k, radius * k,
       DEEP_FILL[(i + 1) % DEEP_FILL.length], 0.74), "solo");
   }
 
@@ -458,6 +544,8 @@
       if (gut < 40) return;
       var decorMode = body.getAttribute("data-spine-decor") || "rich";
       var gScale = clamp(gut / GUT_REF, 0.55, 1) * DECOR_GROW;
+
+      gentleBigH = 118 * gScale;
       var span = Math.max(1, state.height - state.pathStartY);
       var gi, gy, count;
       if (decorMode === "rich") {
@@ -523,17 +611,24 @@
           impact:   { order: ["organic", "duo", "combo", "solo"], gap: 620, max: 12, alt: "pair", chip: true,  w: 0.94 },
           involve:  { order: ["combo", "solo", "duo", "organic"], gap: 680, max: 11, alt: "row",  chip: true,  w: 1 },
           neutral:  { order: ["solo", "organic", "duo", "combo"], gap: 780, max: 10, alt: "row",  chip: false, w: 0.78 },
-          about:    { order: ["organic", "combo", "solo", "duo"], gap: 640, max: 12, alt: "row",  chip: true,  w: 1 }
+
+          about:    { order: ["organic", "combo", "solo", "duo"], gap: 640, max: 12, alt: "row",  chip: true,  w: 1,
+                      sizes: [1, 0.72, 0.95, 0.8], chipFlat: true }
         };
         var plan = PLAN[grp] || PLAN.about;
+        var flatW = Math.min(300 * gScale, mar - 6);
         rN = clamp(Math.round(bSpan / plan.gap), 4, plan.max); rH = bSpan / rN;
         for (i = 0; i < rN; i++) {
           y = bTop + (i + 0.5) * rH;
           sideA = (plan.alt === "pair" ? Math.floor(i / 2) : i) % 2 ? "left" : "right";
           sideB = sideA === "left" ? "right" : "left";
-          gentleMotif(plan.order[i % 4], sideA, y - 60 * gScale, midW * plan.w, 44 * gScale, i, gScale * plan.w);
+          var sizeAt = plan.sizes ? plan.sizes[i % plan.sizes.length] : 1;
+          gentleMotif(plan.order[i % 4], sideA, y - 60 * gScale, midW * plan.w * sizeAt, 44 * gScale, i, gScale * plan.w * sizeAt);
 
-          if (plan.chip && i % 2 === 1) gentleSolo(sideB, y + rH * 0.42, chipW, 88 * gScale, 28 * gScale, i);
+          if (plan.chip && i % 2 === 1) {
+            if (plan.chipFlat) gentleSolo(sideB, y + rH * 0.42, flatW, 52 * gScale, 26 * gScale, i);
+            else gentleSolo(sideB, y + rH * 0.42, chipW, 88 * gScale, 28 * gScale, i);
+          }
         }
 
         if (SPLIT_DECOR) clearTitleOverlaps();
@@ -569,7 +664,10 @@
     if (!mobileDecor && gutN < 40) return;
 
     var metrics = mainMetrics();
-    var decorScale = mobileDecor ? DECOR_GROW_MOBILE : clamp(gutN / GUT_REF, 0.55, 1) * DECOR_GROW;
+
+    var AUD_DECOR_SHRINK = 0.5;
+    var decorScale = mobileDecor ? DECOR_GROW_MOBILE
+      : clamp(gutN / GUT_REF, 0.55, 1) * DECOR_GROW * AUD_DECOR_SHRINK;
 
     var innerLimit = mobileDecor ? Infinity : Math.max(28, gutN - 6);
 
@@ -838,19 +936,43 @@
     var startX;
 
     if (state.mobile) {
-      state.xRight = width - 10;
-      state.xLeft = width - 14;
-      dot.setAttribute("r", "5.7");
+
+      var mCarClear = 16;
+      state.xRight = width - 20;
+      state.xLeft = Math.min(
+        width - 24,
+        Math.round(Math.max(contentRight() + mCarClear, width - 100))
+      );
+      dot.setAttribute("r", "6.5");
     } else if (gentle) {
 
       var cor = edgeGutter();
       var softA = Math.round(width - clamp(cor * 0.56, 24, 78));
       var softJog = Math.round(clamp(cor * 0.34, 10, 48));
+
+      if (width <= 920) {
+        softJog = Math.max(softJog, softA - Math.round(contentRight() + 22));
+      }
       var softB = Math.round(softA - Math.max(6, softJog));
       var farL = Math.round(clamp(cor * 0.6, 30, 100));
       var farR = Math.round(Math.min(width - 82, width - farL));
       var secYs = gentleTurnYs(metrics);
       var wide = cor >= 70; 
+
+      var CAR_CLEAR = 22;
+      var leftRoom = Math.min(cor, contentLeft());
+      var navEl = main.querySelector(".exit-nav");
+      if (navEl) {
+        var navLeft = navEl.getBoundingClientRect().left - mainMetrics().rectLeft;
+        if (isFinite(navLeft)) leftRoom = Math.min(leftRoom, navLeft);
+      }
+      var canDive = leftRoom >= 30 + CAR_CLEAR;
+      if (canDive) {
+        if (farL > leftRoom - CAR_CLEAR) farL = Math.round(leftRoom - CAR_CLEAR);
+        farR = Math.round(Math.min(width - 82, width - farL));
+      } else if (route === "mid" || route === "cross" || route === "dive" || route === "full") {
+        route = "soft";
+      }
       seq = [];
       startX = wide && (route === "mid" || route === "cross" || route === "full") ? farR : softA;
       if (route === "straight") {
@@ -886,11 +1008,22 @@
         var ff = false;
         secYs.forEach(function (y) { ff = !ff; seq.push({ y: y, x: ff ? farL : farR }); });
       }
+
+      if (seq.length) {
+        var rowsForTurn = textRows();
+        seq.forEach(function (s) { s.y = safeTurnY(s.y, rowsForTurn, 95); });
+      }
       state.xRight = startX;
       state.xLeft = softB;
       dot.setAttribute("r", "6.5");
     } else {
       var corridor = Math.round(clamp(edgeGutter() * 0.6, 30, 100));
+
+      var lroom = Math.min(edgeGutter(), contentLeft());
+      var carHalfMax = 14, safeGap = 8;
+      if (corridor + carHalfMax + safeGap > lroom) {
+        corridor = Math.max(12, Math.round(lroom - carHalfMax - safeGap));
+      }
       state.xLeft = corridor;
       state.xRight = Math.round(Math.min(width - 82, width - corridor));
       dot.setAttribute("r", "6.5");
@@ -910,6 +1043,10 @@
         var r = el.getBoundingClientRect();
         return { y: Math.round(r.top - metrics.rectTop + r.height / 2), x: null };
       });
+
+      if (!steps.length) {
+        steps = gentleTurnYs(metrics).map(function (y) { return { y: y, x: null }; });
+      }
     }
 
     steps.forEach(function (item) {
@@ -919,7 +1056,7 @@
       var dx = nextX - penX;
       var wideTurn = Math.abs(dx) > 200;
 
-      if (gentle && !state.mobile && !wideTurn) {
+      if (gentle && !state.mobile && width > 920 && !wideTurn) {
         var half = 110;
         var yS = y - half;
         var yE = Math.min(y + half, height - 8);
@@ -933,7 +1070,8 @@
         }
       }
 
-      var radius = Math.min(state.mobile ? 15 : 30, Math.abs(dx) / 2 - 2, (y - penY) / 2 - 2);
+      var radiusCap = state.width <= 920 ? 28 : 30;
+      var radius = Math.min(radiusCap, Math.abs(dx) / 2 - 2, (y - penY) / 2 - 2);
 
       if (radius >= 8) {
         var sign = dx > 0 ? 1 : -1;
@@ -973,7 +1111,7 @@
     var maxLead = state.mobile ? 120 : 160;
     var manualLead = Math.min(window.scrollY * 0.15, maxLead);
     var targetY = state.pathStartY + window.scrollY + manualLead;
-    var labelCenterOffset = state.mobile ? 46 : 58;
+    var labelCenterOffset = 58; 
     var dist = labelCenterOffset + distanceAtGuideY(targetY);
 
     var maxScroll = Math.max(1, (document.documentElement.scrollHeight || state.height) - window.innerHeight);
@@ -999,9 +1137,10 @@
 
   function render(distance) {
     if (!state.total) return;
-    var labelWidth = state.mobile ? 92 : 116;
-    var tailLength = state.mobile ? 70 : 112;
-    var dotGap = state.mobile ? 8 : 11;
+
+    var labelWidth = 116;
+    var tailLength = 112;
+    var dotGap = 11;
     var maxRunnerDistance = Math.max(labelWidth / 2, state.total - labelWidth / 2 - dotGap);
     distance = clamp(distance, labelWidth / 2, maxRunnerDistance);
     var labelStart = distance - labelWidth / 2;

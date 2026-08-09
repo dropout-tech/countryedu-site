@@ -144,6 +144,38 @@
     return Math.max(0, Math.round(g));
   }
 
+  function contentLeft() {
+    var ml = mainMetrics().rectLeft;
+    var els = main.querySelectorAll("h1, h2, h3, p, li");
+    var min = Infinity, seen = 0;
+    for (var i = 0; i < els.length && seen < 500; i++) {
+      var el = els[i];
+      if (el.closest && el.closest(".exit-nav")) continue;
+      var r = el.getBoundingClientRect();
+      if (r.width < 8 || r.height < 8) continue;
+      seen++;
+      var l = r.left - ml;
+      if (l >= 0 && l < min) min = l;
+    }
+    return isFinite(min) ? min : edgeGutter();
+  }
+
+  function contentRight() {
+    var ml = mainMetrics().rectLeft;
+    var els = main.querySelectorAll("h1, h2, h3, p, li");
+    var max = -Infinity, seen = 0;
+    for (var i = 0; i < els.length && seen < 500; i++) {
+      var el = els[i];
+      if (el.closest && el.closest(".exit-nav")) continue;
+      var r = el.getBoundingClientRect();
+      if (r.width < 8 || r.height < 8) continue;
+      seen++;
+      var rt = r.right - ml;
+      if (rt > max) max = rt;
+    }
+    return isFinite(max) ? max : state.width - 32;
+  }
+
   function separators() {
     return Array.prototype.slice.call(main.children).filter(function (el) {
       return el.classList && (el.classList.contains("rf-joint") || el.classList.contains("rf-ribbon"));
@@ -325,7 +357,10 @@
     var metrics = mainMetrics();
 
     var DECOR_GROW = 1.72, GUT_REF = 218, DECOR_GROW_MOBILE = 1.3;
-    var decorScale = mobileDecor ? DECOR_GROW_MOBILE : clamp(gutN / GUT_REF, 0.55, 1) * DECOR_GROW;
+
+    var AUD_DECOR_SHRINK = 0.5;
+    var decorScale = mobileDecor ? DECOR_GROW_MOBILE
+      : clamp(gutN / GUT_REF, 0.55, 1) * DECOR_GROW * AUD_DECOR_SHRINK;
 
     function sectionBox(selector) {
       var el = main.querySelector(selector);
@@ -627,11 +662,21 @@
 
     if (state.mobile) {
 
-      state.xRight = width - 10;
-      state.xLeft = width - 14;
-      dot.setAttribute("r", "5.7");
+      var mCarClear = 16;
+      state.xRight = width - 20;
+      state.xLeft = Math.min(
+        width - 24,
+        Math.round(Math.max(contentRight() + mCarClear, width - 100))
+      );
+      dot.setAttribute("r", "6.5");
     } else {
       var corridor = Math.round(clamp(edgeGutter() * 0.6, 30, 100));
+
+      var lroom = Math.min(edgeGutter(), contentLeft());
+      var carHalfMax = 14, safeGap = 8;
+      if (corridor + carHalfMax + safeGap > lroom) {
+        corridor = Math.max(12, Math.round(lroom - carHalfMax - safeGap));
+      }
       state.xLeft = corridor;
       state.xRight = Math.round(Math.min(width - 82, width - corridor));
       dot.setAttribute("r", "6.5");
@@ -648,7 +693,9 @@
       var y = Math.round(r.top - metrics.rectTop + r.height / 2);
       var nextX = penX === state.xRight ? state.xLeft : state.xRight;
       var dx = nextX - penX;
-      var radius = Math.min(state.mobile ? 15 : 30, Math.abs(dx) / 2 - 2, (y - penY) / 2 - 2);
+
+      var radiusCap = state.width <= 920 ? 28 : 30;
+      var radius = Math.min(radiusCap, Math.abs(dx) / 2 - 2, (y - penY) / 2 - 2);
 
       if (radius >= 8) {
         var sign = dx > 0 ? 1 : -1;
@@ -688,7 +735,7 @@
     var maxLead = state.mobile ? 120 : 160;
     var manualLead = Math.min(window.scrollY * 0.15, maxLead);
     var targetY = state.pathStartY + window.scrollY + manualLead;
-    var labelCenterOffset = state.mobile ? 46 : 58;
+    var labelCenterOffset = 58; 
     var dist = labelCenterOffset + distanceAtGuideY(targetY);
 
     var maxScroll = Math.max(1, (document.documentElement.scrollHeight || state.height) - window.innerHeight);
@@ -715,13 +762,15 @@
 
   function render(distance) {
     if (!state.total) return;
-    var labelWidth = state.mobile ? 92 : 116;
-    var tailLength = state.mobile ? 70 : 112;
-    var dotGap = state.mobile ? 8 : 11;
+
+    var labelWidth = 116;
+    var tailLength = 112;
+    var dotGap = 11;
     var maxRunnerDistance = Math.max(labelWidth / 2, state.total - labelWidth / 2 - dotGap);
     distance = clamp(distance, labelWidth / 2, maxRunnerDistance);
     var labelStart = distance - labelWidth / 2;
     var labelEnd = distance + labelWidth / 2;
+
     var bandD = subpath(labelStart, labelEnd);
     var bandStart = pathPoint(labelStart);
     var bandEnd = pathPoint(labelEnd);

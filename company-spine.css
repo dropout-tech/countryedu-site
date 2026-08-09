@@ -218,11 +218,11 @@ body.company-spine-page .rf-bleeds { display: none; }
   }
 
   .company-spine-label-outline {
-    stroke-width: 22;
+    stroke-width: 27;
   }
 
   .company-spine-label-band {
-    stroke-width: 20;
+    stroke-width: 24;
   }
 
   body.company-spine-page .rf-joint,
@@ -235,12 +235,12 @@ body.company-spine-page .rf-bleeds { display: none; }
 
   body.company-spine-page .rf-wrap,
   body.company-spine-page .rf-scene--bleed .rf-col {
-    padding-inline: 32px;
+    padding-inline: 26px 72px;
   }
 
   body.company-spine-page .rf-scene--panel > .rf-panel,
   body.company-spine-page .rf-cta .rf-panel-cta {
-    padding-inline: 32px;
+    padding-inline: 26px 72px;
   }
 
   body.company-spine-page .company-hero-title {
@@ -301,8 +301,8 @@ body.company-spine-page .rf-bleeds { display: none; }
   }
 
   .company-spine-label-text {
-    font-size: 8px;
-    letter-spacing: 1px;
+    font-size: 9.5px;
+    letter-spacing: 1.35px;
   }
 
 }
@@ -373,4 +373,17 @@ body.aud-company .company-spine-fill-peach { fill: var(--brand-green); }
 @media (min-width: 921px) and (max-width: 1683px) {
   body.aud-company .rf-hero .rf-wrap { grid-template-columns: minmax(0, 1.42fr) minmax(0, 0.82fr); }
   body.aud-company .rf-hero h1 { font-size: clamp(1.72rem, 2.95vw, 2.9rem); }
+}
+
+@media (max-width: 920px) {
+  body.aud-company .company-spine-base {
+    stroke: var(--company-spine-green);
+    stroke-width: 2.4;
+    opacity: 0.92;
+  }
+  body.aud-company .company-spine-bridge {
+    stroke: var(--company-spine-green);
+    stroke-width: 2;
+    opacity: 0.56;
+  }
 }

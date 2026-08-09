@@ -392,7 +392,8 @@ body.home-remake #partners .rsec-mark {
 
 @media (max-width: 1100px) {
   body.home-remake .rhero-copy {
-    width: min(760px, 92vw);
+
+    width: min(760px, 81vw);
     margin-left: 0;
   }
   body.home-remake .rhero-orange {
@@ -431,6 +432,8 @@ body.home-remake #partners .rsec-mark {
   }
   body.home-remake .rhero-sub {
     max-width: 100%;
+
+    padding-right: clamp(36px, 12vw, 90px);
   }
 
   body.home-remake .rhero-orange-sq,
@@ -509,6 +512,14 @@ body.home-remake .impact-layout h2 {
 body.home-remake .problem-section .initiative-copy .lead {
   max-width: 560px;
   margin-top: 22px;
+}
+
+@media (max-width: 380px) {
+  body.home-remake .section-grid h2,
+  body.home-remake .path-header h2,
+  body.home-remake .impact-layout h2 {
+    font-size: 2rem;
+  }
 }
 
 body.home-remake .problem-section .initiative-cards {
@@ -707,6 +718,12 @@ body.home-remake .rf-bracketstats .rbk::after {
 @media (max-width: 720px) {
   body.home-remake #audiences-title { white-space: normal; }
   body.home-remake #impact-title br { display: none; }
+
+  body.home-remake #impact .lead br { display: none; }
+
+  body.home-remake #support .cta-band p br { display: none; }
+
+  body.home-remake #support .cta-band { width: min(var(--max), calc(100% - 40px)); }
 }
 
 body.home-remake .section-kicker { padding-top: 0; }
@@ -770,6 +787,19 @@ body.home-remake .aud-card:nth-of-type(2) { --pill: var(--path); }
 body.home-remake .aud-card:nth-of-type(3) { --pill: var(--wheat); } 
 body.home-remake .aud-card:nth-of-type(4) { --pill: var(--deep); }  
 body.home-remake .aud-card:nth-of-type(4) .aud-tag { color: #fff; }
+
+body.home-remake .aud-grid { --aud-pad-x: 30px; }
+body.home-remake .aud-head,
+body.home-remake .aud-body {
+  padding-left: var(--aud-pad-x);
+  padding-right: var(--aud-pad-x);
+}
+@media (max-width: 900px) {
+  body.home-remake .aud-grid { --aud-pad-x: 26px; }
+}
+@media (max-width: 520px) {
+  body.home-remake .aud-grid { --aud-pad-x: 34px; }
+}
 
 body.home-remake .partner-groups { margin-top: 40px; }
 body.home-remake .pgroup {
@@ -868,4 +898,75 @@ body.home-remake .problem-section .section-grid:not(:has(.initiative-cards)) {
   body.home-remake .problem-section .section-grid:not(:has(.initiative-cards)) .initiative-copy .lead {
     max-width: 600px;
   }
+}
+
+body.home-remake .rroute-car {
+  position: absolute;
+  inset: 0;
+  z-index: 17;
+  pointer-events: none;
+  overflow: hidden;
+}
+body.home-remake .rroute-car svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+}
+body.home-remake .rcar-tail {
+  fill: none;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 5px var(--wheat));
+}
+body.home-remake .rcar-outline,
+body.home-remake .rcar-band,
+body.home-remake .rcar-guide {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+body.home-remake .rcar-outline {
+  stroke: var(--wheat);
+  stroke-width: 44;
+  filter: drop-shadow(0 4px 10px rgba(61, 85, 39, 0.3));
+}
+body.home-remake .rcar-band {
+  stroke: var(--deep);
+  stroke-width: 36;
+}
+body.home-remake .rcar-guide {
+  stroke: transparent;
+  stroke-width: 1;
+}
+body.home-remake .rcar-text {
+  fill: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 14px;
+  font-weight: 750;
+  letter-spacing: 2px;
+  dominant-baseline: middle;
+}
+body.home-remake .rcar-dot {
+  fill: #fff;
+  stroke: var(--wheat);
+  stroke-width: 4.4;
+  filter: drop-shadow(0 0 7px var(--wheat));
+}
+body.home-remake .rcar-tail-stop { stop-color: var(--wheat); }
+
+@media (max-width: 1100px) {
+  body.home-remake .rcar-outline { stroke-width: 33; }  
+  body.home-remake .rcar-band { stroke-width: 27; }
+  body.home-remake .rcar-tail { stroke-width: 5.5; }
+  body.home-remake .rcar-text { font-size: 10.5px; letter-spacing: 1.4px; }
+  body.home-remake .rcar-dot { stroke-width: 3.6; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.home-remake .rcar-outline,
+  body.home-remake .rcar-band,
+  body.home-remake .rcar-tail,
+  body.home-remake .rcar-dot { filter: none; }
 }
