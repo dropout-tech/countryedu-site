@@ -122,9 +122,7 @@ body.audience-spine-page .company-spine-tail-stop { stop-color: var(--spine-acce
 body.audience-spine-page .company-spine-decor { opacity: 0.96; }
 body.audience-spine-page .company-spine-edge-shape,
 body.audience-spine-page .company-spine-accent-path { shape-rendering: geometricPrecision; }
-body.audience-spine-page .company-spine-accent-path,
-body.audience-spine-page .company-spine-accent-dot { vector-effect: non-scaling-stroke; }
-body.audience-spine-page .company-spine-accent-dot { fill: var(--spine-accent); }
+body.audience-spine-page .company-spine-accent-path { vector-effect: non-scaling-stroke; }
 
 body.audience-spine-page .company-spine-fill-orange { fill: url(#company-spine-accent-orange); }
 body.audience-spine-page .company-spine-fill-sunset { fill: url(#company-spine-accent-orange); }
@@ -303,8 +301,6 @@ body.aud-school   { --title-accent: var(--leaf-700); }
 body.audience-spine-page .company-title-accent { color: var(--title-accent, var(--path)); }
 body.audience-spine-page .rf-scene--panel .company-title-accent,
 body.audience-spine-page .rf-panel-cta .company-title-accent { color: inherit; }
-
-body.grp-impact .company-spine-accent-dot { display: none; }
 
 body.audience-spine-page .company-spine-base {
   stroke: url(#company-spine-base-gradient);

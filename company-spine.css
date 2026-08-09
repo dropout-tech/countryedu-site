@@ -167,9 +167,7 @@ body.company-spine-page .company-hero-title {
 .company-spine-decor { opacity: 0.96; }
 .company-spine-edge-shape,
 .company-spine-accent-path { shape-rendering: geometricPrecision; }
-.company-spine-accent-path,
-.company-spine-accent-dot { vector-effect: non-scaling-stroke; }
-.company-spine-accent-dot { fill: var(--path); }
+.company-spine-accent-path { vector-effect: non-scaling-stroke; }
 
 .company-spine-accent-path-start { stop-color: var(--path); }
 .company-spine-accent-sunset-end { stop-color: var(--sunset); }

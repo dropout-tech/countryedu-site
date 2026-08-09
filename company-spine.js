@@ -386,12 +386,7 @@
         class: "company-spine-accent-path " + options.className,
         d: options.path
       }, group);
-      make("circle", {
-        class: "company-spine-accent-dot",
-        cx: options.dotX,
-        cy: options.dotY,
-        r: options.dotR || 8
-      }, group);
+
       group.setAttribute("data-motif", options.motif || "organic");
       return group;
     }
