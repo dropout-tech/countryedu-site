@@ -1,0 +1,36 @@
+
+
+.sel-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 720px;
+}
+.sel-facts .rf-pill {
+  margin: 0;
+  background: var(--sun);
+  color: var(--deep);
+  border-color: rgba(61, 85, 39, 0.18);
+}
+
+.sel-figure {
+  margin-top: clamp(44px, 5vw, 68px);
+}
+
+.path-section .cta-band + .node-label {
+  width: min(var(--max), 100%);
+  margin: 18px auto 0;
+}
+
+@media (max-width: 640px) {
+  .sel-facts {
+    gap: 8px;
+  }
+  .sel-facts .rf-pill {
+    padding: 5px 12px;
+    font-size: 0.74rem;
+  }
+}

@@ -1579,10 +1579,12 @@ img {
 
 .footer-brand {
   max-width: 380px;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer-brand img {
-  width: 258px;
+  width: 300px;
   max-width: 100%;
   height: auto;
 
@@ -1591,7 +1593,8 @@ img {
 .footer-social {
   display: flex;
   gap: 12px;
-  margin-top: 6px;
+  margin-top: auto; 
+  padding-top: 6px;
 }
 
 .footer-social a {
@@ -1619,8 +1622,8 @@ img {
 
 .footer-legal-ids {
   list-style: none;
-  margin: 16px 0 0;
-  padding: 0;
+  margin: auto 0 0;
+  padding: 16px 0 0;
   display: flex;
   flex-direction: column;
   gap: 3px;
@@ -7708,6 +7711,8 @@ a.post-row:hover .post-row__arrow { color: var(--leaf-700); transform: translate
   height: auto;
   object-fit: contain;
 }
+
+.channel-logo img[alt="netiCRM"] { border-radius: 8px; }
 .channel-desc {
   line-height: 1.55;
   color: var(--muted);

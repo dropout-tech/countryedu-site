@@ -130,7 +130,8 @@
 
   function contentLeft() {
     var ml = mainMetrics().rectLeft;
-    var els = main.querySelectorAll("h1, h2, h3, p, li");
+
+    var els = main.querySelectorAll("h1, h2, h3, h4, h5, p, li, dd, dt, a, span, strong, em, time, figcaption, label, button, td, th");
     var min = Infinity, seen = 0;
     for (var i = 0; i < els.length && seen < 500; i++) {
       var el = els[i];
@@ -146,7 +147,8 @@
 
   function contentRight() {
     var ml = mainMetrics().rectLeft;
-    var els = main.querySelectorAll("h1, h2, h3, p, li");
+
+    var els = main.querySelectorAll("h1, h2, h3, h4, h5, p, li, dd, dt, a, span, strong, em, time, figcaption, label, button, td, th");
     var max = -Infinity, seen = 0;
     for (var i = 0; i < els.length && seen < 500; i++) {
       var el = els[i];
@@ -160,12 +162,23 @@
     return isFinite(max) ? max : state.width - 32;
   }
 
-  function textRows() {
+  function textRows(useInk) {
     var mt = mainMetrics().rectTop;
+    var rows = [];
+    var i, r;
+    if (useInk) {
+      var list = allInkRects();
+      for (i = 0; i < list.length && rows.length < 1200; i++) {
+        r = list[i];
+        if (r.width < 2 || r.height < 2) continue;
+        rows.push({ t: r.top - mt, b: r.bottom - mt });
+      }
+      return rows;
+    }
     var els = main.querySelectorAll("h1, h2, h3, h4, p, li, dd, dt, figcaption");
-    var rows = [], seen = 0;
-    for (var i = 0; i < els.length && seen < 800; i++) {
-      var r = els[i].getBoundingClientRect();
+    var seen = 0;
+    for (i = 0; i < els.length && seen < 800; i++) {
+      r = els[i].getBoundingClientRect();
       if (r.width < 8 || r.height < 8) continue;
       seen++;
       rows.push({ t: r.top - mt, b: r.bottom - mt });
@@ -910,6 +923,7 @@
   }
 
   function drawPath() {
+    state.textLen = 0; 
     var oldTotal = state.total || 1;
     var oldProgress = state.current / oldTotal;
     var metrics = mainMetrics();
@@ -1010,8 +1024,16 @@
       }
 
       if (seq.length) {
-        var rowsForTurn = textRows();
-        seq.forEach(function (s) { s.y = safeTurnY(s.y, rowsForTurn, 95); });
+
+        var narrowTurn = width <= 920;
+        var turnHalf = narrowTurn ? 38 : 95;
+        var rowsForTurn = textRows(narrowTurn);
+        seq = seq.filter(function (s) {
+          var ny = safeTurnY(s.y, rowsForTurn, turnHalf);
+          if (bandHit(ny, rowsForTurn, turnHalf)) return !narrowTurn;
+          s.y = ny;
+          return true;
+        });
       }
       state.xRight = startX;
       state.xLeft = softB;
@@ -1107,12 +1129,20 @@
     updateTarget(true);
   }
 
+  function labelLen() {
+    var LABEL_PAD = 23, LABEL_MIN = 74, LABEL_MAX = 176;
+    if (!state.textLen) {
+      try { state.textLen = labelText.getComputedTextLength() || 0; } catch (e) { state.textLen = 0; }
+    }
+    if (!state.textLen) return 116;
+    return clamp(Math.round(state.textLen + LABEL_PAD * 2), LABEL_MIN, LABEL_MAX);
+  }
+
   function scrollDistance() {
     var maxLead = state.mobile ? 120 : 160;
     var manualLead = Math.min(window.scrollY * 0.15, maxLead);
     var targetY = state.pathStartY + window.scrollY + manualLead;
-    var labelCenterOffset = 58; 
-    var dist = labelCenterOffset + distanceAtGuideY(targetY);
+    var dist = labelLen() / 2 + distanceAtGuideY(targetY);
 
     var maxScroll = Math.max(1, (document.documentElement.scrollHeight || state.height) - window.innerHeight);
     var tail = clamp((window.scrollY / maxScroll - 0.8) / 0.2, 0, 1);
@@ -1138,9 +1168,10 @@
   function render(distance) {
     if (!state.total) return;
 
-    var labelWidth = 116;
     var tailLength = 112;
     var dotGap = 11;
+
+    var labelWidth = labelLen();
     var maxRunnerDistance = Math.max(labelWidth / 2, state.total - labelWidth / 2 - dotGap);
     distance = clamp(distance, labelWidth / 2, maxRunnerDistance);
     var labelStart = distance - labelWidth / 2;
