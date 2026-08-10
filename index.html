@@ -51,9 +51,9 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=89" />
+    <link rel="stylesheet" href="styles.css?v=91" />
 
-    <link rel="stylesheet" href="home.css?v=41" />
+    <link rel="stylesheet" href="home.css?v=46" />
 
     <style>
       .home #impact .impact-numbers div {
@@ -446,6 +446,8 @@
                 <li class="logo-mid"><img src="assets/partners/trimmed/iski.jpg" alt="iSKI 滑雪俱樂部" loading="lazy" /></li>
                 <li class="logo-mid"><img src="assets/partners/trimmed/check-hotels.png" alt="雀客國際酒店集團" loading="lazy" /></li>
                 <li class="logo-mid"><img src="assets/partners/trimmed/yunpao.jpg" alt="雲豹能源" loading="lazy" /></li>
+
+                <li class="pg-break" aria-hidden="true"></li>
                 <li class="logo-mark"><img src="assets/partners/trimmed/chinglan.jpg" alt="青澀芷蘭協會" loading="lazy" /></li>
                 <li class="logo-wide"><img src="assets/partners/trimmed/evergreat.png" alt="永泰企業" loading="lazy" /></li>
                 <li class="logo-mark"><img src="assets/partners/trimmed/dfo.jpg" alt="東方風能科技" loading="lazy" /></li>
@@ -514,7 +516,11 @@
 
               var gutter = Math.round(ref.getBoundingClientRect().left - main.getBoundingClientRect().left);
               var lo = Math.ceil(carHalf + 6), hi = Math.floor(gutter - carHalf - 8);
-              if (hi >= lo) return Math.min(Math.max(Math.round(gutter / 2), lo), hi);
+              if (hi >= lo) {
+
+                var mid = Math.max(Math.round(gutter / 2), gutter - 90);
+                return Math.min(Math.max(mid, lo), hi);
+              }
 
               return narrow ? Math.round(W * 0.965) : fallback;
             }
@@ -838,8 +844,8 @@
         </ul>
       </div>
     </div>
-    <script src="script.js?v=34"></script>
+    <script src="script.js?v=35"></script>
 
-    <script src="reframe.js?v=7" defer></script>
+    <script src="reframe.js?v=8" defer></script>
   </body>
 </html>

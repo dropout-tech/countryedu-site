@@ -75,8 +75,8 @@
 }
 
 .ct-row--teach .ct-head {
-  background-color: var(--sunset);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.22));
+  background-color: var(--peach);
+  color: var(--deep);
 }
 
 .ct-row--design .ct-head {
@@ -182,15 +182,15 @@
 
 .org-partners .partner-logos {
   margin-top: 44px;
+  text-align: left;
+}
+
+.org-partners .partner-logos ul {
+  justify-content: flex-start;
 }
 
 .org-partners .partner-logos + .partner-logos {
   margin-top: 30px;
-}
-
-.org-partners > .rf-panel > .node-label {
-  margin-top: 26px;
-  text-align: center;
 }
 
 .org-partners .partner-logos li:has(img) {
