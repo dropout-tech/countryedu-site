@@ -95,7 +95,6 @@ body.company-spine-page .company-hero-title {
   stroke-width: 2.2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
 }
 
 .company-spine-base {
@@ -111,7 +110,6 @@ body.company-spine-page .company-hero-title {
   stroke-width: 5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
   filter: drop-shadow(0 0 4px var(--path));
 }
 
@@ -126,7 +124,6 @@ body.company-spine-page .company-hero-title {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
 }
 
 .company-spine-label-outline {
@@ -160,14 +157,12 @@ body.company-spine-page .company-hero-title {
   fill: var(--company-spine-orange);
   stroke: var(--paper);
   stroke-width: 2.5;
-  vector-effect: non-scaling-stroke;
   filter: drop-shadow(0 0 5px var(--path));
 }
 
 .company-spine-decor { opacity: 0.96; }
 .company-spine-edge-shape,
 .company-spine-accent-path { shape-rendering: geometricPrecision; }
-.company-spine-accent-path { vector-effect: non-scaling-stroke; }
 
 .company-spine-accent-path-start { stop-color: var(--path); }
 .company-spine-accent-sunset-end { stop-color: var(--sunset); }

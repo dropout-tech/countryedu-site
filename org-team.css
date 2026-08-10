@@ -1,0 +1,228 @@
+
+
+.org-origin .section-grid > div > p:not(.lead):not(.node-label) {
+  margin: 22px 0 0;
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.95;
+}
+
+.org-origin .section-deck + p {
+  margin-top: 30px;
+}
+
+.coreteam-block {
+  width: min(var(--max), 100%);
+  margin: 56px auto 0;
+}
+
+.coreteam-title {
+  margin: 0;
+  font-size: clamp(1.12rem, 1.6vw, 1.32rem);
+  line-height: 1.5;
+  color: var(--deep);
+}
+
+.coreteam-block > .node-label {
+  margin-top: 8px;
+}
+
+.coreteam {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.ct-row {
+  display: grid;
+  grid-template-columns: minmax(238px, 0.95fr) minmax(0, 2fr);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.ct-head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
+  padding: 26px 26px;
+  border-radius: var(--card-radius);
+  color: var(--white);
+}
+
+.ct-head-en {
+  margin: 0;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ct-head-name {
+  margin: 0;
+  font-size: clamp(1.22rem, 1.9vw, 1.46rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.ct-head-desc {
+  margin: 0;
+  font-size: 0.93rem;
+  font-weight: 500;
+  line-height: 1.75;
+  text-wrap: pretty; 
+}
+
+.ct-row--teach .ct-head {
+  background-color: var(--sunset);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.22));
+}
+
+.ct-row--design .ct-head {
+  background-color: var(--leaf-700);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08));
+}
+
+.ct-row--research .ct-head {
+  background-color: var(--wheat);
+  color: var(--deep);
+}
+
+.ct-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 26px;
+  background: var(--butter);
+  border-radius: var(--card-radius);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ct-item {
+  display: grid;
+  grid-template-columns: 6.4em minmax(0, 1fr);
+  align-items: center;
+  padding: 15px 0;
+}
+
+.ct-item + .ct-item {
+  border-top: 1px solid rgba(152, 116, 89, 0.3);
+}
+
+.ct-name {
+  padding-right: 18px;
+  font-weight: 800;
+  color: var(--deep);
+  white-space: nowrap;   
+}
+
+.ct-role {
+  padding-left: 18px;
+  border-left: 1px solid rgba(152, 116, 89, 0.34);
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.ct-seg {
+  white-space: nowrap;
+}
+
+.ct-name--tag {
+  justify-self: start;
+  padding: 4px 11px;
+  border: 1px dashed rgba(152, 116, 89, 0.6);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--deep);
+}
+
+.ct-item--role .ct-name {
+  padding-right: 12px;
+}
+
+@media (max-width: 920px) {
+  .ct-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .ct-head {
+    padding: 20px 22px;
+  }
+  .coreteam-block {
+    margin-top: 44px;
+  }
+}
+
+@media (max-width: 620px) {
+  .ct-list {
+    padding: 2px 18px;
+  }
+  .ct-item {
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 5px;
+    padding: 14px 0;
+  }
+  .ct-name,
+  .ct-item--role .ct-name {
+    padding-right: 0;
+  }
+  .ct-role {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+.org-partners .partner-logos {
+  margin-top: 44px;
+}
+
+.org-partners .partner-logos + .partner-logos {
+  margin-top: 30px;
+}
+
+.org-partners > .rf-panel > .node-label {
+  margin-top: 26px;
+  text-align: center;
+}
+
+.org-partners .partner-logos li:has(img) {
+  min-height: 92px;
+}
+.org-partners .partner-logos li.logo-wide img {
+  height: 42px;
+  max-width: 190px;
+}
+.org-partners .partner-logos li.logo-mid img {
+  height: 52px;
+  max-width: 160px;
+}
+.org-partners .partner-logos li.logo-mark img {
+  height: 60px;
+  max-width: 120px;
+}
+
+@media (max-width: 560px) {
+  .org-partners .partner-logos li:has(img) {
+    min-height: 74px;
+  }
+  .org-partners .partner-logos li.logo-wide img {
+    height: 34px;
+    max-width: 148px;
+  }
+  .org-partners .partner-logos li.logo-mid img {
+    height: 42px;
+    max-width: 126px;
+  }
+  .org-partners .partner-logos li.logo-mark img {
+    height: 48px;
+    max-width: 100px;
+  }
+}
