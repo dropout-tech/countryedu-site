@@ -31,23 +31,29 @@
     }
   });
 
-  function fitEdges() {
-    cards.forEach(function (card) {
-      var w = card.offsetWidth, h = card.offsetHeight;
-      var svg = card.querySelector("svg.rf-edge");
-      if (!svg || !w) return;
-      var rx = Math.max(0, (parseFloat(getComputedStyle(card).borderTopLeftRadius) || 19.75) - 0.75);
-      svg.setAttribute("viewBox", "0 0 " + w + " " + h);
-      svg.querySelectorAll("rect").forEach(function (r) {
-        r.setAttribute("x", 0.75); r.setAttribute("y", 0.75);
-        r.setAttribute("width", w - 1.5); r.setAttribute("height", h - 1.5);
-        r.setAttribute("rx", rx);
-      });
+  function fitOne(card) {
+    var w = card.offsetWidth, h = card.offsetHeight;
+    var svg = card.querySelector("svg.rf-edge");
+    if (!svg || !w) return;
+    var rx = Math.max(0, (parseFloat(getComputedStyle(card).borderTopLeftRadius) || 19.75) - 0.75);
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    svg.querySelectorAll("rect").forEach(function (r) {
+      r.setAttribute("x", 0.75); r.setAttribute("y", 0.75);
+      r.setAttribute("width", w - 1.5); r.setAttribute("height", h - 1.5);
+      r.setAttribute("rx", rx);
     });
   }
+  function fitEdges() { cards.forEach(fitOne); }
   fitEdges();
   window.addEventListener("resize", fitEdges);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitEdges);
+
+  if ("ResizeObserver" in window) {
+    var ro = new ResizeObserver(function (entries) {
+      entries.forEach(function (e) { fitOne(e.target); });
+    });
+    cards.forEach(function (card) { ro.observe(card); });
+  }
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

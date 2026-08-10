@@ -9551,6 +9551,10 @@ body.home .company-title-accent { color: var(--path); }
   transition: background 380ms ease;
 }
 [aria-labelledby="timeline-title"] .journey-node.is-active::after { background: var(--honey); }
+
+body.grp-about .rf-scene--panel:not([aria-labelledby="timeline-title"]) > .rf-panel {
+  background: var(--butter);
+}
 @media (max-width: 860px) {
   [aria-labelledby="timeline-title"] .journey-line.is-vertical.has-figures .journey-node {
     padding-left: 70px;
@@ -9724,6 +9728,11 @@ body.aud-school.audience-spine-page .rf-hero + .rf-scene { padding-top: clamp(6p
 br.br-m { display: none; }
 @media (max-width: 640px) {
   br.br-m { display: inline; }
+}
+
+br.br-d { display: inline; }
+@media (max-width: 900px) {
+  br.br-d { display: none; }
 }
 
 @media (max-width: 560px) {

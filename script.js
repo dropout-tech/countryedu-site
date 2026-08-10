@@ -179,6 +179,27 @@ if (exitSigns.length) {
   }
 }
 
+const exitPanelSigns = document.querySelectorAll(".exit-sign[data-exit-panel]");
+if (exitPanelSigns.length) {
+  const exitPanelTabs = document.querySelectorAll(".impx-tabs .apply-tab[data-tab]");
+  const syncExitPanel = (key) => {
+    exitPanelSigns.forEach((sign) => {
+      const on = sign.dataset.exitPanel === key;
+      sign.hidden = !on;
+
+      if (!on) {
+        sign.classList.remove("is-active");
+        sign.removeAttribute("aria-current");
+      }
+    });
+  };
+  const initialTab = [...exitPanelTabs].find((btn) => btn.classList.contains("is-active")) || exitPanelTabs[0];
+  if (initialTab) syncExitPanel(initialTab.dataset.tab);
+  exitPanelTabs.forEach((btn) => {
+    btn.addEventListener("click", () => syncExitPanel(btn.dataset.tab));
+  });
+}
+
 const impactStepper = document.querySelector("[data-impact-stepper]");
 if (impactStepper) {
   const stepItems = [...impactStepper.querySelectorAll(".istep-item")];
