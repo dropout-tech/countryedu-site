@@ -682,7 +682,7 @@
           neutral:  { order: ["solo", "organic", "duo", "combo"], gap: 780, max: 10, alt: "row",  chip: false, w: 0.78 },
 
           about:    { order: ["organic", "combo", "solo", "duo"], gap: 640, max: 12, alt: "row",  chip: true,  w: 1,
-                      sizes: [1, 0.72, 0.95, 0.8], chipFlat: true }
+                      sizes: [1, 1, 0.95, 0.8], chipFlat: true }
         };
         var plan = PLAN[grp] || PLAN.about;
         var flatW = Math.min(300 * gScale, mar - 6);
