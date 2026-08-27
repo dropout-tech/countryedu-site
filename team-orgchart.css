@@ -107,6 +107,23 @@
   border-radius:7px;
   background:var(--os1-wheat);
 }
+
+.orgset-1 .os1-node--mid,
+.orgset-1 .os1-scard,
+.orgset-1 .ct-seg{ position:relative; }
+.orgset-1 .os1-node--mid::before,
+.orgset-1 .os1-scard::before,
+.orgset-1 .ct-seg::before{
+  content:"";
+  position:absolute;
+  top:-3px;
+  left:50%;
+  transform:translateX(-50%);
+  width:44px;
+  height:6px;
+  border-radius:6px;
+  background:var(--os1-wheat);
+}
 .orgset-1 .os1-node--board .os1-kicker{
   background:var(--os1-wheat);
   color:var(--os1-deep);

@@ -595,6 +595,9 @@ document.querySelectorAll("[data-ig-carousel]").forEach((root) => {
     if (!base) return;
     var W = main.clientWidth, H = main.scrollHeight;
     if (!W || !H || W < 340) { base.innerHTML = ""; if (over) over.innerHTML = ""; return; }
+
+    if (draw._lastW === W && Math.abs(H - (draw._lastH || 0)) <= 8) return;
+    draw._lastW = W; draw._lastH = H;
     var mobile = W < 701;   
 
     var secs = collect(main);
