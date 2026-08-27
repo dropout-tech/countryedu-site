@@ -938,3 +938,9 @@ window.addEventListener("resize", () => {
     }
   });
 })();
+
+(function () {
+  var link = document.querySelector('.float-dock__actions a[href="#contact"]');
+  if (!link) return;
+  if (!document.querySelector('main .cta-band, main .rf-panel-cta')) link.setAttribute('href', 'contact.html');
+})();

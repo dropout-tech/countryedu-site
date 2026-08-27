@@ -700,7 +700,7 @@
       var nextX = penX === state.xRight ? state.xLeft : state.xRight;
       var dx = nextX - penX;
 
-      var radiusCap = state.width <= 920 ? 28 : 30;
+      var radiusCap = state.mobile ? 28 : 30;
       var radius = Math.min(radiusCap, Math.abs(dx) / 2 - 2, (y - penY) / 2 - 2);
 
       if (radius >= 8) {
