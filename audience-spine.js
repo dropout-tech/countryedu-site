@@ -1066,16 +1066,24 @@
       var farL = Math.round(clamp(cor * 0.6, 30, 100));
       var farR = Math.round(Math.min(width - 82, width - farL));
       var secYs = gentleTurnYs(metrics);
-      var wide = cor >= 70; 
 
       var CAR_CLEAR = 22;
-      var leftRoom = Math.min(cor, contentLeft());
+
+      var leftRoom = contentLeft();
       var navEl = main.querySelector(".exit-nav");
       if (navEl) {
-        var navLeft = navEl.getBoundingClientRect().left - mainMetrics().rectLeft;
-        if (isFinite(navLeft)) leftRoom = Math.min(leftRoom, navLeft);
+
+        var navRect = navEl.getBoundingClientRect();
+        if (navRect.width >= 1 && navRect.width < width * 0.5) {
+          var navLeft = navRect.left - mainMetrics().rectLeft;
+          if (isFinite(navLeft)) leftRoom = Math.min(leftRoom, navLeft);
+        }
       }
-      var canDive = leftRoom >= 30 + CAR_CLEAR;
+
+      var minLane = width <= 920 ? 20 : 30;
+      var canDive = leftRoom >= minLane + CAR_CLEAR;
+
+      var wide = cor >= 70 || (width <= 920 && canDive);
       if (canDive) {
         if (farL > leftRoom - CAR_CLEAR) farL = Math.round(leftRoom - CAR_CLEAR);
         farR = Math.round(Math.min(width - 82, width - farL));

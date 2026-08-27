@@ -9575,27 +9575,15 @@ body.home .company-title-accent { color: var(--path); }
   line-height: 1.35;
   color: var(--ink);
 }
-
 [aria-labelledby="timeline-title"] .era-heading::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  left: 8px; 
+  top: -6px;
+  bottom: -6px;
+  width: 8px;
+  border-radius: 4px;
   background: var(--leaf-700);
-  box-shadow: 0 0 0 6px rgba(92, 122, 58, 0.16);
-}
-[aria-labelledby="timeline-title"] .era-heading::after {
-  content: "";
-  position: absolute;
-  left: 30px;
-  top: 50%;
-  width: 34px;
-  height: 2px;
-  background: rgba(92, 122, 58, 0.45);
 }
 [aria-labelledby="timeline-title"] .era-heading:first-of-type { margin-top: 10px; }
 @media (max-width: 860px) {

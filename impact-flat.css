@@ -860,11 +860,12 @@
   line-height: 1.9;
   font-weight: 500;
   color: var(--muted);
-  max-width: 760px;
+
+  max-width: none;
   margin-top: 10px;
 }
 
-.rpx-card .rpx-bar__fill { transition: width 0.9s cubic-bezier(0.25, 0.6, 0.3, 1); }
+.rpx-card .rpx-bar__fill { transition: width 1.4s cubic-bezier(0.25, 0.6, 0.3, 1); }
 @media (prefers-reduced-motion: reduce) {
   .rpx-card .rpx-bar__fill { transition: none; }
 }
