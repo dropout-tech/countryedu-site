@@ -166,6 +166,13 @@
     var mt = mainMetrics().rectTop;
     var rows = [];
     var i, r;
+
+    var figs = main.querySelectorAll(".content-figure, .rf-media, .node-figure");
+    for (i = 0; i < figs.length; i++) {
+      r = figs[i].getBoundingClientRect();
+      if (r.width < 8 || r.height < 8) continue;
+      rows.push({ t: r.top - mt, b: r.bottom - mt });
+    }
     if (useInk) {
       var list = allInkRects();
       for (i = 0; i < list.length && rows.length < 1200; i++) {
@@ -493,6 +500,19 @@
   }
 
   function gentleMotif(kind, side, y, width, radius, i, gScale) {
+
+    if (body.getAttribute("data-mobile-decor-tune") === "v2") {
+      if (state.width <= 960) {
+        if (side === "left") { width *= 0.72; gScale *= 0.85; }
+      } else {
+        width *= 0.8;
+        gScale *= 0.8;
+        if (side === "left" && (kind === "duo" || kind === "organic")) {
+          width *= 1.72;
+          gScale *= 1.72;
+        }
+      }
+    }
     if (kind === "duo") gentleDuo(side, y, width, 172 * gScale, radius, i);
     else if (kind === "organic") gentleOrganic(side, y, width * 0.94, i);
     else if (kind === "combo") gentleCombo(side, y, width, radius, i);
@@ -533,12 +553,47 @@
     var mOrder = ["organic", "duo", "combo", "solo"];
 
     var lockSide = body.getAttribute("data-mobile-decor-side");
+
+    var tuneV2 = body.getAttribute("data-mobile-decor-tune") === "v2";
     for (var mi = 0; mi < mN; mi++) {
 
-      gentleMotif(mOrder[mi % 4], lockSide || (mi % 2 ? "left" : "right"),
-        mTop + (mi + 0.5) * mRH - 22, 44 * DECOR_GROW_MOBILE, 14 * DECOR_GROW_MOBILE,
+      var mSide = lockSide || (mi % 2 ? "left" : "right");
+      var mW = 44 * DECOR_GROW_MOBILE * (tuneV2 && mSide === "right" ? 1.45 : 1);
+      gentleMotif(mOrder[mi % 4], mSide,
+        mTop + (mi + 0.5) * mRH - 22, mW, 14 * DECOR_GROW_MOBILE,
         mi, 0.32 * DECOR_GROW_MOBILE);
     }
+  }
+
+  function tuneMobileAvoid() {
+    var pad = 10;
+    var avoid = [];
+
+    main.querySelectorAll(".content-figure, .rf-media, .node-figure, .section-deck, .rpx-card, .story-quote, .signal-row--tag > div, .rf-panel-cta, .cta-band").forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.width > 1 && r.height > 1) avoid.push(r);
+    });
+    if (!avoid.length) return;
+    var textRects = allInkRects();
+    function hits(b, rects, p) {
+      for (var i = 0; i < rects.length; i++) {
+        var r = rects[i];
+        if (b.left < r.right + p && b.right > r.left - p && b.top < r.bottom + p && b.bottom > r.top - p) return r;
+      }
+      return null;
+    }
+    Array.prototype.slice.call(decor.children).forEach(function (el) {
+      if (el.style.display === "none") return;
+      var b = el.getBoundingClientRect();
+      if (b.width < 1 || b.height < 1) return;
+      var hit = hits(b, avoid, pad);
+      if (!hit) return;
+      var dy = b.bottom - hit.top + pad + 6;
+      var old = el.getAttribute("transform") || "";
+      el.setAttribute("transform", "translate(0 " + (-dy).toFixed(1) + ")" + (old ? " " + old : ""));
+      var nb = el.getBoundingClientRect();
+      if (hits(nb, avoid, pad) || hits(nb, textRects, 8)) el.style.display = "none";
+    });
   }
 
   function drawDecor() {
@@ -550,6 +605,7 @@
       if (mobileDecor) {
         gentleMobileDecor();
         clearTitleOverlaps();
+        if (body.getAttribute("data-mobile-decor-tune") === "v2") tuneMobileAvoid();
         return;
       }
 
@@ -931,6 +987,9 @@
     var height = main.scrollHeight;
     if (!width || !height) return;
 
+    if (!drawPath._force && state.width === width && Math.abs(height - state.height) <= 8) return;
+    drawPath._force = false;
+
     state.width = width;
     state.height = height;
     state.mobile = width <= 700;
@@ -1207,10 +1266,11 @@
     resizeTimer = window.setTimeout(drawPath, 90);
   }
 
+  function forceDraw() { drawPath._force = true; drawPath(); }
   window.addEventListener("scroll", function () { updateTarget(false); }, { passive: true });
   window.addEventListener("resize", queueDraw);
-  window.addEventListener("load", queueDraw);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueDraw);
+  window.addEventListener("load", forceDraw);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(forceDraw);
   if (window.ResizeObserver) new ResizeObserver(queueDraw).observe(main);
   drawPath();
 })();

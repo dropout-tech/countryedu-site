@@ -53,6 +53,16 @@
     <link rel="stylesheet" href="audience-spine.css?v=35" />
     <link rel="stylesheet" href="team-orgchart.css?v=8" />
     <link rel="stylesheet" href="org-team.css?v=3" />
+    <style>
+
+      .grp-about .journey-node .node-text p:not(.node-label) {
+        margin: 0 0 12px;
+        color: var(--muted);
+      }
+      .grp-about .journey-node .node-text p:not(.node-label):last-child {
+        margin-bottom: 0;
+      }
+</style>
   </head>
   <body class="no-decor rspine audience-spine-page spine-gentle grp-about" data-spine-route="mid" data-spine-label="OUR STORY" style="--spine-c: #8ec457;">
     <div class="site-shell">
@@ -66,7 +76,7 @@
             <div class="nav-dropdown" aria-label="關於鄉育子選單">
               <a href="mission-vision.html">使命願景</a>
               <a href="about.html">組織簡介</a>
-              <a href="reports.html">年度報告</a>
+              <a href="reports.html">年報與研究成果</a>
             </div>
           </div>
           <div class="nav-item">
@@ -85,9 +95,9 @@
           <div class="nav-item">
             <a role="button" tabindex="0" aria-haspopup="true" aria-label="媒體與資源，展開子選單">媒體與資源</a>
             <div class="nav-dropdown" aria-label="媒體與資源子選單">
-              <a href="news.html">最新消息</a>
+              <a href="news.html">消息列表</a>
               <a href="resources.html">課程資源</a>
-              <a href="jobs.html">合作企業職缺</a>
+              <a href="jobs.html">企業職缺與實習</a>
             </div>
           </div>
           <div class="nav-item">
@@ -118,7 +128,7 @@
           <div class="m-sub">
             <a href="mission-vision.html">使命願景</a>
             <a href="about.html">組織簡介</a>
-            <a href="reports.html">年度報告</a>
+            <a href="reports.html">年報與研究成果</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -147,9 +157,9 @@
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開媒體與資源子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="news.html">最新消息</a>
+            <a href="news.html">消息列表</a>
             <a href="resources.html">課程資源</a>
-            <a href="jobs.html">合作企業職缺</a>
+            <a href="jobs.html">企業職缺與實習</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -220,7 +230,7 @@
               <div>
                 <h2 id="origin-title">從偏鄉教育出發，開啟<span class="company-title-accent">青年人才培育</span></h2>
                 <p class="lead">
-                  自 2021 年以來，<span class="nw">鄉育</span>團隊走入台灣北中南地區的高中與大專院校，辦理上百場學習歷程講座、工作坊與 16 週課程實作，培養青年探索未來，累積了大量<span class="company-hl company-hl--01">第一線教育經驗</span>。
+                  自 2021 年以來，<span class="nw">鄉育</span>團隊走入台灣北中南地區的高中與大專院校，辦理上百場學習歷程講座、工作坊與 16 週課程實作，培養青年探索未來的能力，累積了大量<span class="company-hl company-hl--01">第一線教育經驗</span>。
                 </p>
                 <p>
                   在培育學生的過程，我們逐漸發現，真正影響青年未來的，往往不是單一次考試成績或背誦更多知識，而在如何理解接收到的資訊、判斷情境，進而做出<span class="company-hl company-hl--01">適合自己的選擇</span>。
@@ -244,16 +254,16 @@
                 <p>發展歷程 Milestones</p>
               </div>
               <div>
-                <h2 id="timeline-title">這些年，<span class="nw company-title-accent">鄉育</span><span class="nw company-title-accent">一步步</span>走成的路。</h2>
+                <h2 id="timeline-title"><span class="nw company-title-accent">鄉育</span>的足跡</h2>
               </div>
             </div>
             <div class="journey-line is-vertical has-figures" aria-label="鄉育歷年發展軌跡">
-              <article class="journey-node">
+              <h3 class="era-heading">｜看見問題，從地方出發</h3>
+              <article class="journey-node featured-node">
                 <span class="node-dot"></span>
                 <div class="node-text">
                   <p class="node-label">2016</p>
-                  <h3>看見落差，種下起點</h3>
-                  <p>看見台灣各地<span class="company-hl company-hl--01">教育資源與資訊落差</span>，種下<span class="nw">鄉育</span>關注地方教育的起點。</p>
+                  <p>開始關注台灣各地教育資源落差，思考如何透過教育陪伴，讓不同背景的青年都能擁有探索自我與發展潛能的機會，成為<span class="nw">鄉育</span>理念的起點。</p>
                 </div>
                 <figure class="node-figure">
                   <img src="assets/photos/mentor-one-on-one.jpg" alt="鄉育業師俯身與學生一對一討論、近距離陪伴" loading="lazy" width="1280" height="853" />
@@ -263,8 +273,7 @@
                 <span class="node-dot"></span>
                 <div class="node-text">
                   <p class="node-label">2020</p>
-                  <h3>走進地方第一線</h3>
-                  <p>走入地方第一線，訪談與接觸超過 1,000 位學子與青年，確認<span class="company-hl company-hl--01">長期教育陪伴</span>的必要。</p>
+                  <p>實際走入全台各地，訪談超過百位青年與學生，理解地方教育現況、學生需求與升學焦慮，逐步形成<span class="nw">鄉育</span>希望打造的新教育模式，也確立以青年探索與人才培育作為長期使命。</p>
                 </div>
                 <figure class="node-figure">
                   <img src="assets/photos/mentor-dialogue.jpg" alt="鄉育成員與青年圍坐座談、面對面交流" loading="lazy" width="1280" height="853" />
@@ -274,19 +283,19 @@
                 <span class="node-dot"></span>
                 <div class="node-text">
                   <p class="node-label">2021</p>
-                  <h3>第一場學習歷程工作坊</h3>
-                  <p>回應 108 課綱，在台南北門農工與北門高中啟動學習歷程檔案工作坊。</p>
+                  <p>配合 108 課綱推動，在台南北門高中與北門農工舉辦首次學習歷程檔案工作坊，協助學生理解自主學習、多元表現與未來探索，開啟<span class="nw">鄉育</span>第一線校園服務。</p>
                 </div>
                 <figure class="node-figure">
                   <img src="assets/photos/workshop-discussion.jpg" alt="高中生圍著桌子討論、書寫學習歷程" loading="lazy" width="1280" height="853" />
                 </figure>
               </article>
+
+              <h3 class="era-heading">｜建立地方高中教育網絡</h3>
               <article class="journey-node featured-node">
                 <span class="node-dot"></span>
                 <div class="node-text">
-                  <p class="node-label">2021.08</p>
-                  <h3>把行動變成組織</h3>
-                  <p><span class="nw">鄉育</span>教育基金會正式成立，將「育才零距離」從公益行動推進為長期組織使命。</p>
+                  <p class="node-label">2022</p>
+                  <p>正式成立財團法人<span class="nw">鄉育</span>教育基金會，並舉辦成立記者會，承接原有教育公益計畫，持續投入地方高中人才培育。當年度累積服務全台超過十所高中、數百位學生，也獲得企業與社會各界支持，共同推動教育公益。</p>
                 </div>
                 <figure class="node-figure">
                   <img src="assets/photos/group-banner.jpg" alt="鄉育師生在古蹟前手持基金會布條合影" loading="lazy" width="1280" height="855" />
@@ -296,8 +305,7 @@
                 <span class="node-dot"></span>
                 <div class="node-text">
                   <p class="node-label">2023</p>
-                  <h3>從台南走向全台</h3>
-                  <p>合作擴展至雙北、新竹、桃園、台中、嘉義、台南、高雄、花蓮等地，推動學習歷程講座與深度工作坊。</p>
+                  <p>服務範圍擴展至雙北、桃園、新竹、台中、嘉義、台南、高雄、花蓮、金門等地方高中，邀請跨領域講者、創作者、企業家、教育工作者與內容創作者共同走入校園，主題涵蓋 AI 應用、自媒體、人生設計、黃金圈思考、運動員職涯、多元探索等，幫助學生接觸更多真實世界的可能性。</p>
                 </div>
                 <figure class="node-figure">
                   <img src="assets/photos/lecture-hall.jpg" alt="高中生齊聚講堂聆聽鄉育講座" loading="lazy" width="1280" height="853" />
@@ -307,30 +315,32 @@
                 <span class="node-dot"></span>
                 <div class="node-text">
                   <p class="node-label">2024</p>
-                  <h3>從高中走進大學</h3>
-                  <p>新增苗栗、雲林區域合作，並首次與成功大學合作，培訓大專院校學生成為<span class="company-hl company-hl--01">高中生引導員</span>。</p>
+                  <p>首次與國立成功大學合作，培訓大專院校學生擔任高中引導員，讓青年陪伴青年，建立跨世代的學習支持網絡。並持續與各界企業及專業人士合作，讓教育內容更貼近真實職場與未來社會。</p>
                 </div>
                 <figure class="node-figure">
                   <img src="assets/photos/class-peer-discussion.jpg" alt="三位學生在課桌前並肩討論、交換想法" loading="lazy" width="1280" height="853" />
                 </figure>
               </article>
-              <article class="journey-node">
+              <h3 class="era-heading">｜打造青年職涯教育系統</h3>
+              <article class="journey-node featured-node">
                 <span class="node-dot"></span>
                 <div class="node-text">
                   <p class="node-label">2025</p>
-                  <h3>完成勸募申請，深化產學</h3>
-                  <p>完成勸募字號申請，服務延伸至大學；並與高雄師範大學事業經營學系完成首次 16 週職涯探索選修課程。</p>
+                  <p>服務正式延伸至大專校院，與高雄師範大學合作開設 16 週職涯探索選修課程，結合企業合作、決策思維、自我探索與真實專案，引導學生提前建立職場所需的能力。</p>
+                  <p>同年完成勸募字號申請，讓更多社會大眾能透過小額捐款支持青年教育。</p>
                 </div>
                 <figure class="node-figure">
                   <img src="assets/photos/career-day.jpg" alt="學生在戶外職涯探索日活動大合照" loading="lazy" width="1280" height="838" />
                 </figure>
               </article>
-              <article class="journey-node featured-node">
+
+              <article class="journey-node">
                 <span class="node-dot"></span>
                 <div class="node-text">
                   <p class="node-label">2026</p>
-                  <h3>三大服務線成形</h3>
-                  <p>建立偏鄉高中教師培力、尋路計畫與線上培力<span class="company-hl company-hl--01">三大服務線</span>，並與成功大學教育研究所展開學術研究；累積服務 1,668 位學生、35+ 所學校、106+ 場次。</p>
+                  <p>・與青澀芷蘭協會合作，完成線上職涯探索課程，協助經濟弱勢青年探索能力與未來方向。</p>
+                  <p>・同時分別於國立成功大學及高雄師範大學完成 16 週職涯探索課程，持續深化以決策能力、問題解決、自我理解與企業實作為核心的青年培育模式。</p>
+                  <p>・與國立成功大學教育研究所合作，展開教育研究計畫，透過學術研究驗證青年提前培養職涯能力、自我決策能力與社會情緒能力，對未來職涯發展與身心健康所帶來的長期影響，逐步建立可持續推廣的青年教育模式。</p>
                 </div>
                 <figure class="node-figure">
                   <img src="assets/photos/digital-tools.jpg" alt="高中生使用平板與數位工具進行學習" loading="lazy" width="1280" height="853" />
@@ -461,24 +471,24 @@
               </div>
             </div>
             <div class="partner-logos" aria-labelledby="ab-partner-school">
-              <p id="ab-partner-school" class="partner-logos-title">合作學校</p>
+              <p id="ab-partner-school" class="partner-logos-title">合作學校與組織</p>
               <ul>
                 <li class="logo-wide"><img src="assets/partners/trimmed/ncku.jpg" alt="國立成功大學" loading="lazy" /></li>
                 <li class="logo-wide"><img src="assets/partners/trimmed/nknu.png" alt="國立高雄師範大學" loading="lazy" /></li>
                 <li class="logo-wide"><img src="assets/partners/trimmed/nthu.jpg" alt="國立清華大學" loading="lazy" /></li>
                 <li class="logo-mark"><img src="assets/partners/trimmed/nthu-leadership.png" alt="清華大學立德計畫" loading="lazy" /></li>
+                <li class="logo-mark"><img src="assets/partners/trimmed/chinglan.jpg" alt="青澀芷蘭協會" loading="lazy" /></li>
               </ul>
             </div>
             <div class="partner-logos" aria-labelledby="ab-partner-biz">
-              <p id="ab-partner-biz" class="partner-logos-title">企業與合作夥伴</p>
+              <p id="ab-partner-biz" class="partner-logos-title">合作企業</p>
               <ul>
                 <li class="logo-mark"><img src="assets/partners/trimmed/cmmt.jpg" alt="誠美材料科技" loading="lazy" /></li>
                 <li class="logo-wide"><img src="assets/partners/trimmed/mediatek.png" alt="聯發科技 MediaTek 志工社" loading="lazy" /></li>
-                <li class="logo-mark"><img src="assets/partners/trimmed/tesla.jpg" alt="Tesla Owners Taiwan" loading="lazy" /></li>
+                <li class="logo-mark"><img src="assets/partners/trimmed/tesla-t.png" alt="Tesla 特斯拉" loading="lazy" /></li>
                 <li class="logo-mid"><img src="assets/partners/trimmed/iski.jpg" alt="iSKI 滑雪俱樂部" loading="lazy" /></li>
                 <li class="logo-mid"><img src="assets/partners/trimmed/check-hotels.png" alt="雀客國際酒店集團" loading="lazy" /></li>
                 <li class="logo-mid"><img src="assets/partners/trimmed/yunpao.jpg" alt="雲豹能源" loading="lazy" /></li>
-                <li class="logo-mark"><img src="assets/partners/trimmed/chinglan.jpg" alt="青澀芷蘭協會" loading="lazy" /></li>
                 <li class="logo-wide"><img src="assets/partners/trimmed/evergreat.png" alt="永泰企業" loading="lazy" /></li>
                 <li class="logo-mark"><img src="assets/partners/trimmed/dfo.jpg" alt="東方風能科技" loading="lazy" /></li>
                 <li class="logo-mark"><img src="assets/partners/trimmed/kkorchard.jpg" alt="瓜瓜園" loading="lazy" /></li>
@@ -490,12 +500,13 @@
         <section class="about-section section-pad rf-scene" aria-label="下一步" data-exit-clear>
           <div class="rf-wrap">
             <div class="cta-band">
+
               <div>
-                <h3>想更了解<span class="nw">鄉育</span>怎麼陪青年尋路？</h3>
-                <p>先認識我們的使命與教育理念，或看看正在進行的計畫。</p>
+                <h3>想看<span class="nw">鄉育</span>每一年做了什麼？</h3>
+                <p>年度報告與公開徵信，完整記錄我們的成果與財務運用。</p>
               </div>
               <div class="cta-band-actions">
-                <a class="button-primary" href="mission-vision.html">認識使命願景 &rarr;</a>
+                <a class="button-primary" href="reports.html">查看年報與研究成果 &rarr;</a>
               </div>
             </div>
           </div>
@@ -547,7 +558,7 @@
           </address>
         </div>
         <nav class="footer-legal-links" aria-label="法定與政策連結">
-          <a href="privacy.html">隱私權政策</a>
+          <a href="privacy.html">隱私權與 Cookie 政策</a>
           <a href="terms.html">服務條款</a>
           <a href="reports.html#donor-roll">公開徵信</a>
         </nav>
@@ -558,34 +569,34 @@
       </footer>
 
       <div class="float-dock" data-float-dock>
-        <button class="float-dock__tab" type="button" aria-expanded="false" aria-controls="float-dock-actions" aria-label="開啟快速入口：捐款、學習登入、聯絡">
+        <button class="float-dock__tab" type="button" aria-expanded="false" aria-controls="float-dock-actions" aria-label="開啟快速入口：捐款、人才平台、IG、聯絡">
           <svg class="float-dock__tab-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
           <svg class="float-dock__tab-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
           <span class="float-dock__tab-text">支持</span>
         </button>
         <ul class="float-dock__actions" id="float-dock-actions">
           <li>
-            <a class="float-dock__item is-primary" href="https://countryedu.oen.tw/" target="_blank" rel="noopener">
+            <a class="float-dock__item is-primary" href="https://donate.countryedu.org.tw/civicrm/contribute/transact?reset=1&amp;id=3" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
               <span>線上捐款</span>
             </a>
           </li>
           <li>
-            <a class="float-dock__item" href="login.html">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-              <span>學習登入</span>
-            </a>
-          </li>
-          <li>
-            <a class="float-dock__item" href="contact.html">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-              <span>聯絡我們</span>
+            <a class="float-dock__item" href="for-companies.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>
+              <span>人才平台</span>
             </a>
           </li>
           <li>
             <a class="float-dock__item" href="https://www.instagram.com/countryedu2022/" target="_blank" rel="noopener" aria-label="鄉育 Instagram（另開新視窗）">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
               <span>追蹤 IG</span>
+            </a>
+          </li>
+          <li>
+            <a class="float-dock__item" href="#contact">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <span>聯絡我們</span>
             </a>
           </li>
         </ul>

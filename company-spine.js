@@ -650,6 +650,9 @@
     var height = main.scrollHeight;
     if (!width || !height) return;
 
+    if (!drawPath._force && state.width === width && Math.abs(height - state.height) <= 8) return;
+    drawPath._force = false;
+
     state.width = width;
     state.height = height;
     state.mobile = width <= 700;
@@ -813,10 +816,11 @@
     resizeTimer = window.setTimeout(drawPath, 90);
   }
 
+  function forceDraw() { drawPath._force = true; drawPath(); }
   window.addEventListener("scroll", function () { updateTarget(false); }, { passive: true });
   window.addEventListener("resize", queueDraw);
-  window.addEventListener("load", queueDraw);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueDraw);
+  window.addEventListener("load", forceDraw);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(forceDraw);
   if (window.ResizeObserver) new ResizeObserver(queueDraw).observe(main);
   drawPath();
 })();
