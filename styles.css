@@ -9569,8 +9569,9 @@ body.home .company-title-accent { color: var(--path); }
 
 [aria-labelledby="timeline-title"] .era-heading {
   position: relative;
-  margin: 46px 0 22px;
-  padding-left: 80px;
+
+  margin: 46px 0 40px;
+  padding-left: 36px;
   font-size: clamp(1.3rem, 2.1vw, 1.62rem);
   line-height: 1.35;
   color: var(--ink);
@@ -9587,7 +9588,7 @@ body.home .company-title-accent { color: var(--path); }
 }
 [aria-labelledby="timeline-title"] .era-heading:first-of-type { margin-top: 10px; }
 @media (max-width: 860px) {
-  [aria-labelledby="timeline-title"] .era-heading { padding-left: 70px; }
+  [aria-labelledby="timeline-title"] .era-heading { padding-left: 32px; }
 }
 
 body.grp-about .rf-scene--panel:not([aria-labelledby="timeline-title"]) > .rf-panel {
