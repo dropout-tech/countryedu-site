@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="reframe.css?v=34" />
     <link rel="stylesheet" href="audience-spine.css?v=36" />
 
-    <link rel="stylesheet" href="impact-flat.css?v=10" />
+    <link rel="stylesheet" href="impact-flat.css?v=11" />
   </head>
   <body class="rspine audience-spine-page spine-gentle grp-impact" data-mobile-decor-tune="v2" data-spine-route="mid" data-spine-label="PARTNERSHIPS" style="--spine-c: #fbb05b;">
     <div class="site-shell">
@@ -773,7 +773,7 @@
 
     <script src="script.js?v=35"></script>
     <script src="reframe.js?v=8" defer></script>
-    <script src="audience-spine.js?v=55" defer></script>
+    <script src="audience-spine.js?v=54" defer></script>
 
     <script>
       (function () {
@@ -786,6 +786,10 @@
             if (!reduced) bar.style.width = "0%";
           });
         });
+        function resetCard(card) {
+          delete card.dataset.rpxDone;
+          card.querySelectorAll(".rpx-bar__fill").forEach(function (bar) { bar.style.width = "0%"; });
+        }
         function runCard(card) {
           if (card.dataset.rpxDone) return;
           card.dataset.rpxDone = "1";
@@ -800,7 +804,7 @@
           var final = textNode.textContent.trim();
           var target = parseFloat(final.replace(/[^\d.]/g, ""));
           if (reduced || !isFinite(target)) return;
-          var t0 = null, DUR = 900;
+          var t0 = null, DUR = 1400;
           function tick(ts) {
             if (t0 === null) t0 = ts;
             var p = Math.min(1, (ts - t0) / DUR);
@@ -816,11 +820,13 @@
           cards.forEach(runCard);
           return;
         }
+
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) {
-            if (e.isIntersecting) { runCard(e.target); io.unobserve(e.target); }
+            if (e.isIntersecting) runCard(e.target);
+            else if (e.intersectionRatio === 0) resetCard(e.target);
           });
-        }, { threshold: 0.3 });
+        }, { threshold: [0, 0.3] });
         cards.forEach(function (c) { io.observe(c); });
       })();
 </script>
