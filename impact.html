@@ -50,7 +50,7 @@
     </script>
     <link rel="stylesheet" href="styles.css?v=91" />
     <link rel="stylesheet" href="reframe.css?v=34" />
-    <link rel="stylesheet" href="audience-spine.css?v=35" />
+    <link rel="stylesheet" href="audience-spine.css?v=36" />
 
     <link rel="stylesheet" href="impact-flat.css?v=10" />
   </head>
@@ -773,6 +773,56 @@
 
     <script src="script.js?v=35"></script>
     <script src="reframe.js?v=8" defer></script>
-    <script src="audience-spine.js?v=50" defer></script>
+    <script src="audience-spine.js?v=52" defer></script>
+
+    <script>
+      (function () {
+        var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var cards = document.querySelectorAll(".rpx-card");
+        if (!cards.length) return;
+        cards.forEach(function (card) {
+          card.querySelectorAll(".rpx-bar__fill").forEach(function (bar) {
+            bar.dataset.w = bar.style.width;
+            if (!reduced) bar.style.width = "0%";
+          });
+        });
+        function runCard(card) {
+          if (card.dataset.rpxDone) return;
+          card.dataset.rpxDone = "1";
+          card.querySelectorAll(".rpx-bar__fill").forEach(function (bar) {
+            requestAnimationFrame(function () { bar.style.width = bar.dataset.w; });
+          });
+          var numEl = card.querySelector(".rpx-delta__num");
+          if (!numEl) return;
+          var textNode = null;
+          numEl.childNodes.forEach(function (n) { if (n.nodeType === 3 && /\d/.test(n.textContent)) textNode = n; });
+          if (!textNode) return;
+          var final = textNode.textContent.trim();
+          var target = parseFloat(final.replace(/[^\d.]/g, ""));
+          if (reduced || !isFinite(target)) return;
+          var t0 = null, DUR = 900;
+          function tick(ts) {
+            if (t0 === null) t0 = ts;
+            var p = Math.min(1, (ts - t0) / DUR);
+            var eased = 1 - Math.pow(1 - p, 3);
+            textNode.textContent = "+" + (target * eased).toFixed(1) + "%";
+            if (p < 1) requestAnimationFrame(tick);
+            else textNode.textContent = final;
+          }
+          textNode.textContent = "+0.0%";
+          requestAnimationFrame(tick);
+        }
+        if (!("IntersectionObserver" in window) || reduced) {
+          cards.forEach(runCard);
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { runCard(e.target); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.3 });
+        cards.forEach(function (c) { io.observe(c); });
+      })();
+</script>
   </body>
 </html>

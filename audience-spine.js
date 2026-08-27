@@ -505,8 +505,12 @@
       if (state.width <= 960) {
         if (side === "left") { width *= 0.72; gScale *= 0.85; }
       } else {
-        width *= 0.8;
-        gScale *= 0.8;
+
+        var v2ComboExempt = side === "left" && kind === "combo" && body.classList.contains("grp-about");
+        if (!v2ComboExempt) {
+          width *= 0.8;
+          gScale *= 0.8;
+        }
         if (side === "left" && (kind === "duo" || kind === "organic")) {
           width *= 1.72;
           gScale *= 1.72;
@@ -1023,9 +1027,6 @@
       var softA = Math.round(width - clamp(cor * 0.56, 24, 78));
       var softJog = Math.round(clamp(cor * 0.34, 10, 48));
 
-      if (width <= 920) {
-        softJog = Math.max(softJog, softA - Math.round(contentRight() + 22));
-      }
       var softB = Math.round(softA - Math.max(6, softJog));
       var farL = Math.round(clamp(cor * 0.6, 30, 100));
       var farR = Math.round(Math.min(width - 82, width - farL));
@@ -1084,13 +1085,11 @@
 
       if (seq.length) {
 
-        var narrowTurn = width <= 920;
-        var turnHalf = narrowTurn ? 38 : 95;
-        var rowsForTurn = textRows(narrowTurn);
+        var turnHalf = 95;
+        var rowsForTurn = textRows(false);
         seq = seq.filter(function (s) {
           var ny = safeTurnY(s.y, rowsForTurn, turnHalf);
-          if (bandHit(ny, rowsForTurn, turnHalf)) return !narrowTurn;
-          s.y = ny;
+          if (!bandHit(ny, rowsForTurn, turnHalf)) s.y = ny;
           return true;
         });
       }
@@ -1137,7 +1136,7 @@
       var dx = nextX - penX;
       var wideTurn = Math.abs(dx) > 200;
 
-      if (gentle && !state.mobile && width > 920 && !wideTurn) {
+      if (gentle && !state.mobile && !wideTurn) {
         var half = 110;
         var yS = y - half;
         var yE = Math.min(y + half, height - 8);
@@ -1151,7 +1150,7 @@
         }
       }
 
-      var radiusCap = state.width <= 920 ? 28 : 30;
+      var radiusCap = state.mobile ? 28 : 30;
       var radius = Math.min(radiusCap, Math.abs(dx) / 2 - 2, (y - penY) / 2 - 2);
 
       if (radius >= 8) {

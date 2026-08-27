@@ -198,7 +198,7 @@ body.company-spine-page .rf-blocks {
 
 body.company-spine-page .rf-bleeds { display: none; }
 
-@media (max-width: 920px) {
+@media (max-width: 700px) {
   .company-spine-layer {
     z-index: 4;
   }
@@ -370,7 +370,7 @@ body.aud-company .company-spine-fill-peach { fill: var(--brand-green); }
   body.aud-company .rf-hero h1 { font-size: clamp(1.72rem, 2.95vw, 2.9rem); }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 700px) {
   body.aud-company .company-spine-base {
     stroke: var(--company-spine-green);
     stroke-width: 2.4;

@@ -145,7 +145,7 @@ body.aud-school .company-spine-accent-path-end { stop-color: var(--wheat); stop-
 body.aud-school .company-spine-accent-apricot-start { stop-color: var(--honey); stop-opacity: 0.78; }
 body.aud-school .company-spine-accent-honey-end { stop-color: var(--butter); stop-opacity: 0.4; }
 
-@media (max-width: 920px) {
+@media (max-width: 700px) {
   body.audience-spine-page .company-spine-layer { z-index: 4; }
   body.audience-spine-page .company-spine-base,
   body.audience-spine-page .company-spine-bridge { stroke-width: 2; }
@@ -513,7 +513,7 @@ body.aud-donor .company-spine-accent-path-end     { stop-color: var(--brand-gree
   body.aud-donor .rf-hero h1 { font-size: clamp(1.5rem, 7.2vw, 1.9rem); }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 700px) {
   body.audience-spine-page .company-spine-base {
     stroke: var(--company-spine-green);
     stroke-width: 2.4;
