@@ -506,7 +506,7 @@
         if (side === "left") { width *= 0.72; gScale *= 0.85; }
       } else {
 
-        var v2ComboExempt = side === "left" && kind === "combo" && body.classList.contains("grp-about");
+        var v2ComboExempt = kind === "combo";
         if (!v2ComboExempt) {
           width *= 0.8;
           gScale *= 0.8;
@@ -598,6 +598,22 @@
       var nb = el.getBoundingClientRect();
       if (hits(nb, avoid, pad) || hits(nb, textRects, 8)) el.style.display = "none";
     });
+
+    var cta = main.querySelector(".rf-panel-cta, .cta-band");
+    if (cta) {
+      var cr = cta.getBoundingClientRect();
+      var zoneTop = cr.top - 150, zoneBot = cr.bottom + 150;
+      var kept = 0;
+      Array.prototype.slice.call(decor.children).forEach(function (el) {
+        if (el.style.display === "none") return;
+        var b = el.getBoundingClientRect();
+        if (b.width < 1 || b.height < 1) return;
+        if (b.bottom < zoneTop || b.top > zoneBot) return;
+        var overlapsCta = b.left < cr.right + 10 && b.right > cr.left - 10 && b.top < cr.bottom + 10 && b.bottom > cr.top - 10;
+        if (overlapsCta || kept >= 1) { el.style.display = "none"; return; }
+        kept += 1;
+      });
+    }
   }
 
   function drawDecor() {
@@ -696,7 +712,10 @@
           sideA = (plan.alt === "pair" ? Math.floor(i / 2) : i) % 2 ? "left" : "right";
           sideB = sideA === "left" ? "right" : "left";
           var sizeAt = plan.sizes ? plan.sizes[i % plan.sizes.length] : 1;
-          gentleMotif(plan.order[i % 4], sideA, y - 60 * gScale, midW * plan.w * sizeAt, 44 * gScale, i, gScale * plan.w * sizeAt);
+
+          var motifKind = plan.order[i % 4];
+          var kW = motifKind === "combo" ? 1 : plan.w * sizeAt;
+          gentleMotif(motifKind, sideA, y - 60 * gScale, midW * kW, 44 * gScale, i, gScale * kW);
 
           if (plan.chip && i % 2 === 1) {
             if (plan.chipFlat) gentleSolo(sideB, y + rH * 0.42, flatW, 52 * gScale, 26 * gScale, i);
@@ -842,14 +861,22 @@
       var aN = clamp(Math.round(aSpan / 380), 10, 18);
       for (var ai = 0; ai < aN; ai++) mPlace(ai, aTop + (ai + 0.5) * (aSpan / aN) - 20);
       if (cta) {
-        edgeRect("right", cta.top - 28, 72 * mobileEdgeBoost, 32 * mobileEdgeBoost, 16 * mobileEdgeBoost, "company-spine-fill-orange", 0.76);
-        edgeRect("left", cta.top - 16, 106 * mobileEdgeBoost, 34 * mobileEdgeBoost, 17 * mobileEdgeBoost, "company-spine-fill-soft", 0.72);
-        if (ctaPanel) {
-          edgeRect("left", ctaPanel.bottom + 2, 88 * mobileEdgeBoost, 32 * mobileEdgeBoost, 16 * mobileEdgeBoost, "company-spine-fill-peach", 0.68);
+
+        var tunedCta = body.getAttribute("data-mobile-decor-tune") === "v2";
+        if (tunedCta) {
+          edgeRect("right", cta.top - 96, 72 * mobileEdgeBoost, 32 * mobileEdgeBoost, 16 * mobileEdgeBoost, "company-spine-fill-orange", 0.76);
+        } else {
+          edgeRect("right", cta.top - 28, 72 * mobileEdgeBoost, 32 * mobileEdgeBoost, 16 * mobileEdgeBoost, "company-spine-fill-orange", 0.76);
+          edgeRect("left", cta.top - 16, 106 * mobileEdgeBoost, 34 * mobileEdgeBoost, 17 * mobileEdgeBoost, "company-spine-fill-soft", 0.72);
+          if (ctaPanel) {
+            edgeRect("left", ctaPanel.bottom + 2, 88 * mobileEdgeBoost, 32 * mobileEdgeBoost, 16 * mobileEdgeBoost, "company-spine-fill-peach", 0.68);
+          }
         }
       }
 
       clearTitleOverlaps();
+
+      if (body.getAttribute("data-mobile-decor-tune") === "v2") tuneMobileAvoid();
       return;
     }
 
@@ -905,8 +932,16 @@
     });
 
     if (cta) {
-      edgeRect("left", cta.top + 132 * decorScale, 116, 92, 34, "company-spine-fill-soft", 0.68);
+
+      if (body.getAttribute("data-mobile-decor-tune") !== "v2") {
+        edgeRect("left", cta.top + 132 * decorScale, 116, 92, 34, "company-spine-fill-soft", 0.68);
+      }
       edgeRect("right", cta.top + 236 * decorScale, 72, 154, 34, "company-spine-fill-peach", 0.58);
+    }
+
+    if (state.mobile && body.getAttribute("data-mobile-decor-tune") === "v2") {
+      clearTitleOverlaps();
+      tuneMobileAvoid();
     }
   }
 
@@ -1269,6 +1304,8 @@
   window.addEventListener("scroll", function () { updateTarget(false); }, { passive: true });
   window.addEventListener("resize", queueDraw);
   window.addEventListener("load", forceDraw);
+
+  window.addEventListener("load", function () { window.setTimeout(forceDraw, 400); });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(forceDraw);
   if (window.ResizeObserver) new ResizeObserver(queueDraw).observe(main);
   drawPath();
