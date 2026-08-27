@@ -850,6 +850,16 @@
 }
 
 .signal-row.impx-stats4 { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
-.signal-row.impx-stats4 > div { container-type: inline-size; min-height: 0; aspect-ratio: auto; padding: 14px 6px; }
+
+.signal-row.impx-stats4 > div { container-type: inline-size; aspect-ratio: 256 / 210; min-height: 0;  padding: clamp(10px, 10cqi, 32px) clamp(6px, 8cqi, 24px) clamp(9px, 9cqi, 28px); display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .signal-row.impx-stats4:not(.signal-row--terms) > div strong { font-size: clamp(1.05rem, 22cqi, 2.6rem); white-space: nowrap; }
 .signal-row.impx-stats4 > div span { font-size: clamp(0.62rem, 9.5cqi, 0.92rem); line-height: 1.5; }
+
+#impact-collab-title.collab-h2 {
+  font-size: 1.08rem;
+  line-height: 1.9;
+  font-weight: 500;
+  color: var(--muted);
+  max-width: 760px;
+  margin-top: 10px;
+}
