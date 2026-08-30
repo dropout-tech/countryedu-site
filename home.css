@@ -1001,3 +1001,51 @@ body.home-remake .rcar-tail-stop { stop-color: var(--wheat); }
   body.home-remake .rcar-tail,
   body.home-remake .rcar-dot { filter: none; }
 }
+
+body.home-remake .mc-detail-col .mc-hint.mc-hint--cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  max-width: 100%;
+  margin: 16px 0 0;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--deep);
+  background: rgba(252, 224, 140, 0.55); 
+  border: 1px solid rgba(242, 140, 10, 0.5); 
+  border-radius: 999px;
+  text-align: left;
+}
+body.home-remake .mc-hint-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: var(--path);
+  animation: mc-hint-tap 2.4s ease-in-out infinite;
+}
+@keyframes mc-hint-tap {
+  0%, 100% { transform: none; }
+  10% { transform: translate(1.5px, 1.5px) scale(0.92); }
+  20% { transform: none; }
+}
+
+body.home-remake .mc-wedge {
+  transform-box: view-box;
+  transform-origin: 175px 175px; 
+  transition: transform 0.18s ease;
+}
+body.home-remake .mc-wedge:hover,
+body.home-remake .mc-wedge.is-active,
+body.home-remake .mc-wedge:focus-visible {
+  transform: scale(1.035);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.home-remake .mc-hint-icon { animation: none; }
+  body.home-remake .mc-wedge { transition: none; transform: none; }
+  body.home-remake .mc-wedge:hover,
+  body.home-remake .mc-wedge.is-active,
+  body.home-remake .mc-wedge:focus-visible { transform: none; }
+}

@@ -767,17 +767,22 @@
   padding: 0;
 }
 
-.stu-voices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 34px; }
-@media (max-width: 920px) { .stu-voices { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .stu-voices { grid-template-columns: 1fr; } }
-.stu-voice { display: flex; flex-direction: column; border-radius: var(--card-radius); background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 26px rgba(61, 85, 39, 0.08); padding: 22px 20px; }
+.stu-voices { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 34px; }
+.stu-voice { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; gap: clamp(16px, 2.6vw, 26px); border-radius: var(--card-radius); background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 26px rgba(61, 85, 39, 0.08); padding: clamp(14px, 2vw, 20px); }
+.stu-voice-body { padding: clamp(2px, 0.8vw, 8px) clamp(2px, 0.8vw, 10px) clamp(2px, 0.8vw, 8px) 0; }
 .stu-voice-name { margin: 0 0 2px; font-size: 1rem; color: var(--deep); }
 .stu-voice-meta { margin: 0 0 12px; font-size: 0.78rem; line-height: 1.7; color: var(--earth); }
 .stu-voice-quote { margin: 0; padding: 0 0 0 12px; border-left: 3px solid var(--leaf); font-size: 0.88rem; line-height: 1.85; color: var(--muted); }
 
-.vox-photo { aspect-ratio: 4 / 3; border-radius: 14px; margin: 0 0 16px; background: rgba(142, 196, 87, 0.16); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.vox-photo svg { width: clamp(40px, 26%, 56px); height: auto; color: rgba(61, 85, 39, 0.32); }
-.vox-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.vox-photo { position: relative; overflow: hidden; border-radius: 14px; margin: 0; align-self: stretch; min-height: clamp(170px, 20vw, 230px); background: rgba(142, 196, 87, 0.16); }
+.vox-photo img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.vox-photo svg { position: absolute; inset: 0; margin: auto; width: clamp(40px, 26%, 56px); height: auto; color: rgba(61, 85, 39, 0.32); }
+@media (max-width: 600px) {
+  .stu-voice { grid-template-columns: 1fr; align-items: start; }
+  .stu-voice-body { padding: 0; }
+  .vox-photo { align-self: auto; min-height: 0; aspect-ratio: 16 / 10; }
+}
 
 .fp-modal { overflow-y: auto; align-items: flex-start; }
 .fp-modal .fp-modal__panel { max-height: none; overflow: visible; margin: auto 0; }

@@ -55,7 +55,9 @@
     <style>
 
       .uni-hero-title { font-size: clamp(1.7rem, 3.5vw, 2.9rem); }
-      .uni-model-cards { margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 18px; }
+      .uni-model-cards { margin-top: 30px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+      @media (max-width: 980px) { .uni-model-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      @media (max-width: 620px) { .uni-model-cards { grid-template-columns: 1fr; } }
       .uni-model-cards article { background: #fff; border-radius: var(--card-radius); padding: 30px 28px 28px; box-shadow: 0 10px 28px rgba(61, 85, 39, 0.08); }
       .uni-model-cards h3 { margin: 0; font-size: 1.15rem; line-height: 1.5; color: var(--deep); }
       .uni-model-points { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
@@ -83,7 +85,7 @@
             <div class="nav-dropdown" aria-label="關於鄉育子選單">
               <a href="mission-vision.html">使命願景</a>
               <a href="about.html">組織簡介</a>
-              <a href="reports.html">年報與研究成果</a>
+              <a href="https://drive.google.com/drive/folders/1vNjfMd52laCGnZF2ucsLIe6dhavWt0Wl" target="_blank" rel="noopener">年度報告</a>
             </div>
           </div>
           <div class="nav-item">
@@ -102,8 +104,8 @@
           <div class="nav-item">
             <a role="button" tabindex="0" aria-haspopup="true" aria-label="媒體與資源，展開子選單">媒體與資源</a>
             <div class="nav-dropdown" aria-label="媒體與資源子選單">
-              <a href="news.html">消息列表</a>
-              <a href="resources.html">課程資源</a>
+              <a href="news.html">最新消息</a>
+
               <a href="jobs.html">企業職缺與實習</a>
             </div>
           </div>
@@ -135,7 +137,7 @@
           <div class="m-sub">
             <a href="mission-vision.html">使命願景</a>
             <a href="about.html">組織簡介</a>
-            <a href="reports.html">年報與研究成果</a>
+            <a href="https://drive.google.com/drive/folders/1vNjfMd52laCGnZF2ucsLIe6dhavWt0Wl" target="_blank" rel="noopener">年度報告</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -164,8 +166,8 @@
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開媒體與資源子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="news.html">消息列表</a>
-            <a href="resources.html">課程資源</a>
+            <a href="news.html">最新消息</a>
+
             <a href="jobs.html">企業職缺與實習</a>
           </div>
         </div>
@@ -227,7 +229,7 @@
               <p class="rf-lead" style="text-wrap: balance;">與大學攜手，將真實職場情境與<span class="company-hl company-hl--01">決策設計（Decision Design）</span> 帶進課堂，幫助青年學習專業的同時，也開始練習如何理解問題、判讀資訊、溝通協作，並將所學運用於更多生活與職場情境。</p>
               <p class="rf-lead" style="text-wrap: balance;"><span class="company-hl company-hl--01">尋路計畫（Pathfinder Program）</span>結合決策實戰、企業案例、跨域講師、企業參訪，建立一條從專業學習到實際運用的學習路徑。</p>
 
-              <div class="rf-hero-actions"><a class="button-primary" href="contact.html">洽談課程合作</a></div>
+              <div class="rf-hero-actions"><a class="button-primary" href="#contact">洽談課程合作</a></div>
 
             </div>
             <div class="rf-blocks" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
@@ -256,6 +258,13 @@
                 </ul>
               </article>
 
+              <article>
+                <h3>單場講座／工作坊｜2–6 小時</h3>
+                <ul class="uni-model-points">
+                  <li>・可依需求規劃決策設計、企業案例、職涯探索等主題，作為系所活動、通識講座或學生工作坊。</li>
+                  <li>・可搭配輕量版決策體驗遊戲＆Decision Log 與課堂互動設計，協助學生留下決策歷程，作為後續課程或職涯探索的起點。</li>
+                </ul>
+              </article>
             </div>
           </div>
         </section>
@@ -271,10 +280,6 @@
 
             <div class="rf-hero-actions uni-more-link"><a class="button-secondary" href="impact.html">查看更多研究成果 &rarr;</a></div>
 
-            <figure class="story-quote">
-              <blockquote>教師回饋待補——將於取得正式授權後，放上合作學校老師的真實觀察與推薦。</blockquote>
-              <figcaption>合作學校教師（姓名與回饋待補授權）</figcaption>
-            </figure>
           </div>
         </section>
 
@@ -310,7 +315,8 @@
         <section class="rf-scene" aria-label="情境照片">
           <div class="rf-wrap">
             <figure class="content-figure" data-spine-bridge>
-              <img src="assets/photos/career-day.jpg" alt="與學校合作的職涯探索日活動，學生大合影" loading="lazy" width="1280" height="838" />
+
+              <img src="assets/photos/20260828/uni-18.jpg" alt="大學課堂決策體驗活動，學生圍桌與講師一起討論" loading="lazy" width="1600" height="900" />
               <figcaption>與大專院校共備的<span class="company-hl company-hl--01">職涯探索課程</span>與活動，把尋路方法真正帶進課堂現場。</figcaption>
             </figure>
           </div>
@@ -328,7 +334,7 @@
                 <p>與大學攜手，將真實職場情境與<span class="company-hl company-hl--01">決策設計（Decision Design）</span> 帶進課堂。</p>
               </div>
               <div class="cta-band-actions">
-                <a class="button-primary" href="contact.html">聯絡我們 &rarr;</a>
+                <a class="button-primary" href="#contact">聯絡我們 &rarr;</a>
               </div>
             </div>
           </div>
@@ -382,7 +388,8 @@
         <nav class="footer-legal-links" aria-label="法定與政策連結">
           <a href="privacy.html">隱私權與 Cookie 政策</a>
           <a href="terms.html">服務條款</a>
-          <a href="reports.html#donor-roll">公開徵信</a>
+
+          <a href="https://drive.google.com/drive/folders/1vNjfMd52laCGnZF2ucsLIe6dhavWt0Wl" target="_blank" rel="noopener">公開徵信</a>
         </nav>
         <div class="footer-bottom">
           <small class="footer-copy">© 2026 財團法人鄉育教育基金會　CountryEDU Charity Foundation</small>
@@ -424,7 +431,7 @@
         </ul>
       </div>
     </div>
-    <script src="script.js?v=35"></script>
+    <script src="script.js?v=36"></script>
     <script src="reframe.js?v=8" defer></script>
     <script src="audience-spine.js?v=54" defer></script>
   </body>
