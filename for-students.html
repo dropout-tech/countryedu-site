@@ -112,21 +112,31 @@
       .stu-exp { padding: clamp(22px, 3.5vw, 40px) 0; }
       .stu-exp-band { width: min(960px, 100%); margin: 0 auto; border-radius: 22px; background: var(--honey); padding: clamp(22px, 3.5vw, 34px) clamp(20px, 4vw, 40px); }
       .stu-exp-k { margin: 0 0 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--earth); }
-      .stu-exp h2 { margin: 0 0 10px; font-size: clamp(1.1rem, 1.9vw, 1.35rem); max-width: none; }
+      .stu-exp h2 { margin: 0 0 14px; font-size: clamp(1.1rem, 1.9vw, 1.35rem); max-width: none; }
       .stu-exp-band p { margin: 0; font-size: 0.9rem; line-height: 1.9; color: var(--muted); max-width: 46em; }
-      .stu-exp-band .content-figure { margin-top: 20px; }
+      .stu-exp-grid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(200px, 26vw, 300px); gap: clamp(18px, 3vw, 32px); align-items: center; }
+      .stu-exp-band .content-figure { margin: 0; }
+      .stu-exp-actions { margin-top: 18px; }
 
-      .stu-voices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 34px; }
-      @media (max-width: 920px) { .stu-voices { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-      @media (max-width: 600px) { .stu-voices { grid-template-columns: 1fr; } }
-      .stu-voice { display: flex; flex-direction: column; border-radius: var(--card-radius); background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 26px rgba(61, 85, 39, 0.08); padding: 22px 20px; }
+      @media (max-width: 920px) {
+        .stu-exp-grid { grid-template-columns: 1fr; }
+        .stu-exp-band .content-figure { margin-top: 4px; max-width: 420px; }
+      }
+
+      .stu-voices { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 34px; }
+      .stu-voice { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; gap: clamp(16px, 2.6vw, 26px); border-radius: var(--card-radius); background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 26px rgba(61, 85, 39, 0.08); padding: clamp(14px, 2vw, 20px); }
+      .stu-voice-body { padding: clamp(2px, 0.8vw, 8px) clamp(2px, 0.8vw, 10px) clamp(2px, 0.8vw, 8px) 0; }
       .stu-voice-name { margin: 0 0 2px; font-size: 1rem; color: var(--deep); }
       .stu-voice-meta { margin: 0 0 12px; font-size: 0.78rem; line-height: 1.7; color: var(--earth); }
       .stu-voice-quote { margin: 0; padding: 0 0 0 12px; border-left: 3px solid var(--leaf); font-size: 0.88rem; line-height: 1.85; color: var(--muted); }
 
-      .vox-photo { aspect-ratio: 4 / 3; border-radius: 14px; margin: 0 0 16px; background: rgba(142, 196, 87, 0.16); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-      .vox-photo svg { width: clamp(40px, 26%, 56px); height: auto; color: rgba(61, 85, 39, 0.32); }
-      .vox-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+      .vox-photo { position: relative; overflow: hidden; border-radius: 14px; margin: 0; align-self: stretch; min-height: clamp(170px, 20vw, 230px); background: rgba(142, 196, 87, 0.16); }
+      .vox-photo img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+      @media (max-width: 600px) {
+        .stu-voice { grid-template-columns: 1fr; align-items: start; }
+        .stu-voice-body { padding: 0; }
+        .vox-photo { align-self: auto; min-height: 0; aspect-ratio: 16 / 10; }
+      }
 
       .rf-cta.stu-final .rf-panel-cta { background: var(--sunset); color: #fff; text-align: center; }
       .rf-cta.stu-final .rf-panel-cta h2 { color: #fff; max-width: none; margin: 0 auto 14px; font-size: clamp(1.55rem, 3vw, 2.2rem); }
@@ -150,7 +160,7 @@
             <div class="nav-dropdown" aria-label="關於鄉育子選單">
               <a href="mission-vision.html">使命願景</a>
               <a href="about.html">組織簡介</a>
-              <a href="reports.html">年報與研究成果</a>
+              <a href="https://drive.google.com/drive/folders/1vNjfMd52laCGnZF2ucsLIe6dhavWt0Wl" target="_blank" rel="noopener">年度報告</a>
             </div>
           </div>
           <div class="nav-item">
@@ -169,8 +179,8 @@
           <div class="nav-item">
             <a role="button" tabindex="0" aria-haspopup="true" aria-label="媒體與資源，展開子選單">媒體與資源</a>
             <div class="nav-dropdown" aria-label="媒體與資源子選單">
-              <a href="news.html">消息列表</a>
-              <a href="resources.html">課程資源</a>
+              <a href="news.html">最新消息</a>
+
               <a href="jobs.html">企業職缺與實習</a>
             </div>
           </div>
@@ -202,7 +212,7 @@
           <div class="m-sub">
             <a href="mission-vision.html">使命願景</a>
             <a href="about.html">組織簡介</a>
-            <a href="reports.html">年報與研究成果</a>
+            <a href="https://drive.google.com/drive/folders/1vNjfMd52laCGnZF2ucsLIe6dhavWt0Wl" target="_blank" rel="noopener">年度報告</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -231,8 +241,8 @@
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開媒體與資源子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="news.html">消息列表</a>
-            <a href="resources.html">課程資源</a>
+            <a href="news.html">最新消息</a>
+
             <a href="jobs.html">企業職缺與實習</a>
           </div>
         </div>
@@ -360,14 +370,18 @@
         <section class="rf-scene stu-exp" aria-labelledby="experience-title">
           <div class="rf-wrap">
             <div class="stu-exp-band">
+
               <p class="stu-exp-k">Experience・決策體驗</p>
               <h2 id="experience-title">先體驗一次，真正的決策是什麼</h2>
-              <p>以真實決策情境（1996 年聖母峰攀登案例）為核心，透過 6 個不同角色的視角、12 項決策能力考驗，讓玩家在各自的立場、資訊、責任與目標下做出判斷，體驗同一事件中可能出現的多元觀點與決策差異，引導學生辨識自身決策傾向，建立系統化思考與決策反思能力。</p>
-
-              <figure class="content-figure content-figure--tall">
-                <img src="assets/photos/decision-demo-turnback.jpg" alt="情境決策遊戲「折返線：安全餘裕」介紹圖卡：以風雪中攀登雪山的隊伍為背景，說明多角色視角、三種玩法，以及時間、氧氣等七項決策影響指標" loading="lazy" width="1448" height="1086" />
-              </figure>
-
+              <div class="stu-exp-grid">
+                <div class="stu-exp-text">
+                  <p>以真實決策情境（1996 年聖母峰攀登案例）為核心，透過 6 個不同角色的視角、12 項決策能力考驗，讓玩家在各自的立場、資訊、責任與目標下做出判斷，體驗同一事件中可能出現的多元觀點與決策差異，引導學生辨識自身決策傾向，建立系統化思考與決策反思能力。</p>
+                  <div class="rf-hero-actions stu-exp-actions"><a class="button-primary" href="https://safety-margin-game.zeabur.app/" target="_blank" rel="noopener">體驗遊戲</a></div>
+                </div>
+                <figure class="content-figure content-figure--tall">
+                  <img src="assets/photos/20260828/safety-margin-turnback.jpg" alt="情境決策遊戲「折返線：安全餘裕」介紹圖卡：以風雪中攀登雪山的隊伍為背景，說明多角色視角、三種玩法，以及時間、氧氣等七項決策影響指標" loading="lazy" width="1448" height="1086" />
+                </figure>
+              </div>
             </div>
           </div>
         </section>
@@ -378,72 +392,66 @@
           <div class="rf-wrap">
             <p class="rf-eyebrow">Alumni・學長姐故事</p>
             <h2 id="alumni-title">上過課的學長姐怎麼說</h2>
-
             <div class="stu-voices">
               <article class="stu-voice">
-                <div class="vox-photo" aria-hidden="true">
-                  <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                    <circle cx="32" cy="22" r="10" fill="currentColor" />
-                    <path d="M13 55 C13 43 21.5 36.5 32 36.5 C42.5 36.5 51 43 51 55 Z" fill="currentColor" />
-                  </svg>
+                <div class="vox-photo">
+                  <img src="assets/photos/course-live/dsc03342.jpg" alt="尋路計畫課堂實拍：學生在桌邊分組討論學習單（場景示意，非見證者本人）" loading="lazy" width="1600" height="1066" />
                 </div>
-                <header>
-                  <h3 class="stu-voice-name">羅O蓁</h3>
-                  <p class="stu-voice-meta">國立中山大學人力資源管理研究所｜畢業繼續升學 (2026.03 修課)</p>
-                </header>
-                <blockquote class="stu-voice-quote">「以前做過很多人格測驗，但都只是知道結果。課程讓我第一次知道，如何把分析工具真正應用在企業問題與未來職涯選擇上。」</blockquote>
+                <div class="stu-voice-body">
+                  <header>
+                    <h3 class="stu-voice-name">羅O蓁</h3>
+                    <p class="stu-voice-meta">國立中山大學人力資源管理研究所｜畢業繼續升學 (2026.03 修課)</p>
+                  </header>
+                  <blockquote class="stu-voice-quote">「以前做過很多人格測驗，但都只是知道結果。課程讓我第一次知道，如何把分析工具真正應用在企業問題與未來職涯選擇上。」</blockquote>
+                </div>
               </article>
               <article class="stu-voice">
-                <div class="vox-photo" aria-hidden="true">
-                  <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                    <circle cx="32" cy="22" r="10" fill="currentColor" />
-                    <path d="M13 55 C13 43 21.5 36.5 32 36.5 C42.5 36.5 51 43 51 55 Z" fill="currentColor" />
-                  </svg>
+                <div class="vox-photo">
+                  <img src="assets/photos/course-live/ncku-course-04-photo-1.jpg" alt="尋路計畫課堂實拍：學生圍桌操作課程教具（場景示意，非見證者本人）" loading="lazy" width="1600" height="900" />
                 </div>
-                <header>
-                  <h3 class="stu-voice-name">陳O筠</h3>
-                  <p class="stu-voice-meta">成功大學｜應屆畢業生 澳洲打工度假後投入職場 (2026.03 修課)</p>
-                </header>
-                <blockquote class="stu-voice-quote">「原本一直認為畢業就應該直接念研究所，直到課程重新整理自己的能力與目標，我決定先累積工作經驗，再決定下一步，而不是跟著別人的步伐前進。」</blockquote>
+                <div class="stu-voice-body">
+                  <header>
+                    <h3 class="stu-voice-name">陳O筠</h3>
+                    <p class="stu-voice-meta">成功大學｜應屆畢業生 澳洲打工度假後投入職場 (2026.03 修課)</p>
+                  </header>
+                  <blockquote class="stu-voice-quote">「原本一直認為畢業就應該直接念研究所，直到課程重新整理自己的能力與目標，我決定先累積工作經驗，再決定下一步，而不是跟著別人的步伐前進。」</blockquote>
+                </div>
               </article>
               <article class="stu-voice">
-                <div class="vox-photo" aria-hidden="true">
-                  <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                    <circle cx="32" cy="22" r="10" fill="currentColor" />
-                    <path d="M13 55 C13 43 21.5 36.5 32 36.5 C42.5 36.5 51 43 51 55 Z" fill="currentColor" />
-                  </svg>
+                <div class="vox-photo">
+                  <img src="assets/photos/course-live/featured-0002-1.jpg" alt="尋路計畫課堂實拍：業師在課堂中引導學生討論（場景示意，非見證者本人）" loading="lazy" width="1600" height="1066" />
                 </div>
-                <header>
-                  <h3 class="stu-voice-name">陳O霖</h3>
-                  <p class="stu-voice-meta">高雄師範大學 事業經營學系｜大二生 (2025.09 修課)</p>
-                </header>
-                <blockquote class="stu-voice-quote">「真正的收穫不只學會分析工具，還理解到自己的優勢與適合的位置，會開始嘗試過去從未考慮過的行銷工作。」</blockquote>
+                <div class="stu-voice-body">
+                  <header>
+                    <h3 class="stu-voice-name">陳O霖</h3>
+                    <p class="stu-voice-meta">高雄師範大學 事業經營學系｜大二生 (2025.09 修課)</p>
+                  </header>
+                  <blockquote class="stu-voice-quote">「真正的收穫不只學會分析工具，還理解到自己的優勢與適合的位置，會開始嘗試過去從未考慮過的行銷工作。」</blockquote>
+                </div>
               </article>
               <article class="stu-voice">
-                <div class="vox-photo" aria-hidden="true">
-                  <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                    <circle cx="32" cy="22" r="10" fill="currentColor" />
-                    <path d="M13 55 C13 43 21.5 36.5 32 36.5 C42.5 36.5 51 43 51 55 Z" fill="currentColor" />
-                  </svg>
+                <div class="vox-photo">
+                  <img src="assets/photos/course-live/dsc05836-1.jpg" alt="尋路計畫課堂實拍：學員在課堂上持麥克風發言（場景示意，非見證者本人）" loading="lazy" width="1600" height="1066" />
                 </div>
-                <header>
-                  <h3 class="stu-voice-name">詹O毅</h3>
-                  <p class="stu-voice-meta">國立成功大學 資訊工程學系｜持續探索科技職涯 (2026.03 修課)</p>
-                </header>
-                <blockquote class="stu-voice-quote">「課程幫助我把原本模糊的職涯想像，變成一個可以立即開始行動的計畫，也重新思考 AI 時代下自己的發展方向。」</blockquote>
+                <div class="stu-voice-body">
+                  <header>
+                    <h3 class="stu-voice-name">詹O毅</h3>
+                    <p class="stu-voice-meta">國立成功大學 資訊工程學系｜持續探索科技職涯 (2026.03 修課)</p>
+                  </header>
+                  <blockquote class="stu-voice-quote">「課程幫助我把原本模糊的職涯想像，變成一個可以立即開始行動的計畫，也重新思考 AI 時代下自己的發展方向。」</blockquote>
+                </div>
               </article>
               <article class="stu-voice">
-                <div class="vox-photo" aria-hidden="true">
-                  <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                    <circle cx="32" cy="22" r="10" fill="currentColor" />
-                    <path d="M13 55 C13 43 21.5 36.5 32 36.5 C42.5 36.5 51 43 51 55 Z" fill="currentColor" />
-                  </svg>
+                <div class="vox-photo">
+                  <img src="assets/photos/course-live/course-w03-photo-1.jpg" alt="尋路計畫課堂實拍：學員上台分享、與講師同儕互動（場景示意，非見證者本人）" loading="lazy" width="1600" height="900" />
                 </div>
-                <header>
-                  <h3 class="stu-voice-name">曾O婷</h3>
-                  <p class="stu-voice-meta">高雄師範大學 事業經營學系｜持續在學 (2026.03 修課)</p>
-                </header>
-                <blockquote class="stu-voice-quote">「以前只會看見企業最後的成果；現在開始思考，每一個策略背後，是如何理解顧客、分析需求，再一步一步做出決策。」</blockquote>
+                <div class="stu-voice-body">
+                  <header>
+                    <h3 class="stu-voice-name">曾O婷</h3>
+                    <p class="stu-voice-meta">高雄師範大學 事業經營學系｜持續在學 (2026.03 修課)</p>
+                  </header>
+                  <blockquote class="stu-voice-quote">「以前只會看見企業最後的成果；現在開始思考，每一個策略背後，是如何理解顧客、分析需求，再一步一步做出決策。」</blockquote>
+                </div>
               </article>
             </div>
           </div>
@@ -453,8 +461,8 @@
           <div class="rf-panel-cta">
             <h2 id="cta-title">從一堂課開始，提前準備未來。</h2>
             <p>尋路計畫目前於合作大專院校開課，可於校內選課系統查詢課名。<br />線上課程持續規劃中。</p>
-            <div class="rf-hero-actions"><a class="button-primary" href="programs.html#schools">查看本學期開課學校</a></div>
 
+            <div class="rf-hero-actions"><a class="button-primary" href="programs.html#schools">查看本學期開課學校</a><a class="button-secondary" href="#contact">訂閱開課通知</a></div>
           </div>
         </section>
 
@@ -466,7 +474,7 @@
               <h1>面對升學、就業與創業，<br />你需要的<br />不是標準答案。</h1>
               <p class="rf-hero-en">For Students</p>
               <p class="rf-lead">資訊隨手可得、AI 工具普及，真正稀缺的不再是答案，而是一套能反覆使用的<span class="company-hl company-hl--01">判斷與行動能力</span>——在不確定的環境中<span class="company-hl company-hl--01">看懂問題、理解他人、形成目標</span>，並把事情推進。尋路計畫陪你練的，就是這件事。</p>
-              <div class="rf-hero-actions"><a class="button-primary" href="contact.html">報名／諮詢尋路計畫</a></div>
+              <div class="rf-hero-actions"><a class="button-primary" href="#contact">報名／諮詢尋路計畫</a></div>
             </div>
             <div class="rf-blocks" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
           </div>
@@ -602,7 +610,7 @@
           <div class="rf-panel-cta">
             <h2 id="cta-title-old">準備好<span class="company-title-accent">開始你的尋路</span>了嗎？</h2>
             <p>先看 <span class="company-hl company-hl--01">16 週課程</span>如何一週一週展開，或直接來信報名與諮詢。已在課程中的同學，學習系統開放後可由此登入。</p>
-            <div class="rf-hero-actions"><a class="button-primary" href="programs.html">看 16 週完整課程內容</a><a class="button-secondary" href="contact.html">報名／諮詢</a></div>
+            <div class="rf-hero-actions"><a class="button-primary" href="programs.html">看 16 週完整課程內容</a><a class="button-secondary" href="#contact">報名／諮詢</a></div>
           </div>
         </section>
         </template>
@@ -656,7 +664,8 @@
         <nav class="footer-legal-links" aria-label="法定與政策連結">
           <a href="privacy.html">隱私權與 Cookie 政策</a>
           <a href="terms.html">服務條款</a>
-          <a href="reports.html#donor-roll">公開徵信</a>
+
+          <a href="https://drive.google.com/drive/folders/1vNjfMd52laCGnZF2ucsLIe6dhavWt0Wl" target="_blank" rel="noopener">公開徵信</a>
         </nav>
         <div class="footer-bottom">
           <small class="footer-copy">© 2026 財團法人鄉育教育基金會　CountryEDU Charity Foundation</small>
@@ -698,7 +707,7 @@
         </ul>
       </div>
     </div>
-    <script src="script.js?v=35"></script>
+    <script src="script.js?v=36"></script>
     <script src="reframe.js?v=8" defer></script>
     <script src="audience-spine.js?v=54" defer></script>
   </body>

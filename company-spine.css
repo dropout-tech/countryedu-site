@@ -472,3 +472,7 @@ body.company-spine-page .rf-spinestats .sp {
   justify-content: center;
 }
 body.company-spine-page .rf-spinestats .sp-face { display: flex; flex-direction: column; justify-content: center; flex: 1; }
+
+body.aud-company .rf-hero .rf-blocks .b3 { display: none; }
+body.aud-company .rf-hero .rf-blocks .b2 { left: 37%; }
+body.aud-company .rf-blocks--lower .b3 { left: 33%; bottom: 0; width: 30%; height: 100%; background: var(--deep); }

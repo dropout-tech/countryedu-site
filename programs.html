@@ -80,6 +80,60 @@
       section[aria-labelledby="pf-experience-title"] .figure-solo { margin-top: 34px; }
 
       .apply-soon-cta { margin-top: 28px; }
+
+      .pf-exp-cta { margin-top: 24px; }
+      .pf-work { position: relative; }
+      .pf-work > p.pf-work-course { 
+        margin: 0 22px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--earth);
+      }
+      button.pf-work-link {
+        background: none;
+        border: 0;
+        border-bottom: 2px solid currentColor;
+        padding: 16px 0 0;
+        font-family: inherit;
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        line-height: inherit;
+        color: var(--leaf-700);
+        cursor: pointer;
+        text-align: left;
+        width: fit-content;
+      }
+      button.pf-work-link:hover,
+      button.pf-work-link:focus-visible {
+        color: var(--brand-green);
+      }
+      button.pf-work-link::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        cursor: pointer;
+      }
+      .pf-works-more { margin-top: 26px; }
+      .pf-table td a {
+        color: var(--leaf-700);
+        font-weight: 700;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+        text-decoration-color: rgba(78, 135, 24, 0.55);
+      }
+      .pf-table td a::after {
+        content: "\2197"; 
+        margin-left: 4px;
+        font-size: 0.9em;
+      }
+      .pf-table td a:hover,
+      .pf-table td a:focus-visible {
+        color: var(--sunset);
+        text-decoration-color: currentColor;
+      }
 </style>
   </head>
   <body class="rspine audience-spine-page spine-gentle grp-programs" data-spine-route="mid" data-spine-label="PATHFINDER" style="--spine-c: #fce08c;">
@@ -94,7 +148,7 @@
             <div class="nav-dropdown" aria-label="關於鄉育子選單">
               <a href="mission-vision.html">使命願景</a>
               <a href="about.html">組織簡介</a>
-              <a href="reports.html">年報與研究成果</a>
+              <a href="https://drive.google.com/drive/folders/1vNjfMd52laCGnZF2ucsLIe6dhavWt0Wl" target="_blank" rel="noopener">年度報告</a>
             </div>
           </div>
           <div class="nav-item">
@@ -113,8 +167,8 @@
           <div class="nav-item">
             <a role="button" tabindex="0" aria-haspopup="true" aria-label="媒體與資源，展開子選單">媒體與資源</a>
             <div class="nav-dropdown" aria-label="媒體與資源子選單">
-              <a href="news.html">消息列表</a>
-              <a href="resources.html">課程資源</a>
+              <a href="news.html">最新消息</a>
+
               <a href="jobs.html">企業職缺與實習</a>
             </div>
           </div>
@@ -146,7 +200,7 @@
           <div class="m-sub">
             <a href="mission-vision.html">使命願景</a>
             <a href="about.html">組織簡介</a>
-            <a href="reports.html">年報與研究成果</a>
+            <a href="https://drive.google.com/drive/folders/1vNjfMd52laCGnZF2ucsLIe6dhavWt0Wl" target="_blank" rel="noopener">年度報告</a>
           </div>
         </div>
         <div class="m-group" data-m-group>
@@ -175,8 +229,8 @@
             <button class="m-toggle" type="button" aria-expanded="false" aria-label="展開媒體與資源子選單" data-m-toggle></button>
           </div>
           <div class="m-sub">
-            <a href="news.html">消息列表</a>
-            <a href="resources.html">課程資源</a>
+            <a href="news.html">最新消息</a>
+
             <a href="jobs.html">企業職缺與實習</a>
           </div>
         </div>
@@ -286,8 +340,9 @@
                 <p>課程模組 Modules</p>
               </div>
               <div>
-                <h2 id="pf-modules-title">你將經歷的<span class="nw company-title-accent">學習旅程</span></h2>
-                <h3 class="section-subhead">讓學校到職場，不再是一場沒有準備的跳躍。</h3>
+                <h2 id="pf-modules-title">在尋路計畫中，你將經歷的<span class="nw company-title-accent">學習旅程</span></h2>
+
+                <h3 class="section-subhead">透過 6 次 Decision Log 決策紀錄、課堂討論、企業情境與個人分析報告，持續引導你整理思考歷程，幫助你理解自己的判斷模式、發現盲點，逐步建立屬於自己的決策方法。</h3>
               </div>
             </div>
             <div class="journey-line is-vertical pf-journey" aria-label="尋路計畫四大課程模組">
@@ -368,6 +423,7 @@
                 以真實決策情境（1996 年聖母峰攀登案例）為核心，透過 <span class="company-hl company-hl--01">6 個不同角色的視角、12 項決策能力考驗</span>，讓玩家在各自的立場、資訊、責任與目標下做出判斷，體驗同一事件中可能出現的多元觀點與決策差異，引導學生辨識自身決策傾向，建立系統化思考與決策反思能力。
               </p>
 
+              <p class="pf-exp-cta"><a class="button-primary" href="https://safety-margin-game.zeabur.app/" target="_blank" rel="noopener">體驗遊戲 &rarr;</a></p>
             </div>
           </div>
           <div class="figure-solo">
@@ -435,43 +491,44 @@
               <p>學生成果 Showcase</p>
             </div>
             <div>
-              <h2 id="pf-showcase-title">學生做出來的成果，<span class="nw company-title-accent">會自己說話</span>。</h2>
+
+              <h2 id="pf-showcase-title">學生企業案例分析＆<span class="company-title-accent">Dream Board 計畫表</span></h2>
               <p class="lead">
                 每一屆學生在課程中完成的專案與作品，會陸續整理在這裡。
               </p>
 
               <div class="apply-tabs" data-panel-lock="apply">
                 <div class="apply-panel is-active" id="pf-year-2025" role="tabpanel" data-apply-panel="y2025" aria-label="2025 年度學生成果">
+
                   <div class="pf-works">
                     <article class="pf-work">
                       <div class="pf-work-thumb">
-                        <img src="assets/photos/class-team-build.jpg" alt="學生分組圍桌動手操作、共同推進專案的課堂情境" loading="lazy" width="1280" height="720" />
+                        <img src="assets/photos/20260828/uni-31.jpg" alt="學生企業案例分析：IKEA 作品封面" loading="lazy" width="1600" height="900" />
                       </div>
-                      <h3>114-2 高師大期末報告｜IKEA 企業案例分析</h3>
-                      <p>高雄師範大學「顧客關係管理」課程小組成果：以「提升顧客購物流暢度」為題，從 SWOT、競品與顧客旅程分析出發，提出 IKEA 門市的體驗設計與成效評估方案。</p>
-                      <a class="pf-work-link" href="assets/showcase/1142-nknu-final-report-ikea.pdf" target="_blank" rel="noopener">閱讀完整作品 PDF &rarr;</a>
+                      <h3>學生企業案例分析：IKEA</h3>
+                      <p class="pf-work-course">高雄師範大學 顧客關係經營</p>
+                      <button class="pf-work-link" type="button" data-fp-open="pfw-1" aria-haspopup="dialog">看完整作品 &rarr;</button>
                     </article>
                     <article class="pf-work">
                       <div class="pf-work-thumb">
-                        <img src="assets/photos/class-presentation.jpg" alt="學生在課堂前台向全班發表提案成果" loading="lazy" width="1280" height="720" />
+                        <img src="assets/photos/20260828/uni-32.jpg" alt="rhode 企業案例分析作品封面" loading="lazy" width="1600" height="900" />
                       </div>
                       <h3>114-2 高師大期末報告｜rhode 企業案例分析</h3>
-                      <p>高雄師範大學「顧客關係管理」課程小組成果：聚焦提升 rhode 在台灣 18-30 歲女性中的品牌知名度與購買意願，完成 SWOT、STP、Persona 與顧客旅程的完整提案。</p>
-                      <a class="pf-work-link" href="assets/showcase/1142-nknu-final-report-rhode.pdf" target="_blank" rel="noopener">閱讀完整作品 PDF &rarr;</a>
+                      <button class="pf-work-link" type="button" data-fp-open="pfw-2" aria-haspopup="dialog">看完整作品 &rarr;</button>
                     </article>
                     <article class="pf-work">
                       <div class="pf-work-thumb">
-                        <img src="assets/photos/digital-tools.jpg" alt="學生運用數位工具整理個人歷程與紀錄的課堂情境" loading="lazy" width="1280" height="853" />
+                        <img src="assets/photos/20260828/uni-20.jpg" alt="Dream Board 個人職涯探索計畫表作品封面" loading="lazy" width="1600" height="900" />
                       </div>
                       <h3>認識自我 探索未來｜個人職涯探索報告</h3>
-                      <p>成功大學資訊工程學系謝O祐的 114-2 學期成果：以「打造不被 AI 取代的 π 型競爭力」為題，完成自我盤點、能量地圖與暑期行動藍圖。</p>
-                      <a class="pf-work-link" href="assets/showcase/1142-ncku-self-explore.pdf" target="_blank" rel="noopener">閱讀完整作品 PDF &rarr;</a>
+                      <button class="pf-work-link" type="button" data-fp-open="pfw-3" aria-haspopup="dialog">看完整作品 &rarr;</button>
                     </article>
                   </div>
+                  <p class="pf-works-more"><a class="button-secondary" href="https://drive.google.com/drive/folders/1zrwwoo9l-n2qquvKfk2kLgxU4NMfU2IV" target="_blank" rel="noopener">了解更多學生作品 &rarr;</a></p>
                 </div>
 
               </div>
-              <p class="node-label">卡片縮圖為課堂情境照片示意；點「閱讀完整作品 PDF」可開啟作品全文，更多作品將陸續更新。</p>
+
             </div>
           </div>
         </div>
@@ -486,18 +543,18 @@
             </div>
             <div>
               <h2 id="pf-join-title">怎麼<span class="nw company-title-accent">參與</span>尋路計畫？</h2>
-              <p class="lead">無論你是想加入課程的大學生，或想為學校引入尋路計畫的夥伴，都可以從下列分頁找到需要的資訊。若有未列出的疑問，歡迎<a href="contact.html">與我們聯絡</a>。</p>
+              <p class="lead">無論你是想加入課程的大學生，或想為學校引入尋路計畫的夥伴，都可以從下列分頁找到需要的資訊。若有未列出的疑問，歡迎<a href="#contact">與我們聯絡</a>。</p>
             </div>
           </div>
 
           <div class="apply-tabs pf-join-tabs" data-panel-lock="apply">
             <div class="apply-tabnav" role="tablist" aria-label="參與方式分頁">
-              <button class="apply-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="pf-join-courses" data-apply="courses">當學期開課學校與課名</button>
+              <button class="apply-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="pf-join-courses" data-apply="courses">115-1學期開課資訊</button>
 
               <button class="apply-tab" type="button" role="tab" aria-selected="false" aria-controls="pf-join-faq" data-apply="faq">常見問題 FAQ</button>
             </div>
-            <div class="apply-panel is-active" id="pf-join-courses" role="tabpanel" data-apply-panel="courses" aria-label="當學期開課學校與課名">
-              <h3>當學期開課學校與課名</h3>
+            <div class="apply-panel is-active" id="pf-join-courses" role="tabpanel" data-apply-panel="courses" aria-label="115-1學期開課資訊">
+              <h3>115-1學期開課資訊</h3>
               <p>尋路計畫目前主要與大專院校共同開設 16 週選修課；若你的學校已開課，可循校內選課系統加選，不限科系、不需任何先修條件。</p>
 
               <div class="pf-table-wrap" id="schools">
@@ -577,7 +634,7 @@
                 <span>這門課適合誰？要怎麼報名？</span>
                 <span class="faq-mark" aria-hidden="true"></span>
               </summary>
-              <p class="faq-answer">尋路計畫適合想釐清未來方向、培養問題定義與專案推進能力的大學生，不限定科系背景，重視的是參與和練習，也不需要任何先修條件。報名方式依合作形式而定——若你的學校已開設選修課，可循校內選課管道加入；其他梯次與公益場次將於確認後正式公告，你也可以先透過<a href="contact.html">聯絡我們</a>表達意願。</p>
+              <p class="faq-answer">尋路計畫適合想釐清未來方向、培養問題定義與專案推進能力的大學生，不限定科系背景，重視的是參與和練習，也不需要任何先修條件。報名方式依合作形式而定——若你的學校已開設選修課，可循校內選課管道加入；其他梯次與公益場次將於確認後正式公告，你也可以先透過<a href="#contact">聯絡我們</a>表達意願。</p>
             </details>
             <details class="faq-item">
               <summary>
@@ -586,13 +643,7 @@
               </summary>
               <p class="faq-answer">尋路計畫以 16 週為一個完整節奏，依四個課程模組（自我探索、理解問題、走進職場、建立工作思維）循序推進，並穿插真實案例分析、企業講座與參訪、專案實作。實際每週的上課時段與作業份量，會依合作形式與開課單位安排，報名前會清楚說明。</p>
             </details>
-            <details class="faq-item">
-              <summary>
-                <span>課程是線上還是實體進行？</span>
-                <span class="faq-mark" aria-hidden="true"></span>
-              </summary>
-              <p class="faq-answer">上課形式會依合作形式調整：作為大學選修課時多以校內實體課堂進行，企業專班與公益場次則可能採實體或線上，部分環節（如企業參訪）以實體為主。確切形式請於洽談時與合作窗口確認。</p>
-            </details>
+
             <details class="faq-item">
               <summary>
                 <span>課程是否收費？費用怎麼計算？</span>
@@ -605,7 +656,7 @@
                 <span>什麼時候開課？有哪些梯次？</span>
                 <span class="faq-mark" aria-hidden="true"></span>
               </summary>
-              <p class="faq-answer">尋路計畫目前主要與大專院校共同開設，開課時間與梯次會隨各合作單位的學期與專案安排而不同。實際開課時段與報名期程，將於基金會與合作單位確認後正式公告，也歡迎先<a href="contact.html">與我們聯絡</a>取得最新資訊。</p>
+              <p class="faq-answer">尋路計畫目前主要與大專院校共同開設，開課時間與梯次會隨各合作單位的學期與專案安排而不同。實際開課時段與報名期程，將於基金會與合作單位確認後正式公告，也歡迎先<a href="#contact">與我們聯絡</a>取得最新資訊。</p>
             </details>
             <details class="faq-item">
               <summary>
@@ -620,19 +671,6 @@
         </div>
         </section>
 
-        <section class="pf-cta-section section-pad rf-scene" data-exit-clear aria-label="行動呼籲">
-          <div class="rf-wrap">
-          <div class="cta-band">
-            <div>
-              <h3>準備好開始尋路了嗎？</h3>
-              <p>大學生可了解如何加入尋路計畫；學校與企業也歡迎洽談課程合作與專班設計。</p>
-            </div>
-            <div class="cta-band-actions">
-              <a class="button-primary" href="for-students.html">我是大學生，想加入 &rarr;</a>
-            </div>
-          </div>
-        </div>
-        </section>
       </main>
 
       <footer class="site-footer" id="contact">
@@ -682,7 +720,8 @@
         <nav class="footer-legal-links" aria-label="法定與政策連結">
           <a href="privacy.html">隱私權與 Cookie 政策</a>
           <a href="terms.html">服務條款</a>
-          <a href="reports.html#donor-roll">公開徵信</a>
+
+          <a href="https://drive.google.com/drive/folders/1vNjfMd52laCGnZF2ucsLIe6dhavWt0Wl" target="_blank" rel="noopener">公開徵信</a>
         </nav>
         <div class="footer-bottom">
           <small class="footer-copy">© 2026 財團法人鄉育教育基金會　CountryEDU Charity Foundation</small>
@@ -724,7 +763,60 @@
         </ul>
       </div>
     </div>
-    <script src="script.js?v=35"></script>
+
+    <div class="fp-modal" id="pfw-1" role="dialog" aria-modal="true" aria-labelledby="pfw-1-title" hidden>
+      <div class="fp-modal__backdrop" data-fp-close></div>
+      <div class="fp-modal__panel">
+        <button class="fp-modal__close" type="button" data-fp-close aria-label="關閉作品介紹">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <h3 id="pfw-1-title">學生企業案例分析：IKEA</h3>
+        <p class="fp-modal__meta">高雄師範大學 顧客關係經營</p>
+        <figure class="fp-modal__figure">
+          <img src="assets/photos/20260828/uni-31.jpg" alt="學生企業案例分析：IKEA 作品封面放大圖" loading="lazy" width="1600" height="900" />
+        </figure>
+        <div class="fp-modal__block">
+          <p>高雄師範大學「顧客關係管理」課程小組成果：以「提升顧客購物流暢度」為題，從 SWOT、競品與顧客旅程分析出發，提出 IKEA 門市的體驗設計與成效評估方案。</p>
+        </div>
+        <a class="fp-modal__ig" href="assets/showcase/1142-nknu-final-report-ikea.pdf" target="_blank" rel="noopener">閱讀完整作品 PDF &rarr;</a>
+      </div>
+    </div>
+
+    <div class="fp-modal" id="pfw-2" role="dialog" aria-modal="true" aria-labelledby="pfw-2-title" hidden>
+      <div class="fp-modal__backdrop" data-fp-close></div>
+      <div class="fp-modal__panel">
+        <button class="fp-modal__close" type="button" data-fp-close aria-label="關閉作品介紹">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <h3 id="pfw-2-title">114-2 高師大期末報告｜rhode 企業案例分析</h3>
+        <figure class="fp-modal__figure">
+          <img src="assets/photos/20260828/uni-32.jpg" alt="rhode 企業案例分析作品封面放大圖" loading="lazy" width="1600" height="900" />
+        </figure>
+        <div class="fp-modal__block">
+          <p>高雄師範大學「顧客關係管理」課程小組成果：聚焦提升 rhode 在台灣 18-30 歲女性中的品牌知名度與購買意願，完成 SWOT、STP、Persona 與顧客旅程的完整提案。</p>
+        </div>
+        <a class="fp-modal__ig" href="assets/showcase/1142-nknu-final-report-rhode.pdf" target="_blank" rel="noopener">閱讀完整作品 PDF &rarr;</a>
+      </div>
+    </div>
+
+    <div class="fp-modal" id="pfw-3" role="dialog" aria-modal="true" aria-labelledby="pfw-3-title" hidden>
+      <div class="fp-modal__backdrop" data-fp-close></div>
+      <div class="fp-modal__panel">
+        <button class="fp-modal__close" type="button" data-fp-close aria-label="關閉作品介紹">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <h3 id="pfw-3-title">認識自我 探索未來｜個人職涯探索報告</h3>
+        <figure class="fp-modal__figure">
+          <img src="assets/photos/20260828/uni-20.jpg" alt="Dream Board 個人職涯探索計畫表作品封面放大圖" loading="lazy" width="1600" height="900" />
+        </figure>
+        <div class="fp-modal__block">
+          <p>成功大學資訊工程學系謝O祐的 114-2 學期成果：以「打造不被 AI 取代的 π 型競爭力」為題，完成自我盤點、能量地圖與暑期行動藍圖。</p>
+        </div>
+        <a class="fp-modal__ig" href="assets/showcase/1142-ncku-self-explore.pdf" target="_blank" rel="noopener">閱讀完整作品 PDF &rarr;</a>
+      </div>
+    </div>
+
+    <script src="script.js?v=36"></script>
     <script src="reframe.js?v=8" defer></script>
     <script src="audience-spine.js?v=54" defer></script>
   </body>
