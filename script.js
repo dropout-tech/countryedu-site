@@ -294,6 +294,27 @@ if (mcWedges.length && mcDetails.length) {
     mcWedges.forEach((w) => w.classList.toggle("is-active", w.dataset.stage === stage));
     mcDetails.forEach((d) => d.classList.toggle("is-active", d.dataset.stage === stage));
   };
+
+  mcWedges.forEach((wedge, mcIdx) => {
+    const path = wedge.querySelector("path");
+    const svg = path && path.ownerSVGElement;
+    if (!svg) return;
+    const ns = "http://www.w3.org/2000/svg";
+    let defs = svg.querySelector("defs");
+    if (!defs) {
+      defs = document.createElementNS(ns, "defs");
+      svg.insertBefore(defs, svg.firstChild);
+    }
+    const clip = document.createElementNS(ns, "clipPath");
+    const cid = "mc-selfclip-" + mcIdx;
+    clip.setAttribute("id", cid);
+    const shape = document.createElementNS(ns, "path");
+    shape.setAttribute("d", path.getAttribute("d"));
+    clip.appendChild(shape);
+    defs.appendChild(clip);
+    path.style.clipPath = "url(#" + cid + ")";
+    svg.classList.add("mc-selfclip");
+  });
   mcWedges.forEach((wedge) => {
     const stage = wedge.dataset.stage;
     wedge.addEventListener("mouseenter", () => showStage(stage));

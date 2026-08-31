@@ -48,7 +48,7 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=91" />
+    <link rel="stylesheet" href="styles.css?v=94" />
     <link rel="stylesheet" href="reframe.css?v=34" />
     <link rel="stylesheet" href="audience-spine.css?v=36" />
     <link rel="stylesheet" href="team-orgchart.css?v=8" />
@@ -70,16 +70,32 @@
       .grp-about .orgset-1 .os1-node,
       .grp-about .orgset-1 .os1-scard {
         width: max-content;
-        min-width: 192px;
+        min-width: 156px; 
         max-width: 100%;
         min-height: 0;
-        padding: 15px 30px;
+        padding: 20px 20px; 
       }
 
       @media (min-width: 681px) and (max-width: 920px) {
         .grp-about .orgset-1 { padding-right: 130px; }
         .grp-about .orgset-1 .os1-scard { min-width: 0; padding: 14px 12px; margin: 0 5px; }
         .grp-about .orgset-1 .os1-node { min-width: 150px; }
+      }
+
+      .grp-about .orgset-1 .os1-node .os1-title,
+      .grp-about .orgset-1 .os1-scard .os1-title {
+        font-size: 17px;
+      }
+      .grp-about .orgset-1 .os1-dot { display: none; }
+
+      @media (max-width: 680px) {
+        .grp-about .orgset-1 .os1-staff { grid-template-columns: repeat(3, minmax(0, 1fr)); justify-items: center; }
+        .grp-about .orgset-1 .os1-staff::before { display: none; }
+        .grp-about .orgset-1 .os1-hbar,
+        .grp-about .orgset-1 .os1-drop--l,
+        .grp-about .orgset-1 .os1-drop--m,
+        .grp-about .orgset-1 .os1-drop--r { display: block; }
+        .grp-about .orgset-1 .os1-scard { width: max-content; min-width: 0; max-width: 100%; padding: 13px 6px; margin: 0 2px; }
       }
 </style>
   </head>
@@ -628,7 +644,7 @@
         </ul>
       </div>
     </div>
-    <script src="script.js?v=36"></script>
+    <script src="script.js?v=37"></script>
     <script src="audience-spine.js?v=54" defer></script>
   </body>
 </html>

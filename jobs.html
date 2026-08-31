@@ -48,12 +48,14 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=91" />
+    <link rel="stylesheet" href="styles.css?v=94" />
     <link rel="stylesheet" href="reframe.css?v=34" />
     <link rel="stylesheet" href="audience-spine.css?v=36" />
 
     <style>
       .post-block--jobs { --postrow-tag-col: 88px; }
+
+      [aria-labelledby="jobs-title"] .node-label { margin-top: 46px; }
       .post-block--jobs .post-row__meta { grid-template-columns: 150px var(--postrow-tag-col); }
 </style>
   </head>
@@ -183,8 +185,9 @@
         <div class="rf-blocks" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
         </div>
         </section>
-        <section class="path-section section-pad rf-scene rf-scene--panel" aria-labelledby="jobs-title">
-          <div class="rf-panel">
+
+        <section class="path-section section-pad rf-scene" aria-labelledby="jobs-title">
+          <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
               <span>01</span>
@@ -198,15 +201,58 @@
             </div>
           </div>
 
-          <div class="jobs-empty" role="status">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>
-            <h3>目前沒有刊登中的職缺</h3>
-            <p>合作企業的新機會將不定期更新，也歡迎先從尋路計畫開始<span class="company-hl company-hl--01">累積能力</span>。</p>
-            <p class="jobs-empty__link"><a href="programs.html">了解尋路計畫 &rarr;</a></p>
+          <div class="post-block post-block--jobs">
+            <ul class="post-list">
+              <li><a class="post-row" href="https://www.104.com.tw/company/crlmg34" target="_blank" rel="noopener">
+                <span class="post-row__meta"><span class="post-row__tag tag--press">誠美材料科技</span><span class="post-row__tag tag--course">104 徵才</span></span>
+                <span class="post-row__title">查看光電材料產業的職缺與實習</span>
+                <span class="post-row__arrow post-row__arrow--out" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5"/><path d="M5.5 5H11v5.5"/></svg></span>
+              </a></li>
+              <li><a class="post-row" href="https://www.104.com.tw/company/12noppgo" target="_blank" rel="noopener">
+                <span class="post-row__meta"><span class="post-row__tag tag--press">聯發科技 MediaTek</span><span class="post-row__tag tag--course">104 徵才</span></span>
+                <span class="post-row__title">查看半導體 IC 設計產業的職缺與實習</span>
+                <span class="post-row__arrow post-row__arrow--out" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5"/><path d="M5.5 5H11v5.5"/></svg></span>
+              </a></li>
+              <li><a class="post-row" href="https://www.104.com.tw/company/1a2x6bjitj" target="_blank" rel="noopener">
+                <span class="post-row__meta"><span class="post-row__tag tag--press">Tesla 特斯拉</span><span class="post-row__tag tag--course">104 徵才</span></span>
+                <span class="post-row__title">查看電動車產業的職缺與實習</span>
+                <span class="post-row__arrow post-row__arrow--out" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5"/><path d="M5.5 5H11v5.5"/></svg></span>
+              </a></li>
+              <li><a class="post-row" href="https://www.104.com.tw/company/1a2x6bkv4b" target="_blank" rel="noopener">
+                <span class="post-row__meta"><span class="post-row__tag tag--press">iSKI 滑雪俱樂部</span><span class="post-row__tag tag--course">104 徵才</span></span>
+                <span class="post-row__title">查看運動休閒產業的職缺與實習</span>
+                <span class="post-row__arrow post-row__arrow--out" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5"/><path d="M5.5 5H11v5.5"/></svg></span>
+              </a></li>
+              <li><a class="post-row" href="https://www.104.com.tw/company/1a2x6bid5t" target="_blank" rel="noopener">
+                <span class="post-row__meta"><span class="post-row__tag tag--press">雀客國際酒店集團</span><span class="post-row__tag tag--course">104 徵才</span></span>
+                <span class="post-row__title">查看旅宿產業的職缺與實習</span>
+                <span class="post-row__arrow post-row__arrow--out" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5"/><path d="M5.5 5H11v5.5"/></svg></span>
+              </a></li>
+              <li><a class="post-row" href="https://www.104.com.tw/company/1a2x6bji9f" target="_blank" rel="noopener">
+                <span class="post-row__meta"><span class="post-row__tag tag--press">雲豹能源</span><span class="post-row__tag tag--course">104 徵才</span></span>
+                <span class="post-row__title">查看再生能源產業的職缺與實習</span>
+                <span class="post-row__arrow post-row__arrow--out" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5"/><path d="M5.5 5H11v5.5"/></svg></span>
+              </a></li>
+              <li><a class="post-row" href="https://www.104.com.tw/company/1a2x6bkdu6" target="_blank" rel="noopener">
+                <span class="post-row__meta"><span class="post-row__tag tag--press">永泰企業</span><span class="post-row__tag tag--course">104 徵才</span></span>
+                <span class="post-row__title">查看機電工程產業的職缺與實習</span>
+                <span class="post-row__arrow post-row__arrow--out" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5"/><path d="M5.5 5H11v5.5"/></svg></span>
+              </a></li>
+              <li><a class="post-row" href="https://www.104.com.tw/company/1a2x6bl29t" target="_blank" rel="noopener">
+                <span class="post-row__meta"><span class="post-row__tag tag--press">東方風能科技</span><span class="post-row__tag tag--course">104 徵才</span></span>
+                <span class="post-row__title">查看離岸風電產業的職缺與實習</span>
+                <span class="post-row__arrow post-row__arrow--out" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5"/><path d="M5.5 5H11v5.5"/></svg></span>
+              </a></li>
+              <li><a class="post-row" href="https://www.104.com.tw/company/1a2x6bj09s" target="_blank" rel="noopener">
+                <span class="post-row__meta"><span class="post-row__tag tag--press">瓜瓜園</span><span class="post-row__tag tag--course">104 徵才</span></span>
+                <span class="post-row__title">查看食品產業的職缺與實習</span>
+                <span class="post-row__arrow post-row__arrow--out" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11 11 5"/><path d="M5.5 5H11v5.5"/></svg></span>
+              </a></li>
+            </ul>
           </div>
 
           <p class="node-label">
-            本頁職缺資訊由合作企業提供，應徵流程、<span class="company-hl company-hl--01">勞動條件與聘僱關係</span>由該企業負責，<span class="nw">鄉育</span>不介入招募程序。<br />本頁僅開放<span class="nw">鄉育</span>合作與贊助企業刊登職缺與實習資訊。
+            以上連結前往各企業於 104 人力銀行的公開徵才頁（另開新視窗），職缺內容以企業頁面即時資訊為準。<br />本頁職缺資訊由合作企業提供，應徵流程、<span class="company-hl company-hl--01">勞動條件與聘僱關係</span>由該企業負責，<span class="nw">鄉育</span>不介入招募程序。<br />本頁僅開放<span class="nw">鄉育</span>合作與贊助企業刊登職缺與實習資訊。
           </p>
         </div>
         </section>
@@ -328,7 +374,7 @@
         </ul>
       </div>
     </div>
-    <script src="script.js?v=36"></script>
+    <script src="script.js?v=37"></script>
     <script src="reframe.js?v=8" defer></script>
     <script src="audience-spine.js?v=54" defer></script>
   </body>

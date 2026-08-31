@@ -4218,10 +4218,25 @@ img {
 .mc-wt-name { font-size: 16px; }
 
 .mc-wedge { cursor: pointer; }
-.mc-wedge path { transition: filter .16s ease; }
+
+.mc-wedge path {
+  stroke: rgba(255, 255, 255, 0);
+  stroke-width: 0;
+  stroke-linejoin: round;
+  transition: stroke .18s ease, stroke-width .18s ease;
+}
 .mc-wedge:hover path,
-.mc-wedge.is-active path,
-.mc-wedge:focus-visible path { filter: brightness(1.07); }
+.mc-wedge:focus-visible path,
+.mc-wedge.is-active path {
+  stroke: #fff;
+  stroke-width: 4; 
+}
+
+svg.mc-selfclip .mc-wedge:hover path,
+svg.mc-selfclip .mc-wedge:focus-visible path,
+svg.mc-selfclip .mc-wedge.is-active path {
+  stroke-width: 9;
+}
 .mc-wedge:focus { outline: none; }
 .mc-wedge:focus-visible { outline: 2px solid var(--brand-green); outline-offset: 2px; }
 
