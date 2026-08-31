@@ -1031,21 +1031,10 @@ body.home-remake .mc-hint-icon {
   20% { transform: none; }
 }
 
-body.home-remake .mc-wedge {
-  transform-box: view-box;
-  transform-origin: 175px 175px; 
-  transition: transform 0.18s ease;
-}
-body.home-remake .mc-wedge:hover,
-body.home-remake .mc-wedge.is-active,
-body.home-remake .mc-wedge:focus-visible {
-  transform: scale(1.035);
-}
-
 @media (prefers-reduced-motion: reduce) {
   body.home-remake .mc-hint-icon { animation: none; }
-  body.home-remake .mc-wedge { transition: none; transform: none; }
-  body.home-remake .mc-wedge:hover,
-  body.home-remake .mc-wedge.is-active,
-  body.home-remake .mc-wedge:focus-visible { transform: none; }
+}
+
+@media (max-width: 700px) {
+  body.home-remake .rsec-mark { z-index: -1; }
 }

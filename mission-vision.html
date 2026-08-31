@@ -48,7 +48,7 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=91" />
+    <link rel="stylesheet" href="styles.css?v=94" />
     <link rel="stylesheet" href="reframe.css?v=34" />
     <link rel="stylesheet" href="audience-spine.css?v=36" />
 
@@ -131,22 +131,9 @@
         10% { transform: translate(1.5px, 1.5px) scale(0.92); }
         20% { transform: none; }
       }
-      .mc-wedge {
-        transform-box: view-box;
-        transform-origin: 175px 175px; 
-        transition: transform 0.18s ease;
-      }
-      .mc-wedge:hover,
-      .mc-wedge.is-active,
-      .mc-wedge:focus-visible {
-        transform: scale(1.035);
-      }
+
       @media (prefers-reduced-motion: reduce) {
         .mc-hint-icon { animation: none; }
-        .mc-wedge { transition: none; transform: none; }
-        .mc-wedge:hover,
-        .mc-wedge.is-active,
-        .mc-wedge:focus-visible { transform: none; }
       }
 </style>
   </head>
@@ -878,7 +865,7 @@
         </ul>
       </div>
     </div>
-    <script src="script.js?v=36"></script>
+    <script src="script.js?v=37"></script>
     <script src="reframe.js?v=8" defer></script>
     <script src="audience-spine.js?v=54" defer></script>
   </body>

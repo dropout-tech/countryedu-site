@@ -48,13 +48,17 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=91" />
+    <link rel="stylesheet" href="styles.css?v=94" />
     <link rel="stylesheet" href="theme-tokens.css?v=1" />
     <link rel="stylesheet" href="reframe.css?v=34" />
     <link rel="stylesheet" href="audience-spine.css?v=36" />
     <style>
 
-      .uni-hero-title { font-size: clamp(1.7rem, 3.5vw, 2.9rem); }
+      .uni-hero-title { font-size: clamp(1.72rem, 2.95vw, 2.9rem); }
+
+      [aria-labelledby="uni-contact-title"] .cta-band { flex-direction: column; align-items: flex-start; gap: 18px; }
+      #uni-contact-title + p { white-space: nowrap; }
+      @media (max-width: 700px) { #uni-contact-title + p { white-space: normal; } }
       .uni-model-cards { margin-top: 30px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
       @media (max-width: 980px) { .uni-model-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
       @media (max-width: 620px) { .uni-model-cards { grid-template-columns: 1fr; } }
@@ -431,7 +435,7 @@
         </ul>
       </div>
     </div>
-    <script src="script.js?v=36"></script>
+    <script src="script.js?v=37"></script>
     <script src="reframe.js?v=8" defer></script>
     <script src="audience-spine.js?v=54" defer></script>
   </body>
