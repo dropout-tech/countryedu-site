@@ -109,6 +109,8 @@ function scrollToHashTarget(behavior = "smooth") {
 window.addEventListener("hashchange", () => scrollToHashTarget());
 window.addEventListener("load", () => {
   window.setTimeout(() => scrollToHashTarget("auto"), 80);
+
+  window.setTimeout(() => scrollToHashTarget("auto"), 600);
 });
 
 const exitSigns = document.querySelectorAll(".exit-sign[data-exit-target]");
@@ -136,8 +138,15 @@ if (exitSigns.length) {
             const targetLeft = sign.offsetLeft - (rail.clientWidth - sign.offsetWidth) / 2;
             rail.scrollTo({ left: Math.max(0, targetLeft), behavior: reducedMotion ? "auto" : "smooth" });
           }
-        } else if (typeof sign.scrollIntoView === "function") {
-          sign.scrollIntoView({ inline: "center", block: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
+        } else {
+
+          const rail = sign.closest(".exit-rail");
+          if (rail) {
+            const targetLeft = sign.offsetLeft - (rail.clientWidth - sign.offsetWidth) / 2;
+            rail.scrollTo({ left: Math.max(0, targetLeft), behavior: reducedMotion ? "auto" : "smooth" });
+          } else if (typeof sign.scrollIntoView === "function") {
+            sign.scrollIntoView({ inline: "center", block: "nearest", behavior: reducedMotion ? "auto" : "smooth" });
+          }
         }
       }
     });
@@ -293,6 +302,12 @@ if (mcWedges.length && mcDetails.length) {
   const showStage = (stage) => {
     mcWedges.forEach((w) => w.classList.toggle("is-active", w.dataset.stage === stage));
     mcDetails.forEach((d) => d.classList.toggle("is-active", d.dataset.stage === stage));
+
+    mcWedges.forEach((w) => {
+      if (w.dataset.stage !== stage) return;
+      const hub = w.parentNode && w.parentNode.querySelector(".mc-hub");
+      if (hub && w.nextElementSibling !== hub) hub.parentNode.insertBefore(w, hub);
+    });
   };
 
   mcWedges.forEach((wedge, mcIdx) => {

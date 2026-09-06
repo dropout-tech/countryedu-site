@@ -515,8 +515,7 @@
     if (hero && state.width > 920) {
       var hy2 = hero.top + 8;
       var hy3 = hero.bottom - 126 * decorScale;
-      edgeRect("left", hero.top + hero.height * 0.42, 132, 300, 44, "company-spine-fill-orange");
-      edgeRect("right", hy2, 170, 360, 44, "company-spine-fill-orange");
+
       edgeRect("right", hy3, 255, 128, 42, "company-spine-fill-soft", 0.78);
       heroFloorR = Math.max(hy2 + 360 * decorScale, hy3 + 128 * decorScale);
     }
