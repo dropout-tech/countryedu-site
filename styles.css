@@ -4240,6 +4240,74 @@ svg.mc-selfclip .mc-wedge.is-active path {
 .mc-wedge:focus { outline: none; }
 .mc-wedge:focus-visible { outline: 2px solid var(--brand-green); outline-offset: 2px; }
 
+.mc-wedge {
+  transform-box: view-box;
+  transform-origin: 175px 175px;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+.mc-wedge:hover,
+.mc-wedge:focus-visible,
+.mc-wedge.is-active { transform: scale(1.10); }
+.method-cycle:has(.mc-wedge.is-active) .mc-wedge:not(.is-active):not(:hover):not(:focus-visible) { opacity: 0.55; }
+
+.method-cycle {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: clamp(26px, 3.4vw, 46px);
+  box-shadow: 0 20px 46px rgba(61, 85, 39, 0.09);
+  container-type: inline-size;
+}
+.mc-wheel { padding: 12px 0; }
+.mc-wheel svg { overflow: visible; }
+.mc-detail .mc-detail-no {
+  display: inline-block;
+  padding: 2px 11px;
+  border-radius: 10px;
+  background: rgba(252, 224, 140, 0.62);
+}
+.mc-wheel-col .mc-hint.mc-hint--under {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin: 14px 0 0;
+  padding: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  text-align: center;
+}
+.mc-hint-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: var(--muted);
+  animation: mc-hint-tap 2.4s ease-in-out infinite;
+}
+@keyframes mc-hint-tap {
+  0%, 100% { transform: none; }
+  10% { transform: translate(1.5px, 1.5px) scale(0.92); }
+  20% { transform: none; }
+}
+@container (max-width: 860px) {
+  .method-cycle .mc-stage { flex-direction: column; gap: 6px; }
+  .method-cycle .mc-wheel svg { width: min(380px, 100%); }
+  .method-cycle .mc-stage .mc-detail-col { width: min(560px, 100%); }
+  .method-cycle .mc-stage .mc-detail { flex: none; width: 100%; margin-top: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mc-hint-icon { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mc-wedge { transition: none; }
+}
+
 .mc-hint {
   margin: 12px auto 0;
   font-size: .82rem;

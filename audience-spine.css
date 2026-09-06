@@ -153,6 +153,11 @@ body.aud-school .company-spine-accent-honey-end { stop-color: var(--butter); sto
 
   body.audience-spine-page .company-spine-label-outline { stroke-width: 27; }
   body.audience-spine-page .company-spine-label-band { stroke-width: 24; }
+
+  body.audience-spine-page .company-spine-label-outline,
+  body.audience-spine-page .company-spine-label-band,
+  body.audience-spine-page .company-spine-label-guide,
+  body.audience-spine-page .company-spine-label-text { display: none; }
   body.audience-spine-page .rf-joint,
   body.audience-spine-page .rf-ribbon { height: 48px; }
 }

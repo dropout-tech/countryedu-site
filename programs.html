@@ -48,10 +48,10 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=94" />
+    <link rel="stylesheet" href="styles.css?v=95" />
     <link rel="stylesheet" href="reframe.css?v=34" />
-    <link rel="stylesheet" href="audience-spine.css?v=36" />
-    <link rel="stylesheet" href="pathfinder.css?v=3" />
+    <link rel="stylesheet" href="audience-spine.css?v=37" />
+    <link rel="stylesheet" href="pathfinder.css?v=4" />
     <style>
 
       .pf-journey .node-text > p.pf-sub {
@@ -66,6 +66,11 @@
       }
       #schools {
         scroll-margin-top: 96px;
+      }
+
+      @media (max-width: 700px) {
+        .pf-join-tabs .pf-table { min-width: 640px; }
+        .pf-join-tabs .pf-table td:nth-child(4) { min-width: 240px; }
       }
 
       .rf-pill {
@@ -324,8 +329,8 @@
           </div>
           <div class="figure-solo">
             <figure class="content-figure" data-spine-bridge>
-              <img src="assets/photos/workshop-discussion.jpg" alt="學生圍桌討論、書寫並運用數位工具協作學習歷程" loading="lazy" width="1280" height="853" />
 
+              <img src="assets/photos/20260828/uni-28.jpg" alt="尋路計畫大學課堂：學生分組討論與分享" loading="lazy" width="1600" height="900" />
               <figcaption>在課堂裡，學生反覆練習<span class="company-hl company-hl--01">定義問題</span>、整理資訊與協作——能力在真實情境中被練出來。</figcaption>
             </figure>
           </div>
@@ -427,8 +432,10 @@
             </div>
           </div>
           <div class="figure-solo">
-            <figure class="content-figure">
-              <img src="assets/photos/decision-demo-turnback.jpg" alt="折返線與安全餘裕：1996 聖母峰決策體驗教材" loading="lazy" width="1448" height="1086" />
+
+            <figure class="content-figure content-figure--tall">
+
+              <img src="assets/photos/20260904/decision-game-turnback.jpg" alt="情境決策遊戲「折返線：安全餘裕」介紹圖卡：1996 聖母峰決策模擬，高山遠征 × 情境決策遊戲，列出 6 個可玩角色、8+2 個危機節點、7 項狀態追蹤與 12 種決策傾向，輕量版 15–20 分鐘、完整版 35–50 分鐘" loading="lazy" width="1448" height="1086" />
             </figure>
           </div>
         </div>
@@ -506,21 +513,24 @@
                         <img src="assets/photos/20260828/uni-31.jpg" alt="學生企業案例分析：IKEA 作品封面" loading="lazy" width="1600" height="900" />
                       </div>
                       <h3>學生企業案例分析：IKEA</h3>
-                      <p class="pf-work-course">高雄師範大學 顧客關係經營</p>
+
+                      <p class="pf-work-course">高雄師範大學 114-2 顧客關係管理</p>
                       <button class="pf-work-link" type="button" data-fp-open="pfw-1" aria-haspopup="dialog">看完整作品 &rarr;</button>
                     </article>
                     <article class="pf-work">
                       <div class="pf-work-thumb">
-                        <img src="assets/photos/20260828/uni-32.jpg" alt="rhode 企業案例分析作品封面" loading="lazy" width="1600" height="900" />
+                        <img src="assets/photos/20260828/uni-32.jpg" alt="學生企業案例分析：Rhode 作品封面" loading="lazy" width="1600" height="900" />
                       </div>
-                      <h3>114-2 高師大期末報告｜rhode 企業案例分析</h3>
+                      <h3>學生企業案例分析：Rhode</h3>
+                      <p class="pf-work-course">高雄師範大學 114-2 顧客關係管理</p>
                       <button class="pf-work-link" type="button" data-fp-open="pfw-2" aria-haspopup="dialog">看完整作品 &rarr;</button>
                     </article>
                     <article class="pf-work">
                       <div class="pf-work-thumb">
-                        <img src="assets/photos/20260828/uni-20.jpg" alt="Dream Board 個人職涯探索計畫表作品封面" loading="lazy" width="1600" height="900" />
+                        <img src="assets/photos/20260828/uni-20.jpg" alt="個人職涯探索報告作品封面" loading="lazy" width="1600" height="900" />
                       </div>
-                      <h3>認識自我 探索未來｜個人職涯探索報告</h3>
+                      <h3>個人職涯探索報告</h3>
+                      <p class="pf-work-course">成功大學 115-1 社會情緒學習：職涯藍圖設計</p>
                       <button class="pf-work-link" type="button" data-fp-open="pfw-3" aria-haspopup="dialog">看完整作品 &rarr;</button>
                     </article>
                   </div>
@@ -551,7 +561,6 @@
             <div class="apply-tabnav" role="tablist" aria-label="參與方式分頁">
               <button class="apply-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="pf-join-courses" data-apply="courses">115-1學期開課資訊</button>
 
-              <button class="apply-tab" type="button" role="tab" aria-selected="false" aria-controls="pf-join-faq" data-apply="faq">常見問題 FAQ</button>
             </div>
             <div class="apply-panel is-active" id="pf-join-courses" role="tabpanel" data-apply-panel="courses" aria-label="115-1學期開課資訊">
               <h3>115-1學期開課資訊</h3>
@@ -627,7 +636,7 @@
               <p class="apply-soon-cta"><a href="for-universities.html">了解課程導入方式 → 大專院校專區</a></p>
             </div>
 
-            <div class="apply-panel" id="pf-join-faq" role="tabpanel" data-apply-panel="faq" aria-label="常見問題 FAQ">
+            <div class="apply-panel" id="pf-join-faq" role="tabpanel" data-apply-panel="faq" aria-label="常見問題 FAQ" hidden style="display:none">
               <h3>常見問題 FAQ</h3>
           <div class="faq-list" data-faq-lock>
             <details class="faq-item" open>
@@ -744,7 +753,8 @@
             </a>
           </li>
           <li>
-            <a class="float-dock__item" href="for-companies.html">
+
+            <a class="float-dock__item" href="jobs.html">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>
               <span>人才平台</span>
             </a>
@@ -772,7 +782,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
         <h3 id="pfw-1-title">學生企業案例分析：IKEA</h3>
-        <p class="fp-modal__meta">高雄師範大學 顧客關係經營</p>
+        <p class="fp-modal__meta">高雄師範大學 114-2 顧客關係管理</p>
         <figure class="fp-modal__figure">
           <img src="assets/photos/20260828/uni-31.jpg" alt="學生企業案例分析：IKEA 作品封面放大圖" loading="lazy" width="1600" height="900" />
         </figure>
@@ -789,12 +799,13 @@
         <button class="fp-modal__close" type="button" data-fp-close aria-label="關閉作品介紹">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
-        <h3 id="pfw-2-title">114-2 高師大期末報告｜rhode 企業案例分析</h3>
+        <h3 id="pfw-2-title">學生企業案例分析：Rhode</h3>
+        <p class="fp-modal__meta">高雄師範大學 114-2 顧客關係管理</p>
         <figure class="fp-modal__figure">
-          <img src="assets/photos/20260828/uni-32.jpg" alt="rhode 企業案例分析作品封面放大圖" loading="lazy" width="1600" height="900" />
+          <img src="assets/photos/20260828/uni-32.jpg" alt="學生企業案例分析：Rhode 作品封面放大圖" loading="lazy" width="1600" height="900" />
         </figure>
         <div class="fp-modal__block">
-          <p>高雄師範大學「顧客關係管理」課程小組成果：聚焦提升 rhode 在台灣 18-30 歲女性中的品牌知名度與購買意願，完成 SWOT、STP、Persona 與顧客旅程的完整提案。</p>
+          <p>高雄師範大學「顧客關係管理」課程小組成果：聚焦提升 Rhode 在台灣 18-30 歲女性中的品牌知名度與購買意願，完成 SWOT、STP、Persona 與顧客旅程的完整提案。</p>
         </div>
         <a class="fp-modal__ig" href="assets/showcase/1142-nknu-final-report-rhode.pdf" target="_blank" rel="noopener">閱讀完整作品 PDF &rarr;</a>
       </div>
@@ -806,19 +817,21 @@
         <button class="fp-modal__close" type="button" data-fp-close aria-label="關閉作品介紹">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
-        <h3 id="pfw-3-title">認識自我 探索未來｜個人職涯探索報告</h3>
+        <h3 id="pfw-3-title">個人職涯探索報告</h3>
+        <p class="fp-modal__meta">成功大學 115-1 社會情緒學習：職涯藍圖設計</p>
         <figure class="fp-modal__figure">
-          <img src="assets/photos/20260828/uni-20.jpg" alt="Dream Board 個人職涯探索計畫表作品封面放大圖" loading="lazy" width="1600" height="900" />
+          <img src="assets/photos/20260828/uni-20.jpg" alt="個人職涯探索報告作品封面放大圖" loading="lazy" width="1600" height="900" />
         </figure>
         <div class="fp-modal__block">
-          <p>成功大學資訊工程學系謝O祐的 114-2 學期成果：以「打造不被 AI 取代的 π 型競爭力」為題，完成自我盤點、能量地圖與暑期行動藍圖。</p>
+
+          <p>成功大學資訊工程學系同學 114-2 學期成果：以「打造不被 AI 取代的 π 型競爭力」為題，完成核心能力盤點與暑期行動藍圖。</p>
         </div>
         <a class="fp-modal__ig" href="assets/showcase/1142-ncku-self-explore.pdf" target="_blank" rel="noopener">閱讀完整作品 PDF &rarr;</a>
       </div>
     </div>
 
-    <script src="script.js?v=37"></script>
+    <script src="script.js?v=38"></script>
     <script src="reframe.js?v=8" defer></script>
-    <script src="audience-spine.js?v=54" defer></script>
+    <script src="audience-spine.js?v=55" defer></script>
   </body>
 </html>
