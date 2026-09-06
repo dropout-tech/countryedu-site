@@ -233,3 +233,5 @@
     max-width: 100px;
   }
 }
+
+.ct-item--role .ct-name--tag { padding-right: 12px; padding-left: 12px; }

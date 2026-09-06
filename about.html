@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="reframe.css?v=34" />
     <link rel="stylesheet" href="audience-spine.css?v=38" />
     <link rel="stylesheet" href="team-orgchart.css?v=9" />
-    <link rel="stylesheet" href="org-team.css?v=5" />
+    <link rel="stylesheet" href="org-team.css?v=6" />
     <style>
 
       .grp-about .journey-node .node-text p:not(.node-label) {
@@ -76,6 +76,40 @@
         padding: 20px 20px; 
       }
 
+      @media (min-width: 681px) {
+        .grp-about .orgset-1 .os1-scard { padding: 24px 26px; min-width: 172px; }
+      }
+
+      .grp-about .orgset-1 { --os1-lw: 5px; --os1-lr: 12px; }
+      .grp-about .orgset-1 .os1-hbar { display: none; }
+      .grp-about .orgset-1 .os1-drop--l,
+      .grp-about .orgset-1 .os1-drop--r {
+        top: 26px;
+        height: 28px;
+        width: auto;
+        margin-left: 0;
+        box-sizing: border-box;
+        background: none;
+        border: 0 solid var(--os1-wheat);
+        border-top-width: var(--os1-lw);
+        border-radius: 0;
+      }
+      .grp-about .orgset-1 .os1-drop--l {
+        left: calc(16.667% - var(--os1-lw) / 2);
+        right: 50%;
+        border-left-width: var(--os1-lw);
+        border-top-left-radius: var(--os1-lr);
+      }
+      .grp-about .orgset-1 .os1-drop--r {
+        left: 50%;
+        right: calc(16.667% - var(--os1-lw) / 2);
+        border-right-width: var(--os1-lw);
+        border-top-right-radius: var(--os1-lr);
+      }
+
+      .grp-about .orgset-1 .os1-connect .os1-stub,
+      .grp-about .orgset-1 .os1-connect .os1-drop--m { background: var(--os1-wheat); }
+
       @media (min-width: 681px) and (max-width: 920px) {
         .grp-about .orgset-1 { padding-right: 130px; }
         .grp-about .orgset-1 .os1-scard { min-width: 0; padding: 14px 12px; margin: 0 5px; }
@@ -91,15 +125,18 @@
       @media (max-width: 680px) {
         .grp-about .orgset-1 .os1-staff { grid-template-columns: repeat(3, minmax(0, 1fr)); justify-items: center; }
         .grp-about .orgset-1 .os1-staff::before { display: none; }
-        .grp-about .orgset-1 .os1-hbar,
         .grp-about .orgset-1 .os1-drop--l,
         .grp-about .orgset-1 .os1-drop--m,
         .grp-about .orgset-1 .os1-drop--r { display: block; }
-        .grp-about .orgset-1 .os1-scard { width: max-content; min-width: 0; max-width: 100%; padding: 13px 6px; margin: 0 2px; }
+        .grp-about .orgset-1 .os1-scard { width: max-content; min-width: 0; max-width: 100%; padding: 15px 6px; margin: 0 2px; } 
+        .grp-about .orgset-1 .os1-scard .os1-title { white-space: nowrap; }
+        .grp-about .orgset-1 { --os1-lw: 3px; --os1-lr: 9px; }
+        .grp-about .orgset-1 .os1-drop--l,
+        .grp-about .orgset-1 .os1-drop--r { top: 27px; height: 27px; }
 
         .grp-about .orgset-1 .os1-stub,
-        .grp-about .orgset-1 .os1-drop { width: 3px; margin-left: -1.5px; }
-        .grp-about .orgset-1 .os1-hbar { height: 3px; top: 27px; }
+        .grp-about .orgset-1 .os1-drop--m { width: 3px; margin-left: -1.5px; } 
+        .grp-about .orgset-1 .os1-hbar { height: 3px; top: 27px; } 
 
         .grp-about .orgset-1 .os1-connect:has(.os1-hbar) { height: 54px; }
 
