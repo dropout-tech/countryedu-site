@@ -228,6 +228,12 @@ body.company-spine-page .rf-bleeds { display: none; }
   .company-spine-tail,
   .company-spine-attach-tab { display: none; }
 
+  .company-spine-base,
+  .company-spine-bridge,
+  .company-spine-bridges,
+  .company-spine-pattern-bg,
+  .company-spine-pattern-line { display: none; }
+
   body.company-spine-page .rf-joint,
   body.company-spine-page .rf-ribbon {
     height: 48px;
@@ -238,12 +244,12 @@ body.company-spine-page .rf-bleeds { display: none; }
 
   body.company-spine-page .rf-wrap,
   body.company-spine-page .rf-scene--bleed .rf-col {
-    padding-inline: 26px 72px;
+    padding-inline: 32px; 
   }
 
   body.company-spine-page .rf-scene--panel > .rf-panel,
   body.company-spine-page .rf-cta .rf-panel-cta {
-    padding-inline: 26px 72px;
+    padding-inline: 32px; 
   }
 
   body.company-spine-page .company-hero-title {
