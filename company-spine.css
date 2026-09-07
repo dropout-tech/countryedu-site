@@ -220,6 +220,14 @@ body.company-spine-page .rf-bleeds { display: none; }
     stroke-width: 24;
   }
 
+  .company-spine-label-outline,
+  .company-spine-label-band,
+  .company-spine-label-guide,
+  .company-spine-label-text,
+  .company-spine-dot,
+  .company-spine-tail,
+  .company-spine-attach-tab { display: none; }
+
   body.company-spine-page .rf-joint,
   body.company-spine-page .rf-ribbon {
     height: 48px;
