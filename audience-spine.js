@@ -1071,21 +1071,26 @@
 
       var leftRoom = contentLeft();
       var navEl = main.querySelector(".exit-nav");
-      if (navEl) {
 
+      var navLaneLeft = null;
+      if (navEl) {
         var navRect = navEl.getBoundingClientRect();
         if (navRect.width >= 1 && navRect.width < width * 0.5) {
           var navLeft = navRect.left - mainMetrics().rectLeft;
-          if (isFinite(navLeft)) leftRoom = Math.min(leftRoom, navLeft);
+          if (isFinite(navLeft)) navLaneLeft = navLeft;
         }
       }
 
       var minLane = width <= 920 ? 20 : 30;
       var canDive = leftRoom >= minLane + CAR_CLEAR;
 
-      var wide = cor >= 70 || (width <= 920 && canDive);
+      var wide = cor >= 70 || canDive;
       if (canDive) {
         if (farL > leftRoom - CAR_CLEAR) farL = Math.round(leftRoom - CAR_CLEAR);
+
+        if (navLaneLeft !== null && navLaneLeft >= minLane + CAR_CLEAR && farL > navLaneLeft - CAR_CLEAR) {
+          farL = Math.round(navLaneLeft - CAR_CLEAR);
+        }
         farR = Math.round(Math.min(width - 82, width - farL));
       } else if (route === "mid" || route === "cross" || route === "dive" || route === "full") {
         route = "soft";

@@ -161,6 +161,9 @@ body.aud-school .company-spine-accent-honey-end { stop-color: var(--butter); sto
   body.audience-spine-page .company-spine-dot,
   body.audience-spine-page .company-spine-tail,
   body.audience-spine-page .company-spine-attach-tab { display: none; }
+
+  body.audience-spine-page .company-spine-base,
+  body.audience-spine-page .company-spine-bridge { display: none; }
   body.audience-spine-page .rf-joint,
   body.audience-spine-page .rf-ribbon { height: 48px; }
 }
@@ -168,9 +171,9 @@ body.aud-school .company-spine-accent-honey-end { stop-color: var(--butter); sto
 @media (max-width: 700px) {
 
   body.audience-spine-page .rf-wrap,
-  body.audience-spine-page .rf-scene--bleed .rf-col { padding-inline: 26px 72px; }
+  body.audience-spine-page .rf-scene--bleed .rf-col { padding-inline: 32px; }
   body.audience-spine-page .rf-scene--panel > .rf-panel,
-  body.audience-spine-page .rf-cta .rf-panel-cta { padding-inline: 26px 72px; }
+  body.audience-spine-page .rf-cta .rf-panel-cta { padding-inline: 32px; }
   body.audience-spine-page .rf-hero,
   body.audience-spine-page .rf-scene:not(.rf-scene--panel) { padding-block: 36px; }
   body.audience-spine-page .rf-scene--panel > .rf-panel { padding-block: 36px; }
