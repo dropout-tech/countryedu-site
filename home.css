@@ -434,8 +434,6 @@ body.home-remake #partners .rsec-mark {
   }
   body.home-remake .rhero-sub {
     max-width: 100%;
-
-    padding-right: clamp(36px, 12vw, 90px);
   }
 
   body.home-remake .rhero-orange-sq,
@@ -469,13 +467,7 @@ body.home-remake #partners .rsec-mark {
     border-radius: 56px;
   }
 
-  body.home-remake .problem-section.section-pad,
-  body.home-remake #method.section-pad,
-  body.home-remake #impact.section-pad,
-  body.home-remake #audiences.section-pad {
-
-    padding-right: clamp(52px, 20vw, 150px);
-  }
+  body.home-remake #partners > .path-header { padding-right: 0; }
 }
 
 body.home-remake .problem-section .section-grid {
@@ -514,14 +506,6 @@ body.home-remake .impact-layout h2 {
 body.home-remake .problem-section .initiative-copy .lead {
   max-width: 560px;
   margin-top: 22px;
-}
-
-@media (max-width: 380px) {
-  body.home-remake .section-grid h2,
-  body.home-remake .path-header h2,
-  body.home-remake .impact-layout h2 {
-    font-size: 2rem;
-  }
 }
 
 body.home-remake .problem-section .initiative-cards {
@@ -904,13 +888,20 @@ body.home-remake .rf-bracketstats .rbk.rf-running svg.rf-edge .runner {
   body.home-remake .rf-bracketstats .rbk.rf-running svg.rf-edge .runner { animation: none; }
 }
 
-body.home-remake .rhero h1 br.brm { display: none; }
+body.home-remake br.brm { display: none; }
 @media (max-width: 700px) {
-  body.home-remake .rhero h1 br.brm { display: inline; }
+  body.home-remake br.brm { display: inline; }
 
   body.home-remake .rhero h1#hero-title { text-wrap: normal; }
 
-  body.home-remake .rhero h1 { font-size: clamp(30px, 9.4vw, 56px); }
+  body.home-remake .rhero h1 { font-size: clamp(26px, 8.4vw, 56px); }
+
+  body.home-remake .section-grid h2,
+  body.home-remake .path-header h2,
+  body.home-remake .impact-layout h2,
+  body.home-remake .problem-section .initiative-copy h2 { font-size: min(2.3rem, 7.8vw); }
+
+  body.home-remake #method-title { white-space: nowrap; font-size: min(1.3rem, 5.9vw); }
 }
 
 body.home-remake .problem-section .section-grid:not(:has(.initiative-cards)) {
