@@ -123,20 +123,23 @@
         .stu-exp-band .content-figure { margin-top: 4px; max-width: 420px; }
       }
 
-      .stu-voices { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 34px; }
-      .stu-voice { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; gap: clamp(16px, 2.6vw, 26px); border-radius: var(--card-radius); background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 26px rgba(61, 85, 39, 0.08); padding: clamp(14px, 2vw, 20px); }
-      .stu-voice-body { padding: clamp(2px, 0.8vw, 8px) clamp(2px, 0.8vw, 10px) clamp(2px, 0.8vw, 8px) 0; }
+      .stu-schools { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin-top: 34px; align-items: start; }
+      .stu-school { border-radius: var(--card-radius); background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 26px rgba(61, 85, 39, 0.08); overflow: hidden; }
+      .stu-school-head { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "logo chev" "name chev" "count chev"; align-items: center; column-gap: 12px; padding: clamp(16px, 2vw, 22px); }
+      .stu-school-head::-webkit-details-marker { display: none; }
+      .stu-school-head:hover { background: rgba(142, 196, 87, 0.08); }
+      .stu-school-logo { grid-area: logo; display: flex; align-items: center; height: 54px; margin-bottom: 10px; }
+      .stu-school-logo img { display: block; max-height: 100%; width: auto; max-width: 210px; object-fit: contain; }
+      .stu-school-name { grid-area: name; font-weight: 800; font-size: 1.05rem; line-height: 1.4; color: var(--deep); }
+      .stu-school-count { grid-area: count; margin-top: 2px; font-size: 0.8rem; color: var(--earth); }
+      .stu-school-chev { grid-area: chev; position: relative; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); transition: transform 0.2s ease, background 0.2s ease; }
+      .stu-school-chev::before { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; border-right: 2px solid var(--leaf-700); border-bottom: 2px solid var(--leaf-700); transform: translate(-50%, -65%) rotate(45deg); }
+      .stu-school[open] .stu-school-chev { transform: rotate(180deg); background: rgba(142, 196, 87, 0.16); }
+      .stu-school-body { padding: 0 clamp(16px, 2vw, 22px) clamp(16px, 2vw, 22px); display: grid; gap: 12px; }
+      .stu-school .stu-voice { border-radius: 14px; background: rgba(142, 196, 87, 0.09); padding: 14px 16px; }
       .stu-voice-name { margin: 0 0 2px; font-size: 1rem; color: var(--deep); }
       .stu-voice-meta { margin: 0 0 12px; font-size: 0.78rem; line-height: 1.7; color: var(--earth); }
       .stu-voice-quote { margin: 0; padding: 0 0 0 12px; border-left: 3px solid var(--leaf); font-size: 0.88rem; line-height: 1.85; color: var(--muted); }
-
-      .vox-photo { position: relative; overflow: hidden; border-radius: 14px; margin: 0; align-self: stretch; min-height: clamp(170px, 20vw, 230px); background: rgba(142, 196, 87, 0.16); }
-      .vox-photo img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
-      @media (max-width: 600px) {
-        .stu-voice { grid-template-columns: 1fr; align-items: start; }
-        .stu-voice-body { padding: 0; }
-        .vox-photo { align-self: auto; min-height: 0; aspect-ratio: 16 / 10; }
-      }
 
       .rf-cta.stu-final .rf-panel-cta { background: var(--sunset); color: #fff; text-align: center; }
       .rf-cta.stu-final .rf-panel-cta h2 { color: #fff; max-width: none; margin: 0 auto 14px; font-size: clamp(1.55rem, 3vw, 2.2rem); }
@@ -394,67 +397,73 @@
             <p class="rf-eyebrow">Alumni・學長姐故事</p>
             <h2 id="alumni-title">上過課的學長姐怎麼說</h2>
 
-            <div class="stu-voices">
-              <article class="stu-voice">
-                <div class="vox-photo">
-                  <img src="assets/photos/20260828/uni-16.jpg" alt="尋路計畫課堂團體氛圍：全班在大教室中一起討論（場景示意，非見證者本人）" loading="lazy" width="1600" height="900" />
+            <div class="stu-schools">
+              <details class="stu-school">
+                <summary class="stu-school-head">
+                  <span class="stu-school-name">國立中山大學</span>
+                  <span class="stu-school-count">1 則學生回饋</span>
+                  <span class="stu-school-chev" aria-hidden="true"></span>
+                </summary>
+                <div class="stu-school-body">
+                  <article class="stu-voice">
+                    <div class="stu-voice-body">
+                      <header>
+                        <h3 class="stu-voice-name">羅O蓁</h3>
+                        <p class="stu-voice-meta">國立中山大學人力資源管理研究所｜畢業繼續升學 (2026.03 修課)</p>
+                      </header>
+                      <blockquote class="stu-voice-quote">「以前做過很多人格測驗，但都只是知道結果。課程讓我第一次知道，如何把分析工具真正應用在企業問題與未來職涯選擇上。」</blockquote>
+                    </div>
+                  </article>
                 </div>
-                <div class="stu-voice-body">
-                  <header>
-                    <h3 class="stu-voice-name">羅O蓁</h3>
-                    <p class="stu-voice-meta">國立中山大學人力資源管理研究所｜畢業繼續升學 (2026.03 修課)</p>
-                  </header>
-                  <blockquote class="stu-voice-quote">「以前做過很多人格測驗，但都只是知道結果。課程讓我第一次知道，如何把分析工具真正應用在企業問題與未來職涯選擇上。」</blockquote>
+              </details>
+              <details class="stu-school">
+                <summary class="stu-school-head">
+                  <span class="stu-school-logo"><img src="assets/partners/trimmed/ncku.jpg" alt="國立成功大學校徽" width="340" height="88" loading="lazy" /></span>
+                  <span class="stu-school-name">國立成功大學</span>
+                  <span class="stu-school-count">2 則學生回饋</span>
+                  <span class="stu-school-chev" aria-hidden="true"></span>
+                </summary>
+                <div class="stu-school-body">
+                  <article class="stu-voice">
+                    <div class="stu-voice-body">
+                      <header>
+                        <h3 class="stu-voice-name">陳O筠</h3>
+                        <p class="stu-voice-meta">成功大學｜應屆畢業生 澳洲打工度假後投入職場 (2026.03 修課)</p>
+                      </header>
+                      <blockquote class="stu-voice-quote">「原本一直認為畢業就應該直接念研究所，直到課程重新整理自己的能力與目標，我決定先累積工作經驗，再決定下一步，而不是跟著別人的步伐前進。」</blockquote>
+                    </div>
+                  </article>
+                  <article class="stu-voice">
+                    <div class="stu-voice-body">
+                      <header>
+                        <h3 class="stu-voice-name">詹O毅</h3>
+                        <p class="stu-voice-meta">國立成功大學 資訊工程學系｜持續探索科技職涯 (2026.03 修課)</p>
+                      </header>
+                      <blockquote class="stu-voice-quote">「課程幫助我把原本模糊的職涯想像，變成一個可以立即開始行動的計畫，也重新思考 AI 時代下自己的發展方向。」</blockquote>
+                    </div>
+                  </article>
                 </div>
-              </article>
-              <article class="stu-voice">
-                <div class="vox-photo">
-                  <img src="assets/photos/20260828/uni-36.jpg" alt="尋路計畫課堂團體氛圍：高雄師範大學場次課堂全景（場景示意，非見證者本人）" loading="lazy" width="1600" height="900" />
+              </details>
+              <details class="stu-school">
+                <summary class="stu-school-head">
+                  <span class="stu-school-logo"><img src="assets/partners/trimmed/nknu.png" alt="國立高雄師範大學校徽" width="480" height="158" loading="lazy" /></span>
+                  <span class="stu-school-name">國立高雄師範大學</span>
+                  <span class="stu-school-count">1 則學生回饋</span>
+                  <span class="stu-school-chev" aria-hidden="true"></span>
+                </summary>
+                <div class="stu-school-body">
+                  <article class="stu-voice">
+                    <div class="stu-voice-body">
+                      <header>
+                        <h3 class="stu-voice-name">陳O霖</h3>
+                        <p class="stu-voice-meta">高雄師範大學 事業經營學系｜大二生 (2025.09 修課)</p>
+                      </header>
+                      <blockquote class="stu-voice-quote">「真正的收穫不只學會分析工具，還理解到自己的優勢與適合的位置，會開始嘗試過去從未考慮過的行銷工作。」</blockquote>
+                    </div>
+                  </article>
+
                 </div>
-                <div class="stu-voice-body">
-                  <header>
-                    <h3 class="stu-voice-name">陳O筠</h3>
-                    <p class="stu-voice-meta">成功大學｜應屆畢業生 澳洲打工度假後投入職場 (2026.03 修課)</p>
-                  </header>
-                  <blockquote class="stu-voice-quote">「原本一直認為畢業就應該直接念研究所，直到課程重新整理自己的能力與目標，我決定先累積工作經驗，再決定下一步，而不是跟著別人的步伐前進。」</blockquote>
-                </div>
-              </article>
-              <article class="stu-voice">
-                <div class="vox-photo">
-                  <img src="assets/photos/20260828/uni-26.jpg" alt="尋路計畫課堂團體氛圍：清華大學立德計畫課堂合影（場景示意，非見證者本人）" loading="lazy" width="1600" height="1200" />
-                </div>
-                <div class="stu-voice-body">
-                  <header>
-                    <h3 class="stu-voice-name">陳O霖</h3>
-                    <p class="stu-voice-meta">高雄師範大學 事業經營學系｜大二生 (2025.09 修課)</p>
-                  </header>
-                  <blockquote class="stu-voice-quote">「真正的收穫不只學會分析工具，還理解到自己的優勢與適合的位置，會開始嘗試過去從未考慮過的行銷工作。」</blockquote>
-                </div>
-              </article>
-              <article class="stu-voice">
-                <div class="vox-photo">
-                  <img src="assets/photos/20260828/uni-21.jpg" alt="尋路計畫課堂團體氛圍：學生分組圍桌討論（場景示意，非見證者本人）" loading="lazy" width="1600" height="900" />
-                </div>
-                <div class="stu-voice-body">
-                  <header>
-                    <h3 class="stu-voice-name">詹O毅</h3>
-                    <p class="stu-voice-meta">國立成功大學 資訊工程學系｜持續探索科技職涯 (2026.03 修課)</p>
-                  </header>
-                  <blockquote class="stu-voice-quote">「課程幫助我把原本模糊的職涯想像，變成一個可以立即開始行動的計畫，也重新思考 AI 時代下自己的發展方向。」</blockquote>
-                </div>
-              </article>
-              <article class="stu-voice">
-                <div class="vox-photo">
-                  <img src="assets/photos/20260828/uni-22.jpg" alt="尋路計畫課堂團體氛圍：業師與小組一起討論提案（場景示意，非見證者本人）" loading="lazy" width="1600" height="900" />
-                </div>
-                <div class="stu-voice-body">
-                  <header>
-                    <h3 class="stu-voice-name">曾O婷</h3>
-                    <p class="stu-voice-meta">高雄師範大學 事業經營學系｜持續在學 (2026.03 修課)</p>
-                  </header>
-                  <blockquote class="stu-voice-quote">「以前只會看見企業最後的成果；現在開始思考，每一個策略背後，是如何理解顧客、分析需求，再一步一步做出決策。」</blockquote>
-                </div>
-              </article>
+              </details>
             </div>
           </div>
         </section>
