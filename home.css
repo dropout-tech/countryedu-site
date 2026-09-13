@@ -672,6 +672,13 @@ body.home-remake .rf-bracketstats .rbk::after {
 @keyframes rbk-orbit { to { --rbk-a: 360deg; } }
 @media (prefers-reduced-motion: reduce) { body.home-remake .rf-bracketstats .rbk::after { animation: none; } }
 
+@media (max-width: 700px) {
+  body.home-remake .rf-bracketstats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  body.home-remake .rf-bracketstats .rbk { padding: 24px 12px 22px; min-height: 0; }
+  body.home-remake .rf-bracketstats .rbk-num { font-size: 2.2rem; }
+  body.home-remake .rf-bracketstats .rbk-lbl { font-size: 0.86rem; margin-top: 10px; }
+}
+
 @media (min-width: 721px) {
 
   body.home-remake .mc-sub { max-width: none; }
