@@ -774,6 +774,8 @@
 .stu-school-head:hover { background: rgba(142, 196, 87, 0.08); }
 .stu-school-logo { grid-area: logo; display: flex; align-items: center; height: 54px; margin-bottom: 10px; }
 .stu-school-logo img { display: block; max-height: 100%; width: auto; max-width: 210px; object-fit: contain; }
+
+.stu-school-logo--tall { height: 84px; }
 .stu-school-name { grid-area: name; font-weight: 800; font-size: 1.05rem; line-height: 1.4; color: var(--deep); }
 .stu-school-count { grid-area: count; margin-top: 2px; font-size: 0.8rem; color: var(--earth); }
 .stu-school-chev { grid-area: chev; position: relative; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); transition: transform 0.2s ease, background 0.2s ease; }
