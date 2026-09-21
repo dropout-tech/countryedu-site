@@ -4677,6 +4677,8 @@ main.wip-mode > *:not(.wip-screen) {
   color: var(--leaf-700);
   text-decoration: underline;
   text-underline-offset: 2px;
+
+  overflow-wrap: anywhere;
 }
 
 .legal-doc .legal-sub {

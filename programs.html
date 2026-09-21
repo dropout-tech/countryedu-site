@@ -48,10 +48,10 @@
       ]
     }
     </script>
-    <link rel="stylesheet" href="styles.css?v=95" />
+    <link rel="stylesheet" href="styles.css?v=96" />
     <link rel="stylesheet" href="reframe.css?v=34" />
     <link rel="stylesheet" href="audience-spine.css?v=40" />
-    <link rel="stylesheet" href="pathfinder.css?v=4" />
+    <link rel="stylesheet" href="pathfinder.css?v=5" />
     <style>
 
       .pf-journey .node-text > p.pf-sub {
@@ -64,12 +64,18 @@
       .pf-join-tabs .pf-table td:nth-child(2) {
         white-space: nowrap;
       }
+
+      .pf-join-tabs .pf-table-wrap { container-type: inline-size; }
+      @container (min-width: 566px) {
+        .pf-join-tabs .pf-table td:nth-child(1) { white-space: nowrap; }
+      }
       #schools {
         scroll-margin-top: 96px;
       }
 
       @media (max-width: 700px) {
         .pf-join-tabs .pf-table { min-width: 640px; }
+        .pf-join-tabs .pf-table td:nth-child(1) { white-space: nowrap; }
         .pf-join-tabs .pf-table td:nth-child(4) { min-width: 240px; }
       }
 
@@ -87,6 +93,16 @@
       .apply-soon-cta { margin-top: 52px; } 
 
       .pf-exp-cta { margin-top: 24px; }
+
+      .pf-dlog-section .section-subhead { margin: 14px 0 22px; }
+      .pf-dlog-list { list-style: none; margin: 22px 0 0; padding: 4px clamp(18px, 2.4vw, 28px); max-width: 720px; border: 1px solid var(--line); border-radius: var(--card-radius); background: #fff; box-shadow: 0 10px 26px rgba(61, 85, 39, 0.06); }
+      .pf-dlog-list li { display: grid; grid-template-columns: 5.2em minmax(0, 1fr); column-gap: 18px; align-items: baseline; padding: 14px 0; line-height: 1.7; color: var(--muted); }
+      .pf-dlog-list li + li { border-top: 1px solid var(--line); }
+      .pf-dlog-list b { color: var(--leaf-700); font-weight: 800; border-right: 2px solid rgba(78, 135, 24, 0.35); }
+      @media (max-width: 480px) {
+        .pf-dlog-list li { grid-template-columns: 1fr; row-gap: 2px; }
+        .pf-dlog-list b { border-right: 0; }
+      }
       .pf-work { position: relative; }
       .pf-work > p.pf-work-course { 
         margin: 0 22px;
@@ -283,18 +299,24 @@
                 <span class="exit-name">課程體驗</span>
                 <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
               </a>
-              <a class="exit-sign" href="#pf-theory-title" data-exit-target="pf-theory-title">
+
+              <a class="exit-sign" href="#pf-dlog-title" data-exit-target="pf-dlog-title">
                 <span class="exit-tag">STOP 03</span>
+                <span class="exit-name">決策紀錄</span>
+                <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
+              </a>
+              <a class="exit-sign" href="#pf-theory-title" data-exit-target="pf-theory-title">
+                <span class="exit-tag">STOP 04</span>
                 <span class="exit-name">關於決策設計</span>
                 <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
               </a>
               <a class="exit-sign" href="#pf-showcase-title" data-exit-target="pf-showcase-title">
-                <span class="exit-tag">STOP 04</span>
+                <span class="exit-tag">STOP 05</span>
                 <span class="exit-name">學生成果</span>
                 <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
               </a>
               <a class="exit-sign" href="#pf-join-title" data-exit-target="pf-join-title">
-                <span class="exit-tag">STOP 05</span>
+                <span class="exit-tag">STOP 06</span>
                 <span class="exit-name">怎麼參與</span>
                 <span class="exit-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8h9"/><path d="M8 4.5 11.5 8 8 11.5"/></svg></span>
               </a>
@@ -441,11 +463,38 @@
         </div>
         </section>
 
-        <section class="pf-theory-section section-pad rf-scene" aria-labelledby="pf-theory-title">
+        <section class="pf-dlog-section section-pad rf-scene" aria-labelledby="pf-dlog-title">
           <div class="rf-wrap">
           <div class="section-grid">
             <div class="section-kicker">
               <span>04</span>
+              <p>決策紀錄 Decision Log</p>
+            </div>
+            <div>
+
+              <h2 id="pf-dlog-title">決策紀錄<span class="nw">（Decision Log）</span></h2>
+              <h3 class="section-subhead">每一次選擇，都在幫你更了解自己。</h3>
+              <p class="lead">大學裡有很多選擇，選課、實習、社團、合作夥伴，甚至未來要走哪一條路。</p>
+              <p class="lead">比起急著找到「正確答案」，<span class="nw">鄉育</span>更希望陪你看懂：面對選擇時，你是怎麼思考、判斷與行動。</p>
+              <p class="lead">一學期完成 <span class="company-hl company-hl--01">6 次 Decision Log、2 次決策模擬遊戲</span>，系統將從你一次次的決策歷程中，逐步整理出個人的決策軌跡，並產出 <span class="company-hl company-hl--01">3 份個人決策分析報告</span>，幫助你看見：</p>
+              <ul class="pf-dlog-list">
+                <li><b>決策風格</b><span>我習慣怎麼做選擇？</span></li>
+                <li><b>思考盲點</b><span>哪些因素容易影響我的判斷？</span></li>
+                <li><b>資訊判斷</b><span>面對不同資訊，我如何辨識與取捨？</span></li>
+                <li><b>壓力決策</b><span>時間與資訊有限時，我會怎麼反應？</span></li>
+                <li><b>成長變化</b><span>經過一學期，我的決策方式改變了什麼？</span></li>
+              </ul>
+              <p class="pf-exp-cta"><a class="button-primary" href="https://script.google.com/a/countryedu.org.tw/macros/s/AKfycbxfvxyzm4cEbfb88zottWoVnfK38sJAToNMmaVuvPXK9KGBNPXO92_VpHxGQKc3RrpZ/exec?period=P-3442ead0e8ce0628109d" target="_blank" rel="noopener">開始我的 Decision Log &rarr;</a></p>
+            </div>
+          </div>
+          </div>
+        </section>
+
+        <section class="pf-theory-section section-pad rf-scene" aria-labelledby="pf-theory-title">
+          <div class="rf-wrap">
+          <div class="section-grid">
+            <div class="section-kicker">
+              <span>05</span>
               <p>關於決策設計 Decision Design</p>
             </div>
             <div>
@@ -494,7 +543,7 @@
           <div class="rf-panel">
           <div class="section-grid">
             <div class="section-kicker">
-              <span>05</span>
+              <span>06</span>
               <p>學生成果 Showcase</p>
             </div>
             <div>
@@ -548,7 +597,7 @@
           <div class="rf-wrap">
           <div class="path-header">
             <div class="section-kicker">
-              <span>06</span>
+              <span>07</span>
               <p>怎麼參與 Join</p>
             </div>
             <div>
@@ -580,20 +629,20 @@
                   <tbody>
 
                     <tr>
-                      <td>成功大學</td>
+                      <td>國立成功大學</td>
                       <td>115-1</td>
                       <td>選修/全校</td>
                       <td><a href="https://class-qry.acad.ncku.edu.tw/syllabus/online_display.php?syear=0115&amp;sem=1&amp;co_no=D012800&amp;class_code=" target="_blank" rel="noopener">社會情緒學習：問題辨識與策略規劃-個人決策力建立</a></td>
                     </tr>
                     <tr>
-                      <td>清華大學</td>
+                      <td>國立清華大學</td>
                       <td>115-1</td>
                       <td>立德計畫學員</td>
                       <td><a href="https://www.nthu-leadership-program.com/" target="_blank" rel="noopener">立德計畫領導人才培育計畫</a></td>
                     </tr>
 
                     <tr>
-                      <td>台灣大學</td>
+                      <td>國立臺灣大學</td>
                       <td>2026.09.09</td>
                       <td>醫學院專場</td>
                       <td>容錯率，是靠闖出來的——從學生到工作者，不該是一場毫無準備的跳躍</td>
@@ -605,7 +654,7 @@
                       <td>容錯率，是靠闖出來的——從學生到工作者，不該是一場毫無準備的跳躍</td>
                     </tr>
                     <tr>
-                      <td>清華大學</td>
+                      <td>國立清華大學</td>
                       <td>2026.10.15</td>
                       <td>公開講座/全校</td>
                       <td>容錯率，是靠闖出來的——從學生到工作者，不該是一場毫無準備的跳躍</td>
@@ -623,7 +672,7 @@
                       <td><a href="https://tch.mcu.edu.tw/sylwebqry/pro10_22.aspx?tcls=00236&amp;tcour=00859&amp;tyear=115&amp;tsem=1&amp;teac=8901147&amp;type=1" target="_blank" rel="noopener">生涯規劃</a></td>
                     </tr>
                     <tr>
-                      <td>高雄師範大學</td>
+                      <td>國立高雄師範大學</td>
                       <td>2026.11.30</td>
                       <td>公開講座/全校</td>
                       <td>容錯率，是靠闖出來的——從學生到工作者，不該是一場毫無準備的跳躍</td>
@@ -832,6 +881,6 @@
 
     <script src="script.js?v=38"></script>
     <script src="reframe.js?v=8" defer></script>
-    <script src="audience-spine.js?v=56" defer></script>
+    <script src="audience-spine.js?v=57" defer></script>
   </body>
 </html>
