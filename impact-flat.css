@@ -769,18 +769,26 @@
 
 .stu-schools { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 34px; }
 .stu-school { border-radius: var(--card-radius); background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 26px rgba(61, 85, 39, 0.08); overflow: hidden; }
-.stu-school-head { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; grid-template-areas: "logo name chev" "logo count chev"; align-items: center; column-gap: clamp(14px, 2vw, 24px); padding: clamp(14px, 1.6vw, 18px) clamp(16px, 2vw, 22px); }
+
+.stu-school-head { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; grid-template-areas: "logo count chev"; align-items: center; column-gap: clamp(14px, 1.8vw, 22px); padding: clamp(18px, 2vw, 22px) clamp(16px, 2vw, 24px); }
 .stu-school-head::-webkit-details-marker { display: none; }
 .stu-school-head:hover { background: rgba(142, 196, 87, 0.08); }
-.stu-school-logo { grid-area: logo; display: flex; align-items: center; justify-content: center; height: 54px; width: clamp(150px, 18vw, 220px); }
-.stu-school-logo img { display: block; max-height: 100%; max-width: 100%; width: auto; object-fit: contain; }
+.stu-school-logo { grid-area: logo; display: flex; align-items: center; justify-content: flex-start; height: 52px; }
+.stu-school-logo img { display: block; max-height: 100%; max-width: min(250px, 100%); width: auto; height: auto; object-fit: contain; }
 
-.stu-school-logo--tall { height: 84px; }
-.stu-school-name { grid-area: name; font-weight: 800; font-size: 1.05rem; line-height: 1.4; color: var(--deep); }
-.stu-school-count { grid-area: count; margin-top: 2px; font-size: 0.8rem; color: var(--earth); }
+.stu-school-logo--tall { height: 64px; }
+.stu-school-name { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+.stu-school-head--named { grid-template-columns: auto minmax(0, 1fr) auto auto; grid-template-areas: "logo name count chev"; }
+.stu-school-head--named .stu-school-name { grid-area: name; position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: normal; font-weight: 800; font-size: clamp(1.12rem, 1.5vw, 1.3rem); line-height: 1.4; letter-spacing: 0.02em; color: var(--deep); }
+.stu-school-count { grid-area: count; font-size: 0.82rem; font-weight: 700; line-height: 1; white-space: nowrap; color: var(--deep); background: rgba(142, 196, 87, 0.18); padding: 7px 12px; border-radius: 999px; }
 @media (max-width: 600px) {
-  .stu-school-head { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "logo chev" "name chev" "count chev"; }
-  .stu-school-logo { width: auto; justify-content: flex-start; margin-bottom: 8px; }
+  .stu-school-head { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "logo chev" "count chev"; row-gap: 0; padding-block: 18px; }
+  .stu-school-head--named { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "logo chev" "name chev" "count chev"; }
+  .stu-school-head--named .stu-school-name { margin-top: 10px; }
+  .stu-school-logo { height: 44px; }
+  .stu-school-logo img { max-width: min(210px, 100%); }
+  .stu-school-logo--tall { height: 56px; }
+  .stu-school-count { justify-self: start; margin-top: 12px; }
 }
 .stu-school-chev { grid-area: chev; position: relative; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); transition: transform 0.2s ease, background 0.2s ease; }
 .stu-school-chev::before { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; border-right: 2px solid var(--leaf-700); border-bottom: 2px solid var(--leaf-700); transform: translate(-50%, -65%) rotate(45deg); }

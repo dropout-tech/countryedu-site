@@ -573,12 +573,25 @@
     var pad = 10;
     var avoid = [];
 
-    main.querySelectorAll(".content-figure, .rf-media, .node-figure, .section-deck, .rpx-card, .story-quote, .signal-row--tag > div, .rf-panel-cta, .cta-band").forEach(function (el) {
+    main.querySelectorAll(".content-figure, .rf-media, .node-figure, .section-deck, .rpx-card, .stu-school, .collab-case, .node-dot, .story-quote, .signal-row--tag > div, .rf-panel-cta, .cta-band").forEach(function (el) {
       var r = el.getBoundingClientRect();
       if (r.width > 1 && r.height > 1) avoid.push(r);
     });
+
+    var vwAvoid = state.width;
+    main.querySelectorAll("article, li, details, figure, section > div, div").forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.width < vwAvoid * 0.55 || r.height < 60 || r.height > 700) return;
+      if (el.closest(".exit-nav-col, .exit-nav, .fp-modal, template, svg")) return;
+      var cs = window.getComputedStyle(el);
+      if (cs.display === "none" || cs.visibility === "hidden") return;
+      var bg = cs.backgroundColor;
+      if (!bg || bg === "transparent" || /,\s*0\)$/.test(bg)) return;
+      var edged = (parseFloat(cs.borderTopWidth) > 0 && cs.borderTopStyle !== "none") || (cs.boxShadow && cs.boxShadow !== "none");
+      if (edged) avoid.push(r);
+    });
     if (!avoid.length) return;
-    var textRects = allInkRects();
+    var textRects = inkAndMarkerRects();
     function hits(b, rects, p) {
       for (var i = 0; i < rects.length; i++) {
         var r = rects[i];
@@ -625,7 +638,8 @@
       if (mobileDecor) {
         gentleMobileDecor();
         clearTitleOverlaps();
-        if (body.getAttribute("data-mobile-decor-tune") === "v2") tuneMobileAvoid();
+
+        tuneMobileAvoid();
         return;
       }
 
@@ -876,7 +890,7 @@
 
       clearTitleOverlaps();
 
-      if (body.getAttribute("data-mobile-decor-tune") === "v2") tuneMobileAvoid();
+      tuneMobileAvoid();
       return;
     }
 
@@ -939,7 +953,7 @@
       edgeRect("right", cta.top + 236 * decorScale, 72, 154, 34, "company-spine-fill-peach", 0.58);
     }
 
-    if (state.mobile && body.getAttribute("data-mobile-decor-tune") === "v2") {
+    if (state.mobile) { 
       clearTitleOverlaps();
       tuneMobileAvoid();
     }
@@ -999,9 +1013,30 @@
     return rects;
   }
 
+  function markerRects() {
+    var rects = [];
+    var lis = main.querySelectorAll("li");
+    for (var i = 0; i < lis.length; i++) {
+      var li = lis[i];
+      if (layer.contains(li)) continue;
+      var lcs = window.getComputedStyle(li);
+      if (lcs.display === "none" || lcs.visibility === "hidden") continue;
+      var hasMarker = lcs.display === "list-item" && lcs.listStyleType !== "none";
+      var bcs = window.getComputedStyle(li, "::before");
+      var hasBefore = !!bcs && bcs.content !== "none" && bcs.content !== "normal";
+      if (!hasMarker && !hasBefore) continue;
+      var lr = li.getBoundingClientRect();
+      if (lr.width < 1 || lr.height < 1) continue;
+      var lh = parseFloat(lcs.lineHeight) || parseFloat(lcs.fontSize) * 1.6;
+      rects.push({ left: hasMarker ? lr.left - 28 : lr.left, right: lr.left + (hasBefore ? 28 : 2), top: lr.top, bottom: lr.top + lh, width: 30, height: lh });
+    }
+    return rects;
+  }
+  function inkAndMarkerRects() { return Array.prototype.slice.call(allInkRects()).concat(markerRects()); }
+
   function clearTitleOverlaps(pad) {
     pad = pad == null ? 8 : pad;
-    var rects = allInkRects();
+    var rects = inkAndMarkerRects();
     if (!rects.length) return;
     Array.prototype.slice.call(decor.children).forEach(function (el) {
       var b = el.getBoundingClientRect();
