@@ -296,6 +296,10 @@
       return;
     }
 
+    var exitNav = document.querySelector(".exit-nav");
+    var navRect = exitNav && exitNav.getBoundingClientRect();
+    var navClearLeft = navRect && navRect.height > navRect.width ? navRect.right - metrics.rectLeft + 20 : -Infinity;
+
     targets.forEach(function (target) {
       var r = target.getBoundingClientRect();
       var y = r.top - metrics.rectTop + r.height * 0.5;
@@ -305,7 +309,7 @@
       var attachLeft = Math.abs(spine.x - left) < Math.abs(spine.x - right);
 
       if (attachLeft) {
-        var desiredLeft = spine.x + 14;
+        var desiredLeft = Math.max(spine.x + 14, navClearLeft);
         var leftError = desiredLeft - left;
         if (Math.abs(leftError) <= 160 && Math.abs(leftError) > 1) {
           var currentLeftMargin = parseFloat(target.style.marginLeft) || 0;
